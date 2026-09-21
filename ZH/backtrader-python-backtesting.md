@@ -1,10 +1,7 @@
 ---
 title: "Backtrader 2026: Python回测引擎以100倍速度验证交易策略 —— 完整指南"
 description: "Backtrader事件驱动回测引擎完整指南。使用Python构建、测试和优化交易策略。集成方案、基准测试和实盘交易部署2026。". Comprehensive guide covering fea..."
-stars: 15600
-maintainer: mementum
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

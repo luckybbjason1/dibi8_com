@@ -6,9 +6,6 @@ lastmod: 2026-06-10
 slug: 'supermemory-open-source-ai-memory-api'
 category: llm-frameworks
 tags: ["ai-memory", "supermemory", "vector-search", "graph-search", "llm-apps", "self-hosted", "langchain", "llamaindex"]
-github_repo: "https://github.com/supermemoryai/supermemory"
-license: MIT
-featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
 ---
 
 # 超级记忆：用于构建记住一切的 LLM 应用的最快开源 AI 内存 API

@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/langchain-ai/langgraph"
-stars: 32600
-maintainer: 'langchain-ai'
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["langgraph", "agent", "stateful", "orchestration", "langchain", "production"]

@@ -6,13 +6,9 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: codebase-memory-mcp-deep-code-intelligence
 category: llm-frameworks
 tags: ["mcp", "code-intelligence", "ai-agents", "vector-search", "open-source"]
-github_repo: "https://github.com/DeusData/codebase-memory-mcp"
-license: 'MIT'
 tech_stack: - C
   - Rust
   - Python
-featureImage: /images/articles/free-llm-api-resources-ai-development.png
-stars: 27851---
 
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 

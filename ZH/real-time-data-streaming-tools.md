@@ -1,7 +1,6 @@
 ---
 title: "2025年最佳实时数据流处理工具对比：Apache Kafka、Flink、Spark Streaming、Re...
 description: "深入对比Apache Kafka、Flink、Spark Streaming、Redpanda、Pulsar等主流实时数据流处理工具，从吞吐量、延迟、运维复杂度等维度进行全面评测。". Compreh..."
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["实时流处理", "apache kafka", "flink", "spark streaming", "数据工程"]

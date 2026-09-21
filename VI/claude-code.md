@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/anthropics/claude-code"
-stars: 125050
-maintainer: anthropics
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "ai-coding-agent", "terminal-coding", "anthropic", "claude-tutorial", "claude-code-vs-aider", "claude-code-setup"]

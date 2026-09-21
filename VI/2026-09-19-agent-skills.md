@@ -5,11 +5,6 @@ date: 2026-09-19
 slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
 tags: ['agent-skills', 'addy-osmani', 'claude-code', 'cursor', 'ai-editors', 'skills']
-github_repo: 'https://github.com/addyosmani/agent-skills'
-stars: 96378
-maintainer: 'addyosmani'
-license: MIT
-featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 lang: vi
 ---
 

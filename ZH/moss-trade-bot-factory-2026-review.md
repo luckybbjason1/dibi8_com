@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/moss-site/moss-trade-bot-skills"
-stars: 98
-maintainer: 'moss-site'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["ai-agent", "量化", "回测", "hyperliquid", "永续合约", "开源", "过拟合", "oos 验证"]

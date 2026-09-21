@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/aave/aave-v3-core"
-stars: 2100
-maintainer: aave
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["aave"]

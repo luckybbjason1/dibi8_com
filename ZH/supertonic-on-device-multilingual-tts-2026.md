@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/supertone-inc/supertonic"
-stars: 9900
-maintainer: 'supertone-inc'
 last_maintained: "2026-01-06"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["supertonic", "text-to-speech", "tts", "on-device-ai", "onnx", "multilingual", "open-source-tts", "edge-ai", "korean-tts", "japanese-tts"]

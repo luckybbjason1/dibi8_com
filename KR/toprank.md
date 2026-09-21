@@ -8,11 +8,7 @@ file_size: "1.3 MB"
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 2513
-maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /kr/posts/toprank/

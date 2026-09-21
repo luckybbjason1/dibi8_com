@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'agentmemory-persistent-memory-ai-coding-agents'
 category: 'data-science'
 tags: ["agent memory", "persistent memory", "AI coding agents", "context continuity", "AgentMemory", "session memory", "agent framework", "AI benchmark"]
-github_repo: "https://github.com/rohitg00/agentmemory"
-stars: 22038
-maintainer: 'rohitg00'
-license: MIT
-featureImage: 'https://avatars.githubusercontent.com/u/33592279'
 ---
 
 

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "apache/superset"
-stars: 66000
-maintainer: apache
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["apache superset", "数据可视化", "商业智能", "仪表板", "开源", "docker", "sql", "数据分析"]

@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Bạn có thể nhận thanh toán bằng những loại tiền tệ nào qua NowPayments?'
     a: 'NowPayments cho phép người bán nhận thanh toán bằng hơn 100 loại tiền điện tử, bao gồm Bitcoin, Ethereum và USDT, cùng với các loại tiền pháp định chính như USD, EUR và JPY. Điều này loại bỏ hoàn toàn các giới hạn về khu vực và tiền tệ của các đơn vị xử lý thanh toán truyền thống.'

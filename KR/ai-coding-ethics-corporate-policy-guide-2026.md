@@ -3,11 +3,7 @@ title: "AI 코딩 윤리 2026: 기업 "허용 vs 제한" 정책 가이드'
 description: "2026년 기업은 AI 허용 / AI 제한 / AI 금지 세 진영으로 갈립니다. 우리가 추적한 실제 기업 도입 패턴을 바탕으로 각 정책의 모습, 선택 기준, 법률/IP/컴플라이언스..."
 licensing_model: '해당 없음'
 license_type: '해당 없음'
-github_repo: ''
-stars: 0
-maintainer: 'dibi8 편집부'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai-coding", "윤리", "정책", "컴플라이언스", "2026"]

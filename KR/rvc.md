@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI"
-stars: 35700
-maintainer: 'RVC-Project'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["rvc", "음성-변환", "ai-음성-클론", "vits", "음성-합성", "docker", "튜토리얼", "검색-기반-vc"]

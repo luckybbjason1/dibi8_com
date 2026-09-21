@@ -1,10 +1,7 @@
 ---
 title: "Caddy: Web Server Production 72K+ Stars — Hướng Dẫn Triể...
 description: "Caddy (Caddyserver) là web server HTTP/1-2-3 đa nền tảng nhanh và mở rộng với HTTPS tự động. Tương t..."
-stars: 72595
-maintainer: caddyserver
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]

@@ -6,7 +6,6 @@ lastmod: 2026-06-20
 (tags: [ai-tools, claude-code, codex, desktop-app, rust, tauri, mcp]
 category: "dev-utils"
 slug: cc-switch-all-in-one-ai-coding-agent-manager
-featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png
 ---
 
 # CC Switch: The Ultimate AI Coding Agent Manager for Multi-Platform Development

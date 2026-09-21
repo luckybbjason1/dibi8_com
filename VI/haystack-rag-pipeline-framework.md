@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "deepset-ai/haystack"
-stars: 21000
-maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["haystack", "nlp", "rag", "python", "llm", "document store", "retriever", "agent", "openai", "docker", "pipeline"]

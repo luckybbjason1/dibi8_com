@@ -1,7 +1,6 @@
 ---
 title: "Docker开发环境最佳实践：2025年完整指南"
 description: "2025年Docker开发环境完整配置指南，涵盖Dev Containers、热重载、多阶段构建、数据库管理等10大最佳实践，附带完整docker-compose配置示例。". Comprehensi..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/docker-development-environment-best-practices/-

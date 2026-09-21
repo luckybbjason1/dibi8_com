@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ["token compression", "LLM token optimization", "MCP server", "RAG compression", "Headroom", "context optimization", "token cost reduction", "AI proxy"]
-github_repo: "https://github.com/chopratejas/headroom"
-stars: 19745
-maintainer: 'chopratejas'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
 # Headroom: Compress LLM Inputs by 60-95% — A Token-Saving Proxy, Library & MCP Server — A Practical Guide 2026

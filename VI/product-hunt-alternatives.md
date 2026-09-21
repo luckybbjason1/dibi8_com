@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Những nền tảng miễn phí nào tốt nhất để ra mắt sản phẩm SaaS?'
     a: 'Các nền tảng ra mắt miễn phí hàng đầu bao gồm: Hacker News (Show HN) dành cho công cụ dành nhà phát triển, Indie Hackers dành cho SaaS tự cấp vốn, BetaList dành cho sản phẩm giai đoạn sớm, Launching Next dành cho startup mới, và Uneed (có gói miễn phí với khả năng hiển thị trên trang chủ được đảm bảo).'

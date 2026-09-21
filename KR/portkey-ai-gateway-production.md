@@ -2,10 +2,7 @@
 title: "Portkey AI Gateway 2026: 200+ 모델을 관리하는 LLM 게이트웨이와 관찰 가능성...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:..."
-stars: 14000
-maintainer: 'Portkey-AI'
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["portkey ai gateway"]

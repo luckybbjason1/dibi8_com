@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/BerriAI/litellm"
-stars: 22500
-maintainer: BerriAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["litellm", "llm-게이트웨이", "오픈소스", "docker", "프로덕션", "ai-인프라", "프록시-서버", "멀티-모델"]

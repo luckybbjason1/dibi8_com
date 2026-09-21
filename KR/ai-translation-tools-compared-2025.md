@@ -1,7 +1,6 @@
 ---
 title: "2025년 최고의 AI 번역 도구: Google Translate vs DeepL vs ChatGPT...
 description: "2025년 최고의 AI 번역 도구를 비교합니다. Google Translate, DeepL, ChatGPT, Microsoft Translator의 번역 품질과 기능을 상세히 분석..."
-featureImage: '"
 draft: false
 aliases:
   - /posts/ai-translation-tools-compared-2025/

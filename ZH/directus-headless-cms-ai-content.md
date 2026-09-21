@@ -1,10 +1,7 @@
 ---
 title: "Directus：驱动 AI 内容工作流的开源 Headless CMS — 2026 设置与 API 指南"
 description: "Directus 11.x 完整指南 — 具有动态 API 生成、内容版本控制、AI 内容工作流和自托管 Docker 部署的开源 Headless CMS。REST 和 GraphQL API 基准..."
-stars: 29100
-maintainer: directus
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["directus", "headless cms", "内容管理", "api", "docker", "开源", "ai", "graphql", "rest", "自托管"]

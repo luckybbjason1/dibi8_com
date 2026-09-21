@@ -8,11 +8,7 @@ file_size: "50.9 MB"
 file_md5: ""
 download_url: "https://github.com/vasu-devs/JustHireMe.git"
 backup_url: ""
-github_repo: "https://github.com/vasu-devs/JustHireMe.git"
-stars: 1749
-maintainer: "vasu-devs"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /kr/posts/justhireme-ai-job-search-workbench/

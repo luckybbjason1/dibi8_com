@@ -6,12 +6,9 @@ slug: strix-ai-open-source-penetration-testing
 title: "Strix AI：31K+明星开源渗透测试框架"
 category: dev-utils
 tags: ["security", "penetration-testing", "ai-agents", "vulnerability-scanning", "open-source"]
-github_repo: "https://github.com/usestrix/strix"
-license: 'GPL-3.0'
 tech_stack: - Python
   - TypeScript
   - Bash
-featureImage: /images/articles/vectorbt-thư-viện-python-backtesting-tốc.jpg
 ---
 
 

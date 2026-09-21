@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "directus/directus"
-stars: 29100
-maintainer: directus
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["directus", "headless cms", "콘텐츠 관리", "api", "docker", "오픈소스", "ai", "graphql", "rest", "셀프호스팅"]

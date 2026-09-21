@@ -8,11 +8,7 @@ file_size: "1.2 MB"
 file_md5: ""
 download_url: "https://github.com/browser-use/browser-harness"
 backup_url: ""
-github_repo: "https://github.com/browser-use/browser-harness"
-stars: 13142
-maintainer: "browser-use"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Browser Harness란 무엇인가요?'
     a: 'Browser Harness는 대규모 언어 모델(LLM)이 사람이 하는 것처럼 웹 작업을 자율적으로 완료할 수 있게 해주는 자가 치유(self-healing) 브라우저 제어 프레임워크입니다. Python으로 작성되었으며 Playwright와 Selenium을 모두 지원하고, browser-use 팀이 유지 관리합니다.'

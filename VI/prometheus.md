@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/prometheus/prometheus"
-stars: 64094
-maintainer: prometheus
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["prometheus", "giám sát", "docker", "kubernetes", "grafana", "devops", "khả năng quan sát", "chuỗi thờ gian"]

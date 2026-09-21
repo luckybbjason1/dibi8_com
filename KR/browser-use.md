@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/browser-use/browser-use"
-stars: 94731
-maintainer: 'browser-use'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["browser-use", "ai-에이전트", "playwright", "브라우저-자동화", "웹-크롤링", "대형언어모델", "python", "오픈소스"]

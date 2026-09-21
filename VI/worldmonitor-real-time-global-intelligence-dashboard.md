@@ -7,9 +7,6 @@ draft: false
 category: ai-tools
 tags: ["ai", "bảng điều khiển", "địa chính trị", "giám sát", "tin tức", "mã nguồn mở", "osint", "palantir", "nhận thức tình huống"]
 slug: worldmonitor-real-time-global-intelligence-dashboard
-featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
-github_repo: https://github.com/WorldMonitorHQ/worldmonitor
-license: MIT
 ---
 
 

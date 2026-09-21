@@ -1,10 +1,7 @@
 ---
 title: "BookStack: 支持 Markdown 的开发者友好文档 Wiki — 2026 安装与评测"
 description: "完整指南：安装和运行 BookStack，这款支持 WYSIWYG + Markdown 编辑、书架/章节/页面结构、LDAP/SSO 支持的开源文档 Wiki。5 分钟内完成自托管部署。". Com..."
-stars: 18700
-maintainer: BookStackApp
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["bookstack", "文档", "wiki", "自托管", "php", "laravel", "知识库", "markdown", "docker", "开源"]

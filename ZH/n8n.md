@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/n8n-io/n8n"
-stars: 188782
-maintainer: 'n8n-io'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["n8n", "工作流自动化", "自托管", "ai 智能体", "docker", "langchain", "开源", "低代码"]

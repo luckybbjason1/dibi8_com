@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Billions Wallet hỗ trợ bao nhiêu loại tiền điện tử?'
     a: 'Billions Wallet hỗ trợ hơn 1.000 tài sản kỹ thuật số trên nhiều blockchain, bao gồm Bitcoin, Ethereum, USDT và các stablecoin khác, cùng với nhiều altcoin.'

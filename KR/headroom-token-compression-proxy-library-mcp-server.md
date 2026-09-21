@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ["토큰 압축", "LLM 토큰 최적화", "MCP 서버", "RAG 압축", "Headroom", "컨텍스트 최적화", "토큰 비용 절감", "AI 에이전트"]
-github_repo: "https://github.com/chopratejas/headroom"
-stars: 19745
-maintainer: 'chopratejas'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
 

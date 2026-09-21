@@ -1,10 +1,7 @@
 ---
 title: "Hayhooks: 一条命令将 Haystack Pipeline 部署为 REST API — 2026 生产...
 description: "完整指南：使用 Hayhooks 将 Haystack NLP pipeline 部署为生产级 REST API。涵盖一键部署、容器支持、自动生成 OpenAPI 文档以及真实基准测试。". Comp..."
-stars: 600
-maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["hayhooks", "haystack", "nlp", "rest api", "大语言模型", "pipeline 部署", "docker", "python", "openapi"]

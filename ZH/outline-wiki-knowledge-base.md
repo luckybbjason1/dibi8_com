@@ -1,10 +1,7 @@
 ---
 title: "Outline 完整指南：专为工程团队打造的开源 Wiki 与知识库 —— 2026 自托管部署"
 description: "使用 Docker 在 10 分钟内部署 Outline。为工程团队构建实时协作 Wiki，支持 Markdown 编辑器、Slack 集成、全文搜索和细粒度权限控制。". Comprehensive..."
-stars: 32000
-maintainer: outline
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["outline", "wiki", "知识库", "团队文档", "开源", "自托管", "docker", "协作", "markdown"]

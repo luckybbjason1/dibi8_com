@@ -1,7 +1,6 @@
 ---
 title: "ibis-dataframe-python-sql"
 description: "{"en': ''Discover Ibis, the Python DataFrame library that compiles expressions to SQL for 20+ backen..."
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["ibis"]

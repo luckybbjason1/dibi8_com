@@ -1,10 +1,7 @@
 ---
 title: "Dagster: 에셋 기반 데이터 파이프라인 오케스트레이터 — 2026 프로덕션 구축 가이드"
 description: "Dagster 1.13 완전 프로덕션 가이드: 에셋 기반 오케스트레이션, 데이터 인지 스케줄링, 파티셔닝, 백필, Docker Compose 자체 호스팅 배포.". Comprehe..."
-stars: 14000
-maintainer: 'dagster-io'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["dagster", "data-pipeline", "orchestration", "etl", "apache-airflow", "dbt", "python", "docker", "data-engineering", "asset-centric", "데이터파이프라인", "데이터오케스트레이션"]

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "Unstructured-IO/unstructured"
-stars: 10500
-maintainer: 'Unstructured-IO'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["unstructured", "phân-tích-tài-liệu", "llm", "rag", "tiền-xử-lý-dữ-liệu", "pdf", "chunking", "mã-nguồn-mở"]

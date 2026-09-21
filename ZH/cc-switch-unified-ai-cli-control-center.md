@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ["AI CLI 管理", "Claude Code 替代方案", "AI 编码工具", "开发者生产力", "多代理 CLI", "cc-switch", "AI 编码代理", "CLI 代理"]
-github_repo: "https://github.com/farion1231/cc-switch"
-stars: 95900
-maintainer: 'farion1231'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 ---
 
 

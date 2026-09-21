@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["멀티모달", "콘텐츠 파이프라인", "팟캐스트", "비디오", "tts", "스택", "컬렉션"]

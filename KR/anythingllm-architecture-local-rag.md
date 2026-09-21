@@ -8,11 +8,7 @@ file_size: "58.3 MB"
 file_md5: ""
 download_url: "https://github.com/Mintplex-Labs/anything-llm"
 backup_url: ""
-github_repo: "https://github.com/Mintplex-Labs/anything-llm"
-stars: 60238
-maintainer: "Mintplex-Labs"
 last_maintained: "2026-05-16"
-featureImage: ""
 draft: false
 faqs: - q: 'Docker 안에서 Ollama에 연결할 때 AnythingLLM의 ''Connection Refused'' 오류는 어떻게 해결하나요?'
     a: 'Docker 컨테이너 안에서 localhost는 호스트 머신이 아니라 컨테이너 자신을 가리키므로, AnythingLLM의 LLM URL을 http://host.docker.internal:11434로 지정하세요. 또한 네트워크 인터페이스 전반에서의 접근을 허용하려면 환경 변수 OLLAMA_HOST=0.0.0.0 으로 Ollama를 실행해야 합니다.'

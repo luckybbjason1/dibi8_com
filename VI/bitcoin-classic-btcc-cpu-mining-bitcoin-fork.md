@@ -12,11 +12,7 @@ file_size: "14.8 MB"
 file_md5: ""
 download_url: "https://github.com/Marcus-Vane/Bitcoin-Classic"
 backup_url: ""
-github_repo: "https://github.com/Marcus-Vane/Bitcoin-Classic"
-stars: 23
-maintainer: "Marcus-Vane"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /vi/posts/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/

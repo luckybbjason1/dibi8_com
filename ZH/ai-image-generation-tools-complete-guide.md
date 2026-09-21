@@ -1,7 +1,6 @@
 ---
 title: "AI图像生成工具完全指南：Midjourney、DALL-E、Stable Diffusion等"
 description: "2025年AI图像生成工具完全指南，详解Midjourney v7、DALL-E 3、Stable Diffusion 3.5、Adobe Firefly等主流工具的技术原理、功能对比与使用场景。"...."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-image-generation-tools-complete-guide/-

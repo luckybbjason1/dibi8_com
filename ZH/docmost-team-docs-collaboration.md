@@ -1,10 +1,7 @@
 ---
 title: "Docmost 2026：实时团队协作的开源 Notion 替代方案 —— 自托管指南"
 description: "Docmost 完整自托管指南：支持实时协作编辑、类 Notion 块编辑器、嵌套页面和 PostgreSQL 后端的开源协作 Wiki。5 分钟内部署。". Comprehensive guide ..."
-stars: 20100
-maintainer: docmost
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["docmost", "notion 替代品", "wiki", "实时协作", "自托管", "文档", "postgresql", "docker", "开源", "团队文档"]

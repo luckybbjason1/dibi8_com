@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-30"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "langgraph", "crewai", "autogen", "multi-agent", "agent-sdk", "llm-frameworks", "orchestration"]

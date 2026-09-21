@@ -6,9 +6,6 @@ date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'personal-ai-infrastructure-daniel-miessler'
 category: data-science
-github_repo: "https://github.com/danielmiessler/Personal_AI_Infrastructure"
-license: MIT
-featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
 # Personal AI Infrastructure: Agentic AI Setup for Humans — 2026 Guide

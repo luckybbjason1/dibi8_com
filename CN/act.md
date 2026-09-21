@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/nektos/act"
-stars: 70410
-maintainer: nektos
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["act", "github-actions", "ci-cd", "docker", "local-development", "devops", "testing", "automation"]

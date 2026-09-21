@@ -6,9 +6,6 @@ lastmod: 2026-06-12
 slug: 'prompts-chat'
 category: llm-frameworks
 tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
-github_repo: "https://github.com/f/prompts.chat"
-license: NOASSERTION
-featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
 ---
 
 # prompts.chat：16.3万+ 提示——开源提示库指南 2026
@@ -20,10 +17,6 @@ lastmod: 2026-06-12
 slug: 'prompts-chat'
 category: 'llm-frameworks'
 tags: ["prompts.chat", "open-source", "prompt-engineering", "self-hosting", "llm-tools", "ai-library", "github"]
-github_repo: "https://github.com/f/prompts.chat"
-stars: 163640
-maintainer: 'f'
-license: NOASSERTION
 
 
 {

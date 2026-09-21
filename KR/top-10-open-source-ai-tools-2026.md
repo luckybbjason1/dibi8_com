@@ -1,7 +1,6 @@
 ---
 title: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10"
 description: "2026년 대세: 개발자가 꼭 알아야 할 무료 오픈소스 AI 툴 Top 10". Comprehensive guide covering features, pricing, and bes..."
-featureImage: ''
 draft: false
 aliases:
   - /ko/posts/top-ai-developer-productivity-tools-2026/

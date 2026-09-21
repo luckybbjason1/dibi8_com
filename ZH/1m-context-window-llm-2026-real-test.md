@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "2026 Q2"
 licensing_model: Commercial
 license_type: "Proprietary API"
-github_repo: ""
-stars: 0
-maintainer: "Google / Anthropic"
 last_maintained: "2026-05-25"
-featureImage: ""
 draft: false
 categories: ["llm-frameworks"]
 tags: ["gemini", "claude", "long-context", "llm", "2026"]
@@ -37,11 +33,7 @@ application_domain: LLM Frameworks
 source_version: "2026 Q2"
 licensing_model: Commercial
 license_type: 'Proprietary API'
-github_repo: ''
-stars: 0
-maintainer: 'Google / Anthropic'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["gemini", "claude", "long-context", "llm", "2026"]

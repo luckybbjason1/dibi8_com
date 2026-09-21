@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'NowPayments 支持哪些货币？'
     a: 'NowPayments 允许商家接受超过 100 种加密货币的付款，包括 Bitcoin、Ethereum 和 USDT，同时支持 USD、EUR、JPY 等主流法币。这彻底消除了传统支付处理商的地区和货币限制。'

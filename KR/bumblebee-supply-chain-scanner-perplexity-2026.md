@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: "https://github.com/perplexityai/bumblebee"
 backup_url: ''
-github_repo: "perplexityai/bumblebee"
-stars: 1500
-maintainer: perplexityai
 last_maintained: "2026-05-22"
-featureImage: '/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg'
 draft: false
 categories: ["dev-utils"]
 tags: ["bumblebee", "공급망-보안", "mcp", "security", "go", "npm", "pypi", "perplexity-ai"]

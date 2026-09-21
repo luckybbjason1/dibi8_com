@@ -6,9 +6,6 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'supermemory-open-source-ai-memory-api'
 category: llm-frameworks
-github_repo: "https://github.com/supermemoryai/supermemory"
-license: MIT
-featureImage: /articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png/images/articles/aitoearn-open-source-ai-content-monetiza-9c8ad4.png
 ---
 
 # Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything

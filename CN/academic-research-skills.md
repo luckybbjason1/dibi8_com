@@ -6,8 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: academic-research-skills
 category: dev-utils
-github_repo: "https://github.com/Imbad0202/academic-research-skills"
-license: Other
 images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-skills"
     alt: "Academic Research Skills GitHub OG"
     role: reference
@@ -17,7 +15,6 @@ images: - url: "https://opengraph.github.com/github/Imbad0202/academic-research-
   - url: "https://raw.githubusercontent.com/Imbad0202/academic-research-skills/main/assets/skill-architecture.png"
     alt: "Skill Architecture"
     role: architecture
-featureImage: /images/articles/academic-research-skills-automate-literature-reviews-with-ai.jpg
 ---
 
 ![Hero Image](https://picsum.photos/seed/ai/1200x800)

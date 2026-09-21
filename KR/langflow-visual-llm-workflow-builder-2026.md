@@ -6,11 +6,6 @@ lastmod: 2026-05-23
 slug: 'langflow'
 category: 'llm-frameworks'
 tags: ["Langflow", "LLM 워크플로우", "시각적 프로그래밍", "AI 에이전트", "LangChain", "흐름 기반 프로그래밍", "프롬프트 엔지니어링", "배포", "로우코드 AI"]
-github_repo: "https://github.com/langflow-ai/langflow"
-stars: 148710
-maintainer: 'langflow-ai'
-license: MIT
-featureImage: 'https://deepwiki.com/badge.svg'
 ---
 
 

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "polakowo/vectorbt"
-stars: 8900
-maintainer: polakowo
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

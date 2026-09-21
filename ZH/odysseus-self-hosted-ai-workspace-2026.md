@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: 'https://github.com/pewdiepie-archdaemon/odysseus'
 backup_url: ''
-github_repo: "pewdiepie-archdaemon/odysseus"
-stars: 63159
-maintainer: 'pewdiepie-archdaemon'
 last_maintained: "2026-06-08"
-featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
 categories: ["ai-tools"]
 tags: ["odysseus", "自部署 ai", "ai 工作台", "本地 llm", "隐私", "docker", "开源", "chatgpt 替代", "ollama", "深度调研"]

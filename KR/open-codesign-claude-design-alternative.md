@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Open Codesign은 무료인가요? 사용 비용은 얼마인가요?'
     a: 'Open Codesign은 MIT 라이선스로 제공되는 무료 애플리케이션입니다. BYOK(Bring Your Own Key) 모델을 채택하고 있어, 월정액 구독료 없이 기존 공급자 계정을 통해 소비한 LLM 토큰 비용만 부담하면 됩니다.'

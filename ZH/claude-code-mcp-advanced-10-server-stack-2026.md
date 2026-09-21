@@ -3,11 +3,7 @@ title: "Claude Code MCP 进阶 2026：10 服务器生产级技术栈"
 description: "在使用 Claude Code 搭配各种 MCP 服务器组合后，最终敲定了一套 10 服务器的生产级技术栈，在能力、安全性与启动时间之间取得平衡。本文逐一说明每个服务器、为何入选、它能做什么，以及如何..."
 licensing_model: 混合
 license_type: 多种
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 60000
-maintainer: 'Anthropic + 社区'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "mcp", "configuration", "production", "2026"]

@@ -14,11 +14,7 @@ file_size: "2.4 MB"
 file_md5: ""
 download_url: "https://github.com/JuliusBrussee/caveman"
 backup_url: ""
-github_repo: "https://github.com/JuliusBrussee/caveman"
-stars: 61775
-maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
-featureImage: ""
 draft: false
 aliases:
   - /vi/posts/caveman/

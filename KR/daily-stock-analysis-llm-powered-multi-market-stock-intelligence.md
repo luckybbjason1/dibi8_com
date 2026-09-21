@@ -7,9 +7,6 @@ draft: false
 category: ai-trading
 tags: ["주식분석", "llm", "퀀트트레이딩", "ai에이전트", "다시장", "a주식", "감정분석", "자동거래"]
 slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
-featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-github_repo: https://github.com/dailystockai/daily-stock
-license: MIT
 ---
 
 

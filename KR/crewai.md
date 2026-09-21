@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/crewAIInc/crewAI"
-stars: 51759
-maintainer: crewAIInc
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crewai", "멀티에이전트", "ai-에이전트", "python", "llm-오케스트레이션", "자동화", "오픈소스", "머신러닝"]

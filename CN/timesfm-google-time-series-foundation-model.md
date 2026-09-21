@@ -6,7 +6,6 @@ date: 2026-06-19
 lastmod: 2026-06-19layout: article
 category: data-science
 slug: timesfm-google-time-series-foundation-model
-featureImage: /images/articles/fine-tuning-stack.png
 ---
 
 # TimesFM 2.5: Google's Revolutionary Time Series Foundation Model for Forecasting

@@ -16,11 +16,7 @@ file_size: "956.2 MB"
 file_md5: ''
 download_url: https://github.com/block/goose
 backup_url: ''
-github_repo: https://github.com/block/goose
-stars: 45476
-maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
-featureImage: ''
 draft: false
 aliases:
   - /posts/aitoearn-ai-content-monetization-open-source/

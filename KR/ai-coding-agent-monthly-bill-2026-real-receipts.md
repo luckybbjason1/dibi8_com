@@ -8,11 +8,7 @@ application_domain: Dev Utils
 source_version: "May 2026 30-day window"
 licensing_model: Commercial
 license_type: Proprietary
-github_repo: ''
-stars: 0
-maintainer: 'Anthropic / Anysphere / OpenAI'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai-coding", "claude-code", "cursor", "codex-cli", "pricing", "2026"]

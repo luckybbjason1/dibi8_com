@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'cloakbrowser-stealth-chromium-bot-detection-scraping'
 category: 'ai-trading'
 tags: ["stealth browser", "cloakbrowser", "bot detection", "web scraping", "fingerprint spoofing", "playwright replacement", "anti-detection", "scraping tool"]
-github_repo: "https://github.com/CloakHQ/CloakBrowser"
-stars: 25077
-maintainer: CloakHQ
-license: MIT
-featureImage: 'https://avatars.githubusercontent.com/u/17126204'
 ---
 
 

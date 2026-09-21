@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'codegraph-pre-indexed-code-knowledge-graph-ai-agents'
 category: 'dev-utils'
 tags: ["code knowledge graph", "Codegraph", "LLM token reduction", "code indexing", "AI coding agents", "local code search", "codebase understanding", "developer tool"]
-github_repo: "https://github.com/colbymchenry/codegraph"
-stars: 45555
-maintainer: 'colbymchenry'
-license: MIT
-featureImage: 'https://avatars.githubusercontent.com/u/11434'
 ---
 
 # Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026

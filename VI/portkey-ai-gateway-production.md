@@ -2,10 +2,7 @@
 title: "Portkey AI Gateway 2026: Cổng LLM Quản lý 200+ Mô hình v...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:..."
-stars: 14000
-maintainer: 'Portkey-AI'
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["portkey ai gateway"]

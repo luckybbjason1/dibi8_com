@@ -6,8 +6,6 @@ lastmod: 2026-06-15
 slug: ai-engineering-from-scratch
 category: llm-frameworks
 tags: ["kỹ thuật ai", "llm", "tinh chỉnh", "rag", "khung tác nhân", "triển khai sản xuất", "học máy"]
-github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
-license: MIT
 images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
     alt: "Kỹ Thuật AI Từ Đầu GitHub OG"
     role: reference
@@ -17,7 +15,6 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "Lịch Sử Sao"
     role: reference
-featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
 

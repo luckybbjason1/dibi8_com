@@ -18,11 +18,7 @@ file_size: "236 KB"
 file_md5: ''
 download_url: https://github.com/luckybbjason1/Scanners-Box
 backup_url: ''
-github_repo: https://github.com/luckybbjason1/Scanners-Box
-stars: 0
-maintainer: "luckybbjason1"
 last_maintained: "2023-09-21"
-featureImage: ''
 draft: false
 aliases:
   - /vi/posts/scanners-box-cybersecurity-tools-collection/

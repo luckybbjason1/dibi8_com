@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "vectara/vectara-ingest"
-stars: 800
-maintainer: vectara
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["vectara", "rag", "vector search", "llm", "embedding", "boomerang", "hhem", "hallucination detection", "enterprise ai"]

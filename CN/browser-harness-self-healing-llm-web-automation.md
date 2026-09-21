@@ -14,11 +14,7 @@ file_size: "1.2 MB"
 file_md5: ''
 download_url: https://github.com/browser-use/browser-harness
 backup_url: ''
-github_repo: https://github.com/browser-use/browser-harness
-stars: 13142
-maintainer: "browser-use"
 last_maintained: "2026-05-15"
-featureImage: ''
 draft: false
 aliases:
   - /posts/browser-harness-self-healing-llm-web-automation/

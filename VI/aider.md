@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/Aider-AI/aider"
-stars: 45040
-maintainer: 'paul-gauthier'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["aider", "ai-pair-programming", "terminal-ai", "cli-coding", "git-ai", "llm-tools", "mã-nguồn-mở"]

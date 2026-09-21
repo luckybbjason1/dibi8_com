@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["llm评估", "基准测试", "eleutherai", "opencompass", "big-bench"]

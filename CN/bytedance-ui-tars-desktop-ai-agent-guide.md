@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"
 category: ai-tools
 tags: ["bytedance", "ui-tars", "vision-language-model", "AI-agent", "desktop-automation", "GUI-agent", "open-source", "multimodal-ai"]
-github_repo: "https://github.com/bytedance/UI-TARS-desktop"
-stars: 36263
-maintainer: bytedance
-license: Apache-2.0
-featureImage: "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"
 ---
 
 ## Introduction

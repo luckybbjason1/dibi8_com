@@ -1,10 +1,7 @@
 ---
 title: "Activepieces：拥有200+应用集成和AI操作的开源Zapier替代品 —— 2026年自托管指南"
 description: "5分钟内部署 Activepieces。这款开源工作流自动化平台拥有200+应用集成、AI操作和可视化构建器，成本仅为Zapier的一小部分。". Comprehensive guide coveri..."
-stars: 13000
-maintainer: activepieces
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["activepieces", "工作流自动化", "zapier替代品", "自托管", "docker", "无代码", "开源", "typescript", "ai操作", "webhook"]

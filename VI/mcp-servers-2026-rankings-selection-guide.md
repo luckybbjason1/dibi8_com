@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "MCP 2025-06 spec"
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 60000
-maintainer: 'Anthropic + Community'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mcp", "model-context-protocol", "claude-code", "ai-agents", "developer-tools", "integration", "2026"]

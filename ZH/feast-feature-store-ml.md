@@ -1,10 +1,7 @@
 ---
 title: "Feast: 开源特征存储亚秒级特征服务 — 2026 完整部署指南"
 description: "Feast 完整指南 — 领先的开源特征存储。涵盖特征注册中心、在线/离线存储、亚秒级服务、Redis/BigQuery 后端、批处理与实时特征以及生产部署。". Comprehensive guid..."
-stars: 7000
-maintainer: 'feast-dev'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "在线存储", "离线存储", "实时ml", "特征工程"]

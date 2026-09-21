@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ["AI 代理管理", "多代理协调", "paperclip", "开源代理", "代理工作流", "自托管代理", "AI 代理工作场所", "代理编排"]
-github_repo: "https://github.com/paperclipai/paperclip"
-stars: 69700
-maintainer: 'paperclipai'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
 
 

@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'DeepSeek를 로컬에서 실행하는 것이 GPT-4o API를 사용하는 것보다 더 저렴한가요?'
     a: '하루에 2-3 million tokens를 생성하는 고부하 AI 코딩 워크플로의 경우, GPT-4o는 하루 $30+(월 약 $1,000)가 드는 반면, 128GB Mac을 한 번 구매해 DeepSeek를 로컬에서 실행하면 한계 비용이 사실상 0(전기 요금만)으로 떨어집니다. 이 글은 로컬의 1년 비용을 약 $4,000으로, 반복 결제되는 API 비용을 $20,000+로 추정합니다.'

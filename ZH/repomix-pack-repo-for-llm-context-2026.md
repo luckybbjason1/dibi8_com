@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: 'https://github.com/yamadashy/repomix'
 backup_url: ''
-github_repo: "yamadashy/repomix"
-stars: 14200
-maintainer: yamadashy
 last_maintained: "2026-06-01"
-featureImage: '/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg'
 draft: false
 categories: ["dev-utils"]
 tags: ["repomix", "repopack", "ai编程", "llm上下文", "代码库打包", "claude", "chatgpt", "开发者工具", "开源"]

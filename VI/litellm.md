@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/BerriAI/litellm"
-stars: 22500
-maintainer: BerriAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["litellm", "llm-gateway", "mã-nguồn-mở", "docker", "production", "hạ-tầng-ai", "proxy-server", "đa-mô-hình"]

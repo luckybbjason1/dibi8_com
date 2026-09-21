@@ -1,7 +1,6 @@
 ---
 title: "AI搜索工具对比：Perplexity、Google Gemini与ChatGPT搜索全面评测"
 description: "2025年AI搜索引擎全面对比：Perplexity AI、Google Gemini、ChatGPT搜索、Microsoft Copilot和Grok的功能、准确性、定价与适用场景深度评测。". C..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-search-tools-perplexity-gemini-chatgpt/-

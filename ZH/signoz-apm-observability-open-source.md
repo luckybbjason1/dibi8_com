@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "SigNoz/signoz"
-stars: 22000
-maintainer: SigNoz
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["signoz", "apm", "可观测性", "分布式追踪", "opentelemetry", "datadog替代品", "自托管", "docker", "kubernetes", "指标", "日志", "监控"]

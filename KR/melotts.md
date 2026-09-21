@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/myshell-ai/MeloTTS"
-stars: 7400
-maintainer: 'myshell-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["melotts", "텍스트음성변환", "tts", "다국어", "python", "음성합성", "오픈소스", "cpu추론"]

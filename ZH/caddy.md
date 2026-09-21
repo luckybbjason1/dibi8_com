@@ -1,10 +1,7 @@
 ---
 title: "Caddy: 72K+ Stars 的生产级 Web 服务器 — 2026 自动 HTTPS 部署指南"
 description: "Caddy (Caddyserver) 是一个快速、可扩展的多平台 HTTP/1-2-3 Web 服务器，支持自动 HTTPS。兼容 Docker、Let"'''s Encrypt、Prometheu..."
-stars: 72595
-maintainer: caddyserver
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["caddy", "web服务器", "反向代理", "自动https", "docker", "运维", "ssl", "http3"]

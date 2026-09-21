@@ -14,11 +14,7 @@ file_size: "8.0 MB"
 file_md5: ''
 download_url: https://github.com/D4Vinci/Scrapling
 backup_url: ''
-github_repo: https://github.com/D4Vinci/Scrapling
-stars: 50997
-maintainer: "D4Vinci"
 last_maintained: "2026-05-16"
-featureImage: ''
 draft: false
 aliases:
   - /ko/posts/scrapling-python-stealthy-web-scraping-review/

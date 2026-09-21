@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-06-04"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["ai에이전트", "ai윤리", "책임있는ai", "ai거버넌스", "에이전트보안", "정렬", "윤리강령"]

@@ -15,11 +15,7 @@ file_size: "111.2 MB"
 file_md5: ""
 download_url: "https://github.com/searxng/searxng"
 backup_url: ""
-github_repo: "https://github.com/searxng/searxng"
-stars: 30184
-maintainer: "searxng"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /posts/local-deep-research-local-first-ai-deep-research-tool/

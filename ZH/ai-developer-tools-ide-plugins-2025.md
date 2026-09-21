@@ -1,7 +1,6 @@
 ---
 title: "2025年最佳AI开发工具与IDE插件：超越代码生成"
 description: "2025年AI开发工具与IDE插件全面评测：GitHub Copilot、Cody、JetBrains AI、Tabnine、Codeium等代码生成、审查、调试和文档工具的深度对比。". Compr..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-developer-tools-ide-plugins-2025/-

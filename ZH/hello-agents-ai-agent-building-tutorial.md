@@ -14,11 +14,7 @@ file_size: "197.3 MB"
 file_md5: ""
 download_url: "https://github.com/datawhalechina/hello-agents"
 backup_url: ""
-github_repo: "https://github.com/datawhalechina/hello-agents"
-stars: 50847
-maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
-featureImage: ""
 draft: false
 faqs: - q: 'Datawhale Hello-Agents 是什么？'
     a: 'Hello-Agents 是来自中国 Datawhale 社区的免费开源教程，教你从零开始构建 AI agent。它提供一套 16 章的课程，配有可运行代码，并以在线书籍、本地文档和可下载的 PDF 三种形式提供。'

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/dagger/dagger"
-stars: 15829
-maintainer: dagger
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["cicd", "devops", "컨테이너", "파이프라인-코드", "docker", "github-actions", "gitlab-ci", "빌드-자동화"]

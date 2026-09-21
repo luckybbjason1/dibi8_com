@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/mem0ai/mem0"
-stars: 56205
-maintainer: mem0ai
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mem0", "ai-agent-memory", "持久化记忆", "langchain", "向量存储", "内存调优", "mem0教程", "mem0-vs-langchain", "crewai", "开源"]

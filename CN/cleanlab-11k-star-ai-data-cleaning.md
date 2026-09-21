@@ -6,9 +6,6 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'cleanlab-11k-star-ai-data-cleaning'
 category: data-science
-github_repo: "https://github.com/cleanlab/cleanlab"
-license: MIT
-featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
 # Cleanlab: The 11K-Star AI Toolkit That Cuts Data Annotation Costs by 80% — Open-Source Data Cleaning with Python

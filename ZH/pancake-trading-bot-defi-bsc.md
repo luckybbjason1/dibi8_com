@@ -1,10 +1,7 @@
 ---
 title: "PancakeSwap 交易机器人 2026：使用 Python 在 BSC 上构建自动化 DeFi 策略 — ...
 description: "在币安智能链上构建生产级 PancakeSwap 交易机器人。Web3.py 集成、自动化策略、流动性池监控、MEV 保护以及 Python 机器人框架 — 附带 2026 年真实基准测试。". Co..."
-stars: 2500
-maintainer: pancakeswap
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["pancakeswap", "defi", "币安智能链", "web3.py", "交易机器人", "bsc", "自动化交易", "流动性池", "mev保护", "python", "加密货币机器人", "dex交易"]

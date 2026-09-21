@@ -17,11 +17,7 @@ file_size: "197.3 MB"
 file_md5: ''
 download_url: https://github.com/datawhalechina/hello-agents
 backup_url: ''
-github_repo: https://github.com/datawhalechina/hello-agents
-stars: 50847
-maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
-featureImage: ''
 draft: false
 aliases:
   - /posts/building-persistent-ai-agent/

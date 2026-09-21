@@ -6,13 +6,9 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: agency-agents-complete-ai-agency-framework
 category: dev-utils
 tags: ["ai-agents", "open-source", "automation", "multi-agent", "agency"]
-github_repo: "https://github.com/msitarzewski/agency-agents"
-license: 'MIT'
 tech_stack: - Bash
   - Python
   - Shell
-featureImage: /images/articles/free-llm-api-resources-ai-development.png
-stars: 128667---
 
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 

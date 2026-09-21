@@ -6,7 +6,6 @@ lastmod: 2026-06-19
 (tags: []
 category: "dev-utils"
 slug: codebase-memory-mcp-high-performance-code-intelligence
-featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
 ---
 
 

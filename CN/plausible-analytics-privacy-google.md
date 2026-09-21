@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "plausible/analytics"
-stars: 21000
-maintainer: plausible
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["plausible", "analytics", "privacy", "gdpr", "google-analytics-alternative", "self-hosted", "docker", "elixir", "lightweight"]

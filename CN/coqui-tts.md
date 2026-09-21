@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/coqui-ai/TTS"
-stars: 45300
-maintainer: 'coqui-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["coqui tts", "text-to-speech", "voice-cloning", "xtts", "vits", "deep-learning", "docker", "python"]

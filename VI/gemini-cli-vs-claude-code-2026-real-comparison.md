@@ -8,11 +8,7 @@ application_domain: Công cụ phát triển
 source_version: "Gemini CLI 1.0 / Claude Code 1.0"
 licensing_model: 'Hỗn hợp'
 license_type: 'Phần mềm độc quyền'
-github_repo: ''
-stars: 0
-maintainer: 'Google / Anthropic'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["gemini-cli", "claude-code", "ai-coding", "2026"]

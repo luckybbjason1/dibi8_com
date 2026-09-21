@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/RVC-Boss/GPT-SoVITS"
-stars: 57500
-maintainer: 'RVC-Boss'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["음성클로닝", "텍스트음성변환", "gpt-sovits", "tts", "ai음성", "docker", "rvc", "python"]

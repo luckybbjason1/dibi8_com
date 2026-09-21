@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'Minara'
 last_maintained: "2026-05-17"
-featureImage: '"
 draft: false
 aliases:
   - /posts/minara-ai-trading-hyperliquid-review-2026/

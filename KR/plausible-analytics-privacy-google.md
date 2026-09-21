@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "plausible/analytics"
-stars: 21000
-maintainer: plausible
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["plausible", "analytics", "프라이버시", "gdpr", "google-analytics-대안", "셀프호스팅", "docker", "elixir", "경량"]

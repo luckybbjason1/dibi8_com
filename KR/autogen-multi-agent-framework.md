@@ -1,7 +1,6 @@
 ---
 title: "AutoGen 멀티 에이전트 프레임워크 튜토리얼 2025: 다중 AI 에이전트 시스템 구축"
 description: "Microsoft AutoGen으로 대화형 멀티 에이전트 시스템을 구축하는 방법. 설치, 에이전트 설정, GroupChat, 코드 실행, 로컬 LLM 통합까지 상세히 설명한다."...."
-featureImage: ''
 draft: false
 aliases:
   - /posts/autogen-multi-agent-framework/

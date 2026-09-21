@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: Various
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["cursor", "cursor-alternatives", "claude-code", "cline", "github-copilot", "windsurf", "continue-dev", "zed", "ai-coding", "ai-ide", "developer-tools", "comparison"]

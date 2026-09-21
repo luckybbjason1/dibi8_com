@@ -6,9 +6,6 @@ lastmod: 2026-06-13
 slug: 'nvidia-cosmos-world-models-platform-2026'
 category: ai-tools
 tags: ["nvidia-cosmos", "world-models", "physical-ai", "robotics", "video-generation", "multimodal", "mixture-of-transformers", "open-source", "ai-simulation"]
-github_repo: "https://github.com/NVIDIA/cosmos"
-license: Apache-2.0
-featureImage: /articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg/images/articles/nvidia-cosmos-open-source-world-models-for-physical-ai-10k-s.jpg
 ---
 
 

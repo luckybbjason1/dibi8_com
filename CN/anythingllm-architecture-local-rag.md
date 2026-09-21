@@ -15,11 +15,7 @@ file_size: "58.3 MB"
 file_md5: ''
 download_url: https://github.com/Mintplex-Labs/anything-llm
 backup_url: ''
-github_repo: https://github.com/Mintplex-Labs/anything-llm
-stars: 60238
-maintainer: "Mintplex-Labs"
 last_maintained: "2026-05-16"
-featureImage: ''
 draft: false
 aliases:
   - /posts/anythingllm-architecture-local-rag/

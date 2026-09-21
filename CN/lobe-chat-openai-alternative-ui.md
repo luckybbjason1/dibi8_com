@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "lobehub/lobe-chat"
-stars: 60000
-maintainer: lobehub
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["lobe chat", "chatgpt", "openai alternative", "llm", "self-hosted", "docker", "pwa", "plugin system", "ai", "chat ui"]

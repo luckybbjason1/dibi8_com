@@ -6,8 +6,6 @@ lastmod: 2026-06-15
 slug: taste-skill
 category: dev-utils
 tags: ["ai 设计", "agent 技能", "反平庸", "前端", "codex", "cursor", "claude code", "提示词工程"]
-github_repo: "https://github.com/Leonxlnx/taste-skill"
-license: MIT
 images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill 横幅"
     role: hero
@@ -20,7 +18,6 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
   - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill banner"
     role: hero
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
 

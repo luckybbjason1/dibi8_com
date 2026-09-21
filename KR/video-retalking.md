@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/OpenTalker/video-retalking"
-stars: 7200
-maintainer: OpenTalker
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["립싱크", "영상편집", "토킹헤드", "딥페이크", "ffmpeg", "pytorch", "gradio", "ai영상"]

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/OpenTalker/video-retalking"
-stars: 7200
-maintainer: OpenTalker
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["lip-sync", "chinh-sua-video", "talking-head", "deepfake", "ffmpeg", "pytorch", "gradio", "ai-video"]

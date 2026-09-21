@@ -3,7 +3,6 @@ title: LlamaFile — Chạy Local LLMs với một Portable Binary duy nhất
 description: Hướng dẫn toàn diện về LlamaFile của Meta/MLC AI. Chạy 100+ open-source LLMs local mà không cần cài đặt, yêu cầu GPU hay setup phức tạp. Một binary, mọi nền tảng.
 tags: ["llamafile", "local-llm", "portable-binary", "meta-ai", "mlc-llm", "privacy"]
 category: dev-utils
-featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00
 draft: false

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/httpie/cli"
-stars: 38200
-maintainer: httpie
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["httpie", "cli", "http-client", "api-testing", "curl-alternative", "json", "terminal", "developer-tools"]

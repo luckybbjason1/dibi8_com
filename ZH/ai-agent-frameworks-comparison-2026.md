@@ -13,9 +13,6 @@ slug: ai-agent-frameworks-comparison-2026
 author: "Dibi8 Editorial Team"
 showAuthor: true
 showSummary: true
-featureImage: /images/articles/b62165fb-ai-agent-frameworks-comparison.png
-github_repo: langchain-ai/langchain
-license: MIT
 sources: - name: GitHub
     url: https://github.com/langchain-ai/langchain
     type: star_count

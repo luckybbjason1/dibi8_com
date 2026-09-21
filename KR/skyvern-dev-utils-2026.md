@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "Skyvern-AI/skyvern"
-stars: 21803
-maintainer: 'Skyvern-AI'
 last_maintained: "2026-06-02"
-featureImage: 'https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png'
 draft: false
 categories: ["dev-utils"]
 tags: ["]

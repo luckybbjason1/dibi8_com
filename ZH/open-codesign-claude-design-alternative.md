@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Open Codesign 是免费的吗？使用费用是多少？'
     a: 'Open Codesign 是一款采用 MIT 许可证的免费应用程序。它采用 BYOK（自带密钥）模式，因此你只需为通过现有提供商账户消耗的 LLM token 付费，无需支付月度订阅费。'

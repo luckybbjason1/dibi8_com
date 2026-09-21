@@ -1,10 +1,7 @@
 ---
 title: "Claude Code 子智能体（Subagent）实战：5 个每天省下数小时的多智能体工作流（2026）"
 description: "5 个生产环境实测过的 Claude Code subagent 模式 —— 并行调研、worktree 隔离、专家委派、上下文保护、流水线编排，含真实 prompt 和取舍说明。". Compreh..."
-stars: 0
-maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "subagents", "multi-agent", "ai-coding-agents", "llm-frameworks", "developer-tools", "agent-sdk"]

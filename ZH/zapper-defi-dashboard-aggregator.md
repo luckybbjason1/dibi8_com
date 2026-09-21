@@ -1,10 +1,7 @@
 ---
 title: "zapper-defi-dashboard-aggregator"
 description: "{"en': ''Comprehensive guide to Zapper, the DeFi dashboard aggregator tracking 500+ protocols. Learn..."
-stars: 300
-maintainer: 'Zapper-fi'
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["zapper", "defi", "dashboard", "portfolio", "yield-farming", "nft", "api", "zap-in", "zap-out", "aggregator"]

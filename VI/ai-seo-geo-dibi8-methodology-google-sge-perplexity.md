@@ -6,9 +6,6 @@ lastmod: 2026-06-15
 slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
 tags: ["AI SEO", "GEO", "AI search", "Google SGE", "structured data", "schema.org", "multi-language", "E-E-A-T", "Perplexity", "ChatGPT", "VUI.AI", "Zalo"]
-github_repo: "https://github.com/dibi8-com/dibi8"
-license: 'MIT'
-featureImage: /images/articles/ai-seo---
 geo-------2026-----seo------------------------6-.png
 ---
 

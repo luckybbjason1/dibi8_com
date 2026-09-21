@@ -1,10 +1,7 @@
 ---
 title: "Trino 2026: PB级分布式 SQL 查询引擎 — 自托管集群搭建完全指南"
 description: "部署 Trino 464+ 实现 PB 级分布式 SQL 分析。包含分步集群部署、40+ 连接器配置、性能调优及真实基准测试。". Comprehensive guide covering featu..."
-stars: 11000
-maintainer: trinodb
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["trino", "presto", "分布式sql", "大数据", "数据分析", "数据湖", "hive", "iceberg", "查询引擎", "自托管"]

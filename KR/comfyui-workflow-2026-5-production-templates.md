@@ -8,11 +8,7 @@ application_domain: AI 도구
 source_version: "ComfyUI 2026.05"
 licensing_model: 오픈 소스
 license_type: 'GPL-3.0'
-github_repo: "https://github.com/comfyanonymous/ComfyUI"
-stars: 106000
-maintainer: comfyanonymous
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["comfyui", "stable-diffusion", "image-generation", "workflows", "2026"]

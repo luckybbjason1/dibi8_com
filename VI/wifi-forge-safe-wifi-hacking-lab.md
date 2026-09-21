@@ -12,11 +12,7 @@ file_size: "16.4 MB"
 file_md5: ""
 download_url: "https://github.com/her3ticAVI/MiniNet-framework"
 backup_url: ""
-github_repo: "https://github.com/her3ticAVI/MiniNet-framework"
-stars: 813
-maintainer: "blackhillsinfosec"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /vi/posts/wifi-forge-safe-wifi-hacking-lab/

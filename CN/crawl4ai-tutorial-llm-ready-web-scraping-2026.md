@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/unclecode/crawl4ai"
-stars: 63000
-maintainer: unclecode
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crawl4ai", "web-scraping", "llm-rag", "open-source"]

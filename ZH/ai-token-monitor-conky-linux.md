@@ -7,11 +7,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "luckybbjason1/ai-token-monitor"
-stars: 0
-maintainer: luckybbjason1
 last_maintained: "2026-06-06"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai token监控", "claude配额", "gemini配额追踪", "grok token", "kimi api", "conky小工具", "linux桌面", "开源", "python", "开发者工具"]

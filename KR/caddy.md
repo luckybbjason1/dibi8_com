@@ -1,10 +1,7 @@
 ---
 title: "Caddy: 72K+ Stars 생산용 Web 서버 — 2026 자동 HTTPS 배포 가이드"
 description: "Caddy(Caddyserver)는 자동 HTTPS를 갖춘 빠르고 확장 가능한 다중 플랫폼 HTTP/1-2-3 웹 서버다. Docker, Let"'''s Encrypt, Prome..."
-stars: 72595
-maintainer: caddyserver
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]

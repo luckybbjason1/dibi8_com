@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
 tags: ["nuwa-skill", "Agent 技能", "思維模型", "COT 提煉", "AI Agent 框架", "Claude Code 技能", "Codex 技能", "MCP 替代方案", "Agent 記憶體"]
-github_repo: "https://github.com/alchaincyf/nuwa-skill"
-stars: 23508
-maintainer: 'alchaincyf'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif'
 ---
 
 

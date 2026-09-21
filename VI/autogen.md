@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/microsoft/autogen"
-stars: 58196
-maintainer: microsoft
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["autogen", "multi-agent", "microsoft", "llm-framework", "agentic-ai", "python", "crewai-alternative", "langgraph-alternative"]

@@ -1,7 +1,6 @@
 ---
 title: "오 마이 파이(Raspberry Pi): 라즈베리 파이를 스마트 기기로 변환 — 1만2천 스타 프로젝...
 description: "오 마이 파이(12,554 스타)는 원클릭 설정과 자동 구성으로 라즈베리 파이를 스마트 홈 허브, 미디어 센터, 개발 작업공간으로 변환합니다.". Comprehensive guid..."
-license: MIT
 images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     alt: "Oh My Pi GitHub OG"
     role: reference
@@ -11,7 +10,6 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
     alt: "스마트 홈 다이어그램"
     role: diagram
-featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
 

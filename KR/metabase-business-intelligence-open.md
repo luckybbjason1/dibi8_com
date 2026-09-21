@@ -1,10 +1,7 @@
 ---
 title: "Metabase 2026: 라이선스 비용 제로로 Tableau를 대체하는 오픈소스 BI 도구 — 구축...
 description: "Metabase v60.2 완벽 가이드: 시각적 쿼리 빌더, 대시보드, SQL 에디터, 알림, 임베딩, Docker 자체 호스팅. 41,000+ GitHub 스타.". Compre..."
-stars: 41000
-maintainer: metabase
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["metabase", "bi", "business-intelligence", "open-source", "tableau", "dashboards", "sql", "docker", "self-hosted", "analytics", "data-visualization", "apache-superset", "비즈니스인텔리전스", "데이터분석", "오픈소스"]

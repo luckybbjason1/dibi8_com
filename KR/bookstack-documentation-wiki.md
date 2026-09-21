@@ -1,10 +1,7 @@
 ---
 title: "BookStack: Markdown 지원 개발자 친화 문서 Wiki — 2026 설치 및 리뷰"
 description: "BookStack 설치 및 실행 완벽 가이드. WYSIWYG + Markdown 편집, 책/챕터/페이지 구조, LDAP/SSO 지원을 갖춘 오픈소스 문서 Wiki. 5분 안에 셀프..."
-stars: 18700
-maintainer: BookStackApp
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["bookstack", "문서화", "wiki", "셀프 호스팅", "php", "laravel", "지식 베이스", "markdown", "docker", "오픈소스"]

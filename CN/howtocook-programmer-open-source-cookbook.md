@@ -14,11 +14,7 @@ file_size: "455.3 MB"
 file_md5: ""
 download_url: "https://github.com/Anduin2017/HowToCook"
 backup_url: ""
-github_repo: "https://github.com/Anduin2017/HowToCook"
-stars: 100171
-maintainer: "Anduin2017"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /posts/howtocook-programmer-open-source-cookbook/

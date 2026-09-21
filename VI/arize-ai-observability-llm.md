@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "Arize-ai/phoenix"
-stars: 6500
-maintainer: 'Arize AI'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["llm", "giám sát", "arize phoenix", "rag", "langchain", "llamaindex", "opentelemetry", "python", "docker", "hạ tầng ai"]

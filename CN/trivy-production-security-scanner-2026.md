@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'trivy-production-security-scanner-2026'
 category: 'dev-utils'
 tags: ["security", "containers", "vulnerability-scanning", "devops", "kubernetes", "sast", "iac", "supply-chain"]
-github_repo: "https://github.com/aquasecurity/trivy"
-stars: 36261
-maintainer: 'aquasecurity'
-license: Apache-2.0
-featureImage: 'https://raw.githubusercontent.com/aquasecurity/trivy/main/docs/getting-started/install.png'
 ---
 
 ![Trivy Security Scanner](https://opengraph.github.com/github/aquasecurity/trivy)

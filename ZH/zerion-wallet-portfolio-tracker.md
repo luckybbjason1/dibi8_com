@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/zeriontech"
-stars: 200
-maintainer: zeriontech
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["zerion"]

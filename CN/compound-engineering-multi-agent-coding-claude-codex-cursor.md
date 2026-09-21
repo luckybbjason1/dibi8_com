@@ -6,9 +6,6 @@ date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
-github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
-license: 'MIT'
-featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
 ---
 
 # Compound Engineering: Multi-Agent Orchestration Plugin — 2026 Guide

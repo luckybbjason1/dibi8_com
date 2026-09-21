@@ -6,12 +6,9 @@ slug: codebase-memory-mcp-deep-code-intelligence
 title: "代码库内存MCP：24K+星型AI代码智能服务器"
 category: llm-frameworks
 tags: ["mcp", "code-intelligence", "ai-agents", "vector-search", "open-source"]
-github_repo: "https://github.com/DeusData/codebase-memory-mcp"
-license: 'MIT'
 tech_stack: - C
   - Rust
   - Python
-featureImage: /images/articles/code-quality-tools-eslint-prettier-black-ruff.jpg
 ---
 
 

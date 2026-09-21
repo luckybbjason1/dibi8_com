@@ -13,11 +13,7 @@ file_size: "1.2 GB"
 file_md5: ''
 download_url: https://github.com/openclaw/openclaw
 backup_url: ''
-github_repo: https://github.com/openclaw/openclaw
-stars: 372942
-maintainer: "openclaw"
 last_maintained: "2026-05-16"
-featureImage: ''
 draft: false
 aliases:
   - /zh/posts/awesome-openclaw-usecases-ai-agent-daily-life/

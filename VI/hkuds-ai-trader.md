@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: hkuds-ai-trader
 category: ai-trading
 tags: ["ai-trader", "HKUDS", "ai-trading", "agent-native", "giao dịch tự động", "quản lý danh mục", "tác nhân AI"]
-github_repo: https://github.com/HKUDS/AI-Trader
-stars: 19464
-maintainer: HKUDS
-license: MIT
-featureImage: https://raw.githubusercontent.com/HKUDS/AI-Trader/main/assets/ai-trader-hero-banner.png
 ---
 
 

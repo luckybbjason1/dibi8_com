@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
 tags: ["obscura", "無頭瀏覽器", "Rust 瀏覽器", "網頁爬蟲", "AI 代理工具", "Puppeteer 替代方案", "Playwright 替代方案", "反偵測", "隱密瀏覽"]
-github_repo: "https://github.com/h4ckf0r0day/obscura"
-stars: 14788
-maintainer: 'h4ckf0r0day'
-license: Apache-2.0
-featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
 ---
 
 

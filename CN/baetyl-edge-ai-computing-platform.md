@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "baetyl/baetyl"
-stars: 3200
-maintainer: baetyl
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["baetyl", "edge-computing", "iot", "kubernetes", "k3s", "ai-inference", "mqtt", "edge-ai", "ota-updates", "lf-edge"]

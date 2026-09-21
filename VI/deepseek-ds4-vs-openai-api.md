@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Chạy DeepSeek tại chỗ có rẻ hơn dùng API GPT-4o không?'
     a: 'Với các luồng làm việc lập trình AI nặng sinh ra 2-3 million tokens mỗi ngày, GPT-4o tốn $30+ mỗi ngày (khoảng $1,000 một tháng), trong khi chạy DeepSeek tại chỗ trên một chiếc Mac 128GB mua một lần sẽ kéo chi phí biên của bạn về gần như bằng không (chỉ tốn tiền điện). Bài viết ước tính chi phí tại chỗ trong một năm khoảng $4,000 so với $20,000+ cho API trả phí định kỳ.'

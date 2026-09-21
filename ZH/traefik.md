@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/traefik/traefik"
-stars: 63229
-maintainer: traefik
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["traefik", "docker", "kubernetes", "反向代理", "边缘路由器", "ingress", "devops", "云原生"]

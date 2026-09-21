@@ -1,7 +1,6 @@
 ---
 title: "The 2026 AI Coding Agent Landscape: Why Skills, MCP, and...
 description: "The AI coding assistant market hit an inflection point in 2026. Claude Code"'s skills ecosystem cros..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-coding-agent-landscape-2026-skills-mcp-opensource/-

@@ -1,7 +1,6 @@
 ---
 title: "스크래치 AI 엔지니어링: 프로덕션 LLM 시스템 구축 — 2026 완전 가이드"
 description: "스크래치 AI 엔지니어링(32,771 스타)은 LLM 파인튜닝, RAG, 에이전트 프레임워크, 프로덕션 배포를 아우르는 포괄적인 커리큘럼입니다. AI 시스템을 구축하고, 출시하고,..."
-license: MIT
 images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
     alt: "스크래치 AI 엔지니어링 GitHub OG"
     role: reference
@@ -11,7 +10,6 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "스타 이력"
     role: reference
-featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
 

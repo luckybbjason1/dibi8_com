@@ -16,11 +16,7 @@ file_size: "210.6 MB"
 file_md5: ''
 download_url: https://github.com/NousResearch/hermes-agent
 backup_url: ''
-github_repo: https://github.com/NousResearch/hermes-agent
-stars: 156248
-maintainer: "NousResearch"
 last_maintained: "2026-05-16"
-featureImage: ''
 draft: false
 aliases:
   - /vi/posts/genericagent-self-evolving-ai-agent.vi/

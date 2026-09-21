@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'wandb-ml-experiment-tracking-platform-2026'
 category: 'data-science'
 tags: ["ml-ops", "experiment-tracking", "deep-learning", "pytorch", "llm", "model-registry", "mlops"]
-github_repo: "https://github.com/wandb/wandb"
-stars: 11114
-maintainer: 'wandb'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/wandb/wandb/main/assets/screenshots/launch.png"
 ---
 
 

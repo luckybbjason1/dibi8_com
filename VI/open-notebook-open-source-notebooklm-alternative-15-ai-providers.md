@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'open-notebook-open-source-notebooklm-alternative-15-ai-providers'
 category: 'data-science'
 tags: ["open notebook", "notebook lm alternative", "self hosted RAG", "knowledge base AI", "multimodal RAG", "open source notebook", "AI podcast generator", "self hosted LLM"]
-github_repo: "https://github.com/lfnovo/open-notebook"
-stars: 28200
-maintainer: 'lfnovo'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 ---
 
 

@@ -6,9 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: markitdown-universal-file-to-markdown-converter
 category: ai-tools
-github_repo: "https://github.com/microsoft/markitdown"
-license: MIT
-featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto
 ---
 
 th--.png

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "antirez/ds4"
-stars: 10913
-maintainer: ''
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 aliases:
   - /posts/ds4/-

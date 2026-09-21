@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "openrouter/openrouter"
-stars: 15000
-maintainer: alexanderatallah
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["openrouter", "llm", "api gateway", "ai", "openai", "claude", "machine learning", "tối ưu chi phí"]

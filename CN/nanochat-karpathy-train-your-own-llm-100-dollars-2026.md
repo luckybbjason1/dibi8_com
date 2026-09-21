@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: 'https://github.com/karpathy/nanochat'
 backup_url: ''
-github_repo: "karpathy/nanochat"
-stars: 54700
-maintainer: karpathy
 last_maintained: "2026-06-01"
-featureImage: '/images/articles/nanochat-karpathy-train-your-own-llm-100-dollars-2026/cover.jpg'
 draft: false
 categories: ["llm-frameworks"]
 tags: ["nanochat", "karpathy", "llm-training", "pytorch", "gpt", "self-hosted-llm", "open-source", "transformer", "fine-tuning"]

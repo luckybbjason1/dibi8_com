@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/hyperliquid-dex"
-stars: 0
-maintainer: hyperliquid
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["hyperliquid", "perpetual dex", "on-chain trading", "leverage trading", "trading bot", "hyperevm", "python sdk", "websocket api", "clob", "defi trading", "algorithmic trading"]

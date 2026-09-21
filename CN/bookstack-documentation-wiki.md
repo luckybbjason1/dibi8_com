@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "BookStackApp/BookStack"
-stars: 18700
-maintainer: BookStackApp
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["bookstack", "documentation", "wiki", "self-hosted", "php", "laravel", "knowledge base", "markdown", "docker", "open source"]

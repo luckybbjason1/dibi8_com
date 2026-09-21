@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'nuwa-skill-distill-thinking-model-ai-agent-skills'
 category: 'llm-frameworks'
 tags: ["nuwa-skill", "agent skills", "thinking models", "COT distillation", "AI agent framework", "Claude Code skills", "Codex skills", "MCP alternatives", "agent memory"]
-github_repo: "https://github.com/alchaincyf/nuwa-skill"
-stars: 23508
-maintainer: 'alchaincyf'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif'
 ---
 
 # Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026

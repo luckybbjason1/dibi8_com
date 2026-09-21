@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/mistralai/mistral-inference"
-stars: 9500
-maintainer: mistralai
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["mistral ai"]

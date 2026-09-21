@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/docker/genai-stack"
-stars: 5500
-maintainer: docker
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["docker genai stack"]

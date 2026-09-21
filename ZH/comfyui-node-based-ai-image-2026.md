@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/comfyanonymous/ComfyUI"
-stars: 114000
-maintainer: comfyanonymous
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["comfyui", "图像生成", "视频生成", "节点式", "工作流", "开源"]

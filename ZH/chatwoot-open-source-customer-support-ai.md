@@ -1,10 +1,7 @@
 ---
 title: "Chatwoot 2026：开源客户支持平台与AI智能体集成 — 自建部署完整指南"
 description: "Chatwoot v4 完整指南 — 开源客户支持平台。使用Docker自建部署，集成AI智能体，连接多渠道。真实基准测试和生产环境配置。". Comprehensive guide covering..."
-stars: 23000
-maintainer: chatwoot
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["chatwoot", "客户支持", "开源", "ai聊天机器人", "自建部署", "docker", "ruby-on-rails", "在线客服"]

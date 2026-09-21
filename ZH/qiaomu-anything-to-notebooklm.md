@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: qiaomu-anything-to-notebooklm
 category: data-science
 tags: ["qiaomu-notebooklm", "notebooklm", "内容转换", "Claude Code", "知识管理", "AI 工具"]
-github_repo: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
-stars: 5015
-maintainer: joeseesun
-license: MIT
-featureImage: https://raw.githubusercontent.com/joeseesun/qiaomu-anything-to-notebooklm/main/docs/assets/notebooklm-converter-banner.png
 ---
 
 

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "superagent-ai/superagent"
-stars: 6100
-maintainer: 'superagent-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["superagent", "ai agent", "llm", "rag", "vector db", "openai", "langchain", "python", "typescript"]

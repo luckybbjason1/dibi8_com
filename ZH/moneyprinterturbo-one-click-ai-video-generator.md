@@ -7,7 +7,6 @@ draft: false
 tags: ["ai tools", "video generation", "short videos", "automation", "self-hosted", "docker"]
 categories: ["ai-tools"]
 slug: moneyprinterturbo-one-click-ai-video-generator
-featureImage: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: ['/moneyprinterturbo']
 sources: - name: GitHub
     url: 'https://github.com/harry0703/MoneyPrinterTurbo'

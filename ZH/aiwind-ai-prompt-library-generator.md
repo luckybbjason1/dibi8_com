@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'AiWind 是免费使用的吗？'
     a: '是的，AiWind 是完全免费的 AI 提示词库，网址为 aiwind.org，没有付费等级。它提供 1000 多条专业提示词，并持续更新。'

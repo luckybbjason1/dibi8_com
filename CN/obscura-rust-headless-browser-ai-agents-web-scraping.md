@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'obscura-rust-headless-browser-ai-agents-web-scraping'
 category: 'dev-utils'
 tags: ["obscura", "headless browser", "Rust browser", "web scraping", "AI agent tools", "Puppeteer alternative", "Playwright alternative", "anti-detection", "stealth browsing"]
-github_repo: "https://github.com/h4ckf0r0day/obscura"
-stars: 14788
-maintainer: 'h4ckf0r0day'
-license: Apache-2.0
-featureImage: 'https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png'
 ---
 
 # Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026

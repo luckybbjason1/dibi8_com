@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: 'mempalace-open-source-ai-memory-system'
 category: 'llm-frameworks'
 tags: ["ai-memory", "local-first", "mempalace", "semantic-search", "chromadb", "long-term-memory", "mcp-agent", "verbatim-storage"]
-github_repo: "https://github.com/MemPalace/mempalace"
-stars: 55206
-maintainer: 'MemPalace'
-license: MIT
-featureImage: 'https://opengraph.github.com/github/MemPalace/mempalace'
 ---
 
 

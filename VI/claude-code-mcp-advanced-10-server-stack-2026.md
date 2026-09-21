@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "MCP 2025-06 / Claude Code 1.0"
 licensing_model: 'Hỗn hợp'
 license_type: 'Đa dạng'
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 60000
-maintainer: 'Anthropic + Cộng đồng'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "mcp", "configuration", "production", "2026"]

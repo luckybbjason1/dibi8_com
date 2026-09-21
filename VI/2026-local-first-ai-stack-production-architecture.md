@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: 'dibi8 editorial team'
 last_maintained: "2026-05-23"
-featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["hub article", "local-first-ai", "production-ai", "self-hosted-ai", "ai-architecture", "ai-stack-2026", "agent-infrastructure", "codegraph", "12-factor-agents", "supertonic", "cc-switch", "rtk", "agentmemory", "mempalace", "mcp", "ds4", "opencode", "hermes-agent"]

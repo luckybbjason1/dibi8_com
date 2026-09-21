@@ -1,10 +1,7 @@
 ---
 title: "Baetyl：将 AI 模型部署到 IoT 设备的云原生边缘计算平台 — 2026 部署指南"
 description: "部署 Baetyl v2.4 将 Kubernetes 原生边缘计算带到 IoT 设备。AI 模型推理、MQTT/BACnet 支持、OTA 更新、K3s 运行时和云边同步。". Comprehens..."
-stars: 3200
-maintainer: baetyl
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["baetyl", "边缘计算", "iot", "kubernetes", "k3s", "ai推理", "mqtt", "边缘ai", "ota更新", "lf-edge"]

@@ -17,7 +17,6 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/microsoft/presidio"
 last_maintained: "2026-06-21"
 draft: false
 categories: ["dev-utils"]
@@ -36,7 +35,6 @@ faqs: - q: 'Microsoft Presidio là gì?'
     a: 'Presidio Image Redactor sử dụng các mô hình thị giác máy tính để phát hiện và chỉnh sửa thông tin nhận dạng cá nhân (PII) từ hình ảnh. Nó hỗ trợ các định dạng hình ảnh tiêu chuẩn (PNG, JPEG, v.v.) và hình ảnh y tế DICOM. Việc chỉnh sửa có thể thay thế văn bản được phát hiện bằng các hộp màu đen, làm mờ các khu vực hoặc loại bỏ hoàn toàn văn bản. Điều này đặc biệt có giá trị đối với các tổ chức chăm sóc sức khỏe cần ẩn danh dữ liệu hình ảnh y tế trước khi chia sẻ hoặc xuất bản.'
   - q: 'Liệu Presidio có thể chạy trong môi trường sản xuất ở quy mô lớn không?'
     a: 'Vâng. Presidio hỗ trợ nhiều tùy chọn triển khai: khối lượng công việc Python hoặc PySpark, container Docker và triển khai Kubernetes. Bộ phân tích và bộ ẩn danh có thể chạy dưới dạng REST API, và thành phần có cấu trúc có thể xử lý các tập dữ liệu bảng lớn. Nó được thiết kế cho cả các luồng xác minh PII tự động hoàn toàn và bán tự động trên nhiều nền tảng.'
-featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 ---
 
 

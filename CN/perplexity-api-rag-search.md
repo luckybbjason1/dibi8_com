@@ -1,10 +1,7 @@
 ---
 title: "perplexity-api-rag-search"
 description: "{"en': ''Learn how to build RAG-enhanced search applications using the Perplexity API. Covers Sonar ..."
-stars: 0
-maintainer: perplexity
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["perplexity api"]

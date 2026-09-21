@@ -1,7 +1,6 @@
 ---
 title: "Pandas性能优化完全指南：何时应该切换到Polars或DuckDB（2026版）"
 description: "从Pandas代码级优化到Polars、DuckDB替代方案，附基准测试数据和迁移策略，帮你突破大数据处理性能瓶颈。". Comprehensive guide covering features, ..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/pandas-performance-optimization-alternatives/-

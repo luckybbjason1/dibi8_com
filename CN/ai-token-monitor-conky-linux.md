@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "luckybbjason1/ai-token-monitor"
-stars: 0
-maintainer: luckybbjason1
 last_maintained: "2026-06-06"
-featureImage: '/images/articles/ai-token-monitor-conky-linux.png'
 draft: false
 categories: ["dev-utils"]
 tags: ["ai token monitor", "claude quota", "gemini quota tracker", "grok token", "kimi api", "conky widget", "linux desktop", "open source", "python", "developer tools"]

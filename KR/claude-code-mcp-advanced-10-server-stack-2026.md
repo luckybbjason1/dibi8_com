@@ -8,11 +8,7 @@ application_domain: LLM 프레임워크
 source_version: "MCP 2025-06 / Claude Code 1.0"
 licensing_model: 혼합
 license_type: 다양
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 60000
-maintainer: 'Anthropic + 커뮤니티'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "mcp", "configuration", "production", "2026"]

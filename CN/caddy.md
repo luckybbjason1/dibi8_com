@@ -1,10 +1,7 @@
 ---
 title: "Caddy: Production Web Server with 72K+ Stars — Auto HTTP...
 description: "Caddy (Caddyserver) is a fast, extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS...."
-stars: 72595
-maintainer: caddyserver
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["caddy", "web-server", "reverse-proxy", "auto-https", "docker", "devops", "ssl", "http3"]

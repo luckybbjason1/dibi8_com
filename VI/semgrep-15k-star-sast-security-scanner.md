@@ -6,9 +6,6 @@ lastmod: 2026-06-10
 slug: 'semgrep-15k-star-sast-security-scanner'
 category: dev-utils
 tags: ["semgrep", "sast", "security-scanner", "code-analysis", "vulnerability", "open-source", "ci-cd", "static-analysis"]
-github_repo: "https://github.com/semgrep/semgrep"
-license: MIT
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 

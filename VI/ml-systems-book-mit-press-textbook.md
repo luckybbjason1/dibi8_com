@@ -15,11 +15,7 @@ file_size: ""
 file_md5: ""
 download_url: "https://github.com/harvard-edge/cs249r_book.git"
 backup_url: ""
-github_repo: "https://github.com/harvard-edge/cs249r_book.git"
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /vi/posts/ml-systems-book-mit-press-textbook/

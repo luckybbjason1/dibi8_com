@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "deepset-ai/haystack"
-stars: 21000
-maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["haystack", "nlp", "rag", "python", "llm", "\ubb38\uc11c \uc800\uc7a5\uc18c", "\ub9ac\ud2b8\ub9ac\ubc84", "\uc5d0\uc774\uc804\ud2b8", "openai", "docker", "\ud30c\uc774\ud504\ub77c\uc778"]

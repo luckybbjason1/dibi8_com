@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/TabbyML/tabby"
-stars: 33530
-maintainer: TabbyML
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["tabby", "ai-coding-assistant", "self-hosted", "github-copilot-alternative", "code-completion", "docker", "open-source"]

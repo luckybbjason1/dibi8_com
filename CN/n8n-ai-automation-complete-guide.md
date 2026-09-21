@@ -10,7 +10,6 @@ tags: - n8n
 - agent-automation
 - business-process
 category: dev-utils
-featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00slug: n8n-ai-automation-complete-guide---
 

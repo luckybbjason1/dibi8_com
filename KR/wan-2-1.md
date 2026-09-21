@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/Wan-Video/Wan2.1"
-stars: 16100
-maintainer: 'Wan-Video'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["wan-2-1", "비디오-생성", "디퓨전-트랜스포머", "ai-비디오", "오픈소스", "알리바바", "comfyui", "diffusers"]

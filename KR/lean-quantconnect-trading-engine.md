@@ -1,10 +1,7 @@
 ---
 title: "Lean: QuantConnect을 구동하는 오픈소스 알고리즘 트레이딩 엔진 — C# & Python...
 description: "2026년 Lean 완벽 가이드, QuantConnect의 알고리즘 트레이딩 엔진. 다중 자산 백테스팅, 실제 트레이딩, C# 및 Python API, 프로덕션 배포 튜토리얼."...."
-stars: 10500
-maintainer: QuantConnect
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/comfyanonymous/ComfyUI"
-stars: 114000
-maintainer: comfyanonymous
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["comfyui", "sinh ảnh", "sinh video", "dựa node", "workflow", "mã nguồn mở"]

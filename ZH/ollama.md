@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/ollama/ollama"
-stars: 137000
-maintainer: ollama
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["ollama", "本地大模型", "llama.cpp", "deepseek", "mistral", "docker", "modelfile", "开源"]

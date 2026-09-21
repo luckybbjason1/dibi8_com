@@ -10,7 +10,6 @@ tags: - llamafile
 - mlc-llm
 - privacy
 category: dev-utils
-featureImage: /images/articles/llamafile-local-llm.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00slug: llamafile-portable-local-llm---
 

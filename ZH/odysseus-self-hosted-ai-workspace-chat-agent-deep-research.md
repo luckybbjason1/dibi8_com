@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'odysseus-self-hosted-ai-workspace-chat-agent-deep-research'
 category: 'ai-tools'
 tags: ["odysseus", "self-hosted AI", "AI workspace", "local AI", "deep research", "AI agent", "chat interface", "open-source AI", "home lab AI"]
-github_repo: "https://github.com/pewdiepie-archdaemon/odysseus"
-stars: 65243
-maintainer: 'pewdiepie-archdaemon'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/odysseus.jpg'
 ---
 
 # Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026

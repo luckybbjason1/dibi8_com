@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/colbymchenry/codegraph"
-stars: 20200
-maintainer: colbymchenry
 last_maintained: "2026-05-22"
-featureImage: '"
 draft: false
 categories: ["dev-utils"]
 tags: ["codegraph", "claude-code", "ai-coding-agent", "code-graph", "token-savings", "mcp", "hermes-agent", "cursor", "codex-cli", "opencode", "developer-productivity"]

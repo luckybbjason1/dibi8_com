@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
 tags: ["freqtrade", "암호화폐 트레이딩 봇", "Python 트레이딩", "백테스트 전략", "hyperopt 최적화", "암호화폐 API", "셀프호스팅 트레이딩", "퀀트 트레이딩"]
-github_repo: "https://github.com/freqtrade/freqtrade"
-stars: 51300
-maintainer: 'xmatthias'
-license: GPL-3.0
-featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
 
 

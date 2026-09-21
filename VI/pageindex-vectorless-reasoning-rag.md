@@ -13,11 +13,7 @@ file_size: "23.7 MB"
 file_md5: ""
 download_url: "https://github.com/VectifyAI/PageIndex"
 backup_url: ""
-github_repo: "https://github.com/VectifyAI/PageIndex"
-stars: 31643
-maintainer: "VectifyAI"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /vi/posts/pageindex-vectorless-reasoning-rag/

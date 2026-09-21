@@ -13,11 +13,7 @@ file_size: "1.2 MB"
 file_md5: ""
 download_url: "https://github.com/browser-use/browser-harness"
 backup_url: ""
-github_repo: "https://github.com/browser-use/browser-harness"
-stars: 13142
-maintainer: "browser-use"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Browser Harness là gì?'
     a: 'Browser Harness là một framework điều khiển trình duyệt tự phục hồi (self-healing), cho phép các mô hình ngôn ngữ lớn tự động hoàn thành các tác vụ web theo cách giống như con người. Nó được viết bằng Python, hỗ trợ cả Playwright lẫn Selenium, và do nhóm browser-use duy trì.'

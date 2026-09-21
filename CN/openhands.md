@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/OpenHands/OpenHands"
-stars: 74200
-maintainer: OpenHands
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["openhands", "ai coding agent", "docker", "swe-bench", "claude", "openai", "self-hosted", "automation"]

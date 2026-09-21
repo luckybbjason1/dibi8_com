@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/SYSTRAN/faster-whisper"
-stars: 23000
-maintainer: SYSTRAN
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["faster-whisper", "chuyen-giong-noi-thanh-van-ban", "ctranslate2", "openai-whisper", "nhan-dang-giong-noi", "python", "docker", "asr"]

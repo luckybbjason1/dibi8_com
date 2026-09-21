@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/microsoft/autogen"
-stars: 58196
-maintainer: microsoft
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["autogen", "멀티에이전트", "마이크로소프트", "llm프레임워크", "에이전틱ai", "python", "crewai대안", "langgraph대안"]

@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ["Token 压缩", "LLM 节省 Token", "MCP 服务器", "RAG 压缩", "Headroom", "上下文优化", "Token 成本降低", "AI 代理"]
-github_repo: "https://github.com/chopratejas/headroom"
-stars: 19745
-maintainer: 'chopratejas'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
 

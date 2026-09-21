@@ -6,9 +6,6 @@ lastmod: 2026-06-13
 slug: 'impeccable-ai-design-language-harness-quality-ui'
 category: ai-tools
 tags: ["impeccable", "design-language", "ai-design", "frontend", "claude-code", "cursor"]
-github_repo: "https://github.com/pbakaus/impeccable"
-license: 'Apache-2.0"
-featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.png
 ---
 
 

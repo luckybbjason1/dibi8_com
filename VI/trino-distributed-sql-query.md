@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "trinodb/trino"
-stars: 11000
-maintainer: trinodb
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["trino", "presto", "sql phân tán", "big data", "phân tích dữ liệu", "data lake", "hive", "iceberg", "query engine", "tự host"]

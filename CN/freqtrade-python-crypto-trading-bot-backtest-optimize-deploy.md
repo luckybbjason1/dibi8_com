@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
 tags: ["freqtrade", "crypto trading bot", "Python trading", "backtest strategy", "hyperopt optimization", "crypto API", "self hosted trading", "quant trading"]
-github_repo: "https://github.com/freqtrade/freqtrade"
-stars: 51300
-maintainer: 'xmatthias'
-license: GPL-3.0
-featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
 
 # Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026

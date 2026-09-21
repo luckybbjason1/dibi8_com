@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 60000
-maintainer: 'Anthropic + Community'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mcp", "model-context-protocol", "claude-code", "ai-agents", "开发者工具", "集成", "2026"]

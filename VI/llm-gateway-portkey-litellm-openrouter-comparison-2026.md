@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-20"
-featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["llm gateway", "portkey", "litellm", "openrouter", "so sánh"]

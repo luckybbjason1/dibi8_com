@@ -8,11 +8,7 @@ file_size: "27.7 MB"
 file_md5: ""
 download_url: "https://github.com/facefusion/facefusion"
 backup_url: ""
-github_repo: "https://github.com/facefusion/facefusion"
-stars: 28312
-maintainer: "facefusion"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'FaceFusion là gì và khác gì so với Roop?'
     a: 'FaceFusion là một pipeline hoán đổi khuôn mặt AI mã nguồn mở, ra đời như người kế thừa của Roop. Khác với thiết kế đơn luồng nguyên khối của Roop, FaceFusion sử dụng kiến trúc mô-đun xây dựng trên ONNX Runtime với khả năng kết xuất frame đa luồng song song, giúp xử lý video nhanh hơn và ổn định hơn nhiều.'

@@ -14,11 +14,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 86000
-maintainer: dibi8
 last_maintained: "2026-05-20"
-featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mcp", "model context protocol", "registry", "hub article"]

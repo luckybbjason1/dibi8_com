@@ -16,11 +16,7 @@ file_size: "436.4 MB"
 file_md5: ''
 download_url: https://github.com/LadybirdBrowser/ladybird
 backup_url: ''
-github_repo: https://github.com/LadybirdBrowser/ladybird
-stars: 63416
-maintainer: "LadybirdBrowser"
 last_maintained: "2026-05-15"
-featureImage: ''
 draft: false
 aliases:
   - /ko/posts/ladybird-independent-web-browser/

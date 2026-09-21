@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/langchain-ai/langchain"
-stars: 137165
-maintainer: 'langchain-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["langchain", "llm", "ai-agent", "rag", "production-deployment", "docker", "python", "openai", "langsmith", "langgraph"]

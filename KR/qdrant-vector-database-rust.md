@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "qdrant/qdrant"
-stars: 22000
-maintainer: qdrant
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["qdrant", "벡터 데이터베이스", "rust", "hnsw", "유사도 검색", "docker", "자체 호스팅", "ai"]

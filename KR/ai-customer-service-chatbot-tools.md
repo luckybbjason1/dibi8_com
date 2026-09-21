@@ -1,7 +1,6 @@
 ---
 title: "2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등"
 description: "2025년 최고의 AI 고객 서비스 챗봇을 비교합니다. Intercom Fin, Zendesk AI, Freshworks Freddy AI, ChatGPT Enterprise의 기..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-customer-service-chatbot-tools/

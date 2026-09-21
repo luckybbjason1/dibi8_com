@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/m-bain/whisperX"
-stars: 22000
-maintainer: 'm-bain'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["whisperx", "asr", "nhận-dạng-giọng-nói", "phân-tách-ngưới-nói", "timestamp-từ", "faster-whisper", "pyannote", "docker"]

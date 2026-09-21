@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "docmost/docmost"
-stars: 20100
-maintainer: docmost
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["docmost", "notion alternative", "wiki", "real-time collaboration", "self-hosted", "documentation", "postgresql", "docker", "open source", "team docs"]

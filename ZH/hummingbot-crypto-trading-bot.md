@@ -1,10 +1,7 @@
 ---
 title: "Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南"
 description: "Hummingbot v2实战部署指南，开源加密货币交易机器人，支持50+交易所连接器。涵盖Docker安装、自定义策略、回测、DEX网关和生产环境加固。". Comprehensive guide ..."
-stars: 10500
-maintainer: hummingbot
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

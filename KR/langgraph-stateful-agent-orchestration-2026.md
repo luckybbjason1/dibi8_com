@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/langchain-ai/langgraph"
-stars: 32600
-maintainer: 'langchain-ai'
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["langgraph", "에이전트", "상태 유지", "오케스트레이션", "langchain", "프로덕션"]

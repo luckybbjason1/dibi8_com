@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/mastra-ai/mastra"
-stars: 24050
-maintainer: 'mastra-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mastra", "typescript", "ai-framework", "agents", "llm", "mastra-tutorial", "mastra-vs-langchain", "open-source"]

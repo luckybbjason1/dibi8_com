@@ -1,10 +1,7 @@
 ---
 title: "Kubeflow 2026: 在 Kubernetes 上运行完整 ML 流水线 — 从训练到生产部署指南"
 description: "在 Kubernetes 上部署 Kubeflow 构建 ML 流水线的完整指南。涵盖安装、组件、基准测试、生产加固和真实部署模式。". Comprehensive guide covering fe..."
-stars: 14000
-maintainer: kubeflow
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["kubeflow", "kubernetes", "机器学习", "ml流水线", "mlops", "kubeflow pipelines", "kserve", "katib", "数据科学"]

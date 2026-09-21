@@ -9,11 +9,6 @@ lastmod: 2026-05-23
 slug: 'superpowers'
 category: 'llm-frameworks'
 tags: ["agentic-ai", "llm-frameworks", "shell-scripting", "software-development", "ai-agents", "developer-tools"]
-github_repo: 'https://github.com/obra/superpowers'
-stars: 204767
-maintainer: 'obra'
-license: MIT
-featureImage: ''
 
 * * *
 {

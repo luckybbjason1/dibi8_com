@@ -1,7 +1,6 @@
 ---
 title: "RAG检索增强生成架构实现指南2025：构建生产级系统"
 description: "2025年RAG架构完整实现指南：从Naive RAG到Advanced RAG、Agentic RAG，涵盖分块策略、Embedding选型、向量数据库、重排序等全流程优化。". Comprehen..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/rag-architecture-implementation-guide/-

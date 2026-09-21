@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/iterative/dvc"
-stars: 15600
-maintainer: Iterative
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["dvc", "data version control", "mlops", "git", "머신러닝", "재현성", "s3", "gcs", "azure", "파이프라인", "데이터 버전 관리", "데이터 사이언스"]

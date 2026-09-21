@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Có giải pháp thay thế Vercel v0 dạng tự lưu trữ và mã nguồn mở không?'
     a: 'Có. Open Codesign là một công cụ tạo UI mã nguồn mở, tự lưu trữ, cung cấp quy trình từ prompt đến preview tương tự v0. Bạn chạy frontend cục bộ và kết nối với LLM nội bộ hoặc API key của riêng mình, hoàn toàn không phụ thuộc vào hệ sinh thái hosting của Vercel.'

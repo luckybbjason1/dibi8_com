@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/unslothai/unsloth"
-stars: 64900
-maintainer: unslothai
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["unsloth", "fine-tuning", "lora", "qlora", "grpo", "training nhanh"]

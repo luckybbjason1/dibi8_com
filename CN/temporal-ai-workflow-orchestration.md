@@ -3,7 +3,6 @@ title: Temporal AI Workflow Orchestration — Reliable Multi-Step ...
 description: Complete guide to Temporal for orchestrating AI/ML workflows. Build reliable LLM pipelines, multi-agent systems, and ML training jobs with built-in durability, retries, and observability.
 tags: ["workflow", "orchestration", "temporal", "machine-learning", "llm", "reliability"]
 category: dev-utils
-featureImage: /images/articles/temporal-ai-workflow-orchestration.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 slug: temporal-ai-workflow-orchestration---

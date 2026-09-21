@@ -1,10 +1,7 @@
 ---
 title: "Hoppscotch: 79,200 GitHub Stars — 开源API开发平台对比 Postman、In...
 description: "Hoppscotch (HOPP) 是一个开源API开发生态系统。兼容 Docker、GitHub Actions、Node.js、Vue.js。涵盖 hoppscotch 教程、自托管、CLI 自动..."
-stars: 79200
-maintainer: hoppscotch
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["dev-utils"]
 tags: ["hoppscotch", "api测试", "postman替代品", "开源", "docker", "命令行", "rest-api", "graphql"]

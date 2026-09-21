@@ -1,7 +1,6 @@
 ---
 title: "2025년 최고의 AI 코드 생성 도구 비교: GitHub Copilot vs Cursor vs Ta...
 description: "2025년 최신 AI 코드 생성 도구를 비교합니다. GitHub Copilot, Cursor, Tabnine, CodeWhisperer의 기능, 가격, 정확도를 상세 분석하고 용도..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/best-ai-code-generators-2025/

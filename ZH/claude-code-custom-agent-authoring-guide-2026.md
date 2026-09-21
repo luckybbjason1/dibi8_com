@@ -1,10 +1,7 @@
 ---
 title: "Claude Code 自定义 Agent 编写指南：打造强制执行团队规范的可复用子智能体（2026）"
 description: "完整的 Claude Code 自定义子智能体编写指南——frontmatter 字段、系统提示词设计、工具白名单，以及两个可直接投产的范例（迁移审查器、安全闸门），附带要避开的坑。". Compre..."
-stars: 0
-maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "subagents", "custom-agents", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools"]

@@ -1,10 +1,7 @@
 ---
 title: "Subagent、MCP Server 与 Skill 对比：何时该为 Claude Code 构建哪种扩展（2...
 description: "Claude Code 有三个扩展点——skill、subagent 和 MCP server——它们解决的是不同的问题。本文给出选型决策框架，配有完整的实战场景，以及那些会浪费你时间的反模式。". ..."
-stars: 0
-maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "mcp", "subagents", "skills", "agent-sdk", "llm-frameworks", "developer-tools"]

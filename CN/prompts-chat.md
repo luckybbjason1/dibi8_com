@@ -6,9 +6,6 @@ date: 2026-06-12
 lastmod: 2026-06-12
 slug: 'prompts-chat"
 category: llm-frameworks
-github_repo: "https://github.com/f/prompts.chat"
-license: NOASSERTION
-featureImage: /articles/prompts-chat-e570dc.jpg/images/articles/prompts-chat-e570dc.jpg
 ---
 
 # prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026

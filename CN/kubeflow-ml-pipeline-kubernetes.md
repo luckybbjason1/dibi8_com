@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "kubeflow/kubeflow"
-stars: 14000
-maintainer: kubeflow
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["kubeflow", "kubernetes", "machine learning", "ml pipeline", "mlops", "kubeflow pipelines", "kserve", "katib", "data science"]

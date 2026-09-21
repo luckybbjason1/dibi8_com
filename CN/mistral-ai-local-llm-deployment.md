@@ -2,10 +2,7 @@
 title: "Mistral AI 2026: Deploy Production-Grade Local LLMs with...
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:..."
-stars: 9500
-maintainer: mistralai
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["mistral ai"]

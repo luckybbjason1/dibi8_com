@@ -6,11 +6,6 @@ lastmod: 2026-06-02
 slug: 'tradingagents-llm-multi-agent-trading-framework-2026'
 category: 'ai-trading'
 tags: ["TradingAgents", "tác tử LLM", "giao dịch thuật toán", "LangGraph", "đa tác tử", "AI trading", "quant", "AI tài chính"]
-github_repo: "https://github.com/TauricResearch/TradingAgents"
-stars: 82254
-maintainer: 'TauricResearch'
-license: Apache-2.0
-featureImage: 'https://raw.githubusercontent.com/TauricResearch/TradingAgents/main/assets/schema.png'
 ---
 
 

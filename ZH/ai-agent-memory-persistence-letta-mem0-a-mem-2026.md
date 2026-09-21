@@ -3,11 +3,7 @@ title: "AI Agent 记忆持久化 2026：Letta vs Mem0 vs A-MEM 实测对比"
 description: "没有持久化记忆的 Agent 每次会话都从零开始。在同一个多会话负载下实测 Letta、Mem0、A-MEM：到底谁能真正留住上下文、谁更省钱、什么时候应该自研。". Comprehensive gu..."
 licensing_model: 开源
 license_type: 'Apache-2.0 / MIT'
-github_repo: ''
-stars: 0
-maintainer: 'Letta / Mem0AI / A-MEM 团队'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["ai-agent", "memory", "persistence", "letta", "mem0", "2026"]

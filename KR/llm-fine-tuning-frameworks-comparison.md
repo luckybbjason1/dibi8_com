@@ -1,7 +1,6 @@
 ---
 title: "LLM 파인튜닝 프레임워크 비교 2025: LoRA, QLoRA, PEFT, Unsloth 심층 분석"
 description: "LoRA, QLoRA, PEFT, Unsloth 등 LLM 파인튜닝 핵심 프레임워크를 비교하고, 소비자용 GPU에서도 실행 가능한 실전 파인튜닝 가이드를 제공합니다.". Compr..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/llm-fine-tuning-frameworks-comparison/

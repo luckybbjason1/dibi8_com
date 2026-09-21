@@ -13,11 +13,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: '有没有可以自托管的开源 Vercel v0 替代方案？'
     a: '有。Open Codesign 是一款开源、可自托管的 UI 生成器，提供与 v0 类似的提示词到预览的工作流。你在本地运行前端，并连接到本地 LLM 或自己的 API 密钥，完全不依赖 Vercel 的托管生态系统。'

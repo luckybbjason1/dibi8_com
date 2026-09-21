@@ -1,10 +1,7 @@
 ---
 title: "CrewAI: 构建自主协作的多智能体AI团队 — 生产环境配置与模式 2026"
 description: "CrewAI 实操 2026 指南 — 用于构建基于角色的智能体、任务委托、记忆共享和自主协作模式的多智能体AI系统的 Python 框架。". Comprehensive guide coverin..."
-stars: 28000
-maintainer: joaomdmoura
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crewai", "多智能体", "ai-agent", "编排", "自主智能体", "llm", "python", "开源"]

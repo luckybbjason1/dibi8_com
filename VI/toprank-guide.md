@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'GEO (Tối ưu hóa Công cụ Tạo sinh - Generative Engine Optimization) là gì?'
     a: 'GEO là phương pháp cấu trúc nội dung của bạn sao cho các mô hình ngôn ngữ lớn như ChatGPT, Claude và Perplexity tự tin truy xuất và trích dẫn URL của bạn làm nguồn trong các câu trả lời được tạo ra, thay vì chỉ xếp hạng trong kết quả tìm kiếm thông thường.'

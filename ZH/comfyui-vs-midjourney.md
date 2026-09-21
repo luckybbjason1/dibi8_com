@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Midjourney 最好的免费开源替代品是什么？'
     a: 'ComfyUI 是最主流的免费开源替代品。其基于节点的图形化工作流为专业级、可复现的 AI 艺术创作提供了极高的上限，且无需任何订阅费用，而 Midjourney 的收费方案高达 $10–$120/month。'

@@ -1,10 +1,7 @@
 ---
 title: "Flowise 2026 완벽 가이드: LangChain Agent를 시각적으로 배포하는 로우코드 AI...
 description: "Flowise 2026 완벽 가이드 — 100개 이상의 통합을 갖춘 오픈소스 로우코드 AI 워크플로우 빌더. 시각적 LangChain 에이전트 생성, Docker 배포, API 엔..."
-stars: 45000
-maintainer: FlowiseAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["flowise", "langchain", "로우코드", "ai워크플로우", "docker", "셀프호스팅", "에이전트빌더", "노코드", "오픈소스", "챗봇"]

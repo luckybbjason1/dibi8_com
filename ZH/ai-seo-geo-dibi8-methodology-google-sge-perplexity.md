@@ -1,8 +1,6 @@
 ---
 title: "AI SEO 与 GEO：dibi8 如何让 Google SGE、Perplexity 和 ChatGPT 引...
 description: "我们不再为点击率写作，我们为引用率写作。72 篇文章、4 种语言之后，这是 dibi8 总结出的 AI SEO 五层方法论。". Comprehensive guide covering featur..."
-license: 'MIT'
-featureImage: /images/articles/ai-seo
 ---
 
 geo

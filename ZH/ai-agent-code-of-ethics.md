@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-06-04"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["ai智能体", "ai伦理", "负责任ai", "ai治理", "智能体安全", "对齐", "道德规范"]

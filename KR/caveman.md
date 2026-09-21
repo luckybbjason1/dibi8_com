@@ -8,11 +8,7 @@ file_size: "2.4 MB"
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 61775
-maintainer: "JuliusBrussee"
 last_maintained: "2026-05-12"
-featureImage: ""
 draft: false
 aliases:
   - /kr/posts/caveman/

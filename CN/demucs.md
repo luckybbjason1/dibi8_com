@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/facebookresearch/demucs"
-stars: 10100
-maintainer: facebookresearch
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["demucs", "music-source-separation", "ai-audio", "stem-separation", "pytorch", "docker", "open-source"]

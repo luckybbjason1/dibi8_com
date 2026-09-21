@@ -5,12 +5,9 @@ title: "WorldMonitor: Real-Time Global Intelligence Dashboard fo...
   lastmod: 2026-06-25
 draft: false
   lang: en
-  github_repo: https://github.com/WorldMonitorHQ/worldmonitor
   category: ai-tools
 tags: ["ai", "dashboard", "geopolitics", "monitoring", "news", "opensource", "osint", "palantir", "situation-awareness"]
   slug: worldmonitor-real-time-global-intelligence-dashboard
-  featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
-  license: MIT---
 
 
 

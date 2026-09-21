@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/rohitg00/agentmemory"
-stars: 0
-maintainer: 'rohitg00'
 last_maintained: "2026-05-17"
-featureImage: ''
 draft: false
 aliases:
   - /posts/agentmemory-mcp-persistent-memory-2026/-

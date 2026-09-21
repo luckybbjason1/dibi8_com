@@ -6,11 +6,6 @@ lastmod: 2026-06-09
 slug: 'turbovec-rust-vector-index-2026'
 category: 'ai-tools'
 tags: ["vector-search", "rust", "quantization", "langchain", "llamaindex", "RAG", "embeddings", "turboquant"]
-github_repo: "https://github.com/RyanCodrai/turbovec"
-stars: 10513
-maintainer: 'RyanCodrai'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/RyanCodrai/turbovec/main/assets/hero.png'
 ---
 
 ![TurboVec Vector Index](https://opengraph.github.com/github/RyanCodrai/turbovec)

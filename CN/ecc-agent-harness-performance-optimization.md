@@ -6,9 +6,6 @@ date: 2026-06-13
 lastmod: 2026-06-13
 slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
-github_repo: "https://github.com/affaan-m/ECC"
-license: 'MIT'
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 # ECC: Agent Harness Performance Optimization — 2026 Guide

@@ -1,10 +1,7 @@
 ---
 title: "Baetyl: IoT 기기에 AI 모델을 배포하는 클라우드 네이티브 엣지 AI 컴퓨팅 플랫폼 — 20...
 description: "Baetyl v2.4를 배포하여 IoT 기기에 Kubernetes 네이티브 엣지 컴퓨팅을 제공합니다. AI 모델 추론, MQTT/BACnet 지원, OTA 업데이트, K3s 런타임..."
-stars: 3200
-maintainer: baetyl
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["baetyl", "엣지-컴퓨팅", "iot", "kubernetes", "k3s", "ai-추론", "mqtt", "엣지-ai", "ota-업데이트", "lf-edge"]

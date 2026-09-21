@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Midjourney의 가장 좋은 무료 오픈소스 대안은 무엇인가요?'
     a: 'ComfyUI가 대표적인 무료 오픈소스 대안입니다. 노드 기반의 그래프 방식은 전문적이고 재현 가능한 AI 아트를 위한 최고 수준의 기능을 제공하며, Midjourney의 $10–$120/month 구독료와 달리 구독 비용이 전혀 없습니다.'

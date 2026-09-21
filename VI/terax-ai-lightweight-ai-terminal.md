@@ -18,11 +18,7 @@ file_size: "7.5 MB"
 file_md5: ""
 download_url: "https://github.com/crynta/terax-ai"
 backup_url: ""
-github_repo: "https://github.com/crynta/terax-ai"
-stars: 3805
-maintainer: "crynta"
 last_maintained: "2026-05-16"
-featureImage: ""
 draft: false
 aliases:
   - /vi/posts/terax-ai-lightweight-ai-terminal/

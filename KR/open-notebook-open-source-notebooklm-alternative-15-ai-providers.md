@@ -1,10 +1,6 @@
 ---
 title: "open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅...
 description: "open-notebook (28,200 GitHub star)은 15+ AI 제공자를 지원하는 Google NotebookLM 오픈소스 대안입니다. 셀프호스팅 RAG 지식베이스, ..."
-stars: 28200
-maintainer: 'lfnovo'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png'
 ---
 
 

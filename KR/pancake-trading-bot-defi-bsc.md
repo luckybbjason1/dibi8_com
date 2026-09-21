@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "pancakeswap/pancake-swap-core"
-stars: 2500
-maintainer: pancakeswap
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["pancakeswap", "defi", "binance smart chain", "web3.py", "트레이딩 봇", "bsc", "자동화 트레이딩", "유동성 풀", "mev 보호", "python", "암호화폐 봇", "dex 트레이딩"]

@@ -1,7 +1,6 @@
 ---
 title: "Docker 개발 환경 모범 사례: 2025년 완벽 가이드"
 description: "Docker 개발 환경 구축의 모범 사례를 다룹니다. Dev Containers, Hot Reload, 멀티 스테이지 빌드, 환경 변수 관리까지 2025년 최신 기준으로 정리했습니..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/docker-development-environment-best-practices/

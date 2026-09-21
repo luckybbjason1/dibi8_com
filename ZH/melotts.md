@@ -1,10 +1,7 @@
 ---
 title: "MeloTTS: 7.4K+ Stars — 多语言 TTS 基准对比 Coqui TTS、ChatTTS、Ba...
 description: "MeloTTS 是一个高质量多语言文本转语音库，拥有 7.4K+ Stars。与 Coqui TTS、ChatTTS 和 Bark 进行基准对比。涵盖 Python 安装、Docker 部署、实时推理..."
-stars: 7400
-maintainer: 'myshell-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["melotts", "文本转语音", "tts", "多语言", "python", "语音合成", "开源", "cpu推理"]

@@ -7,9 +7,6 @@ draft: false
 category: ai-trading
 tags: ["phân-tích-cổ-phếu", "llm", "giao-dịch-định-lượng", "ai-agent", "đa-thị-trường", "cổ-phếu-a", "phân-tích-cảm-xúc", "giao-dịch-tự-động"]
 slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
-featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-github_repo: https://github.com/dailystockai/daily-stock
-license: MIT
 ---
 
 

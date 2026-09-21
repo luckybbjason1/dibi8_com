@@ -1,10 +1,7 @@
 ---
 title: "Chroma DB 2026: 개발자 친화적 RAG 벡터 데이터베이스, 50배 더 빠른 임베딩 — Py...
 description: "Chroma 벡터 데이터베이스 Python 실전 가이드. 설치, RAG 통합, 임베딩 검색, 프로덕션 배포까지. 벤치마크, 비교 분석, 실제 사례 포함.". Comprehensiv..."
-stars: 18000
-maintainer: chromadb
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["]

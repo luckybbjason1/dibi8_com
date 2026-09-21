@@ -1,10 +1,7 @@
 ---
 title: "aiohttp 2026: 构建每秒处理10K+请求的高性能异步网页抓取器 — Python指南"
 description: "掌握 aiohttp 3.11，用 Python 构建高性能异步网页抓取器。支持连接池、会话管理、速率限制和生产环境部署，每秒处理10K+请求。". Comprehensive guide cover..."
-stars: 15200
-maintainer: 'aio-libs'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["aiohttp", "异步", "网页抓取", "python", "http客户端", "asyncio"]

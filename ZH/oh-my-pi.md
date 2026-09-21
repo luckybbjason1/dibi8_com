@@ -6,8 +6,6 @@ lastmod: 2026-06-15
 slug: oh-my-pi
 category: dev-utils
 tags: ["树莓派", "智能家居", "物联网", "边缘计算", "家庭自动化", "linux", "自动化"]
-github_repo: "https://github.com/can1357/oh-my-pi"
-license: MIT
 images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
     alt: "Oh My Pi GitHub OG"
     role: reference
@@ -17,7 +15,6 @@ images: - url: "https://opengraph.github.com/github/can1357/oh-my-pi"
   - url: "https://raw.githubusercontent.com/can1357/oh-my-pi/main/assets/smart-home-diagram.png"
     alt: "智能家居架构图"
     role: diagram
-featureImage: /images/articles/oh-my-pi-turn-any-raspberry-pi-into-a-smart-device-12k-star-.jpg
 ---
 
 

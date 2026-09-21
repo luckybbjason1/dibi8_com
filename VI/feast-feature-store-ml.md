@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/feast-dev/feast"
-stars: 7000
-maintainer: 'feast-dev'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["feast", "feature store", "mlops", "ml pipeline", "redis", "bigquery", "online store", "offline store", "real-time ml", "feature engineering"]

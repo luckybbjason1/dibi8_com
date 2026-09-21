@@ -8,11 +8,7 @@ file_size: "27.7 MB"
 file_md5: ""
 download_url: "https://github.com/facefusion/facefusion"
 backup_url: ""
-github_repo: "https://github.com/facefusion/facefusion"
-stars: 28312
-maintainer: "facefusion"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'FaceFusion이란 무엇이며 Roop과 어떻게 다른가요?'
     a: 'FaceFusion은 Roop의 후계자로 등장한 오픈소스 AI 얼굴 교체 파이프라인입니다. Roop의 단일 스레드 모놀리식 설계와 달리, FaceFusion은 ONNX Runtime 기반의 모듈형 아키텍처와 멀티스레드 병렬 프레임 렌더링을 지원하여 영상 처리 속도와 안정성이 월등히 뛰어납니다.'

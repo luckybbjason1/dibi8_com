@@ -1,10 +1,7 @@
 ---
 title: "Apache Superset 2026: 50가지 이상 차트 유형을 갖춘 오픈소스 데이터 탐색 플랫폼 ...
 description: "Apache Superset 2026 완전 가이드 — Docker로 5분 만에 설치, 30개 이상 데이터 소스 연결, 50가지 이상 차트 유형 구축, 역할 기반 액세스 제어가 적용..."
-stars: 66000
-maintainer: apache
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["apache superset", "데이터 시각화", "bi", "대시보드", "오픈소스", "docker", "sql", "분석"]

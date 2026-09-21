@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "microsoft/markitdown"
-stars: 141153
-maintainer: microsoft
 last_maintained: "2026-06-02"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["]

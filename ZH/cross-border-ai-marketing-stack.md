@@ -1,7 +1,6 @@
 ---
 title: "跨境出海 AI 营销 Stack 2026：中国团队做海外业务的 7 工具完整方案"
 description: "专为跨境业务设计的 7 组件 AI stack —— 多语言内容自动化、海外市场情报抓取、GDPR 合规分析、绕开付费摩擦、整套跑在香港 VPS 上。月成本 $35-80，全开源或 aff 友好。"...."
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["跨境", "出海", "ai 营销", "stack", "合集"]

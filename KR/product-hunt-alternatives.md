@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'SaaS 제품을 무료로 출시할 수 있는 최고의 플랫폼은 어디인가요?'
     a: '주요 무료 출시 플랫폼으로는 개발자 도구에 최적화된 Hacker News(Show HN), 부트스트랩 SaaS를 위한 Indie Hackers, 초기 단계 제품을 위한 BetaList, 신규 스타트업을 위한 Launching Next, 그리고 무료 티어에서 홈페이지 노출을 보장하는 Uneed이 있습니다.'

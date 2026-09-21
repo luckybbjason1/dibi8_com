@@ -6,9 +6,6 @@ lastmod: 2026-06-10
 slug: 'cleanlab-11k-star-ai-data-cleaning'
 category: data-science
 tags: ["cleanlab", "data-cleaning", "machine-learning", "data-quality", "label-errors", "open-source", "python", "ml-data"]
-github_repo: "https://github.com/cleanlab/cleanlab"
-license: MIT
-featureImage: /articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png/images/articles/fine-tuning-stack-2026--5-component-pipeline-from-dataset-to-production-deployed.png
 ---
 
 

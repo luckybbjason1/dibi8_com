@@ -14,11 +14,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'DS4（DwarfStar 4）是什么，由谁创建的？'
     a: 'DS4（DwarfStar 4）是一款小型原生推理引擎，专为在 Apple Metal 和 NVIDIA CUDA 硬件上本地运行 DeepSeek V4 Flash 模型而设计。它由 Salvatore Sanfilippo（antirez）创建，此人正是意大利程序员、Redis 的发明者。'

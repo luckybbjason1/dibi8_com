@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["多模态", "内容 pipeline", "播客", "视频", "tts", "stack", "合集"]

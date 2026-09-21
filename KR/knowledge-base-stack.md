@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: '"
 draft: false
 categories: ["collections"]
 tags: ["지식 베이스", "rag", "두 번째 뇌", "스택", "컬렉션"]

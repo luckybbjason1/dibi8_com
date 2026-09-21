@@ -16,11 +16,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-30"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["claude code", "subagents", "multi-agent", "agent sdk", "mcp", "stack", "collection"]

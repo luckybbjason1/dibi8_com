@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: '2024년 최고의 무료 AI 도구는 무엇인가요?'
     a: '최고의 무료 AI 도구로는 챗봇 분야의 ChatGPT와 Claude, 디자인 분야의 Canva AI, 글쓰기 분야의 Grammarly, 배경 제거 도구인 Remove.bg, 코딩 보조 도구인 Codeium, 생산성 도구인 Notion AI, 소셜 미디어 예약 게시 도구인 Buffer가 있습니다. Codeium은 무제한 무료 코드 자동완성을 제공하며, Stable Diffusion은 셀프 호스팅 시 완전히 무료입니다.'

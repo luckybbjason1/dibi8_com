@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/HKUDS/ViMax"
-stars: 7100
-maintainer: HKUDS
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["vimax", "agentic-video", "ai-video-generation", "hkuds", "multi-agent", "veo", "long-form-video", "video-ai", "open-source-video", "rag-screenwriting"]

@@ -1,7 +1,6 @@
 ---
 title: "vanna-ai-sql-generation"
 description: "{"en': ''Explore Vanna AI, the open-source Python library that trains on your database schema to gen..."
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["vanna ai"]

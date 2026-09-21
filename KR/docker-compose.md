@@ -1,10 +1,7 @@
 ---
 title: "Docker Compose: 37,393 GitHub Stars — 멀티 컨테이너 앱 완벽 설정 가이...
 description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comp..."
-stars: 37393
-maintainer: docker
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["docker-compose", "컨테이너-오케스트레이션", "devops", "docker", "마이크로서비스", "배포", "yaml", "멀티-컨테이너"]

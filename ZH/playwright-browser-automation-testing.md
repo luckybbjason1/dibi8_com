@@ -1,10 +1,7 @@
 ---
 title: "Playwright 2026: 比 Selenium 快 3 倍的跨浏览器自动化工具 — 安装指南"
 description: "掌握 Playwright 1.51 进行跨浏览器自动化。支持 Chrome、Firefox、WebKit。自动等待、追踪、代码生成和并行测试。比 Selenium 快 3 倍。". Comprehe..."
-stars: 72000
-maintainer: microsoft
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["playwright", "浏览器自动化", "测试", "网页抓取", "python", "端到端测试"]

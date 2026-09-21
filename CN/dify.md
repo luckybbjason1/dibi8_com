@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/langgenius/dify"
-stars: 141955
-maintainer: langgenius
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["dify", "ai agent builder", "llm workflow", "rag", "docker deployment", "open-source ai", "visual workflow builder", "production ai"]

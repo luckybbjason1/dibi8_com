@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'freqtrade-python-crypto-trading-bot-backtest-optimize-deploy'
 category: 'ai-trading'
 tags: ["freqtrade", "bot giao dịch crypto", "giao dịch Python", "backtest chiến lược", "tối ưu hyperopt", "API crypto", "giao dịch self-hosted", "giao dịch định lượng"]
-github_repo: "https://github.com/freqtrade/freqtrade"
-stars: 51300
-maintainer: 'xmatthias'
-license: GPL-3.0
-featureImage: 'https://raw.githubusercontent.com/freqtrade/freqtrade/develop/docs/static/screenshot.png'
 ---
 
 

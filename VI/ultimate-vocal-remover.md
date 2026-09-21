@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/Anjok07/ultimatevocalremovergui"
-stars: 24700
-maintainer: Anjok07
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["tách-giọng", "tách-audio", "học-sâu", "pytorch", "demucs", "mdx-net", "ai-audio", "karaoke", "sản-xuất-âm-nhạc"]

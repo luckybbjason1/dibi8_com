@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/DevToys-app/DevToys"
-stars: 31533
-maintainer: 'DevToys-app'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["devtoys", "개발자도구", "오프라인도구", "json포맷터", "base64인코더", "jwt디코더", "정규식테스트", "크로스플랫폼", "오픈소스"]

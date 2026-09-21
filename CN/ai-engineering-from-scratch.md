@@ -6,8 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: ai-engineering-from-scratch
 category: llm-frameworks
-github_repo: "https://github.com/rohitg00/ai-engineering-from-scratch"
-license: MIT
 images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from-scratch"
     alt: "AI Engineering From Scratch GitHub OG"
     role: reference
@@ -17,7 +15,6 @@ images: - url: "https://opengraph.github.com/github/rohitg00/ai-engineering-from
   - url: "https://api.star-history.com/svg?repos=rohitg00/ai-engineering-from-scratch&type=date"
     alt: "Star History"
     role: reference
-featureImage: /images/articles/ai-engineering-from-scratch-build-production-llm-systems-com.jpg
 ---
 
 ## TL;DR

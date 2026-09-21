@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "apache/superset"
-stars: 66000
-maintainer: apache
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["apache superset", "trực quan hóa dữ liệu", "bi", "dashboard", "mã nguồn mở", "docker", "sql", "phân tích"]

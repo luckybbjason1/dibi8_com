@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "dagster-io/dagster"
-stars: 14000
-maintainer: 'dagster-io'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["dagster", "data-pipeline", "orchestration", "etl", "apache-airflow", "dbt", "python", "docker", "data-engineering", "asset-centric"]

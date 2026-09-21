@@ -26,7 +26,6 @@ review_status: "AWAITING_EDITOR_REVIEW"
 
 
 ---
----
 ## Methodology
 
 - **Source**: GitHub Search API, query window ````pushed:>2026-06-29``````

@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"
 category: dev-utils
 tags: ["microsoft", "markitdown", "markdown", "python", "cli", "pdf-converter", "document-processing", "AI", "open-source"]
-github_repo: "https://github.com/microsoft/markitdown"
-stars: 149148
-maintainer: microsoft
-license: MIT
-featureImage: "https://raw.githubusercontent.com/microsoft/markitdown/main/docs/assets/logo.png"
 ---
 
 ## Introduction

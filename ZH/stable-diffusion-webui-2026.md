@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
-stars: 163000
-maintainer: AUTOMATIC1111
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["stable diffusion", "sdxl", "图像生成", "automatic1111", "开源"]

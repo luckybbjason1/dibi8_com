@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/infiniflow/ragflow"
-stars: 80853
-maintainer: infiniflow
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["ragflow", "rag-engine", "document-understanding", "docker-deployment", "llm-agent", "production-rag", "open-source-ai"]

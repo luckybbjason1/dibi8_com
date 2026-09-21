@@ -8,11 +8,7 @@ application_domain: 开发工具
 source_version: "Gemini CLI 1.0 / Claude Code 1.0"
 licensing_model: 混合授权
 license_type: 专有软件
-github_repo: ''
-stars: 0
-maintainer: 'Google / Anthropic'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["gemini-cli", "claude-code", "ai-coding", "2026"]

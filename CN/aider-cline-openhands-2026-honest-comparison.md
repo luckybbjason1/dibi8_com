@@ -8,11 +8,7 @@ application_domain: Dev Utils
 source_version: "Aider 0.78 / Cline 3.4 / OpenHands 0.42"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
-github_repo: ''
-stars: 0
-maintainer: 'Aider (paul-gauthier) / Cline (cline-bot) / OpenHands (All-Hands-AI)'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai-coding", "open-source", "aider", "cline", "openhands", "2026"]

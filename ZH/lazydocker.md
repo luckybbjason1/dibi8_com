@@ -1,10 +1,7 @@
 ---
 title: "LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026"
 description: "LazyDocker (LD) 是一个用于管理 Docker 容器、镜像、卷和日志的终端 UI。兼容 Docker、Docker Compose、Go 和 Terminal。涵盖安装、快捷键、配置和生..."
-stars: 51092
-maintainer: jesseduffield
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["lazydocker", "docker", "终端界面", "devops", "容器", "命令行工具", "docker-compose", "tui"]

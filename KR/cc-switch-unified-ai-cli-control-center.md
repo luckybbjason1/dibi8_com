@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ["AI CLI 관리", "Claude Code 대안", "AI 코딩 도구", "개발자 생산성", "멀티 에이전트 CLI", "cc-switch", "AI 코딩 에이전트", "CLI 프록시"]
-github_repo: "https://github.com/farion1231/cc-switch"
-stars: 95900
-maintainer: 'farion1231'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 ---
 
 

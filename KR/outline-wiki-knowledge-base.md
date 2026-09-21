@@ -1,10 +1,7 @@
 ---
 title: "Outline 완벽 가이드: 엔지니어링 팀을 위한 오픈소스 Wiki 및 지식 베이스 — 2026 셀프...
 description: "Docker로 10분 만에 Outline 배포. Markdown 편집기, Slack 통합, 전문 검색, 세분화된 권한 제어로 팀을 위한 실시간 협업 Wiki를 구축하세요.". Co..."
-stars: 32000
-maintainer: outline
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["outline", "wiki", "지식베이스", "팀문서", "오픈소스", "셀프호스팅", "docker", "협업", "markdown"]

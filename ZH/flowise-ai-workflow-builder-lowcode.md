@@ -1,10 +1,7 @@
 ---
 title: "Flowise 2026 完整指南：低代码 AI 工作流构建器 — 可视化部署 LangChain Agent"
 description: "Flowise 2026 完整指南 — 开源低代码 AI 工作流构建器，支持 100+ 集成。可视化 LangChain Agent 创建、Docker 部署、API 端点和实际基准测试。". Com..."
-stars: 45000
-maintainer: FlowiseAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["flowise", "langchain", "低代码", "ai工作流", "docker", "自托管", "agent构建器", "无代码", "开源", "聊天机器人"]

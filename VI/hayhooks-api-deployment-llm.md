@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "deepset-ai/hayhooks"
-stars: 600
-maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["hayhooks", "haystack", "nlp", "rest api", "llm", "pipeline deployment", "docker", "python", "openapi"]

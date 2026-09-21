@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/netdata/netdata"
-stars: 78874
-maintainer: netdata
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["netdata", "giám-sát", "khả-năng-quan-sát", "tinh-chỉnh-hiệu-suất", "docker", "kubernetes", "metrics-thở-gian-thự"]

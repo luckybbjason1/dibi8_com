@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/puppeteer/puppeteer"
-stars: 94300
-maintainer: puppeteer
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["puppeteer", "浏览器自动化", "无头chrome", "网络爬虫", "docker", "测试", "typescript"]

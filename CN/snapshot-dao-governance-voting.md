@@ -1,10 +1,7 @@
 ---
 title: "snapshot-dao-governance-voting"
 description: "{"en': ''Comprehensive guide to Snapshot, the open-source off-chain DAO voting platform with 10M+ vo..."
-stars: 9500
-maintainer: 'snapshot-labs'
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["snapshot", "dao", "governance", "voting", "off-chain", "eip-712", "ipfs", "delegation", "defi", "web3"]

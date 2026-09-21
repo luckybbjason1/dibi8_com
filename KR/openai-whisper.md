@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/openai/whisper"
-stars: 99800
-maintainer: openai
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["whisper", "음성-인식", "asr", "openai", "faster-whisper", "whisperx", "python", "docker", "머신러닝"]

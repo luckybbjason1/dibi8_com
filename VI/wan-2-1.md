@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/Wan-Video/Wan2.1"
-stars: 16100
-maintainer: 'Wan-Video'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["ai-tools"]
 tags: ["wan-2-1", "tạo-video", "diffusion-transformer", "ai-video", "mã-nguồn-mở", "alibaba", "comfyui", "diffusers"]

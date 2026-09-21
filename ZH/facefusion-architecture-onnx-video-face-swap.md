@@ -13,11 +13,7 @@ file_size: "27.7 MB"
 file_md5: ""
 download_url: "https://github.com/facefusion/facefusion"
 backup_url: ""
-github_repo: "https://github.com/facefusion/facefusion"
-stars: 28312
-maintainer: "facefusion"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'FaceFusion 是什么，它与 Roop 有什么区别？'
     a: 'FaceFusion 是一款开源 AI 换脸流水线，作为 Roop 的继任者而诞生。与 Roop 单线程的单体架构不同，FaceFusion 基于 ONNX Runtime 构建了模块化架构，支持多线程并发帧渲染，在视频处理速度和稳定性上远超 Roop。'

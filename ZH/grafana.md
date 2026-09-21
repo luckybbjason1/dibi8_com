@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/grafana/grafana"
-stars: 73876
-maintainer: grafana
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["grafana", "docker", "监控", "prometheus", "可观测性", "仪表盘", "运维"]

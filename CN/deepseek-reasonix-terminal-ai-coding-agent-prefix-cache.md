@@ -7,7 +7,6 @@ lastmod: 2026-06-22
 draft: false
 categories: ["ai-tools"]
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
-featureImage: /images/articles/deepseek-tui-anthropic-financial-agents--117cfa-1.png
 aliases: [/deepseek-reasonix]
 sources: - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'

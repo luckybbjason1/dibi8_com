@@ -1,10 +1,7 @@
 ---
 title: "Freqtrade 2026：使用机器学习构建AI驱动的加密货币交易策略 — 完整机器人设置指南"
 description: "Freqtrade与FreqAI实战部署指南，开源Python加密货币交易机器人，集成机器学习。涵盖Docker设置、超参数优化、回测、Telegram集成和生产环境部署。". Comprehensi..."
-stars: 37000
-maintainer: freqtrade
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

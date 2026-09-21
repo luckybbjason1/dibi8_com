@@ -12,11 +12,7 @@ file_size: "1.3 MB"
 file_md5: ""
 download_url: "https://github.com/ToprankAI/toprank"
 backup_url: ""
-github_repo: "https://github.com/ToprankAI/toprank"
-stars: 2513
-maintainer: "nowork-studio"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /zh/posts/toprank/

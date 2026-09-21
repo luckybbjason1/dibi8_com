@@ -1,10 +1,7 @@
 ---
 title: "VectorBT: 1초에 100만+ 거래를 처리하는 초고속 Python 백테스팅 라이브러리 — 202...
 description: "VectorBT로 Python 퀀트 백테스팅을 마스터하세요. 벡터화된 Numba 가속 시뮬레이션으로 트레이딩 전략을 구축, 테스트, 최적화합니다. 코드 예제가 포함된 완전한 202..."
-stars: 8900
-maintainer: polakowo
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

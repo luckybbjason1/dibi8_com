@@ -14,11 +14,7 @@ file_size: "197.3 MB"
 file_md5: ""
 download_url: "https://github.com/datawhalechina/hello-agents"
 backup_url: ""
-github_repo: "https://github.com/datawhalechina/hello-agents"
-stars: 50847
-maintainer: "datawhalechina"
 last_maintained: "2026-05-14"
-featureImage: ""
 draft: false
 faqs: - q: 'Datawhale Hello-Agents là gì?'
     a: 'Hello-Agents là một hướng dẫn mã nguồn mở miễn phí từ cộng đồng Datawhale của Trung Quốc, dạy cách xây dựng AI agent từ đầu. Nó cung cấp chương trình học gồm 16 chương kèm code chạy được, có sẵn dưới dạng sách trực tuyến, tài liệu cục bộ và file PDF tải về được.'

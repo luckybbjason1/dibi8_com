@@ -1,8 +1,6 @@
 ---
 title: "Oh My Zsh: 2026년 더 빠른 개발 워크플로우를 위한 7단계"
 description: "실제 벤치마크, 플러그인 구성 및 설치 가이드와 함께 Oh My Zsh 마스터하기. Starship, Prezto, Zsh 네이티브 설정과 비교. 187k+ 스타.". Compre..."
-license: MIT
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 

@@ -3,7 +3,6 @@ title: Modal 서버리스 GPU 컴퓨팅 — 인프라 없이 ML 파이프라인 
 description: Modal 서버리스 GPU 인프라 완전 가이드. 클러스터 관리 없이 LLM 추론, 파인튜닝 파이프라인, 배치 ML 워크로드 배포. 가격, 벤치마크, 실제 패턴 비교.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["serverless", "gpu", "machine-learning", "inference", "llm", "cloud-compute"]
 category: llm-frameworks
-featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 draft: false

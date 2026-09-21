@@ -3,7 +3,6 @@ title: Vercel AI SDK — Build Streaming AI Apps with Edge-First A...
 description: Complete guide to Vercel AI SDK for building production AI applications. Stream LLM responses, integrate multiple providers, and deploy to edge with zero config. Supports React, Next.js, and any framework.
 tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
 category: llm-frameworks
-featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 slug: vercel-ai-sdk-edge-compute---

@@ -15,11 +15,7 @@ file_size: "3.2 MB"
 file_md5: ""
 download_url: "https://github.com/rtk-ai/rtk"
 backup_url: ""
-github_repo: "https://github.com/rtk-ai/rtk"
-stars: 49905
-maintainer: "rtk-ai"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/

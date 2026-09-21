@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/agno-agi/agno"
-stars: 40233
-maintainer: 'agno-agi'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["agno", "ai-agent", "python-sdk", "multi-agent", "open-source", "lightweight-framework", "agent-platform", "ollama", "openai"]

@@ -1,7 +1,6 @@
 ---
 title: "Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Clau...
 description: "Hướng Dẫn Toàn Diện AI Agent Skills 2026: Cách Dùng Claude Code Skills và Các Repository Đang Hot Tr..."
-featureImage: '"
 draft: false
 aliases:
   - /posts/ai-agent-skills-2026-developer-guide/

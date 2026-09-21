@@ -3,11 +3,7 @@ title: "MCP 服务器安全审计 2026：5 个真实社区服务器实测 + 陷�
 description: "生产环境中实测 5 个热门社区 MCP 服务器：GitHub、Slack、Postgres、Brave Search、Fetch。具体漏洞披露、攻击路径演示，外加每个服务器 5 分钟搞定的 8 点装前..."
 licensing_model: Open Source / Mixed
 license_type: Various
-github_repo: "https://github.com/modelcontextprotocol/servers"
-stars: 60000
-maintainer: 'Community + Anthropic'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mcp", "security", "audit", "claude-code", "supply-chain", "agent-security", "2026"]

@@ -14,11 +14,7 @@ file_size: "27.1 MB"
 file_md5: ''
 download_url: https://github.com/AIDC-AI/Pixelle-Video
 backup_url: ''
-github_repo: https://github.com/AIDC-AI/Pixelle-Video
-stars: 18065
-maintainer: "AIDC-AI"
 last_maintained: "2026-05-06"
-featureImage: ''
 draft: false
 aliases:
   - /en/posts/pixelle-video-ai-short-video-generator/

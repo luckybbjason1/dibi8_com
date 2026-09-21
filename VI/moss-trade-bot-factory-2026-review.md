@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/moss-site/moss-trade-bot-skills"
-stars: 98
-maintainer: 'moss-site'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["ai-agent", "quant", "backtest", "hyperliquid", "perpetuals", "open-source", "overfitting", "oos-validation"]

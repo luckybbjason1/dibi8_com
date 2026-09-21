@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'moneyprinter-turbo-ai-video-generation-one-command'
 category: 'ai-tools'
 tags: ["AI video generation", "MoneyPrinterTurbo", "short video AI", "automated video creation", "AI video tool", "video automation", "content generation", "video editing AI"]
-github_repo: "https://github.com/harry0703/MoneyPrinterTurbo"
-stars: 83031
-maintainer: 'harry0703'
-license: MIT
-featureImage: 'https://avatars.githubusercontent.com/u/13691804'
 ---
 
 

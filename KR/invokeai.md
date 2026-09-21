@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/invoke-ai/InvokeAI"
-stars: 27200
-maintainer: 'invoke-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["invokeai", "stable diffusion", "ai 이미지 생성", "docker", "flux", "sdxl", "webui", "오픈소스"]

@@ -8,11 +8,7 @@ application_domain: Công cụ phát triển
 source_version: "2026 Q2"
 licensing_model: 'Không áp dụng'
 license_type: 'Không áp dụng'
-github_repo: ''
-stars: 0
-maintainer: 'Ban biên tập dibi8'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai-coding", "đạo đức", "chính sách", "tuân thủ", "2026"]

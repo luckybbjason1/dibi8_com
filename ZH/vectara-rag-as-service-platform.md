@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "vectara/vectara-ingest"
-stars: 800
-maintainer: vectara
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["vectara", "rag", "向量搜索", "llm", "embedding", "boomerang", "hhem", "幻觉检测", "企业ai"]

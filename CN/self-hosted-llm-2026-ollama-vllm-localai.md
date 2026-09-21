@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "Ollama 0.4 / vLLM 0.7 / LocalAI 2.20"
 licensing_model: Open Source
 license_type: 'MIT / Apache-2.0'
-github_repo: "https://github.com/ollama/ollama"
-stars: 95000
-maintainer: 'Ollama (jmorganca) / vLLM (vllm-project) / LocalAI (mudler)'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["self-hosted", "llm", "ollama", "vllm", "localai", "inference", "2026"]

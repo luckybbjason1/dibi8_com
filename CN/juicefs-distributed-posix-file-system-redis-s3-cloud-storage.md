@@ -6,9 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: 'juicefs-distributed-posix-file-system-redis-s3-cloud-storage'
 category: dev-utils
-github_repo: "https://github.com/juicedata/juicefs"
-license: 'Apache-2.0'
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 # JuiceFS: Cloud Storage, Local Speed

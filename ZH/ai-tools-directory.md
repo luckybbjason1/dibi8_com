@@ -13,11 +13,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: '2024年最好的免费AI工具有哪些？'
     a: '最好的免费AI工具包括：聊天机器人方面的ChatGPT和Claude、设计方面的Canva AI、写作方面的Grammarly、去除背景的Remove.bg、编程辅助的Codeium、提升效率的Notion AI，以及社交媒体排程的Buffer。其中Codeium提供无限量的免费代码补全，而Stable Diffusion在自托管部署时完全免费。'

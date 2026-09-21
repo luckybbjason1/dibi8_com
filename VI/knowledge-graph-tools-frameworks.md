@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["knowledge graph", "graph database", "neo4j", "amazon neptune", "stardog", "rdf", "cypher", "sparql"]

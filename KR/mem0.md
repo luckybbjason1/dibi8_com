@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/mem0ai/mem0"
-stars: 56205
-maintainer: mem0ai
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["mem0", "ai-agent-memory", "지속-메모리", "langchain", "벡터-스토어", "메모리-튜닝", "mem0-튜토리얼", "mem0-vs-langchain", "crewai", "오픈소스"]

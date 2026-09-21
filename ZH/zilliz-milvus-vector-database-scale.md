@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "milvus-io/milvus"
-stars: 32000
-maintainer: 'milvus-io'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["milvus", "zilliz", "向量数据库", "ann", "相似性搜索", "kubernetes", "gpu索引", "ai基础设施"]

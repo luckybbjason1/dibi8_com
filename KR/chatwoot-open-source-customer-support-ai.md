@@ -1,10 +1,7 @@
 ---
 title: "Chatwoot 2026: 오픈소스 AI 통합 고객 지원 플랫폼 — 셀프 호스팅 완벽 가이드"
 description: "Chatwoot v4 완벽 가이드 — 오픈소스 고객 지원 플랫폼. Docker로 셀프 호스팅하고 AI 에이전트를 통합하며 다중 채널을 연결하세요. 실제 벤치마크와 프로덕션 설정."..."
-stars: 23000
-maintainer: chatwoot
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["chatwoot", "고객지원", "오픈소스", "ai챗봇", "셀프호스팅", "docker", "ruby-on-rails", "라이브챗"]

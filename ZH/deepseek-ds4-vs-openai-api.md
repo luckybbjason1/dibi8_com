@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: '在本地运行 DeepSeek 真的比使用 GPT-4o API 更便宜吗？'
     a: '对于每天生成 2-3 million tokens 的重度 AI 编码工作流来说，GPT-4o 每天要花 $30+（每月约 $1,000），而通过一次性购买一台 128GB Mac 在本地运行 DeepSeek，可以让你的边际成本实际降到零（仅电费）。文章估算本地方案一年成本约 $4,000，而持续付费的 API 则要 $20,000+。'

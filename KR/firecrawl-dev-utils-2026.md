@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "firecrawl/firecrawl"
-stars: 127747
-maintainer: firecrawl
 last_maintained: "2026-06-02"
-featureImage: 'https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png'
 draft: false
 categories: ["dev-utils"]
 tags: ["]

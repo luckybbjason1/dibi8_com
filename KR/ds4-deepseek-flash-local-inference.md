@@ -14,11 +14,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'DS4(DwarfStar 4)란 무엇이며, 누가 만들었나요?'
     a: 'DS4(DwarfStar 4)는 Apple Metal 및 NVIDIA CUDA 하드웨어에서 DeepSeek V4 Flash 모델을 로컬로 실행하기 위해 특별히 제작된 소형 네이티브 추론 엔진입니다. Redis를 만든 것으로 유명한 이탈리아 프로그래머 Salvatore Sanfilippo(antirez)가 개발했습니다.'

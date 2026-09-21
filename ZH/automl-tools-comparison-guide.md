@@ -1,7 +1,6 @@
 ---
 title: "AutoML自动机器学习工具全面对比：AutoGluon、H2O、TPOT、Auto-sklearn与Googl...
 description: "全面对比5大AutoML工具：AutoGluon、H2O、TPOT、Auto-sklearn与Google AutoML，覆盖性能、易用性、定价与适用场景，附带选型决策树。". Comprehensi..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/automl-tools-comparison-guide/-

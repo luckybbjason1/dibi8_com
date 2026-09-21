@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Billions Wallet 支持多少种加密货币？'
     a: 'Billions Wallet 支持跨多条区块链的 1,000 多种数字资产，包括 Bitcoin、Ethereum、USDT 及其他稳定币，以及众多山寨币。'

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "activepieces/activepieces"
-stars: 13000
-maintainer: activepieces
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["activepieces", "tự động hóa workflow", "giải pháp thay thế zapier", "self-hosted", "docker", "no-code", "mã nguồn mở", "typescript", "ai actions", "webhooks"]

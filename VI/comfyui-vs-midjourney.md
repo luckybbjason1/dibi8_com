@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Đâu là giải pháp thay thế miễn phí, mã nguồn mở tốt nhất cho Midjourney?'
     a: 'ComfyUI là lựa chọn thay thế miễn phí, mã nguồn mở hàng đầu. Cách tiếp cận dạng đồ thị node mang lại tiềm năng cao nhất cho nghệ thuật AI chuyên nghiệp, có thể tái tạo, mà không tốn phí đăng ký — khác hẳn với gói $10–$120/month của Midjourney.'

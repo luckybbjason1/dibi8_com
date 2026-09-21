@@ -8,11 +8,7 @@ application_domain: Dev Utils
 source_version: "Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0"
 licensing_model: 'Commercial / Mixed'
 license_type: 'Proprietary + Open-source CLIs'
-github_repo: ''
-stars: 0
-maintainer: 'Anthropic / Anysphere / OpenAI / Google'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["claude-code", "cursor", "codex-cli", "gemini-cli", "ai-coding", "agent", "2026"]

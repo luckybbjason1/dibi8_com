@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "qdrant/qdrant"
-stars: 22000
-maintainer: qdrant
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["qdrant", "向量数据库", "rust", "hnsw", "相似度搜索", "docker", "自托管", "ai"]

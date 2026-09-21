@@ -6,12 +6,9 @@ slug: agency-agents-complete-ai-agency-framework
 title: "代理代理：125K+星开源人工智能代理框架"
 category: dev-utils
 tags: ["ai-agents", "open-source", "automation", "multi-agent", "agency"]
-github_repo: "https://github.com/msitarzewski/agency-agents"
-license: 'MIT'
 tech_stack: - Bash
   - Python
   - Shell
-featureImage: /images/articles/polymarket-agents-polymarket-예측-시장용-ai-자.jpg
 ---
 
 

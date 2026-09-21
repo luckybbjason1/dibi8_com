@@ -6,9 +6,6 @@ lastmod: 2026-06-13
 slug: 'compound-engineering-multi-agent-coding-claude-codex-cursor'
 category: llm-frameworks
 tags: ["compound-engineering", "multi-agent", "claude-code", "codex", "cursor", "planning", "review"]
-github_repo: "https://github.com/EveryInc/compound-engineering-plugin"
-license: 'MIT"
-featureImage: /articles/multi-agent-f22f19.jpg/images/articles/multi-agent-f22f19.jpg
 ---
 
 

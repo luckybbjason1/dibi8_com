@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Vercel v0의 셀프 호스팅 오픈소스 대안이 있나요?'
     a: '네. Open Codesign은 오픈소스 셀프 호스팅 UI 생성기로, v0와 유사한 프롬프트-투-프리뷰 워크플로우를 제공합니다. 프론트엔드를 로컬에서 실행하고 로컬 LLM이나 자체 API 키에 연결하기 때문에 Vercel의 호스팅 생태계에 종속되지 않습니다.'

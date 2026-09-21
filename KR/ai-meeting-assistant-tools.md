@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["ai 회의 어시스턴트", "ai 회의 기록", "otter.ai", "fireflies", "fathom", "회의 자동화"]

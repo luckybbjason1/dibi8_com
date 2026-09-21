@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/Tencent-Hunyuan/HunyuanVideo"
-stars: 12100
-maintainer: 'Tencent-Hunyuan'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["tạo-video", "diffusion-transformer", "tencent", "hunyuanvideo", "comfyui", "docker", "fp8", "đa-phương-thức"]

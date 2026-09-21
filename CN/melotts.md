@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/myshell-ai/MeloTTS"
-stars: 7400
-maintainer: 'myshell-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["melotts", "text-to-speech", "tts", "multilingual", "python", "voice-synthesis", "open-source", "cpu-inference"]

@@ -36,7 +36,6 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 
 
 ---
----
 ## Top 8 Trending Repos This Week
 
 ### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) - ★228931

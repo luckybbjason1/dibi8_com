@@ -6,11 +6,6 @@ lastmod: 2026-09-19
 slug: 'deepseek-harness-plugin-ecosystem-2026'
 category: 'llm-frameworks'
 tags: ["deepseek", "harness", "plugin", "ai-agent", "dsh", "automation"]
-github_repo: "https://github.com/deepseek-ai/deepseek-harness"
-stars: 229103
-maintainer: 'deepseek-ai'
-license: MIT
-featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
 ---
 
 # DeepSeek Harness: The Plugin Framework Taking Over 2026

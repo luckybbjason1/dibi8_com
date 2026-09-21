@@ -6,8 +6,6 @@ lastmod: 2026-06-15
 slug: taste-skill
 category: dev-utils
 tags: ["thiết kế ai", "kỹ năng tác nhân", "chống-slop", "frontend", "codex", "cursor", "claude code", "kỹ thuật prompt"]
-github_repo: "https://github.com/Leonxlnx/taste-skill"
-license: MIT
 images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Biểu ngữ Taste Skill"
     role: hero
@@ -17,7 +15,6 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
   - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
     alt: "Taste Skill GitHub OG"
     role: reference
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
 

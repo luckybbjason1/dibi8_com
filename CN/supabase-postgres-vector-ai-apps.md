@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "supabase/supabase"
-stars: 80000
-maintainer: supabase
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["supabase", "postgres", "vector search", "firebase alternative", "pgvector", "ai apps", "rag", "open source", "docker", "edge functions"]

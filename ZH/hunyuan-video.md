@@ -1,10 +1,7 @@
 ---
 title: "HunyuanVideo: 12.1K+ Stars — 2026年生产环境部署指南"
 description: "HunyuanVideo (HYV) 是腾讯开源的视频生成框架，拥有130亿参数。支持 ComfyUI、Diffusers、Gradio API。涵盖 Docker 部署、FP8 量化、多 GPU 推..."
-stars: 12100
-maintainer: 'Tencent-Hunyuan'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["视频生成", "扩散transformer", "腾讯", "hunyuanvideo", "comfyui", "docker", "fp8", "多模态"]

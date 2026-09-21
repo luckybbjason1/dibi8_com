@@ -14,11 +14,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/2noise/ChatTTS"
-stars: 39300
-maintainer: 2noise
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["chattts", "tts", "voice", "dialogue", "open-source"]

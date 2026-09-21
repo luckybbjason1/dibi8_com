@@ -8,11 +8,7 @@ application_domain: LLM 프레임워크
 source_version: "2026 Q2"
 licensing_model: 오픈소스
 license_type: 'MIT / Apache-2.0'
-github_repo: ''
-stars: 0
-maintainer: '여러 OSS 커뮤니티'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["ai-agent", "framework", "langgraph", "crewai", "autogen", "2026"]

@@ -1,7 +1,6 @@
 ---
 title: "2025年最佳AI翻译工具对比：Google Translate、DeepL与ChatGPT全面评测"
 description: "2025年AI翻译工具深度对比：Google Translate、DeepL、ChatGPT、Microsoft Translator、Smartcat和Reverso的翻译质量、语言覆盖、定价与适用..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-translation-tools-compared-2025/-

@@ -8,11 +8,7 @@ file_size: "14.6 MB"
 file_md5: ""
 download_url: "https://github.com/HKUDS/AI-Trader"
 backup_url: ""
-github_repo: "https://github.com/HKUDS/AI-Trader"
-stars: 18072
-maintainer: "HKUDS"
 last_maintained: "2026-05-13"
-featureImage: ""
 draft: false
 aliases:
   - /kr/posts/ai-trader/

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/clawd-foss/clawd"
-stars: 362000
-maintainer: 'steipete'
 last_maintained: "2026-05-18"
-featureImage: '"
 draft: false
 aliases:
   - /posts/openclaw-self-hosted-ai-assistant-setup-guide-2026/

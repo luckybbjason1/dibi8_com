@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/zai-org/CogVideo"
-stars: 12700
-maintainer: 'zai-org'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["cogvideo", "cogvideox", "text-to-video", "diffusion-transformer", "zhipu-ai", "video-generation", "open-source-ai", "comfyui"]

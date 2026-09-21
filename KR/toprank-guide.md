@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'GEO(생성형 엔진 최적화, Generative Engine Optimization)란 무엇인가요?'
     a: 'GEO는 ChatGPT, Claude, Perplexity 같은 대규모 언어 모델이 생성하는 답변에서 단순히 일반 검색 결과에 순위를 매기는 것을 넘어, 여러분의 URL을 출처로 자신 있게 검색하고 인용하도록 콘텐츠를 구조화하는 작업을 말합니다.'

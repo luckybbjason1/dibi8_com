@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "outline/outline"
-stars: 32000
-maintainer: outline
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["outline", "wiki", "knowledge-base", "team-docs", "open-source", "self-hosted", "docker", "collaboration", "markdown"]

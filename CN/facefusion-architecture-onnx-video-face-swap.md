@@ -14,11 +14,7 @@ file_size: "27.7 MB"
 file_md5: ''
 download_url: https://github.com/facefusion/facefusion
 backup_url: ''
-github_repo: https://github.com/facefusion/facefusion
-stars: 28312
-maintainer: "facefusion"
 last_maintained: "2026-05-15"
-featureImage: ''
 draft: false
 aliases:
   - /posts/facefusion-architecture-onnx-video-face-swap/

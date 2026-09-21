@@ -1,10 +1,7 @@
 ---
 title: "Vectara 2026: 90%+ 답변 정확도를 가진 RAG-as-a-Service 플랫폼 — API...
 description: "관리형 RAG 플랫폼 Vectara의 실전 가이드. 90%+ 정확도, Boomerang 검색, API 통합, 다국어 지원, 하이브리드 검색 및 프로덕션 벤치마크를 다룹니다.". C..."
-stars: 800
-maintainer: vectara
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["vectara", "rag", "벡터 검색", "llm", "임베딩", "boomerang", "hhem", "할루시네이션 감지", "엔터프라이즈 ai"]

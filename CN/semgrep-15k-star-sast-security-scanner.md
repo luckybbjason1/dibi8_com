@@ -6,9 +6,6 @@ date: 2026-06-10
 lastmod: 2026-06-10
 slug: 'semgrep-15k-star-sast-security-scanner'
 category: dev-utils
-github_repo: "https://github.com/semgrep/semgrep"
-license: MIT
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 # Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready

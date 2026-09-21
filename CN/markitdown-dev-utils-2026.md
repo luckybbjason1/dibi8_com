@@ -1,10 +1,7 @@
 ---
 title: "markitdown: Convert Files & Office Docs to Markdown (141...
 description: "markitdown is Microsoft"'''s Python tool for converting files and office documents to Markdown. 141,..."
-stars: 141153
-maintainer: microsoft
 last_maintained: "2026-06-02"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["]

@@ -18,11 +18,7 @@ file_size: "1.1 GB"
 file_md5: ''
 download_url: https://github.com/QwenLM/Qwen3-Coder
 backup_url: ''
-github_repo: https://github.com/QwenLM/Qwen3-Coder
-stars: 16525
-maintainer: "QwenLM"
 last_maintained: "2026-03-24"
-featureImage: ''
 draft: false
 aliases:
   - /en/posts/polymarket-trading-bot-stack/

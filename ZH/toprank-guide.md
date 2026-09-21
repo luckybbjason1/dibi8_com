@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: '什么是 GEO（生成式引擎优化）？'
     a: 'GEO 是一种内容结构化的实践方法，目的是让 ChatGPT、Claude、Perplexity 等大语言模型在生成答案时，能够自信地检索并将你的 URL 作为来源进行引用，而不仅仅是在常规搜索结果中获得排名。'

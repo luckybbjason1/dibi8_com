@@ -18,7 +18,6 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/calesthio/OpenMontage"
 last_maintained: "2026-06-21"
 draft: false
 categories: ["ai-tools"]
@@ -39,7 +38,6 @@ faqs: - q: 'OpenMontage là gì?'
     a: 'OpenMontage hỗ trợ Claude Code, Cursor, GitHub Copilot, Codex và Windsurf. Mỗi nền tảng có một tệp cấu hình riêng (CLAUDE.md, CURSOR.md, COPILOT.md, CODEX.md, .windsurfrules) liên kết tới các tệp chia sẻ AGENT_GUIDE.md và PROJECT_CONTEXT.md. Hệ thống ưu tiên đại lý: không có bộ điều phối mã — trợ lý AI lập trình của bạn LÀ bộ điều phối, đọc các bản mô tả pipeline YAML và tệp kỹ năng Markdown để thực hiện sản xuất.'
   - q: 'Hệ thống kiểm soát chất lượng là gì?'
     a: 'OpenMontage triển khai các cổng chất lượng cấp sản xuất: xác thực trước khi ghép (chặn các bản render vi phạm cam kết giao hàng hoặc có rủi ro slideshow nghiêm trọng), tự đánh giá sau khi render (xác thực ffprobe, trích xuất khung hình tại 4 vị trí để phát hiện khung hình đen, phân tích mức âm thanh để phát hiện im lặng/clip, kiểm tra cam kết giao hàng), và hệ thống đánh giá rủi ro slideshow 6 chiều. Mọi lựa chọn nhà cung cấp đều được ghi lại với các phương án thay thế đã xem xét, điểm số độ tin cậy và lý do. Kiểm soát ngân sách bao gồm ước tính chi phí trước khi thực hiện, ngưỡng phê duyệt theo hành động và giới hạn chi tiêu có thể cấu hình.'
-featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
 
 

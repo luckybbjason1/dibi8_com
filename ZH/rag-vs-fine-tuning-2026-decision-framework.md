@@ -3,11 +3,7 @@ title: "RAG 还是微调 2026：基于真实成本数据的决策框架"
 description: "何时用 RAG、何时微调、何时两者结合。结合 2026 年当前模型价格的现实情况：单次任务成本、延迟、数据新鲜度，以及基于数据量、查询延迟预算和更新频率的清晰决策树。". Comprehensive ..."
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
-github_repo: ''
-stars: 0
-maintainer: 'dibi8 editorial'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["rag", "fine-tuning", "llm", "cost-optimization", "decision-framework", "2026"]

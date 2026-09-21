@@ -1,7 +1,6 @@
 ---
 title: "AI 검색 도구 비교: Perplexity vs Google Gemini vs ChatGPT Sear...
 description: "2025년 최고의 AI 검색 도구를 비교합니다. Perplexity, Google Gemini, ChatGPT Search, Microsoft Copilot의 특징, 장단점, 사용..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-search-tools-perplexity-gemini-chatgpt/

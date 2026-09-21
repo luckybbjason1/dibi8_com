@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "tensortrade-org/tensortrade"
-stars: 4300
-maintainer: 'tensortrade-org'
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["ai-trading"]
 tags: ["tensortrade", "học tăng cường", "giao dịch thuật toán", "openai gym", "stable baselines3", "quản lý danh mục", "python", "machine learning", "giao dịch crypto", "tài chính định lượng"]

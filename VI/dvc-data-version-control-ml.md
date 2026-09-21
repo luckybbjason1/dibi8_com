@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/iterative/dvc"
-stars: 15600
-maintainer: Iterative
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["dvc", "data version control", "mlops", "git", "machine learning", "tái tạo được", "s3", "gcs", "azure", "pipeline", "quản lý phiên bản dữ liệu", "khoa học dữ liệu"]

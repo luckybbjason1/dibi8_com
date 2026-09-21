@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/m-bain/whisperX"
-stars: 22000
-maintainer: 'm-bain'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["whisperx", "自动语音识别", "语音识别", "说话人分割", "词级时间戳", "faster-whisper", "pyannote", "docker"]

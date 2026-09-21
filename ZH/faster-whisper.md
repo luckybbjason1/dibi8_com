@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/SYSTRAN/faster-whisper"
-stars: 23000
-maintainer: SYSTRAN
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["faster-whisper", "语音转文本", "ctranslate2", "openai whisper", "语音识别", "python", "docker", "asr"]

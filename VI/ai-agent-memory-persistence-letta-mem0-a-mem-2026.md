@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "Letta 0.8 / Mem0 0.2 / A-MEM 1.3"
 licensing_model: Mã nguồn mở
 license_type: 'Apache-2.0 / MIT'
-github_repo: ''
-stars: 0
-maintainer: 'Đội ngũ Letta / Mem0AI / A-MEM'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["ai-agent", "memory", "persistence", "letta", "mem0", "2026"]

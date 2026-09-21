@@ -6,8 +6,6 @@ lastmod: 2026-06-15
 slug: knowledge-work-plugins
 category: dev-utils
 tags: ["anthropic", "claude", "plugin", "năng suất", "chỉnh sửa tài liệu", "phân tích mã", "duyệt web", "sử dụng công cụ"]
-github_repo: "https://github.com/anthropics/knowledge-work-plugins"
-license: Apache-2.0
 images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-plugins"
     alt: "Knowledge Work Plugins GitHub OG"
     role: reference
@@ -17,7 +15,6 @@ images: - url: "https://opengraph.github.com/github/anthropics/knowledge-work-pl
   - url: "https://raw.githubusercontent.com/anthropics/knowledge-work-plugins/main/assets/tool-use-example.png"
     alt: "Ví dụ Sử dụng Công cụ"
     role: example
-featureImage: /images/articles/ai-trading-stack-2026--7-th-nh-ph-n-workflow-quant-m--ngu-n-m--cho-crypto---
 th--.png
 ---
 

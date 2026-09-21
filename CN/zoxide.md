@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/ajeetdsouza/zoxide"
-stars: 36752
-maintainer: ajeetdsouza
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["zoxide", "cli", "shell", "cd-alternative", "rust", "terminal", "productivity", "fzf"]

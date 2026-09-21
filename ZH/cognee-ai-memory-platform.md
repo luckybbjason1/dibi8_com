@@ -6,12 +6,9 @@ slug: cognee-ai-memory-platform
 title: "Cognee：26K+ Star 开源人工智能内存平台"
 category: llm-frameworks
 tags: ["ai-memory", "rag", "knowledge-graph", "ai-agents", "open-source"]
-github_repo: "https://github.com/topoteretes/cognee"
-license: 'MIT'
 tech_stack: - Python
   - TypeScript
   - Docker
-featureImage: /images/articles/mem0-56k-stars-ai-agent-memory-performan.jpg
 ---
 
 

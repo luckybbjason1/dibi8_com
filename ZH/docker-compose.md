@@ -1,10 +1,7 @@
 ---
 title: "Docker Compose: 37,393 GitHub Stars — 多容器应用完整配置指南 2026"
 description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comp..."
-stars: 37393
-maintainer: docker
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["docker-compose", "容器编排", "devops", "docker", "微服务", "部署", "yaml", "多容器"]

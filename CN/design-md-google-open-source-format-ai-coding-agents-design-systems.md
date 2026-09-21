@@ -6,9 +6,6 @@ date: 2026-06-27
 lastmod: 2026-06-27
 slug: 'design-md-google-open-source-format-ai-coding-agents-design-systems'
 category: dev-utils
-github_repo: "https://github.com/google-labs-code/design.md"
-license: Apache-2.0
-featureImage: /images/articles/design-md-format-specification-for-ai-coding-agents.png
 ---
 
 # DESIGN.md: Google's Open-Source Format for Giving AI Coding Agents a Design System

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "supabase/supabase"
-stars: 80000
-maintainer: supabase
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["supabase", "postgres", "벡터 검색", "firebase 대안", "pgvector", "ai 앱", "rag", "오픈소스", "docker", "edge 함수"]

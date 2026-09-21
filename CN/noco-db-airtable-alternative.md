@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "nocodb/nocodb"
-stars: 53000
-maintainer: nocodb
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["nocodb", "airtable-alternative", "open-source", "database", "spreadsheet", "self-hosted", "docker", "mysql", "postgresql"]

@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "2026 Q2 pricing"
 licensing_model: Mixed
 license_type: 'Open-source frameworks + commercial APIs'
-github_repo: ''
-stars: 0
-maintainer: 'dibi8 editorial'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["rag", "fine-tuning", "llm", "cost-optimization", "decision-framework", "2026"]

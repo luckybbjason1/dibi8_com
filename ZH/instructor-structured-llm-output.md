@@ -1,10 +1,7 @@
 ---
 title: "Instructor：让LLM 100%输出有效JSON的Python库 —— 2026指南"
 description: "停止与不稳定的LLM输出作斗争。了解Instructor如何修补OpenAI客户端，使用Pydantic模型保证有效、类型安全的JSON响应。具有重试逻辑、多提供商支持和流式传输功能。". Compr..."
-stars: 11000
-maintainer: jxnl
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["instructor"]

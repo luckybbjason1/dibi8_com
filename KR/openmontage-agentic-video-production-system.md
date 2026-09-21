@@ -18,7 +18,6 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/calesthio/OpenMontage"
 last_maintained: "2026-06-21"
 draft: false
 categories: ["ai-tools"]
@@ -39,7 +38,6 @@ faqs: - q: 'OpenMontage란 무엇인가요?'
     a: 'OpenMontage는 Claude Code, Cursor, GitHub Copilot, Codex 및 Windsurf를 지원합니다. 각 플랫폼에는 공유된 AGENT_GUIDE.md와 PROJECT_CONTEXT.md를 가리키는 전용 구성 파일(CLAUDE.md, CURSOR.md, COPILOT.md, CODEX.md, .windsurfrules)이 있습니다. 시스템은 에이전트 우선 방식으로 설계되었습니다: 코드 오케스트레이터가 없으며 — 당신의 AI 코딩 어시스턴트가 오케스트레이터 역할을 하며, YAML 파이프라인 매니페스트와 Markdown 스킬 파일을 읽어 프로덕션을 실행합니다.'
   - q: '품질 관리 시스템이란 무엇인가요?'
     a: 'OpenMontage는 제작 수준의 품질 게이트를 구현합니다: 사전 컴포지션 검증(전달 약속을 위반하거나 심각한 슬라이드쇼 위험이 있는 렌더를 차단), 렌더 후 자체 검토(ffprobe 검증, 블랙 프레임 감지를 위한 4 위치에서의 프레임 추출, 무음/클리핑에 대한 오디오 레벨 분석, 전달 약속 검증), 그리고 6차원 슬라이드쇼 위험 점수 시스템. 모든 공급자 선택은 고려된 대안, 신뢰도 점수, 그리고 이유와 함께 기록됩니다. 예산 통제에는 실행 전 비용 추정, 액션별 승인 기준, 그리고 구성 가능한 지출 한도가 포함됩니다.'
-featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 title: "데이터 클리닝 도구 및 모범 사례: OpenRefine, Python 라이브러리와 자동화 솔루션 완벽...
 description: "데이터 클리닝의 핵심 도구 OpenRefine, Pandas, Great Expectations, Cleanlab 등을 비교하고, 재현 가능한 데이터 클리닝 파이프라인 구축 방법을..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/data-cleaning-tools-best-practices/

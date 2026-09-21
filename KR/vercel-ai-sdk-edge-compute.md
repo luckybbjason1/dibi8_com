@@ -3,7 +3,6 @@ title: Vercel AI SDK — Edge-First 아키텍처로 스트리밍 AI 앱 구축
 description: Vercel AI SDK 완전 가이드. LLM 응답 스트리밍, 여러 제공자 통합, 제로 구성으로 엣지에 배포. React, Next.js 및 모든 프레임워크 지원.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["ai-sdk", "streaming", "vercel", "edge-compute", "react", "llm"]
 category: llm-frameworks
-featureImage: /images/articles/vercel-ai-sdk-edge-compute.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 draft: false

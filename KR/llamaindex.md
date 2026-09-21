@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/run-llama/llama_index"
-stars: 49517
-maintainer: 'run-llama'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["llamaindex", "rag", "llm", "벡터-데이터베이스", "검색-증강-생성", "openai", "ollama", "qdrant", "python", "docker"]

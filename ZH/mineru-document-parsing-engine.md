@@ -5,9 +5,6 @@ tags: ["guide", "open-source", "ai-agents", "rag", "pdf", "ocr", "reference", "t
 date: 2026-06-27T00:00:00+08:00
 lastmod: 2026-06-27T00:00:00+08:00slug: 'mineru-document-parsing-engine'
 category: ai-tools
-github_repo: "https://github.com/opendatalab/MinerU"
-license: MinerU Open Source License (Apache 2.0-based)
-featureImage: /images/articles/mineru-docs.png
 ---
 
 

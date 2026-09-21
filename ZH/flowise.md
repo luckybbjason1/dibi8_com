@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/FlowiseAI/Flowise"
-stars: 52948
-maintainer: FlowiseAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["flowise", "langchain", "ai agent", "rag", "docker", "大语言模型", "开源", "无代码"]

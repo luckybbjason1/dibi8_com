@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'NowPayments로 어떤 통화를 받을 수 있나요?'
     a: 'NowPayments를 이용하면 Bitcoin, Ethereum, USDT를 포함한 100개 이상의 암호화폐와 USD, EUR, JPY 같은 주요 법정화폐로 결제를 받을 수 있습니다. 기존 결제 대행사의 지역 및 통화 제한을 완전히 없애줍니다.'

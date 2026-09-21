@@ -8,11 +8,7 @@ application_domain: AI Trading
 source_version: "pandas 2.2+ / vectorbt 0.27+"
 licensing_model: Open Source
 license_type: MIT
-github_repo: ''
-stars: 0
-maintainer: 'dibi8 editorial'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["backtest", "overfit", "quant", "walk-forward", "machine-learning", "2026"]

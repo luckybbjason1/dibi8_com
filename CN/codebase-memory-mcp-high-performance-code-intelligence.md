@@ -6,7 +6,6 @@ date: 2026-06-19
 lastmod: 2026-06-19layout: article
 category: dev-utils
 slug: codebase-memory-mcp-high-performance-code-intelligence
-featureImage: /images/articles/codebase-memory-mcp-high-performance-code-intelligence-for-a.jpg
 ---
 
 # Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents

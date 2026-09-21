@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/crewAIInc/crewAI"
-stars: 51759
-maintainer: crewAIInc
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crewai", "多智能体", "ai智能体", "python", "llm编排", "自动化", "开源", "机器学习"]

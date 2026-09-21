@@ -1,10 +1,7 @@
 ---
 title: "Kubeflow 2026: Kubernetes에서 완전한 ML 파이프라인 실행 — 훈련부터 프로덕션 ...
 description: "Kubernetes에 Kubeflow를 배포하여 ML 파이프라인을 구축하는 완전한 가이드. 설치, 컴포넌트, 벤치마크, 프로덕션 강화 및 실제 배포 패턴을 다룹니다.". Compr..."
-stars: 14000
-maintainer: kubeflow
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["kubeflow", "kubernetes", "머신러닝", "ml 파이프라인", "mlops", "kubeflow pipelines", "kserve", "katib", "데이터과학"]

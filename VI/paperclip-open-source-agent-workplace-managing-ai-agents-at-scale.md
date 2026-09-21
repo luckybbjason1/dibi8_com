@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ["quản lý AI agent", "phối hợp multi-agent", "paperclip", "agent mã nguồn mở", "workflow agent", "agent tự host", "nơi làm việc AI agent", "orchestration agent"]
-github_repo: "https://github.com/paperclipai/paperclip"
-stars: 69700
-maintainer: 'paperclipai'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
 
 

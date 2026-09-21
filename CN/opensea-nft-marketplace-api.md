@@ -1,10 +1,7 @@
 ---
 title: "opensea-nft-marketplace-api"
 description: "{"en': ''Complete guide to the OpenSea NFT marketplace API covering API key setup, Python SDK integr..."
-stars: 1200
-maintainer: ProjectOpenSea
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["en", "zh", "ko", "vi"]

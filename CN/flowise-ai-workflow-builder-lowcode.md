@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "FlowiseAI/Flowise"
-stars: 45000
-maintainer: FlowiseAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["flowise", "langchain", "low-code", "ai workflow", "docker", "self-hosted", "agent builder", "no-code", "open source", "chatbot"]

@@ -1,10 +1,7 @@
 ---
 title: "Claude Code 서브에이전트(Subagent) 실전: 매일 몇 시간을 아껴주는 5가지 멀티에이전...
 description: "프로덕션에서 검증된 5가지 Claude Code subagent 패턴 — 병렬 리서치, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션. 실제 프롬프..."
-stars: 0
-maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "subagents", "multi-agent", "ai-coding-agents", "llm-frameworks", "developer-tools", "agent-sdk"]

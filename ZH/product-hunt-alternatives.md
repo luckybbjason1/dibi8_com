@@ -12,11 +12,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: '哪些是免费发布 SaaS 产品的最佳平台？'
     a: '顶级免费发布平台包括：面向开发者工具的 Hacker News（Show HN）、面向自力更生 SaaS 的 Indie Hackers、面向早期产品的 BetaList、面向新创业公司的 Launching Next，以及 Uneed（提供免费层，保证首页曝光）。'

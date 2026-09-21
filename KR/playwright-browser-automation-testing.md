@@ -1,10 +1,7 @@
 ---
 title: "Playwright 2026: Selenium보다 3배 빠른 크로스 브라우저 자동화 도구 — 설치 가이드"
 description: "Playwright 1.51로 크로스 브라우저 자동화를 마스터하세요. Chrome, Firefox, WebKit 지원. 자동 대기, 추적, 코드 생성, 병렬 테스트. Seleniu..."
-stars: 72000
-maintainer: microsoft
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["playwright", "브라우저 자동화", "테스팅", "웹 스크래핑", "python", "e2e"]

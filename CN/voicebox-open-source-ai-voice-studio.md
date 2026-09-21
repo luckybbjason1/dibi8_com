@@ -5,12 +5,9 @@ title: "VoiceBox: The Open-Source AI Voice Studio for Cloning, D...
   lastmod: 2026-06-25
 draft: false
   lang: en
-  github_repo: https://github.com/voicebox-ai/voicebox
   category: ai-tools
 tags: ["ai", "voice-ai", "voice-clone", "speech-to-text", "text-to-speech", "whisper", "qwen3-tts", "cuda", "mlx"]
   slug: voicebox-open-source-ai-voice-studio
-  featureImage: /images/articles/voicebox-open-source-ai-voice-studio-for-cloning-dictation-and-generation.png
-  license: MIT---
 
 
 

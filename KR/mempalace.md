@@ -14,11 +14,7 @@ file_size: ""
 file_md5: ""
 download_url: "https://github.com/MemPalace/mempalace.git"
 backup_url: ""
-github_repo: "https://github.com/MemPalace/mempalace.git"
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /kr/posts/mempalace/

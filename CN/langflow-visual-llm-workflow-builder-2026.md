@@ -6,11 +6,6 @@ lastmod: 2026-05-23
 slug: 'langflow'
 category: 'llm-frameworks'
 tags: ["langflow", "llm workflows", "visual programming", "AI agents", "LangChain", "flow-based programming", "prompt engineering", "deployment", "low-code AI"]
-github_repo: "https://github.com/langflow-ai/langflow"
-stars: 148710
-maintainer: 'langflow-ai'
-license: MIT
-featureImage: 'https://deepwiki.com/badge.svg'
 ---
 
 # Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026

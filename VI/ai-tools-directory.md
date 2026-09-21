@@ -13,11 +13,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Những công cụ AI miễn phí tốt nhất năm 2024 là gì?'
     a: 'Các công cụ AI miễn phí tốt nhất bao gồm: ChatGPT và Claude cho chatbot, Canva AI cho thiết kế, Grammarly cho viết lách, Remove.bg để xóa nền ảnh, Codeium hỗ trợ lập trình, Notion AI tăng năng suất, và Buffer lên lịch đăng mạng xã hội. Codeium cung cấp gợi ý code không giới hạn hoàn toàn miễn phí, trong khi Stable Diffusion hoàn toàn miễn phí khi tự triển khai.'

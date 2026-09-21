@@ -6,9 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: understand-anything-interactive-knowledge-graphs-codebases
 category: ai-tools
-github_repo: "https://github.com/Egonex-AI/Understand-Anything"
-license: MIT
-featureImage: /images/articles/egonex-understand-anything-interactive-knowledge-graphs-from.jpg
 ---
 
 ## Introduction

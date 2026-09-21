@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: 'https://github.com/pewdiepie-archdaemon/odysseus'
 backup_url: ''
-github_repo: "pewdiepie-archdaemon/odysseus"
-stars: 63159
-maintainer: 'pewdiepie-archdaemon'
 last_maintained: "2026-06-08"
-featureImage: 'https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/main/docs/odysseus.jpg'
 draft: false
 categories: ["ai-tools"]
 tags: ["odysseus", "ai tự lưu trữ", "không gian làm việc ai", "llm cục bộ", "quyền riêng tư", "docker", "mã nguồn mở", "thay thế chatgpt", "ollama", "nghiên cứu chuyên sâu"]

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: "https://github.com/rtk-ai/rtk/releases"
 backup_url: ''
-github_repo: "https://github.com/rtk-ai/rtk"
-stars: 0
-maintainer: 'rtk-ai'
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["rtk", "rust", "cli", "llm", "token-optimization", "ai-coding", "claude-code", "cursor", "copilot", "cost-optimization", "open-source", "developer-tools"]

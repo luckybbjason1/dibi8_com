@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/jesseduffield/lazydocker"
-stars: 51092
-maintainer: jesseduffield
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["lazydocker", "docker", "terminal-ui", "devops", "containers", "cli-tools", "docker-compose", "tui"]

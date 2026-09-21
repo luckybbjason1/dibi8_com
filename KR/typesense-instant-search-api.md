@@ -1,10 +1,7 @@
 ---
 title: "Typesense 2026: 하루 100만 건 처리하는 오픈소스 인스턴트 검색 API — 셀프 호스팅...
 description: "Typesense 27.1로 50ms 미만의 오타 허용 인스턴트 검색을 구축하세요. Docker 배포, SDK 통합, 프로덕션 벤치마크 단계별 가이드.". Comprehensive..."
-stars: 23200
-maintainer: typesense
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["]

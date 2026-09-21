@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/atuinsh/atuin"
-stars: 29794
-maintainer: atuinsh
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["atuin", "shell历史", "命令行工具", "sqlite", "rust", "同步", "bash", "zsh", "fish"]

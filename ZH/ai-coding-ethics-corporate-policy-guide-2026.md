@@ -3,11 +3,7 @@ title: "AI 编码伦理 2026：企业"允许 vs 限制"策略指南'
 description: "2026 年的企业分化为"AI 允许 / AI 限制 / AI 禁止"三大阵营。基于我们追踪的真实企业落地模式，实用解读每种策略的样貌、如何抉择，以及法律/知识产权/合规上的暗礁。". Compreh..."
 licensing_model: 不适用
 license_type: 不适用
-github_repo: ''
-stars: 0
-maintainer: 'dibi8 编辑部'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai-coding", "伦理", "策略", "合规", "2026"]

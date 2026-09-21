@@ -6,7 +6,6 @@ lastmod: 2026-06-19
 (tags: []
 category: "data-science"
 slug: timesfm-google-time-series-foundation-model
-featureImage: /images/articles/fine-tuning-stack.png
 ---
 
 

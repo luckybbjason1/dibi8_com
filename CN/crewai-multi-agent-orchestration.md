@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "joaomdmoura/crewAI"
-stars: 28000
-maintainer: joaomdmoura
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crewai", "multi-agent", "ai-agents", "orchestration", "autonomous-agents", "llm", "python", "open-source"]

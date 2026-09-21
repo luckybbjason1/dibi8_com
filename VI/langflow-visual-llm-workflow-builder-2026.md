@@ -6,11 +6,6 @@ lastmod: 2026-05-23
 slug: 'langflow'
 category: 'llm-frameworks'
 tags: ["langflow", "quy trình làm việc LLM", "lập trình trực quan", "tác nhân AI", "LangChain", "lập trình dựa trên luồng", "kỹ thuật prompt", "triển khai", "AI mã thấp"]
-github_repo: "https://github.com/langflow-ai/langflow"
-stars: 148710
-maintainer: 'langflow-ai'
-license: MIT
-featureImage: 'https://deepwiki.com/badge.svg'
 ---
 
 

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "datalab-to/marker"
-stars: 35694
-maintainer: 'datalab-to'
 last_maintained: "2026-06-02"
-featureImage: 'https://raw.githubusercontent.com/VikParuchuri/marker/master/data/images/datalab-logo.png'
 draft: false
 categories: ["dev-utils"]
 tags: ["]

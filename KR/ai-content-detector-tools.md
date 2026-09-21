@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-18"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["ai 콘텐츠 탐지", "gptzero", "turnitin", "copyleaks", "ai 탐지기", "콘텐츠 검증"]

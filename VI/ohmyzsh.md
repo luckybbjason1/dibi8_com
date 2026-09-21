@@ -6,9 +6,6 @@ lastmod: 2026-06-11
 slug: 'ohmyzsh'
 category: dev-utils
 tags: ["ohmyzsh", "zsh", "dev-tools", "terminal", "bash", "shell", "productivity", "linux"]
-github_repo: "https://github.com/ohmyzsh/ohmyzsh"
-license: MIT
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 

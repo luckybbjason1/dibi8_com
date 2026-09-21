@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/continuedev/continue"
-stars: 33277
-maintainer: continuedev
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["continue.dev", "tro-ly-lap-trinh-ai", "vs-code", "jetbrains", "ma-nguon-mo", "ollama", "thay-the-copilot", "llm-local", "mcp"]

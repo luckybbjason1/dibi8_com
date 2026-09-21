@@ -1,7 +1,6 @@
 ---
 title: "Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn P...
 description: "Bảng Xếp Hạng 2026: Top 10 Công Cụ AI Mã Nguồn Mở Miễn Phí Cho Dev". Comprehensive guide covering fe..."
-featureImage: ''
 draft: false
 aliases:
   - /vi/posts/top-ai-developer-productivity-tools-2026/

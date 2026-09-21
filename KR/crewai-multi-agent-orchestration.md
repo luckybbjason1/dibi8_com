@@ -1,10 +1,7 @@
 ---
 title: "CrewAI: 자율적으로 협업하는 다중 에이전트 AI 팀 구축하기 — 프로덕션 설정 및 패턴 2026"
 description: "역할 기반 에이전트, 작업 위임, 메모리 공유 및 자율 협업 패턴으로 다중 에이전트 AI 시스템을 구축하는 Python 프레임워크인 CrewAI에 대한 실전 2026 가이드.". ..."
-stars: 28000
-maintainer: joaomdmoura
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["crewai", "다중-에이전트", "ai-에이전트", "오케스트레이션", "자율-에이전트", "llm", "python", "오픈소스"]

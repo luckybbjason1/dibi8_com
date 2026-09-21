@@ -13,11 +13,7 @@ file_size: "335.6 MB"
 file_md5: ""
 download_url: "https://github.com/yikart/AiToEarn"
 backup_url: ""
-github_repo: "https://github.com/yikart/AiToEarn"
-stars: 15161
-maintainer: "yikart"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /zh/posts/aitoearn-ai-monetization/

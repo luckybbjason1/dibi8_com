@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "pancakeswap/pancake-swap-core"
-stars: 2500
-maintainer: pancakeswap
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["pancakeswap", "defi", "binance smart chain", "web3.py", "trading bot", "bsc", "giao dịch tự động", "liquidity pool", "mev protection", "python", "crypto bot", "dex trading"]

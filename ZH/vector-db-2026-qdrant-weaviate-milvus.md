@@ -3,11 +3,7 @@ title: "2026 向量数据库选型：Qdrant vs Weaviate vs Milvus（真实负载
 description: "在同一份 500 万向量负载上实测 Qdrant、Weaviate、Milvus。延迟、吞吐、内存、上手成本。原型 vs 生产分别该选谁，以及什么情况下直接放弃向量数据库改用 SQLite FTS5。..."
 licensing_model: Open Source
 license_type: 'Apache-2.0'
-github_repo: "https://github.com/qdrant/qdrant"
-stars: 25000
-maintainer: 'Qdrant / Weaviate / Zilliz'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["vector-database", "qdrant", "weaviate", "milvus", "rag", "2026"]

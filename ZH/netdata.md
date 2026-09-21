@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/netdata/netdata"
-stars: 78874
-maintainer: netdata
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["netdata", "监控", "可观测性", "性能调优", "docker", "kubernetes", "实时指标"]

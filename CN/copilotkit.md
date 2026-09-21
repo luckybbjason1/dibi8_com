@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/CopilotKit/CopilotKit"
-stars: 31536
-maintainer: CopilotKit
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["copilotkit", "react-ai", "generative-ui", "ai-copilot", "langchain", "frontend-agents", "typescript", "open-source"]

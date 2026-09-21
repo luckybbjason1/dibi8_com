@@ -1,10 +1,7 @@
 ---
 title: "OpenCode 完全指南：2026年最强开源AI编程助手，160K+ Stars背后的技术解析与实战教程"
 description: "OpenCode 是2026年GitHub增长最快的开源AI编码代理，支持75+模型提供商，免费替代Claude Code。本文从安装配置到高阶技巧，提供中文版深度实战教程。". Comprehens..."
-stars: 162000
-maintainer: sst
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["opencode", "ai-coding-agent", "claude-code-alternative", "open-source"]

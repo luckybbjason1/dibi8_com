@@ -7,7 +7,6 @@ lastmod: 2026-06-22
 draft: false
 categories: ["ai-tools"]
 slug: pm-skills-68-product-management-skills-ai-agents
-featureImage: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: [/pm-skills]
 sources: - name: GitHub
     url: 'https://github.com/phuryn/pm-skills'

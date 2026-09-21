@@ -6,9 +6,6 @@ lastmod: 2026-06-13
 slug: 'ecc-agent-harness-performance-optimization'
 category: dev-utils
 tags: ["ECC", "agent-optimization", "claude-code", "codex", "cursor", "performance", "mcp"]
-github_repo: "https://github.com/affaan-m/ECC"
-license: 'MIT"
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 

@@ -1,10 +1,7 @@
 ---
 title: "Claude Code Skill 编写指南：如何把流程打包成 Claude 只在相关时才加载的能力（2026）"
 description: "一份完整的 Claude Code skill 编写指南——SKILL.md 结构、决定加载时机的触发 description、渐进式披露，以及何时该用 skill 而非 CLAUDE.md 或子代理..."
-stars: 0
-maintainer: Anthropic
 last_maintained: "2026-05-28"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["claude-code", "skills", "agent-sdk", "ai-coding-agents", "llm-frameworks", "developer-tools", "prompt-engineering"]

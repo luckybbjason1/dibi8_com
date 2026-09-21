@@ -1,10 +1,7 @@
 ---
 title: "HTTPie: 38,200 GitHub Stars — 现代 CLI HTTP 客户端对比 curl、wge...
 description: "HTTPie 是 API 时代的现代命令行 HTTP 客户端，支持 JSON、语法高亮和会话管理。兼容 Python、pip、Homebrew、Docker。涵盖安装、基准测试对比、生产加固和常见问题..."
-stars: 38200
-maintainer: httpie
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["httpie", "命令行", "http客户端", "api测试", "curl替代", "json", "终端", "开发工具"]

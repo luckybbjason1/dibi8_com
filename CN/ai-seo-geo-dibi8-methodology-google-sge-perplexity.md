@@ -6,9 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: ai-seo-geo-dibi8-methodology-google-sge-perplexity
 category: dev-utils
-github_repo: "https://github.com/dibi8-com/dibi8"
-license: 'MIT'
-featureImage: /images/articles/ai-seo
 ---
 
 geo
@@ -276,7 +273,6 @@ It feels like someone who *knows* what they're talking about but isn't trying to
 `````yaml
 # What E-E-A-T looks like in practice: stars: 46683              # real number — fetched from API
 date: 2026-06-15           # specific version, specific date
-maintainer: 'real-name'    # real human, not an organization
 limitations: # honest, specific, not generic
   - "Feature X doesn't work with Y"
   - "Known issue: Z under conditions A"

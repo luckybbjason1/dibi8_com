@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/farion1231/cc-switch"
-stars: 74754
-maintainer: farion1231
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["cc-switch", "ai-cli", "meta-tool", "claude-code", "developer-productivity"]

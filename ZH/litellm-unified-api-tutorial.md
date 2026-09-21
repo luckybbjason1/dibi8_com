@@ -1,7 +1,6 @@
 ---
 title: "LiteLLM统一调用多模型教程2025：一个API接入100+大模型"
 description: "LiteLLM完整教程：用统一API调用OpenAI、Anthropic、Gemini等100+模型。涵盖代理部署、负载均衡、成本优化等企业级实践。". Comprehensive guide cov..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/litellm-unified-api-tutorial/-

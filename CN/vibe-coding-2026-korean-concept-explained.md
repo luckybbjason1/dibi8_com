@@ -8,11 +8,7 @@ application_domain: Dev Utils
 source_version: "2026 Q2"
 licensing_model: Mixed
 license_type: 'N/A (workflow)'
-github_repo: ''
-stars: 0
-maintainer: 'Korean dev community'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["vibe-coding", "ai-coding", "korea", "workflow", "2026"]

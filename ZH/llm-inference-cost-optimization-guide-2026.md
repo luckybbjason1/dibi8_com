@@ -6,9 +6,6 @@ lastmod: 2026-06-16
 slug: 'llm-inference-cost-optimization-guide-2026'
 category: dev-utils
 tags: ["LLM cost optimization", "cheap LLM inference", "quantization", "Ollama", "vLLM", "llama.cpp", "reduce API costs", "local LLM"]
-github_repo: "https://github.com/ollama/ollama"
-license: MIT
-featureImage: /articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg/images/articles/llm-inference-cost-optimization-run-any-model-for-pennies-th.jpg
 ---
 
 # 大语言模型推理成本优化：以分运行任何模型——2026年权威指南

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "toeverything/AFFiNE"
-stars: 47000
-maintainer: toeverything
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["affine", "knowledge-base", "whiteboard", "self-hosted", "docker", "notion-alternative", "miro-alternative", "crdt", "local-first", "ai-writing"]

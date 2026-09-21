@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "assafelovic/gpt-researcher"
-stars: 27473
-maintainer: assafelovic
 last_maintained: "2026-06-02"
-featureImage: 'https://contrib.rocks/image?repo=assafelovic/gpt-researcher&max=1000'
 draft: false
 categories: ["llm-frameworks"]
 tags: ["]

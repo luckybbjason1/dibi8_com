@@ -8,11 +8,7 @@ application_domain: AI Trading
 source_version: "moss-trade-bot-skills v1.0.26"
 licensing_model: Mã nguồn mở
 license_type: MIT
-github_repo: ''
-stars: 0
-maintainer: 'Ban biên tập dibi8'
 last_maintained: "2026-05-26"
-featureImage: '"
 draft: false
 categories: ["ai-trading"]
 tags: ["backtest", "overfit", "quant", "schema-drift", "walk-forward", "postmortem", "2026"]

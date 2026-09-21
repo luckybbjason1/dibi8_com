@@ -6,13 +6,9 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: cognee-ai-memory-platform
 category: llm-frameworks
 tags: ["ai-memory", "rag", "knowledge-graph", "ai-agents", "open-source"]
-github_repo: "https://github.com/topoteretes/cognee"
-license: 'MIT'
 tech_stack: - Python
   - TypeScript
   - Docker
-featureImage: /images/articles/free-llm-api-resources-ai-development.png
-stars: 6000---
 
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 

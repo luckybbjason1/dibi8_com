@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/comfyanonymous/ComfyUI"
-stars: 87200
-maintainer: comfyanonymous
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["comfyui", "stable diffusion", "tạo ảnh ai", "giao diện node", "docker", "flux", "sdxl", "học máy"]

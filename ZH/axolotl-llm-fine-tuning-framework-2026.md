@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/axolotl-ai-cloud/axolotl"
-stars: 12000
-maintainer: 'axolotl-ai-cloud'
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["axolotl", "微调", "lora", "qlora", "dpo", "开源"]

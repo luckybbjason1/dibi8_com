@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/DevToys-app/DevToys"
-stars: 31533
-maintainer: 'DevToys-app'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["devtoys", "developer-tools", "offline-utilities", "json-formatter", "base64-encoder", "jwt-decoder", "regex-tester", "cross-platform", "open-source"]

@@ -7,7 +7,6 @@ lastmod: 2026-06-22
 draft: false
 categories: ["ai-tools"]
 slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026
-featureImage: 'https://images.pexels.com/photos/8644020/pexels-photo-8644020.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: [/freellmapi]
 sources: - name: GitHub
     url: 'https://github.com/tashfeenahmed/freellmapi'

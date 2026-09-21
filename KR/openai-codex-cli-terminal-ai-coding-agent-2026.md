@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/openai/codex"
-stars: 83000
-maintainer: 'openai'
 last_maintained: "2026-05-17"
-featureImage: '"
 draft: false
 aliases:
   - /posts/openai-codex-cli-terminal-ai-coding-agent-2026/

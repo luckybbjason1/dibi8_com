@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "promptfoo/promptfoo"
-stars: 21825
-maintainer: promptfoo
 last_maintained: "2026-06-02"
-featureImage: 'https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png'
 draft: false
 categories: ["llm-frameworks"]
 tags: ["]

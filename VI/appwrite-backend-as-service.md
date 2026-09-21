@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "appwrite/appwrite"
-stars: 47200
-maintainer: appwrite
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["appwrite", "backend-as-a-service", "thay thế firebase", "docker", "mã nguồn mở", "xác thực", "database", "cloud functions", "tự host"]

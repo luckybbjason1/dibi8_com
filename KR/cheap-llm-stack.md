@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["저렴한 llm", "무료 티어", "비용 최적화", "스택", "컬렉션"]

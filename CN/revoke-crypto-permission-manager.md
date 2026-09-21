@@ -2,10 +2,7 @@
 title: "revoke-crypto-permission-manager"
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:..."
-stars: 2500
-maintainer: RevokeCash
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["revoke.cash"]

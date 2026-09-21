@@ -1,8 +1,6 @@
 ---
 title: "AI SEO & GEO: dibi8가 클릭을 쫓는 법을 멈춘 방법 — 5단계 방법론"
 description: "우리는 클릭을 위해 쓰는 것을 멈췄습니다. 인용을 위해 쓰기 시작했습니다. 4개 언어로 72개의 기고를 만든 후, Google SGE, Perplexity, ChatGPT에서 인용..."
-license: 'MIT'
-featureImage: /images/articles/ai-seo---
 geo-------2026-----seo------------------------6-.png
 ---
 

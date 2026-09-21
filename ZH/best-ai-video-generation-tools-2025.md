@@ -1,7 +1,6 @@
 ---
 title: "2025年最佳AI视频生成工具对比：Sora、Runway、Pika等全面评测"
 description: "2025年AI视频生成工具全面评测，深入对比OpenAI Sora、Runway Gen-3 Alpha、Pika 2.0、Kling AI、HeyGen等主流工具的功能、定价与适用场景。". Com..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/best-ai-video-generation-tools-2025/-

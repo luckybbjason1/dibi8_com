@@ -1,10 +1,6 @@
 ---
 title: "Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 ...
 description: "Addy Osmani가 Claude Code, Cursor 및 기타 AI 에디터를 강력하고 구성된 작업 공간으로 변환하는 스킬 시스템을 어떻게 구축했는지 배우세요. 완전한 구현, ..."
-stars: 96378
-maintainer: 'addyosmani'
-license: MIT
-featureImage: 'https://opengraph.github.com/github/addyosmani/agent-skills'
 ---
 
 

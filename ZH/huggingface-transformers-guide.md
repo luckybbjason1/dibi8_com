@@ -1,7 +1,6 @@
 ---
 title: "Hugging Face Transformers库使用指南2025：开发者完整教程"
 description: "Hugging Face Transformers 2025完整指南：Pipeline API、模型微调、Tokenization、量化部署，覆盖NLP开发全流程。". Comprehensive g..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/huggingface-transformers-guide/-

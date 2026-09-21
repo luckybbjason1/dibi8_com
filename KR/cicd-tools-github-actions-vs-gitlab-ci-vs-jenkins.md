@@ -1,7 +1,6 @@
 ---
 title: "CI/CD 도구 비교: GitHub Actions vs GitLab CI vs Jenkins 2025...
 description: "2025년 최신 기준으로 GitHub Actions, GitLab CI, Jenkins를 기능, 가격, 성능, 보안 관점에서 심층 비교합니다. 팀 규모별 최적의 CI/CD 도구 선..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/cicd-tools-github-actions-vs-gitlab-ci-vs-jenkins/

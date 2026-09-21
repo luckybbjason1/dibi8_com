@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "mlflow/mlflow"
-stars: 21000
-maintainer: mlflow
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["mlflow", "机器学习", "mlops", "实验追踪", "模型注册表", "模型服务", "python", "开源", "数据科学"]

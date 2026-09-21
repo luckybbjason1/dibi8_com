@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "vectara/vectara-ingest"
-stars: 800
-maintainer: vectara
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["vectara", "rag", "tìm kiếm vector", "llm", "embedding", "boomerang", "hhem", "phát hiện hallucination", "ai doanh nghiệp"]

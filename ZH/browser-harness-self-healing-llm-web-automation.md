@@ -13,11 +13,7 @@ file_size: "1.2 MB"
 file_md5: ""
 download_url: "https://github.com/browser-use/browser-harness"
 backup_url: ""
-github_repo: "https://github.com/browser-use/browser-harness"
-stars: 13142
-maintainer: "browser-use"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Browser Harness 是什么？'
     a: 'Browser Harness 是一个自愈型浏览器控制框架，让大语言模型能够像人类一样自主完成网页任务。它用 Python 编写，同时支持 Playwright 和 Selenium，由 browser-use 团队维护。'

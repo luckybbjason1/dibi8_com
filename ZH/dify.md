@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/langgenius/dify"
-stars: 141955
-maintainer: langgenius
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["dify", "ai 智能体构建器", "llm 工作流", "rag", "docker 部署", "开源 ai", "可视化工作流", "生产级 ai"]

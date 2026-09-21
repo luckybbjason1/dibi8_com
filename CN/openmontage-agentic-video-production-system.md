@@ -19,7 +19,6 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/calesthio/OpenMontage"
 last_maintained: "2026-06-21"
 draft: false
 categories: ["ai-tools"]
@@ -39,7 +38,6 @@ faqs: - q: 'What is OpenMontage?'
     a: 'OpenMontage supports Claude Code, Cursor, GitHub Copilot, Codex, and Windsurf. Each platform has a dedicated configuration file (CLAUDE.md, CURSOR.md, COPILOT.md, CODEX.md, .windsurfrules) that point to the shared AGENT_GUIDE.md and PROJECT_CONTEXT.md. The system is agent-first: there is no code orchestrator — your AI coding assistant IS the orchestrator, reading YAML pipeline manifests and Markdown skill files to execute production.'
   - q: 'What is the quality enforcement system?'
     a: 'OpenMontage implements production-grade quality gates: pre-compose validation (blocks renders that violate delivery promises or have critical slideshow risk), post-render self-review (ffprobe validation, frame extraction at 4 positions for black-frame detection, audio level analysis for silence/clipping, delivery promise verification), and a 6-dimension slideshow risk scoring system. Every provider selection is logged with alternatives considered, confidence scores, and reasoning. Budget controls include cost estimation before execution, per-action approval thresholds, and configurable spend caps.'
-featureImage: /articles/agentic-video-production-3a8f21.png/images/articles/agentic-video-production-3a8f21.png
 ---
 
 ## The Problem With Current AI Video Tools

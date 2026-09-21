@@ -3,7 +3,6 @@ title: n8n AI 자동화 — 코드 없이 지능형 워크플로우 구축
 description: n8n의 AI 기반 워크플로우 자동화 완전 가이드. AI 노드로 400개 이상 앱 연결, 자율 에이전트 구축, 복잡한 비즈니스 프로세스 자동화. 가격, 템플릿 및 실제 예제 포함.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["n8n", "workflow-automation", "ai-automation", "no-code", "agent-automation", "business-process"]
 category: dev-utils
-featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00
 draft: false

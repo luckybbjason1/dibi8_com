@@ -5,7 +5,6 @@ category: "dev-utils"
 publish_date: "2026-06-10"
 lastmod: "2026-06-10"author: "DIBI8"
 tags: ["kotlin", "graph", "code-analysis", "devtools", "knowledge-graph"]
-featureImage: "https://avatars.githubusercontent.com/u/11434"
 ---
 
 

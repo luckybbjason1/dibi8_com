@@ -7,7 +7,6 @@ draft: false
 tags: ["ai tools", "coding agent", "deepseek", "terminal", "self-hosted", "open source"]
 categories: ["ai-tools"]
 slug: deepseek-reasonix-terminal-ai-coding-agent-prefix-cache
-featureImage: /images/articles/deepseek-tui-anthropic-financial-agents--117cfa-1.png
 aliases: [/deepseek-reasonix]
 sources: - name: GitHub
     url: 'https://github.com/esengine/DeepSeek-Reasonix'

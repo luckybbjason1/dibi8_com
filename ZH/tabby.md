@@ -1,10 +1,7 @@
 ---
 title: "Tabby: 33K+ Stars 的自托管 AI 编程助手 — 2026 隐私优先设置指南"
 description: "Tabby 是自托管 AI 编程助手。支持 VS Code、JetBrains、Vim、Neovim、Ollama、DeepSeek。Docker 安装、IDE 集成、基准测试和生产环境加固。". C..."
-stars: 33530
-maintainer: TabbyML
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["tabby", "ai编程助手", "自托管", "github copilot替代品", "代码补全", "docker", "开源"]

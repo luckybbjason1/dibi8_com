@@ -8,11 +8,7 @@ application_domain: LLM Frameworks
 source_version: "Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5"
 licensing_model: Open Source
 license_type: 'Apache-2.0'
-github_repo: "https://github.com/qdrant/qdrant"
-stars: 25000
-maintainer: 'Qdrant / Weaviate / Zilliz'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["vector-database", "qdrant", "weaviate", "milvus", "rag", "2026"]

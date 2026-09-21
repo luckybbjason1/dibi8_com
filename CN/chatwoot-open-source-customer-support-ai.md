@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "chatwoot/chatwoot"
-stars: 23000
-maintainer: chatwoot
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["chatwoot", "customer-support", "open-source", "ai-chatbot", "self-hosted", "docker", "ruby-on-rails", "live-chat"]

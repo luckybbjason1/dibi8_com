@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "mlflow/mlflow"
-stars: 21000
-maintainer: mlflow
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["mlflow", "machine learning", "mlops", "experiment tracking", "model registry", "model serving", "python", "open source", "data science"]

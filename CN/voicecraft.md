@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/jasonppy/VoiceCraft"
-stars: 8500
-maintainer: jasonppy
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["voicecraft", "zero-shot-tts", "speech-editing", "neural-codec", "voice-cloning", "ai-audio", "docker", "python"]

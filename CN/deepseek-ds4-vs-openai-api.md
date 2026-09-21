@@ -1,7 +1,6 @@
 ---
 title: "Stop Paying OpenAI: Local Inference with DeepSeek (DS4) ...
 description: "Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs". Comprehensive guide covering ..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/deepseek-ds4-vs-openai-api/

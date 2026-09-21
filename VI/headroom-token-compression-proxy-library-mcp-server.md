@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'headroom-token-compression-proxy-library-mcp-server'
 category: 'llm-frameworks'
 tags: ["nén token", "tối ưu token LLM", "máy chủ MCP", "nén RAG", "Headroom", "tối ưu ngữ cảnh", "giảm chi phí token", "AI agent"]
-github_repo: "https://github.com/chopratejas/headroom"
-stars: 19745
-maintainer: 'chopratejas'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/chopratejas/headroom/main/headroom-savings.png'
 ---
 
 

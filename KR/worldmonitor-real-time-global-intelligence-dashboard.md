@@ -7,9 +7,6 @@ draft: false
 category: ai-tools
 tags: ["ai", "대시보드", "지정학", "모니터링", "뉴스", "오픈소스", "osint", "palantir", "상황인식"]
 slug: worldmonitor-real-time-global-intelligence-dashboard
-featureImage: /images/articles/worldmonitor-real-time-global-intelligence-dashboard-for-geopolitical-monitoring.png
-github_repo: https://github.com/WorldMonitorHQ/worldmonitor
-license: MIT
 ---
 
 

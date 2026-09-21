@@ -3,7 +3,6 @@ title: n8n AI Automation — Xây dựng Workflows thông minh không c...
 description: Hướng dẫn toàn diện về workflow automation AI của n8n. Kết nối 400+ apps với AI nodes, xây dựng autonomous agents và tự động hóa quy trình kinh doanh phức tạp. Giá cả, templates và examples thực tế.
 tags: ["n8n", "workflow-automation", "ai-automation", "no-code", "agent-automation", "business-process"]
 category: dev-utils
-featureImage: /images/articles/n8n-ai-automation.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00
 draft: false

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/grafana/grafana"
-stars: 73876
-maintainer: grafana
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["grafana", "docker", "monitoring", "prometheus", "observability", "dashboard", "devops"]

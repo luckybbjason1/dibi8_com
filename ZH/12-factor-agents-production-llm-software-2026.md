@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/humanlayer/12-factor-agents"
-stars: 22000
-maintainer: humanlayer
 last_maintained: "2026-05-22"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["12-factor-agents", "production-ai", "llm-engineering", "agent-architecture", "humanlayer", "agent-design-patterns", "context-window", "prompt-engineering", "tool-calls", "developer-productivity"]

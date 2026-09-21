@@ -6,13 +6,9 @@ lastmod: 2026-07-03T09:00:00+09:00
 slug: strix-ai-open-source-penetration-testing
 category: dev-utils
 tags: ["security", "penetration-testing", "ai-agents", "vulnerability-scanning", "open-source"]
-github_repo: "https://github.com/usestrix/strix"
-license: 'GPL-3.0'
 tech_stack: - Python
   - TypeScript
   - Bash
-featureImage: /images/articles/free-llm-api-resources-ai-development.png
-stars: 8000---
 
 > **Editor's Disclosure:** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 

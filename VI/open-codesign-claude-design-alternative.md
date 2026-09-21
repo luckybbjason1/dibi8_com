@@ -13,11 +13,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Open Codesign có miễn phí không và chi phí sử dụng là bao nhiêu?'
     a: 'Open Codesign là ứng dụng miễn phí được cấp phép theo MIT. Nó sử dụng mô hình BYOK (Bring Your Own Key), vì vậy bạn chỉ trả tiền cho các token LLM tiêu thụ qua tài khoản nhà cung cấp hiện có, thay vì phí đăng ký hàng tháng.'

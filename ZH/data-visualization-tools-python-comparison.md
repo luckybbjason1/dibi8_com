@@ -1,7 +1,6 @@
 ---
 title: "Matplotlib vs Seaborn vs Plotly vs Observable：2026数据可视化工...
 description: "全面对比Matplotlib、Seaborn、Plotly、Observable四大数据可视化工具，附代码示例和场景推荐，帮你快速选出最适合的Python绘图方案。". Comprehensive g..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/data-visualization-tools-python-comparison/-

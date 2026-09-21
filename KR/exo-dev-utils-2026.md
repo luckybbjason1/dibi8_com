@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "exo-explore/exo"
-stars: 45088
-maintainer: 'exo-explore'
 last_maintained: "2026-06-02"
-featureImage: 'https://raw.githubusercontent.com/exo-explore/exo/main/docs/imgs/dashboard-cluster-view.png'
 draft: false
 categories: ["dev-utils"]
 tags: ["]

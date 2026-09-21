@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: "egonex-understand-anything-interactive-knowledge-graph-ai"
 category: llm-frameworks
 tags: ["egonex", "understand-anything", "knowledge-graph", "AI", "interactive", "open-source", "research", "visualization", "llm"]
-github_repo: "https://github.com/Egonex-AI/Understand-Anything"
-stars: 55799
-maintainer: Egonex-AI
-license: MIT
-featureImage: "https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"
 ---
 
 ## Introduction

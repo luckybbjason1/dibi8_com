@@ -1,10 +1,7 @@
 ---
 title: "DevToys: 31,533 GitHub 星标 — 开发者工具套件 2026 完整安装指南"
 description: "DevToys 是一款免费、开源、离线的开发者瑞士军刀。跨平台实用工具，支持 JSON、Base64、JWT、正则表达式等 30 余种工具，适用于 Windows、macOS 和 Linux，具备智能..."
-stars: 31533
-maintainer: 'DevToys-app'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["devtoys", "开发者工具", "离线工具", "json格式化", "base64编码", "jwt解码", "正则测试", "跨平台", "开源"]

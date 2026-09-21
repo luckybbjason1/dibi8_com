@@ -1,10 +1,7 @@
 ---
 title: "Lean: 驱动 QuantConnect 的开源算法交易引擎 — C# & Python 设置 2026 指南"
 description: "2026 年 Lean 完整指南，QuantConnect 背后的算法交易引擎。多资产回测、实盘交易、C# 和 Python API 以及生产部署教程。". Comprehensive guide c..."
-stars: 10500
-maintainer: QuantConnect
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["]

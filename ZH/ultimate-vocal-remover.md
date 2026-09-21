@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/Anjok07/ultimatevocalremovergui"
-stars: 24700
-maintainer: Anjok07
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["人声移除", "音频分离", "深度学习", "pytorch", "demucs", "mdx-net", "ai音频", "卡拉ok", "音乐制作"]

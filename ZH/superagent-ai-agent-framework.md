@@ -1,10 +1,7 @@
 ---
 title: "Superagent: 一条 CLI 命令将 AI Agent 部署到生产环境 — 2026 最小化部署指南"
 description: "使用 Superagent 部署 AI Agent 的实战指南。一条 CLI 命令，多 LLM 支持，RAG 工作流，向量数据库集成，REST API 部署。附真实基准数据。". Comprehens..."
-stars: 6100
-maintainer: 'superagent-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["superagent", "ai agent", "llm", "rag", "向量数据库", "openai", "langchain", "python", "typescript"]

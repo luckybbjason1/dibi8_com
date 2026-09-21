@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/langgenius/dify"
-stars: 141955
-maintainer: langgenius
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["dify", "ai 에이전트 빌더", "llm 워크플로", "rag", "docker 배포", "오픈소스 ai", "시각적 워크플로 빌더", "프로덕션 ai"]

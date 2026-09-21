@@ -1,10 +1,6 @@
 ---
 title: "nanochat: Karpathy'"
 description: "nanochat (54,800 GitHub stars) is Andrej Karpathy"'s open-source ChatGPT clone that runs on a single..."
-stars: 54800
-maintainer: 'karpathy'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png'
 ---
 
 # nanochat: Karpathy's $100 ChatGPT — Build Your Own AI Chat App on a Single GPU — A Practical Guide 2026

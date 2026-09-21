@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/koalaman/shellcheck"
-stars: 39456
-maintainer: koalaman
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["shellcheck", "bash", "정적분석", "린트", "셸스크립트", "devops", "ci-cd", "docker"]

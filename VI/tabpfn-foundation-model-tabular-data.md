@@ -15,11 +15,7 @@ file_size: "279.1 MB"
 file_md5: ''
 download_url: https://github.com/PriorLabs/TabPFN
 backup_url: ''
-github_repo: https://github.com/PriorLabs/TabPFN
-stars: 7098
-maintainer: "PriorLabs"
 last_maintained: "2026-05-15"
-featureImage: ''
 draft: false
 aliases:
   - /vi/posts/tabpfn-foundation-model-tabular-data/

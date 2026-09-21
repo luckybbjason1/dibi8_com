@@ -3,7 +3,6 @@ title: Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线
 description: Modal 无服务器 GPU 基础设施完全指南。零集群管理部署 LLM 推理、微调流水线和批量 ML 工作负载。对比定价、基准测试和真实场景模式。. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["serverless", "gpu", "machine-learning", "inference", "llm", "cloud-compute"]
 category: llm-frameworks
-featureImage: /images/articles/modal-serverless-gpu-compute.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 draft: false

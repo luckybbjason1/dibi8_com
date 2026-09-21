@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/LibreTranslate/LibreTranslate"
-stars: 14400
-maintainer: LibreTranslate
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["libretranslate", "기계번역", "자체호스팅", "docker", "api", "오픈소스", "argos translate", "자연어처리"]

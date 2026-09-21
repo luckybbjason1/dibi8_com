@@ -8,11 +8,7 @@ application_domain: Dev Utils
 source_version: "Cursor 2026.05 / Sau khi đổi sang credit"
 licensing_model: Commercial
 license_type: Proprietary
-github_repo: ''
-stars: 0
-maintainer: Anysphere
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["cursor", "cost-optimization", "ai-coding", "2026"]

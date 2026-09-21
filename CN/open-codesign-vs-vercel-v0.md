@@ -1,7 +1,6 @@
 ---
 title: "Vercel v0 Open Source Alternative: Build UIs Locally wit...
 description: "Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign". Comprehensive guide coveri..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/open-codesign-vs-vercel-v0/

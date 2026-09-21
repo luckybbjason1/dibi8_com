@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "Unstructured-IO/unstructured"
-stars: 10500
-maintainer: 'Unstructured-IO'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["unstructured", "문서파싱", "llm", "rag", "데이터전처리", "pdf", "청킹", "오픈소스"]

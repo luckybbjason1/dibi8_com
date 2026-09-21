@@ -14,11 +14,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'DS4 (DwarfStar 4) là gì và ai đã tạo ra nó?'
     a: 'DS4 (DwarfStar 4) là một engine suy luận nhỏ gọn, chạy native, được xây dựng chuyên biệt để chạy mô hình DeepSeek V4 Flash cục bộ trên phần cứng Apple Metal và NVIDIA CUDA. Nó được tạo ra bởi Salvatore Sanfilippo (antirez), lập trình viên người Ý nổi tiếng với việc phát minh ra Redis.'

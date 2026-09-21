@@ -1,10 +1,7 @@
 ---
 title: "Prefect 2026: 데이터 및 AI 파이프라인을 위한 현대적 워크플로우 오케스트레이션 엔진 — ...
 description: "Prefect 3.x에 대한 실습 가이드 — 비동기 실행, 내장 재시도, 셀프 호스팅 서버를 갖춘 Python 네이티브 워크플로우 오케스트레이터. 5분 안에 데이터 파이프라인을 배..."
-stars: 18000
-maintainer: PrefectHQ
 last_maintained: "2026-05-19"
-featureImage: '"
 draft: false
 categories: ["data-science"]
 tags: ["]

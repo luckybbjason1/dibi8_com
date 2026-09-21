@@ -3,7 +3,6 @@ title: SGLang — Structured Generation Và Engine Serving LLM Tốc ...
 description: Hướng dẫn toàn diện về SGLang(Structured Generation Language). Serving LLM hiệu suất cao với constrained decoding, JSON schema enforcement, parallel execution và tăng tốc 25x so với vLLM cho structured output.
 tags: ["llm-serving", "structured-generation", "constrained-decoding", "inference", "performance"]
 category: llm-frameworks
-featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 draft: false

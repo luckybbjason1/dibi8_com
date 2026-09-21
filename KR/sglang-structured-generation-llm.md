@@ -3,7 +3,6 @@ title: SGLang — 구조화된 생성 및 고속 LLM 추론 엔진
 description: SGLang(구조화 생성 언어) 완전 가이드. 제약을 둔 디코딩, JSON 스키마 강제, 병렬 실행으로 고성능 LLM 서빙. 구조화된 출력은 vLLM보다 25배 빠름.. Comprehensive guide covering features, pricing, and best practices for 2026.
 tags: ["llm-serving", "structured-generation", "constrained-decoding", "inference", "performance"]
 category: llm-frameworks
-featureImage: /images/articles/sglang-structured-generation-llm.jpg
 date: 2026-07-15T00:00:00+00:00
 lastmod: 2026-07-15T00:00:00+00:00
 draft: false

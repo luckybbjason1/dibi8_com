@@ -1,10 +1,7 @@
 ---
 title: "Chroma DB 2026：面向开发者的 RAG 向量数据库，嵌入搜索速度提升 50 倍 — Python 实...
 description: "Chroma 向量数据库的 Python 实战指南。学习安装、RAG 集成、嵌入搜索和生产环境部署。包含基准测试、对比分析和真实案例。". Comprehensive guide covering f..."
-stars: 18000
-maintainer: chromadb
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["]

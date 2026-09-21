@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'cc-switch-unified-ai-cli-control-center'
 category: 'dev-utils'
 tags: ["AI CLI management", "Claude Code alternative", "ai coding tools", "developer productivity", "multi-agent CLI", "cc-switch", "ai coding agent", "CLI proxy"]
-github_repo: "https://github.com/farion1231/cc-switch"
-stars: 95900
-maintainer: 'farion1231'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/farion1231/cc-switch/main/assets/screenshots/main-en.png'
 ---
 
 # cc-switch: The Cross-Platform Desktop CLI Control Center That Unifies 6+ AI Coding Agents — A Practical Setup Guide 2026

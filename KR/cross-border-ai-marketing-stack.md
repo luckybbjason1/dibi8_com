@@ -15,11 +15,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: dibi8
 last_maintained: "2026-05-21"
-featureImage: ''
 draft: false
 categories: ["collections"]
 tags: ["국경 간", "ai 마케팅", "글로벌 진출", "스택", "컬렉션"]

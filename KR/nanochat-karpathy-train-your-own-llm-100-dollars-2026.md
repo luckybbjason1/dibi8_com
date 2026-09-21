@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: "https://github.com/karpathy/nanochat"
 backup_url: ''
-github_repo: "karpathy/nanochat"
-stars: 54700
-maintainer: karpathy
 last_maintained: "2026-06-01"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["nanochat", "karpathy", "llm-훈련", "pytorch", "gpt", "자체호스팅", "오픈소스", "transformer"]

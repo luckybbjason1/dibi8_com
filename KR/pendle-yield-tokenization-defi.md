@@ -2,10 +2,7 @@
 title: "pendle-yield-tokenization-defi"
 description: "'. Comprehensive guide covering features, pricing, and best practices for 2026.
 date: 2026-05-20 00:..."
-stars: 500
-maintainer: 'pendle-finance'
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["pendle"]

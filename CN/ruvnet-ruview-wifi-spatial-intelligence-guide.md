@@ -6,11 +6,6 @@ lastmod: 2026-06-10
 slug: "ruvnet-ruview-wifi-spatial-intelligence-guide"
 category: ai-tools
 tags: ["ruvnet", "ruview", "wifi", "spatial-intelligence", "position-tracking", "mesh-network", "smart-buildings", "python", "open-source"]
-github_repo: "https://github.com/ruvnet/RuView"
-stars: 72323
-maintainer: ruvnet
-license: MIT
-featureImage: "https://raw.githubusercontent.com/ruvnet/RuView/main/assets/ruview-seed.png"
 ---
 
 ## Introduction

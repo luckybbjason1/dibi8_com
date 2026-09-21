@@ -6,9 +6,6 @@ date: 2026-06-11
 lastmod: 2026-06-11
 slug: 'ohmyzsh'
 category: dev-utils
-github_repo: "https://github.com/ohmyzsh/ohmyzsh"
-license: MIT
-featureImage: /articles/docker-compose-37-393-github-stars-multi-a62205.png/images/articles/docker-compose-37-393-github-stars-multi-a62205.png
 ---
 
 # Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026

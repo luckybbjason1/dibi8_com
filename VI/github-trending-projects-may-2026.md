@@ -15,9 +15,6 @@ file_size: "34.9 MB"
 file_md5: ""
 download_url: "https://github.com/Hmbown/DeepSeek-TUI"
 backup_url: ""
-github_repo: "https://github.com/Hmbown/DeepSeek-TUI"
-stars: 31877
-maintainer: "Hmbown"
 last_maintained: "2026-05-15"
 draft: false
 aliases:

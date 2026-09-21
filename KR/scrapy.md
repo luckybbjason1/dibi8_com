@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/scrapy/scrapy"
-stars: 61700
-maintainer: scrapy
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["web-scraping", "python", "crawler", "async", "docker", "scrapy튜토리얼", "벤치마크", "데이터파이프라인"]

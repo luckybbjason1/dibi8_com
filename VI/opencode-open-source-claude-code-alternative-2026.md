@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/sst/opencode"
-stars: 162000
-maintainer: sst
 last_maintained: "2026-05-20"
-featureImage: '"
 draft: false
 categories: ["llm-frameworks"]
 tags: ["opencode", "ai-coding-agent", "claude-code-alternative", "open-source"]

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "tensortrade-org/tensortrade"
-stars: 4300
-maintainer: 'tensortrade-org'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-trading"]
 tags: ["tensortrade", "强化学习", "算法交易", "openai gym", "stable baselines3", "投资组合管理", "python", "机器学习", "加密货币交易", "量化金融"]

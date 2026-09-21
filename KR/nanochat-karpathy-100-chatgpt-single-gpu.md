@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'nanochat-karpathy-100-chatgpt-single-gpu'
 category: 'ai-tools'
 tags: ["karpathy nanochat", "LLM 처음부터 훈련", "단일 GPU 채팅", "오픈소스 ChatGPT", "SGLang", "vLLM", "로컬 LLM", "AI 채팅 앱"]
-github_repo: "https://github.com/karpathy/nanochat"
-stars: 54800
-maintainer: 'karpathy'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/karpathy/nanochat/master/dev/nanochat.png"
 ---
 
 

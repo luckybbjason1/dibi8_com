@@ -6,10 +6,6 @@ lastmod: 2026-06-13
 slug: 'openhuman-local-ai-agent-rust-2026'
 category: 'ai-tools'
 tags: ["openhuman", "local-ai", "ai-agent", "ai-assistant", "memory-tree", "obsidian", "agentic", "open-source", "llm", "desktop-app"]
-github_repo: "https://github.com/tinyhumansai/openhuman"
-stars: 31869
-maintainer: 'tinyhumansai'
-license: 'GPL-3.0'
 
 ---
 

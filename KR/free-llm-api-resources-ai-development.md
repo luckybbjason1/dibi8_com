@@ -12,11 +12,7 @@ file_size: "431 KB"
 file_md5: ''
 download_url: https://github.com/cheahjs/free-llm-api-resources
 backup_url: ''
-github_repo: https://github.com/cheahjs/free-llm-api-resources
-stars: 21798
-maintainer: "cheahjs"
 last_maintained: "2026-05-16"
-featureImage: ''
 draft: false
 aliases:
   - /ko/posts/free-llm-api-resources-ai-development/

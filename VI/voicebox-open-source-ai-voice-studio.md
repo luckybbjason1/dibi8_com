@@ -7,9 +7,6 @@ draft: false
 category: ai-tools
 tags: ["ai", "giọng-ai", "nhân-bản-giọng", "chuyển-âm-thành-chữ", "chuyển-chữ-thành-âm", "whisper", "qwen3-tts", "cuda", "mlx"]
 slug: voicebox-open-source-ai-voice-studio
-featureImage: /images/articles/voicebox-open-source-ai-voice-studio-for-cloning-dictation-and-generation.png
-github_repo: https://github.com/voicebox-ai/voicebox
-license: MIT
 ---
 
 

@@ -5,12 +5,9 @@ title: "Daily Stock Analysis: LLM-Powered Multi-Market Stock Int...
   lastmod: 2026-06-25
 draft: false
   lang: en
-  github_repo: https://github.com/dailystockai/daily-stock
   category: ai-trading
 tags: ["stock-analysis", "llm", "quantitative-trading", "ai-agent", "multi-market", "a-stock", "sentiment-analysis", "automated-trading"]
   slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence
-  featureImage: /images/articles/daily-stock-analysis-llm-powered-multi-market-stock-intelligence-system.png
-  license: MIT---
 
 
 

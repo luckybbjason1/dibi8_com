@@ -1,10 +1,7 @@
 ---
 title: "Haystack 2026: 面向生产级 RAG 与 Agent 流水线的端到端 NLP 框架 —— 配置指南"
 description: "2026年 Haystack 完整指南：用于生产级 RAG 流水线、文档存储、检索器、Agent、评估工具和 Docker 部署的开源 NLP 框架。". Comprehensive guide co..."
-stars: 21000
-maintainer: 'deepset-ai'
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["haystack", "nlp", "rag", "python", "llm", "文档存储", "检索器", "agent", "openai", "docker", "流水线"]

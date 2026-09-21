@@ -10,7 +10,6 @@ tags: - comfyui
 - stable-diffusion
 - visual-programming
 category: ai-tools
-featureImage: /images/articles/comfyui-workflows.jpg
 date: 2026-07-16T00:00:00+00:00
 lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide---
 

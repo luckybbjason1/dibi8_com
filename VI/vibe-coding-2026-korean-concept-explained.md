@@ -8,11 +8,7 @@ application_domain: Công cụ lập trình
 source_version: "2026 Q2"
 licensing_model: 'Hỗn hợp'
 license_type: 'Không áp dụng (quy trình)'
-github_repo: ''
-stars: 0
-maintainer: 'Cộng đồng dev Hàn Quốc'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["vibe-coding", "ai-coding", "korea", "workflow", "2026"]

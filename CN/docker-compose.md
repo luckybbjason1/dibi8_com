@@ -1,10 +1,7 @@
 ---
 title: "Docker Compose: 37,393 GitHub Stars — Multi-Container Se...
 description: "Define and run multi-container applications with Docker using declarative YAML configuration.". Comp..."
-stars: 37393
-maintainer: docker
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["docker-compose", "container-orchestration", "devops", "docker", "microservices", "deployment", "yaml", "multi-container"]

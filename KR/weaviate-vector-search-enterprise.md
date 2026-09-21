@@ -1,10 +1,7 @@
 ---
 title: "Weaviate 2026: 100억+ 객체를 처리하는 AI 네이티브 벡터 검색 엔진 — 엔터프라이즈 ...
 description: "엔터프라이즈 규모의 Weaviate 벡터 검색 배포 가이드. Kubernetes 배포, 하이브리드 검색, 멀티모달 지원, RBAC, 모니터링, 100억+ 객체 컬렉션 벤치마크 포함..."
-stars: 11500
-maintainer: weaviate
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["data-science"]
 tags: ["]

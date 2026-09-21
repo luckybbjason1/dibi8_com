@@ -8,11 +8,7 @@ file_size: ""
 file_md5: ""
 download_url: ""
 backup_url: ""
-github_repo: ""
-stars: 0
-maintainer: ""
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Billions Wallet은 몇 가지 암호화폐를 지원하나요?'
     a: 'Billions Wallet은 Bitcoin, Ethereum, USDT 및 기타 스테이블코인을 포함해 여러 블록체인에 걸쳐 1,000개 이상의 디지털 자산을 지원하며, 다양한 알트코인도 포함됩니다.'

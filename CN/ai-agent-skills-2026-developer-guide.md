@@ -1,7 +1,6 @@
 ---
 title: "AI Agent Skills Explained: The 2026 Developer'"
 description: "AI Agent Skills Explained: The 2026 Developer"'''s Guide to Production-Grade Agent Workflows'. Compr..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ai-agent-skills-2026-developer-guide/-

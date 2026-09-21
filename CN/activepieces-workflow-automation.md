@@ -1,10 +1,7 @@
 ---
 title: "Activepieces: The Open-Source Zapier Alternative with 20...
 description: "Deploy Activepieces in 5 minutes. The open-source workflow automation platform with 200+ app integra..."
-stars: 13000
-maintainer: activepieces
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["activepieces", "workflow automation", "zapier alternative", "self-hosted", "docker", "no-code", "open-source", "typescript", "ai actions", "webhooks"]

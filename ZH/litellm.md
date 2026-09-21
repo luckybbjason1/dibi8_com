@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/BerriAI/litellm"
-stars: 22500
-maintainer: BerriAI
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["litellm", "llm网关", "开源", "docker", "生产部署", "ai基础设施", "代理服务器", "多模型"]

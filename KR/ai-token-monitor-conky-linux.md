@@ -7,11 +7,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "luckybbjason1/ai-token-monitor"
-stars: 0
-maintainer: luckybbjason1
 last_maintained: "2026-06-06"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["ai 토큰 모니터", "claude 쿼터", "gemini 쿼터 추적", "grok 토큰", "kimi api", "conky 위젯", "linux 데스크탑", "오픈소스", "python", "개발자 도구"]

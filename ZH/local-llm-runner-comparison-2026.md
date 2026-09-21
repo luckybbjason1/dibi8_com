@@ -1,7 +1,6 @@
 ---
 title: "Ollama vs LM Studio vs llama.cpp vs vLLM 2026：诚实的本地 LLM ...
 description: "2026 四家本地 LLM 运行器直接对比。真实数字：Ollama（137k 星）最易、LM Studio UI 最美、llama.cpp（112k）是底下的引擎、vLLM（80.7k）是生产吞吐之王..."
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["local llm", "ollama", "vllm", "llama.cpp", "lm studio", "对比", "hub文章"]

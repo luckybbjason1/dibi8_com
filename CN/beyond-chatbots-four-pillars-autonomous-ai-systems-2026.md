@@ -14,11 +14,7 @@ file_size: "46.6 MB"
 file_md5: ""
 download_url: "https://github.com/LearningCircuit/local-deep-research"
 backup_url: ""
-github_repo: "https://github.com/LearningCircuit/local-deep-research"
-stars: 7793
-maintainer: "LearningCircuit"
 last_maintained: "2026-05-16"
-featureImage: ""
 draft: false
 aliases:
   - /posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/

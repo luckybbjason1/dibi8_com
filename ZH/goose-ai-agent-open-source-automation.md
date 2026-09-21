@@ -14,11 +14,7 @@ file_size: "956.2 MB"
 file_md5: ""
 download_url: "https://github.com/aaif-goose/goose"
 backup_url: ""
-github_repo: "https://github.com/aaif-goose/goose"
-stars: 45476
-maintainer: "aaif-goose"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 faqs: - q: 'Goose AI agent 是什么？'
     a: 'Goose 是一款通用型开源 AI agent，最初由 Block 开发，后捐赠给 Linux Foundation 旗下的 Agentic AI Foundation (AAIF)。与专门的编程助手不同，它可以处理任何任务，包括编写代码、分析数据、管理文件、运行终端命令以及自动化工作流。'

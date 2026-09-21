@@ -1,10 +1,7 @@
 ---
 title: "GraphRAG: Microsoft'"
 description: "GraphRAG is Microsoft"'''s modular, knowledge-graph-based RAG system (33,403 GitHub stars, MIT licen..."
-stars: 33403
-maintainer: microsoft
 last_maintained: "2026-06-02"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["]

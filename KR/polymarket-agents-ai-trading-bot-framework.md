@@ -15,11 +15,7 @@ file_size: "107 KB"
 file_md5: ''
 download_url: https://github.com/Polymarket/agents
 backup_url: ''
-github_repo: https://github.com/Polymarket/agents
-stars: 3513
-maintainer: "Polymarket"
 last_maintained: "2024-11-05"
-featureImage: ''
 draft: false
 aliases:
   - /ko/posts/polymarket-agents-ai-trading-bot-framework/

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/puppeteer/puppeteer"
-stars: 94300
-maintainer: puppeteer
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["puppeteer", "브라우저-자동화", "헤드리스-크롬", "웹-스크래핑", "docker", "테스팅", "typescript"]

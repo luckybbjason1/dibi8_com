@@ -17,7 +17,6 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/microsoft/presidio"
 last_maintained: "2026-06-21"
 draft: false
 categories: ["dev-utils"]
@@ -36,7 +35,6 @@ faqs: - q: '마이크로소프트 프레지디오란 무엇인가요?'
     a: 'Presidio 이미지 편집기는 컴퓨터 비전 모델을 사용하여 이미지에서 PII를 감지하고 편집합니다. 표준 이미지 형식(PNG, JPEG 등)과 DICOM 의료 이미지를 지원합니다. 편집은 감지된 텍스트를 검은 상자로 교체하거나, 영역을 흐리게 처리하거나, 텍스트를 완전히 제거할 수 있습니다. 이는 특히 의료 기관이 공유 또는 출판 전에 의료 영상 데이터를 익명화해야 하는 경우에 매우 유용합니다.'
   - q: '프레시디오가 대규모로 프로덕션 환경에서 실행될 수 있나요?'
     a: '예. Presidio는 여러 배포 옵션을 지원합니다: Python 또는 PySpark 작업, Docker 컨테이너, 그리고 Kubernetes 배포. 분석기와 익명화기는 REST API로 실행될 수 있으며, 구조화된 구성 요소는 대규모 테이블형 데이터를 처리할 수 있습니다. 이는 여러 플랫폼에서 완전 자동화 및 반자동 PII 비식별화 흐름 모두를 위해 설계되었습니다.'
-featureImage: /images/articles/pii-detection-redaction-7b4e12.png
 
 ---
 

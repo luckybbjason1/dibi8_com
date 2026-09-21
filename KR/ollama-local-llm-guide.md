@@ -1,7 +1,6 @@
 ---
 title: "Ollama 완벽 가이드 2025: 로컬에서 LLM 실행하기 - 모든 하드웨어 가이드"
 description: "Ollama로 로컬에서 대규모 언어 모델을 실행하는 완벽 가이드. 설치, 모델 관리, REST API, LangChain 통합, 하드웨어 요구사항, Docker 배포까지 상세히 다..."
-featureImage: ''
 draft: false
 aliases:
   - /posts/ollama-local-llm-guide/

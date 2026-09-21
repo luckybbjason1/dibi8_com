@@ -1,10 +1,7 @@
 ---
 title: "Appwrite 2026：开源 Firebase 替代方案 — 认证、数据库与存储自托管后端完整指南"
 description: "Appwrite 1.6 完整指南 — 自托管开源后端，包含认证、数据库、存储、云函数和实时订阅功能。Docker 部署、SDK 集成、基准测试和生产环境加固。". Comprehensive gui..."
-stars: 47200
-maintainer: appwrite
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["appwrite", "后端即服务", "firebase 替代", "docker", "开源", "认证", "数据库", "云函数", "自托管"]

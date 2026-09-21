@@ -8,11 +8,7 @@ application_domain: Công cụ dev
 source_version: "2026 Q2"
 licensing_model: 'N/A'
 license_type: 'N/A'
-github_repo: ''
-stars: 0
-maintainer: 'Ban biên tập dibi8'
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["seo", "geo", "ai-overviews", "optimization", "2026"]

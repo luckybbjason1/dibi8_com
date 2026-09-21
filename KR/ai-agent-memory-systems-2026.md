@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: ''
-stars: 0
-maintainer: Various
 last_maintained: "2026-05-20"
-featureImage: ''
 draft: false
 categories: ["llm-frameworks"]
 tags: ["ai-agents", "memory-systems", "mem0", "agentmemory", "hindsight", "mempalace", "mcp", "rag", "vector-database", "persistent-memory", "open-source", "llm-infrastructure"]

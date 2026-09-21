@@ -6,11 +6,6 @@ lastmod: 2026-06-08
 slug: 'paperclip-open-source-agent-workplace-managing-ai-agents-at-scale'
 category: 'llm-frameworks'
 tags: ["AI agent management", "multi-agent coordination", "paperclip", "open source agent", "agent workflow", "self-hosted agents", "AI agent workplace", "agent orchestration"]
-github_repo: "https://github.com/paperclipai/paperclip"
-stars: 69700
-maintainer: 'paperclipai'
-license: MIT
-featureImage: 'https://raw.githubusercontent.com/paperclipai/paperclip/master/doc/screenshots/main.png'
 ---
 
 # paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026

@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "microsoft/playwright"
-stars: 72000
-maintainer: microsoft
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["playwright", "browser automation", "testing", "web scraping", "python", "e2e"]

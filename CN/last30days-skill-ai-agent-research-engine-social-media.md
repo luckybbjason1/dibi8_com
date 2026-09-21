@@ -7,7 +7,6 @@ lastmod: 2026-06-22
 draft: false
 categories: ["ai-tools"]
 slug: last30days-skill-ai-agent-research-engine-social-media
-featureImage: 'https://images.pexels.com/photos/5468134/pexels-photo-5468134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
 aliases: [/last30days-skill]
 sources: - name: GitHub
     url: 'https://github.com/mvanhorn/last30days-skill'

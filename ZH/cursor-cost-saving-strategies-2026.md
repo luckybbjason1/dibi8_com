@@ -3,11 +3,7 @@ title: "Cursor 省钱策略 2026：信用点计费改版后的应对方案"
 description: "Cursor 在 2025 年改了定价 —— Pro 用户同样的价格实际可用量缩水约 55%。这里整理了 7 条 2026 年真正有效的省钱策略：模型选择、上下文纪律、混合工具栈，以及何时该撤退。"...."
 licensing_model: Commercial
 license_type: Proprietary
-github_repo: ''
-stars: 0
-maintainer: Anysphere
 last_maintained: "2026-05-25"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["cursor", "cost-optimization", "ai-coding", "2026"]

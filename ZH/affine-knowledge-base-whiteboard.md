@@ -1,10 +1,7 @@
 ---
 title: "AFFiNE 2026：开源 Notion+Miro 混合体 — AI 增强知识管理完整部署指南"
 description: "使用 Docker 部署 AFFiNE v0.26.3 作为 Notion+Miro 的开源自托管替代方案。本地优先 CRDT 协作、无边画布、AI 写作助手、5 分钟 Docker 部署。". Co..."
-stars: 47000
-maintainer: toeverything
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["dev-utils"]
 tags: ["affine", "知识库", "白板", "自托管", "docker", "notion替代品", "miro替代品", "crdt", "本地优先", "ai写作"]

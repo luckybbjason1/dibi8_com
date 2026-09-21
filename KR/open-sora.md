@@ -12,11 +12,7 @@ file_size: ''
 file_md5: ''
 download_url: ''
 backup_url: ''
-github_repo: "https://github.com/hpcaitech/Open-Sora"
-stars: 29000
-maintainer: hpcaitech
 last_maintained: "2026-05-19"
-featureImage: ''
 draft: false
 categories: ["ai-tools"]
 tags: ["open-sora", "비디오-생성", "확산-transformer", "ai-비디오", "오픈소스", "docker", "cuda", "comfyui"]

@@ -6,8 +6,6 @@ date: 2026-06-15
 lastmod: 2026-06-15
 slug: taste-skill
 category: dev-utils
-github_repo: "https://github.com/Leonxlnx/taste-skill"
-license: MIT
 images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"
     alt: "Taste Skill banner"
     role: hero
@@ -17,7 +15,6 @@ images: - url: "https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/asse
   - url: "https://opengraph.github.com/github/Leonxlnx/taste-skill"
     alt: "Taste Skill GitHub OG"
     role: reference
-featureImage: /images/articles/taste-skill-stop-ai-from-generating-generic-slop-agent-skill.jpg
 ---
 
 ## TL;DR
