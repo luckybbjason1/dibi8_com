@@ -1,8 +1,8 @@
 
 title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
-date: 2026-06-01T00:00:00+09:00
-lastmod: 2026-06-01T00:00:00+09:00
+date: 2026-06-01T00:00:00+08:00
+lastmod: 2026-06-01T00:00:00+08:00
 (tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w22
@@ -28,7 +28,7 @@ review_status: "AWAITING_EDITOR_REVIEW"
 
 
 ---
-
+---
 ## Methodology
 
 - **Source**: GitHub Search API, query window ``pushed:>2026-05-25``
@@ -264,3 +264,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 | **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
 | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
 
+
+---

@@ -2,8 +2,8 @@
 title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
 tags: ["ai-agent", "automation", "ci-cd", "github", "open-source", "self-hosted", "trending", "weekly"]
-date: 2026-06-22T00:00:00+09:00
-lastmod: 2026-06-22T00:00:00+09:00
+date: 2026-06-22T00:00:00+08:00
+lastmod: 2026-06-22T00:00:00+08:00
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w25
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
@@ -12,14 +12,13 @@ showSummary: true
 sources: ["GitHub Search API"]
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png
 ![Hero Image](https://picsum.photos/seed/artificial-intelligence/1200x800)
 
 
 # This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of June 22, 2026)
 
 
-> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
+**Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
 
 ## Editor's Take
 
@@ -28,8 +27,7 @@ featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-d
 
 
 ---
-
-
+---
 ## Methodology
 
 - **Source**: GitHub Search API, query window ````pushed:>2026-06-15``````
@@ -265,3 +263,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 | **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
 | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
 
+
+---

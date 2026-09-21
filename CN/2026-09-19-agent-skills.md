@@ -1,6 +1,5 @@
 ---
 title: "Addy Osmani"
-description: "Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editor..."
 date: 2026-09-19
 slug: 'addy-osmani-agent-skills-production-guide-2026'
 category: 'llm-frameworks'
@@ -122,7 +121,6 @@ skills/
 
 * * *
 name: my-skill
-description: "One-line description of what this skill does"
 version: 1.0.0
 author: your-name
 

@@ -1,8 +1,8 @@
 
 title: "DeepSeek TUI + Anthropic Financial Agents: Top Trending ..."
 description: "Discover the hottest open-source AI projects on GitHub right now — a terminal-based coding agent tha..."
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
+date: 2026-05-15T04:20:25+08:00
+lastmod: 2026-05-15T04:20:25+08:00
 tech_stack: - C++
   - Docker
   - Go
@@ -19,7 +19,6 @@ github_repo: "https://github.com/Hmbown/DeepSeek-TUI"
 stars: 31877
 maintainer: "Hmbown"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /posts/github-trending-projects-may-2026/
@@ -34,10 +33,9 @@ faqs: - q: 'What is DeepSeek-TUI and how is it different from Cursor or GitHub C
   - q: 'Is Local Deep Research private, and how accurate is it?'
     a: 'Local Deep Research runs entirely on your own hardware with zero telemetry and no cloud dependency, storing research history in a SQLCipher-encrypted database. Despite running locally, it reaches roughly 95% accuracy on SimpleQA when paired with Qwen3.6-27B on an RTX 3090, and supports 10+ search engines including arXiv and PubMed.'
 ---
-
-
 {</* resource-info */>}
 
+---
 ## Introduction
 
 The GitHub Trending board in May 2026 tells a clear story: developers are flocking toward practical, high-leverage AI tools — not abstract experiments. Three projects dominated this month's charts, each solving a distinct pain point that translates directly into time saved, money earned, or compliance reduced.
@@ -276,7 +274,7 @@ All three projects demonstrate that 2026's open-source AI revolution is shifting
 
 ## Recommended Tools
 
-For developers building or deploying open-source AI tools, we recommend: - **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
 
 *Affiliate link — supports dibi8.com at no cost to you.*
 
@@ -284,7 +282,7 @@ For developers building or deploying open-source AI tools, we recommend: - **{{<
 
 **Need stable Claude or OpenAI API access?** Most projects in this space eventually hit the Anthropic/OpenAI rate limit or pricing wall.
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.
+- **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.
 
 *Affiliate link — supports dibi8.com at no extra cost to you.*
 
@@ -345,3 +343,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

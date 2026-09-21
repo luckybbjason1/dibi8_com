@@ -12,7 +12,6 @@ showSummary: true
 sources: ["GitHub Search API"]
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-featureImage: /articles/ai
 2026
 .png/images/articles/ai
 2026
@@ -24,7 +23,7 @@ featureImage: /articles/ai
 # This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of June 15, 2026)
 
 
-> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
+**Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
 
 ## Editor's Take
 
@@ -33,8 +32,7 @@ featureImage: /articles/ai
 
 
 ---
-
-
+---
 ## Methodology
 
 - **Source**: GitHub Search API, query window ````pushed:>2026-06-08``````
@@ -270,3 +268,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 | **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
 | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
 
+
+---

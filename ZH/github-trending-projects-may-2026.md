@@ -1,8 +1,8 @@
 ---
 title: "DeepSeek 终端编程智能体 + Anthropic金融AI：2026年5月GitHub最值得关注的开源项目"
 description: "深度解析GitHub 2026年5月三大热门趋势项目：一夜暴涨5800星的DeepSeek-TUI终端编程智能体、Anthropic首个垂直金融领域Claude智能体套件，以及完全本地化的加密AI研究..."
-date: 2026-05-15T04:20:25+09:00
-lastmod: 2026-05-15T04:20:25+09:00
+date: 2026-05-15T04:20:25+08:00
+lastmod: 2026-05-15T04:20:25+08:00
 tech_stack: - C++
   - Docker
   - Go
@@ -19,7 +19,6 @@ github_repo: "https://github.com/Hmbown/DeepSeek-TUI"
 stars: 31877
 maintainer: "Hmbown"
 last_maintained: "2026-05-15"
-featureImage: ""
 draft: false
 aliases:
   - /zh/posts/github-trending-projects-may-2026/
@@ -36,6 +35,7 @@ faqs: - q: 'DeepSeek-TUI 是什么，它和 Cursor 或 GitHub Copilot 有何不�
 
 {</* resource-info */>}
 
+---
 ## 引言
 
 2026年5月的GitHub Trending榜单传达了一个清晰的信号：开发者正在大规模转向实用的、高杠杆率的AI工具——而不是抽象的实验品。三个项目在当月排名中遥遥领先，每个项目都解决了一个可以直接转化为时间节省、收入增长或合规成本降低的独特痛点。
@@ -287,7 +287,7 @@ docker pull localdeepresearch/local-deep-research
 
 跑或部署开源 AI 工具时，推荐：
 
-- **{{< aff "digitalocean" "footer-cta-legacy" "DigitalOcean" >}}** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
+- **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。
 
 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。*
 
@@ -295,7 +295,7 @@ docker pull localdeepresearch/local-deep-research
 
 **需要稳定的 Claude / OpenAI API 访问？** 这个领域的项目最终都会撞 Anthropic / OpenAI 限流或价格墙。
 
-- **{{< aff "shiyunapi" "llm-footer" "Shiyunapi" >}}** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
+- **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 迭代 agent prompt 或国内/受限地区直连不通时尤其管用。
 
 *推广链接 — 不增加你的成本, 帮助 dibi8.com 持续运营。*
 
@@ -389,3 +389,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

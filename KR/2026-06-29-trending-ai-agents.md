@@ -7,7 +7,6 @@ sources: ["GitHub Trending"]
 source_url: "https://github.com/trending"
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
 
 

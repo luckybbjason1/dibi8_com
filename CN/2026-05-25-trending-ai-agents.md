@@ -26,6 +26,7 @@ This week's list says something quieter than "AI is everywhere" - it says the **
 **If you only try one thing this week - try Ollama.** Install is one command, your first run is 'ollama run qwen3' or 'ollama run deepseek-r1', and you'll have a 7B-to-70B model on your laptop in under five minutes. That's the cheapest way to internalize how much the local-LLM landscape changed in the last twelve months.
 
 
+---
 ## Methodology
 
 - **Source**: GitHub Search API, query window 'pushed:>2026-05-18'
@@ -244,3 +245,5 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
 
+
+---

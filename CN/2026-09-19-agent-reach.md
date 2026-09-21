@@ -1,6 +1,5 @@
 ---
 title: "Agent-Reach: 83K-Star Open Source Tool That Gives AI Age...
-description: "Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, Gi..."
 date: 2026-09-19
 slug: 'agent-reach-internet-access-for-ai-agents-2026'
 category: 'llm-frameworks'
