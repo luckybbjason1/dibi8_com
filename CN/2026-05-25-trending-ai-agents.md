@@ -2,9 +2,9 @@
 title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
 draft: false
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
-date: 2026-05-25 00:00:00
-lastmod:
-   2026-05-25 00:00:00tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
+tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w21
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
