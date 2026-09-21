@@ -19,7 +19,6 @@ review_checklist:
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"
 featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-draft-ai-agents-weekly.png
----
 # 本周开源人工智能代理--GitHub 最热门仓库（2026 年 6 月 22 日当周）
 
 
@@ -36,42 +35,42 @@ featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-d
 
 ## Top 8 Trending Repos This Week
 
-### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) — ★219294
+### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) - ★219294
 
 
 
 
-### 2. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — ★198960
+### 2. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) - ★198960
 
 
 
 
-### 3. [n8n-io/n8n](https://github.com/n8n-io/n8n) — ★193504
+### 3. [n8n-io/n8n](https://github.com/n8n-io/n8n) - ★193504
 
 
 
 
-### 4. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) — ★185063
+### 4. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) - ★185063
 
 
 
 
-### 5. [ollama/ollama](https://github.com/ollama/ollama) — ★174674
+### 5. [ollama/ollama](https://github.com/ollama/ollama) - ★174674
 
 
 
 
-### 6. [f/prompts.chat](https://github.com/f/prompts.chat) — ★164038
+### 6. [f/prompts.chat](https://github.com/f/prompts.chat) - ★164038
 
 
 
 
-### 7. [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) — ★156508
+### 7. [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) - ★156508
 
 
 
 
-### 8. [langgenius/dify](https://github.com/langgenius/dify) — ★146062
+### 8. [langgenius/dify](https://github.com/langgenius/dify) - ★146062
 
 
 
@@ -87,7 +86,7 @@ featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-d
 
 
 
-> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel — an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
+> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
 
 ## Editor's Take
 
@@ -104,13 +103,13 @@ featureImage: /articles/tribe-draft-ai-agents-weekly.png/images/articles/tribe-d
 - **Output**: Top 8 by stars
 - **Script**: [tribe-os-intel.sh](https://github.com/luckybbjason1/home-hermes/blob/main/服务器hermes/scripts/tribe-os-intel.sh) (open-source, fully reproducible)
 
-We open-source our scout because trust is built on transparency. Reproduce our query, double-check our list — that's how AI-era content credibility works.
+We open-source our scout because trust is built on transparency. Reproduce our query, double-check our list - that's how AI-era content credibility works.
 
 
 ---
 ## Top 8 Trending Repos This Week
 
-### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) — ★219294
+### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) - ★219294
 
 - **Primary language**: `JavaScript`
 - **GitHub topic**: `mcp`
@@ -120,7 +119,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/affaan-m/ECC)
 
 ---
-### 2. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — ★198960
+### 2. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) - ★198960
 
 - **Primary language**: `Python`
 - **GitHub topic**: `llm`
@@ -130,7 +129,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/NousResearch/hermes-agent)
 
 ---
-### 3. [n8n-io/n8n](https://github.com/n8n-io/n8n) — ★193504
+### 3. [n8n-io/n8n](https://github.com/n8n-io/n8n) - ★193504
 
 - **Primary language**: `TypeScript`
 - **GitHub topic**: `mcp`
@@ -140,7 +139,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/n8n-io/n8n)
 
 ---
-### 4. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) — ★185063
+### 4. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) - ★185063
 
 - **Primary language**: `Python`
 - **GitHub topic**: `llm`
@@ -150,7 +149,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/Significant-Gravitas/AutoGPT)
 
 ---
-### 5. [ollama/ollama](https://github.com/ollama/ollama) — ★174674
+### 5. [ollama/ollama](https://github.com/ollama/ollama) - ★174674
 
 - **Primary language**: `Go`
 - **GitHub topic**: `llm`
@@ -160,17 +159,17 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/ollama/ollama)
 
 ---
-### 6. [f/prompts.chat](https://github.com/f/prompts.chat) — ★164038
+### 6. [f/prompts.chat](https://github.com/f/prompts.chat) - ★164038
 
 - **Primary language**: `HTML`
 - **GitHub topic**: `llm`
-- **What it claims**: f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete pr
+- **What it claims**: f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source - self-host for your organization with complete pr
 
 
 → [Project on GitHub](https://github.com/f/prompts.chat)
 
 ---
-### 7. [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) — ★156508
+### 7. [Snailclimb/JavaGuide](https://github.com/Snailclimb/JavaGuide) - ★156508
 
 - **Primary language**: `JavaScript`
 - **GitHub topic**: `mcp`
@@ -180,7 +179,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/Snailclimb/JavaGuide)
 
 ---
-### 8. [langgenius/dify](https://github.com/langgenius/dify) — ★146062
+### 8. [langgenius/dify](https://github.com/langgenius/dify) - ★146062
 
 - **Primary language**: `TypeScript`
 - **GitHub topic**: `mcp`
@@ -193,19 +192,19 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 
 ## Why We Run This Weekly
 
-Open-source AI moves fast. Trending repos this week may be irrelevant next month — or they may be the foundation of next year's stack. Either way, watching the signal matters more than predicting it.
+Open-source AI moves fast. Trending repos this week may be irrelevant next month - or they may be the foundation of next year's stack. Either way, watching the signal matters more than predicting it.
 
 Dibi8 Tribe Intel does this work so you don't have to. We surface; you decide.
 
 ## More from Dibi8
 
-- [Open-Source AI Tools Directory](https://dibi8.com/resources/ai-tools/) — 280+ curated tools, human-edited
-- [LLM Frameworks & Agents](https://dibi8.com/resources/llm-frameworks/) — Production-grade stack guides
-- [Interactive Dev Tools](https://dibi8.com/tools/) — 14 free client-side utilities
+- [Open-Source AI Tools Directory](https://dibi8.com/resources/ai-tools/) - 280+ curated tools, human-edited
+- [LLM Frameworks & Agents](https://dibi8.com/resources/llm-frameworks/) - Production-grade stack guides
+- [Interactive Dev Tools](https://dibi8.com/tools/) - 14 free client-side utilities
 
 ---
 
-*This roundup is part of an editorial experiment. If you find it useful, [tell us on GitHub](https://github.com/luckybbjason1/home-hermes/issues). If it's not useful, also tell us — we'll kill it. The Tribe serves the reader, not the other way around.*
+*This roundup is part of an editorial experiment. If you find it useful, [tell us on GitHub](https://github.com/luckybbjason1/home-hermes/issues). If it's not useful, also tell us - we'll kill it. The Tribe serves the reader, not the other way around.*
 
 
 {

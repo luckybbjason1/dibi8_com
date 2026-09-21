@@ -17,7 +17,6 @@ featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
 
 # Tuần Này trong Các Tác Nhân AI Mã Nguồn Mở — Các Repo GitHub Xu Hướng Hàng Đầu (Tuần của ngày 29 tháng 6, 2026)
----
 
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
 
@@ -29,7 +28,6 @@ What makes W26 particularly interesting is the diversity of domains represented.
 
 Here are the 5 most noteworthy repos from GitHub Trending (weekly) that haven't been covered in previous editions. from GitHub Trending (weekly) that haven't been covered in previous editions.
 
----
 
 
 ## 1. Palmier Pro — AI Video Editor for macOS

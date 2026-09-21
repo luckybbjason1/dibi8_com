@@ -1,6 +1,6 @@
 ---
-title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
-description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
+title: "This Week in Open-Source AI Agents - Top Trending GitHub..."
+description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub - d..."
 date: 2026-07-06T00:00:00+09:00
 lastmod: 2026-07-06T00:00:00+09:00
 draft: false
@@ -19,11 +19,10 @@ review_checklist:
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"
 featureImage: /images/articles/this-week-ai-agents-2026-w27-83d4f10a.png
----
-# This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of July 06, 2026)
+# This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of July 06, 2026)
 
 
-> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel — an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
+> **Editorial Disclosure**: The data in this article (repo names, stars, descriptions) was auto-collected by Dibi8 Tribe Intel - an open-source bash script that polls GitHub Search API. Analysis, ranking commentary, and "Editor's Take" sections are written by the Dibi8 editorial team. We disclose this so you know what's machine and what's human.
 
 {{< aff "digitalocean" "setup" "Get a DigitalOcean account for running this at scale" >}}
 
@@ -42,13 +41,13 @@ featureImage: /images/articles/this-week-ai-agents-2026-w27-83d4f10a.png
 - **Output**: Top 8 by stars
 - **Script**: [tribe-os-intel.sh](https://github.com/luckybbjason1/home-hermes/blob/main/服务器hermes/scripts/tribe-os-intel.sh) (open-source, fully reproducible)
 
-We open-source our scout because trust is built on transparency. Reproduce our query, double-check our list — that's how AI-era content credibility works.
+We open-source our scout because trust is built on transparency. Reproduce our query, double-check our list - that's how AI-era content credibility works.
 
 
 ---
 ## Top 8 Trending Repos This Week
 
-### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) — ★226312
+### 1. [affaan-m/ECC](https://github.com/affaan-m/ECC) - ★226312
 
 - **Primary language**: `JavaScript`
 - **GitHub topic**: `mcp`
@@ -58,7 +57,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/affaan-m/ECC)
 
 ---
-### 2. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) — ★209645
+### 2. [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) - ★209645
 
 - **Primary language**: `Python`
 - **GitHub topic**: `llm`
@@ -68,7 +67,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/NousResearch/hermes-agent)
 
 ---
-### 3. [n8n-io/n8n](https://github.com/n8n-io/n8n) — ★195306
+### 3. [n8n-io/n8n](https://github.com/n8n-io/n8n) - ★195306
 
 - **Primary language**: `TypeScript`
 - **GitHub topic**: `mcp`
@@ -78,7 +77,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/n8n-io/n8n)
 
 ---
-### 4. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) — ★185387
+### 4. [Significant-Gravitas/AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) - ★185387
 
 - **Primary language**: `Python`
 - **GitHub topic**: `llm`
@@ -88,7 +87,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/Significant-Gravitas/AutoGPT)
 
 ---
-### 5. [ollama/ollama](https://github.com/ollama/ollama) — ★175535
+### 5. [ollama/ollama](https://github.com/ollama/ollama) - ★175535
 
 - **Primary language**: `Go`
 - **GitHub topic**: `llm`
@@ -98,17 +97,17 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/ollama/ollama)
 
 ---
-### 6. [f/prompts.chat](https://github.com/f/prompts.chat) — ★164771
+### 6. [f/prompts.chat](https://github.com/f/prompts.chat) - ★164771
 
 - **Primary language**: `HTML`
 - **GitHub topic**: `llm`
-- **What it claims**: f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete pr
+- **What it claims**: f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source - self-host for your organization with complete pr
 
 
 → [Project on GitHub](https://github.com/f/prompts.chat)
 
 ---
-### 7. [langgenius/dify](https://github.com/langgenius/dify) — ★147783
+### 7. [langgenius/dify](https://github.com/langgenius/dify) - ★147783
 
 - **Primary language**: `TypeScript`
 - **GitHub topic**: `mcp`
@@ -118,7 +117,7 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 → [Project on GitHub](https://github.com/langgenius/dify)
 
 ---
-### 8. [open-webui/open-webui](https://github.com/open-webui/open-webui) — ★144322
+### 8. [open-webui/open-webui](https://github.com/open-webui/open-webui) - ★144322
 
 - **Primary language**: `Python`
 - **GitHub topic**: `mcp`
@@ -131,25 +130,25 @@ We open-source our scout because trust is built on transparency. Reproduce our q
 
 ## Why We Run This Weekly
 
-Open-source AI moves fast. Trending repos this week may be irrelevant next month — or they may be the foundation of next year's stack. Either way, watching the signal matters more than predicting it.
+Open-source AI moves fast. Trending repos this week may be irrelevant next month - or they may be the foundation of next year's stack. Either way, watching the signal matters more than predicting it.
 
 Dibi8 Tribe Intel does this work so you don't have to. We surface; you decide.
 
 ## More from Dibi8
 
-- [Open-Source AI Tools Directory](https://dibi8.com/resources/ai-tools/) — 280+ curated tools, human-edited
-- [LLM Frameworks & Agents](https://dibi8.com/resources/llm-frameworks/) — Production-grade stack guides
-- [Interactive Dev Tools](https://dibi8.com/tools/) — 14 free client-side utilities
+- [Open-Source AI Tools Directory](https://dibi8.com/resources/ai-tools/) - 280+ curated tools, human-edited
+- [LLM Frameworks & Agents](https://dibi8.com/resources/llm-frameworks/) - Production-grade stack guides
+- [Interactive Dev Tools](https://dibi8.com/tools/) - 14 free client-side utilities
 
 ---
 
-*This roundup is part of an editorial experiment. If you find it useful, [tell us on GitHub](https://github.com/luckybbjason1/home-hermes/issues). If it's not useful, also tell us — we'll kill it. The Tribe serves the reader, not the other way around.*
+*This roundup is part of an editorial experiment. If you find it useful, [tell us on GitHub](https://github.com/luckybbjason1/home-hermes/issues). If it's not useful, also tell us - we'll kill it. The Tribe serves the reader, not the other way around.*
 
 
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of July 06, 2026)",
+  "headline": "This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of July 06, 2026)",
   "datePublished": "2026-07-06",
   "dateModified": "2026-07-06",
   "author": {
@@ -173,7 +172,7 @@ Dibi8 Tribe Intel does this work so you don't have to. We surface; you decide.
 
 ## Why This Matters
 
-Understanding this week in open-source ai agents — top trending github repos (week of july 06, 2026) is crucial for modern AI development. Here's why: ### Key Benefits
+Understanding this week in open-source ai agents - top trending github repos (week of july 06, 2026) is crucial for modern AI development. Here's why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
@@ -203,7 +202,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 ## Conclusion
 
-This Week in Open-Source AI Agents — Top Trending GitHub Repos (Week of July 06, 2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+This Week in Open-Source AI Agents - Top Trending GitHub Repos (Week of July 06, 2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 

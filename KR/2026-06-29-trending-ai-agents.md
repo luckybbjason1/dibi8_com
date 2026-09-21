@@ -1,6 +1,6 @@
 ---
-title: "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)"
-description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 — 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집..."
+title: "이번 주 오픈소스 AI 에이전트 소식 - 인기 GitHub 저장소 순위 (2026년 6월 29일 주)"
+description: "GitHub에서 인기 있는 오픈소스 AI 에이전트, LLM, MCP 프로젝트의 주간 편집 요약 - 데이터는 Dibi8 Tribe Intel이 자동 수집하고, 분석은 Dibi8 편집..."
 showAuthor: true
 showSummary: true
 sources: ["GitHub Trending"]
@@ -10,21 +10,20 @@ review_status: "AWAITING_EDITOR_REVIEW"
 featureImage: /images/articles/b62165fb-this-week-open-source-agents.png
 ---
 
-# 이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)
+# 이번 주 오픈소스 AI 에이전트 소식 - 인기 GitHub 저장소 순위 (2026년 6월 29일 주)
 ---
 
 > **TL;DR**: This week's trending repos span AI video editing, cybersecurity skills for agents, open-source design tools, AI website cloning, and privacy-first messaging. Palmier Pro leads with 6,126 stars/week as the first AI-native macOS video editor.
 
 ## Why We Watch This Week
 
-Open-source AI moves fast. This week's trending repos show a clear pattern: **AI agents are expanding beyond coding into creative tools, security, and privacy infrastructure**. The biggest gainers aren't LLM frameworks — they're domain-specific applications that give agents real capabilities.
+Open-source AI moves fast. This week's trending repos show a clear pattern: **AI agents are expanding beyond coding into creative tools, security, and privacy infrastructure**. The biggest gainers aren't LLM frameworks - they're domain-specific applications that give agents real capabilities.
 
 What makes W26 particularly interesting is the diversity of domains represented. We have a macOS-native video editor (Palmier Pro), a massive cybersecurity skill library (Anthropic Skills), a mature open-source design platform (Penpot), an AI-powered website cloning tool, and a privacy-first messaging protocol (SimpleX). Together, these repos paint a picture of an ecosystem maturing from experimental prototypes to production-ready tools.
 
 Here are the 5 most noteworthy repos from GitHub Trending (weekly) that haven't been covered in previous editions. from GitHub Trending (weekly) that haven't been covered in previous editions.
 
----
-## 1. Palmier Pro — AI Video Editor for macOS
+## 1. Palmier Pro - AI Video Editor for macOS
 
 **이번 주 별점**: 6,126 | **총 별점**: 9,295 | **언어**: Swift | **라이선스**: GPL-3.0
 **주제**: ai-video, claude, macos, mcp, seedance2, swift, 비디오 편집기
@@ -39,9 +38,9 @@ Palmier Pro는 AI 에이전트를 위해 특별히 제작된 최초의 비디오
 
 ### Why It Matters
 
-비디오 제작은 가장 빠르게 성장하는 AI 응용 분야 중 하나입니다. Palmier Pro는 'AI 지원 편집'에서 'AI 본래 편집'으로의 전환을 나타냅니다 — 여기서 편집기는 수동 타임라인 조작을 요구하는 대신 의도를 이해합니다.
+비디오 제작은 가장 빠르게 성장하는 AI 응용 분야 중 하나입니다. Palmier Pro는 'AI 지원 편집'에서 'AI 본래 편집'으로의 전환을 나타냅니다 - 여기서 편집기는 수동 타임라인 조작을 요구하는 대신 의도를 이해합니다.
 
-개발자와 콘텐츠 제작자에게 이는 원하는 것을 자연어로 설명하면 AI 에이전트가 영상을 제작하고, 전환 효과를 적용하며, 내보내기까지 할 수 있다는 것을 의미합니다 — 모두 전문 등급의 macOS 애플리케이션 내에서 가능합니다.
+개발자와 콘텐츠 제작자에게 이는 원하는 것을 자연어로 설명하면 AI 에이전트가 영상을 제작하고, 전환 효과를 적용하며, 내보내기까지 할 수 있다는 것을 의미합니다 - 모두 전문 등급의 macOS 애플리케이션 내에서 가능합니다.
 
 ### Hands-On Notes
 
@@ -51,7 +50,7 @@ macOS 26(Tahoe) 요구 사항은 이것이 Apple의 최신 플랫폼 기능을 �
 
 ---
 
-## 2. Anthropic Cybersecurity Skills — 817 Structured Skills for AI Agents
+## 2. Anthropic Cybersecurity Skills - 817 Structured Skills for AI Agents
 
 **이번 주 별점**: 5,121 | **총 별점**: 22,612 | **언어**: Python | **라이선스**: Apache-2.0
 **주제**: ai-에이전트, claude-코드, 클라우드-보안, 사이버보안, 데브섹옵스, 윤리적-해킹, 사고-대응, 정보보안, 대형언어모델, 악성코드-분석, MCP, MITRE-공격, NIST-CSF, OSINT, 침투-테스트, 레드-팀, 보안, 보안-자동화, 위협-탐지, 위협-인텔리전스
@@ -62,7 +61,7 @@ macOS 26(Tahoe) 요구 사항은 이것이 Apple의 최신 플랫폼 기능을 �
 
 MITRE ATT&CK, NIST CSF 및 다양한 레드 팀 방법론을 포함한 주요 보안 프레임워크에 매핑된 817개의 구조화된 기술을 갖춘 AI 에이전트를 위한 최대 오픈 소스 사이버보안 기술 라이브러리.
 
-각 기술은 AI 에이전트가 특정 사이버보안 작업을 수행할 수 있도록 하는 구조화된 프롬프트 또는 도구 정의입니다 — 취약점 스캔 및 악성코드 분석에서 사건 대응 및 위협 사냥에 이르기까지.
+각 기술은 AI 에이전트가 특정 사이버보안 작업을 수행할 수 있도록 하는 구조화된 프롬프트 또는 도구 정의입니다 - 취약점 스캔 및 악성코드 분석에서 사건 대응 및 위협 사냥에 이르기까지.
 
 ### Why It Matters
 
@@ -72,7 +71,7 @@ MITRE ATT&CK, NIST CSF 및 다양한 레드 팀 방법론을 포함한 주요 �
 - **원시 데이터로부터 위협 인텔리전스 보고서 생성**
 - **규제 준수 프레임워크에 대한 보안 평가 실행**
 
-AI 에이전트에 관심 있는 dibi8 관객에게 이것은 금광과 같습니다 — 이것은 전문 분야 지식을 누구나 배포할 수 있는 에이전트 기술로 어떻게 인코딩할 수 있는지를 보여줍니다.
+AI 에이전트에 관심 있는 dibi8 관객에게 이것은 금광과 같습니다 - 이것은 전문 분야 지식을 누구나 배포할 수 있는 에이전트 기술로 어떻게 인코딩할 수 있는지를 보여줍니다.
 
 ### Hands-On Notes
 
@@ -82,7 +81,7 @@ AI 에이전트에 관심 있는 dibi8 관객에게 이것은 금광과 같습�
 
 ---
 
-## 3. Penpot — Open-Source Design Tool for Teams
+## 3. Penpot - Open-Source Design Tool for Teams
 
 **이번 주 별점**: 3,343 | **총 별점**: 54,379 | **언어**: Clojure | **라이선스**: MPL-2.0
 **주제**: clojure, clojurescript, 디자인, 프로토타이핑, UI, UX 디자인, UX 경험
@@ -99,11 +98,11 @@ Penpot은 실시간 디자인-코드 협업을 지원하여 디자이너와 개�
 
 디자인 도구 시장은 Figma(Adobe)가 지배하고 있으며, Penpot이 유일한 진지한 오픈 소스 경쟁자입니다. 총 54,379개의 스타를 보유하고 있어 그 실현 가능성과 커뮤니티 지원을 입증했습니다.
 
-클라우드에 의존하지 않고 디자인 도구가 필요한 조직을 위해, Penpot은 다음을 제공합니다: - **셀프 호스팅 배포** — 디자인 데이터에 대한 완전한 제어
-- **디자인-투-코드 워크플로우** — 개발자가 깔끔한 CSS/SVG 출력 획득
-- **실시간 협업** — 여러 디자이너가 동시에 작업
-- **오픈 파일 형식** — 디자인 자산에 대한 벤더 종속 없음
-- **AI 준비 아키텍처** — AI 통합을 위한 확장 가능한 플러그인 시스템
+클라우드에 의존하지 않고 디자인 도구가 필요한 조직을 위해, Penpot은 다음을 제공합니다: - **셀프 호스팅 배포** - 디자인 데이터에 대한 완전한 제어
+- **디자인-투-코드 워크플로우** - 개발자가 깔끔한 CSS/SVG 출력 획득
+- **실시간 협업** - 여러 디자이너가 동시에 작업
+- **오픈 파일 형식** - 디자인 자산에 대한 벤더 종속 없음
+- **AI 준비 아키텍처** - AI 통합을 위한 확장 가능한 플러그인 시스템
 
 ### Hands-On Notes
 
@@ -130,7 +129,7 @@ services: penpot-backend: image: penpotapp/backend:latest
 
 ---
 
-## 4. AI Website Cloner Template — One-Command Website Duplication
+## 4. AI Website Cloner Template - One-Command Website Duplication
 
 **이번 주 스타**: 4,565 | **총 스타**: 미정 | **언어**: TypeScript | **라이선스**: 미정
 **주제**: ai-coding, 웹사이트-복제, 템플릿-생성
@@ -145,10 +144,10 @@ AI 코딩 에이전트를 사용하여 모든 웹사이트를 구조화된 프�
 
 ### Why It Matters
 
-웹사이트 복제는 피싱과 저작권 침해에 사용된다는 평판이 있습니다. 그러나 합법적인 사용 사례도 상당합니다: - **디자인 영감 분석** — 경쟁사들이 웹사이트를 어떻게 구성하는지 연구
-- **레거시 마이그레이션** — AI가 생성한 깔끔한 코드로 오래된 웹사이트 현대화
-- **교육 목적** — 실제 사례를 분석하여 웹 개발 학습
-- **포트폴리오 재구성** — 자신의 보관된 웹사이트 다시 구축
+웹사이트 복제는 피싱과 저작권 침해에 사용된다는 평판이 있습니다. 그러나 합법적인 사용 사례도 상당합니다: - **디자인 영감 분석** - 경쟁사들이 웹사이트를 어떻게 구성하는지 연구
+- **레거시 마이그레이션** - AI가 생성한 깔끔한 코드로 오래된 웹사이트 현대화
+- **교육 목적** - 실제 사례를 분석하여 웹 개발 학습
+- **포트폴리오 재구성** - 자신의 보관된 웹사이트 다시 구축
 
 AI 코딩 애호가들에게 이것은 코드 생성 이상의 전체 프로젝트 이해로 나아가는 AI 에이전트의 실질적인 응용을 나타냅니다.
 
@@ -160,7 +159,7 @@ TypeScript 구현은 아마도 인기 있는 AI 코딩 프레임워크와 통합
 
 ---
 
-## 5. SimpleX Chat — Privacy-First Messaging Without User IDs
+## 5. SimpleX Chat - Privacy-First Messaging Without User IDs
 
 **이번 주 별점**: 1,973 | **총 별점**: TBD | **언어**: Haskell | **라이선스**: TBD
 **주제**: 개인정보 보호, 메시징, 탈중앙화, 암호학
@@ -169,16 +168,16 @@ TypeScript 구현은 아마도 인기 있는 AI 코딩 프레임워크와 통합
 
 ### What It Is
 
-SimpleX는 사용자 식별자 없이 완전히 작동하는 최초의 메시징 네트워크입니다. 전화번호, 이메일 주소, 사용자 이름 없이 — 설계상 프라이버시를 보장하는 익명 연결만 제공합니다.
+SimpleX는 사용자 식별자 없이 완전히 작동하는 최초의 메시징 네트워크입니다. 전화번호, 이메일 주소, 사용자 이름 없이 - 설계상 프라이버시를 보장하는 익명 연결만 제공합니다.
 
 전통적인 메시징 앱(Signal, WhatsApp, Telegram)은 모두 일정 형태의 지속적인 신원을 요구합니다. SimpleX는 각 대화마다 변경되는 일시적인 연결 주소를 사용하여 이를 완전히 제거합니다.
 
 ### Why It Matters
 
-개인 정보 보호는 대규모 감시와 데이터 유출의 시대에 점점 더 중요해지고 있습니다. SimpleX의 접근 방식은 '암호화되었지만 식별 가능한' 메신저와 근본적으로 다릅니다: - **지속적인 정체성 없음** — 각 대화는 고유하고 일회용 연결을 사용합니다
-- **메타데이터 수집 없음** — 네트워크는 누가 누구와 대화하는지 알 수 없습니다
-- **분산형 아키텍처** — 중앙 서버가 대화를 통제하지 않습니다
-- **오픈 소스 구현** — 완전한 투명성과 감사 가능성을 제공합니다
+개인 정보 보호는 대규모 감시와 데이터 유출의 시대에 점점 더 중요해지고 있습니다. SimpleX의 접근 방식은 '암호화되었지만 식별 가능한' 메신저와 근본적으로 다릅니다: - **지속적인 정체성 없음** - 각 대화는 고유하고 일회용 연결을 사용합니다
+- **메타데이터 수집 없음** - 네트워크는 누가 누구와 대화하는지 알 수 없습니다
+- **분산형 아키텍처** - 중앙 서버가 대화를 통제하지 않습니다
+- **오픈 소스 구현** - 완전한 투명성과 감사 가능성을 제공합니다
 
 개인 정보 보호 기술에 관심이 있는 개발자들에게 SimpleX는 익명 통신 프로토콜 분야의 최첨단 연구를 나타냅니다.
 
@@ -192,17 +191,17 @@ Haskell로 구축된 SimpleX는 보안 중심 애플리케이션에 필수적인
 
 ## This Week's Trends
 
-W26의 트렌드 저장소를 살펴보면 세 가지 패턴이 나타납니다: 1. **도메인 특화 AI 에이전트** — 비디오 편집(Palmier Pro)에서 사이버 보안(Anthropic Skills)에 이르기까지, AI 에이전트는 범용 조수보다는 전문화된 도구가 되어가고 있습니다.
+W26의 트렌드 저장소를 살펴보면 세 가지 패턴이 나타납니다: 1. **도메인 특화 AI 에이전트** - 비디오 편집(Palmier Pro)에서 사이버 보안(Anthropic Skills)에 이르기까지, AI 에이전트는 범용 조수보다는 전문화된 도구가 되어가고 있습니다.
 
-2. **오픈소스 인프라 성숙도** — Penpot의 54K+ 별점과 꾸준한 주간 성장률은 상업용 도구에 대한 오픈소스 대안이 동등 수준에 도달하고 채택이 증가하고 있음을 보여줍니다.
+2. **오픈소스 인프라 성숙도** - Penpot의 54K+ 별점과 꾸준한 주간 성장률은 상업용 도구에 대한 오픈소스 대안이 동등 수준에 도달하고 채택이 증가하고 있음을 보여줍니다.
 
-3. **프라이버시 중심 설계** — SimpleX의 ID 없는 접근 방식은 철학적 전환을 나타냅니다: 프라이버시는 선택적으로 적용되는 기능이 아니라 기본 아키텍처여야 합니다.
+3. **프라이버시 중심 설계** - SimpleX의 ID 없는 접근 방식은 철학적 전환을 나타냅니다: 프라이버시는 선택적으로 적용되는 기능이 아니라 기본 아키텍처여야 합니다.
 
 ## Looking Ahead
 
-다음 주에는 다음 사항들을 주시할 것입니다: - **AI 영상 도구** — Palmier Pro의 성장은 AI 기반 영상 편집 분야에서 더 많은 경쟁자가 나타날 수 있음을 시사합니다
-- **보안 기술 라이브러리** — 817 사이버보안 기술의 성공은 도메인별 에이전트 역량에 대한 수요를 나타냅니다
-- **개인정보 보호 인프라** — SimpleX의 접근 방식은 메시징에서 사용자 신원에 대한 기존 통념에 도전합니다
+다음 주에는 다음 사항들을 주시할 것입니다: - **AI 영상 도구** - Palmier Pro의 성장은 AI 기반 영상 편집 분야에서 더 많은 경쟁자가 나타날 수 있음을 시사합니다
+- **보안 기술 라이브러리** - 817 사이버보안 기술의 성공은 도메인별 에이전트 역량에 대한 수요를 나타냅니다
+- **개인정보 보호 인프라** - SimpleX의 접근 방식은 메시징에서 사용자 신원에 대한 기존 통념에 도전합니다
 
 오픈소스 AI 생태계는 '우리가 만들 수 있을까?'에서 '우리가 만들어야 할까?'로 이동하고 있으며, 이는 성숙함의 징후입니다.
 
@@ -236,9 +235,9 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 
 ## More from Dibi8
 
-- [오픈소스 AI 도구 디렉토리](https://dibi8.com/en/resources/) — AI 도구, 프레임워크 및 리소스 전체 컬렉션을 둘러보세요.
-- [AI 에이전트 도구 체인](https://dibi8.com/en/collections/ai-agent-tool-chain/) — AI 에이전트 개발 도구의 엄선된 컬렉션.
-- [주간 인기 아카이브](https://dibi8.com/en/resources/llm-frameworks/) — 이전 주의 인기 보고서.
+- [오픈소스 AI 도구 디렉토리](https://dibi8.com/en/resources/) - AI 도구, 프레임워크 및 리소스 전체 컬렉션을 둘러보세요.
+- [AI 에이전트 도구 체인](https://dibi8.com/en/collections/ai-agent-tool-chain/) - AI 에이전트 개발 도구의 엄선된 컬렉션.
+- [주간 인기 아카이브](https://dibi8.com/en/resources/llm-frameworks/) - 이전 주의 인기 보고서.
 
 ---
 
@@ -247,7 +246,7 @@ A: 아니요. Dibi8은 엄격한 편집 독립성을 유지합니다. 모든 링
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "이번 주 오픈소스 AI 에이전트 소식 — 인기 GitHub 저장소 순위 (2026년 6월 29일 주)",
+  "headline": "이번 주 오픈소스 AI 에이전트 소식 - 인기 GitHub 저장소 순위 (2026년 6월 29일 주)",
   "datePublished": "2026-06-29",
   "dateModified": "2026-06-29",
   "author": {
