@@ -2,7 +2,8 @@
 title: "CC Switch: Trình Quản Lý Tác Nhân Lập Trình AI Tối Ưu ch...
 description: "Hướng dẫn đầy đủ về CC Switch — ứng dụng desktop đa nền tảng quản lý Claude Code, Codex, Gemini CLI,..."
 date: 2026-06-20
-lastmod: 2026-06-20tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
+lastmod: 2026-06-20
+(tags: [ai-tools, coding-agents, desktop-app, tauri, rust]
 category: "dev-utils"
 slug: cc-switch-all-in-one-ai-coding-agent-manager
 featureImage: /images/articles/cc-switch-all-in-one-ai-coding-agent-manager-f252d614.png

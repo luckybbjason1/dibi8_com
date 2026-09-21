@@ -1,7 +1,8 @@
 ---
 title: "Apple's Container: Docker-Like Experience on Mac with 37...
 date: 2026-06-15
-lastmod: 2026-06-15tags: - apple
+lastmod: 2026-06-15
+(tags: - apple
   - container
   - macos
   - linux
@@ -29,7 +30,8 @@ featureImage: /articles/ai-trading-stack.png/images/articles/ai-trading-stack.pn
 
 title: "Apple Container: Trải nghiệm giống Docker trên Mac với 37K sao"
 date: 2026-06-15
-lastmod: 2026-06-15tags: - apple
+lastmod: 2026-06-15
+(tags: - apple
   - container
   - macos
   - linux

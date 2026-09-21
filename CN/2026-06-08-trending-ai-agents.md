@@ -2,16 +2,18 @@
 title: "This Week in Open-Source AI Agents — Top Trending GitHub..."
 description: "Hand-edited weekly roundup of top trending open-source AI agent, LLM, and MCP projects on GitHub — d..."
 date: 2026-06-08T00:00:00+09:00
-lastmod: 2026-06-08T00:00:00+09:00tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
+lastmod: 2026-06-08T00:00:00+09:00
+(tags: ["ai-agents", "open-source", "weekly-roundup", "github-trending", "llm-frameworks"]
 categories: ["llm-frameworks"]
 slug: this-week-ai-agents-2026-w23
 author: "Dibi8 Tribe Intel (data collection) + Dibi8 editorial team (analysis & edit)"
 showAuthor: true
 showSummary: true
-sources: - "GitHub Search API"
+sources: ["GitHub Search API"]
 methodology: "Open-source script at home-hermes/服务器hermes/scripts/tribe-os-intel.sh"
 review_status: "AWAITING_EDITOR_REVIEW"
-review_checklist: - "Editor's Take 段已填实际分析"
+review_checklist:
+  - "Editor's Take 段已填实际分析"
   - "至少 1 个 repo 编辑加了 hands-on 评注"
   - "无 placeholder URL"
   - "无 aff 链接 (Tribe 文章纪律)"

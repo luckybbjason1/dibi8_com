@@ -2,7 +2,8 @@
 title: "TimesFM 2.5: Mô hình chuỗi thời gian cách mạng của Googl...
 description: "Hướng dẫn đầy đủ về TimesFM 2.5 — mô hình chuỗi thời gian tiên tiến nhất của Google Research. Cài đặ..."
 date: 2026-06-19
-lastmod: 2026-06-19tags: []
+lastmod: 2026-06-19
+(tags: []
 category: "data-science"
 slug: timesfm-google-time-series-foundation-model
 featureImage: /images/articles/fine-tuning-stack.png
