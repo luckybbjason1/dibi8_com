@@ -8,7 +8,6 @@ categories: [dev-utils]
 license_type: MIT
 source: "GitHub: tt-a1i/archify"
 github: "tt-a1i/archify"
-lang: vi
 ---
 
 # Archify: Tạo Architecture Diagrams Production-Ready Trong 2026

@@ -8,7 +8,6 @@ categories: [llm-frameworks]
 license_type: Open Source
 source: "Nhiều bài nghiên cứu"
 github: "run-llama/llama_index, langchain-ai/langchain"
-lang: vi
 ---
 
 # RAG Systems 2026: Kỹ Thuật Nâng Cao Cho Triển Khai Production

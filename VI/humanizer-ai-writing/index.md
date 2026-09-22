@@ -8,7 +8,6 @@ categories: [ai-tools]
 license_type: MIT
 source: "GitHub: blader/humanizer"
 github: "blader/humanizer"
-lang: vi
 ---
 
 # Humanizer: Loại Bỏ AI Writing Patterns Trong 2026
