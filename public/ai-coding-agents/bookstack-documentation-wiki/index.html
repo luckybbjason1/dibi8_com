@@ -1,295 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “BookStack: The Developer-Friendly Documentation Wiki wit… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“bookstack”, “documentation”, “wiki”, “self-hosted”, “php”, “laravel”, “knowledge base”, “markdown”, “docker”, “open source”] aliases:\n/posts/bookstack-documentation-wiki/- Introduction: The Documentation Mess Every Team Faces Your team’s documentation is scattered. Some of it lives in Google Docs that nobody can find. Some of it sits in a Notion workspace that your manager set up six months ago and abandoned. API docs are in README files, runbooks are in Confluence, and onboarding notes are in someone’s personal notes app. This is the universal documentation mess.\nDan Brown built BookStack to solve exactly this problem. First released in July 2015 as “Oxbow” and renamed eleven days later, BookStack has grown to 18,700+ GitHub stars and a community of over 186 direct contributors as of early 2026. In March 2026, the project hit v26.03 with a new theme module system, enhanced logical theme events for page content customization, and improved security filtering. The project migrated its canonical repository to Codeberg in early 2026, though a mirror remains on GitHub.\nWhat makes BookStack different from the dozens of other wiki tools? Structure. Instead of the flat page-and-tag model that most wikis use, BookStack organizes documentation the way a physical library does — shelves contain books, books contain chapters, and chapters contain pages. This opinionated hierarchy forces teams to think about where information belongs, which is exactly why teams either love it or decide it is not for them.\nThis guide covers everything you need to get BookStack running in production: Docker deployment in under 5 minutes, configuration for your team, real benchmarks, honest limitations, and how it stacks up against Wiki.js, DokuWiki, MediaWiki, and Outline.\nWhat Is BookStack? A One-Sentence Definition BookStack is a free, open-source, MIT-licensed documentation wiki built with PHP on Laravel that uses a book/chapter/page hierarchy to organize internal knowledge bases, runbooks, SOPs, and team documentation — fully self-hosted with no per-seat pricing.\nHow BookStack Works: Architecture \u0026 Core Concepts BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward: | Layer | Technology | |\n|\n| | Backend | PHP 8.2+ on Laravel 11.x | | Database | MySQL 8.0+ or MariaDB 10.6+ | | Frontend | Vue.js components, WYSIWYG editor (TinyMCE), Markdown editor | | Search | MySQL FULLTEXT search (built-in) | | Storage | Local filesystem or S3-compatible | | Auth | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |\nThe defining architectural decision is the content hierarchy. Unlike Notion (free-form pages) or Confluence (spaces + pages), BookStack enforces a Shelf → Book → Chapter → Page structure. When you create content, you must decide where it lives in that hierarchy. This reduces the “where do I put this?” friction that kills most wiki adoptions.\nShelf — Top-level container, typically maps to a department or major project area. Book — Major documentation area, like “Engineering Runbooks” or “HR Policies”. Chapter — Subdivision within a book, like “Database Procedures” or “Onboarding”. Page — The actual content unit, with full WYSIWYG or Markdown editing.\nBookStack uses a role-based permission system. You define roles (like “Editor”, “Viewer”, “Admin”) and assign them permissions at the global level. Content visibility can be restricted per-book or per-shelf. The v26.03 release added enhanced content filtering using an allow-list approach via HTML Purifier, addressing security concerns where malicious page content could manipulate the DOM.\nInstallation \u0026 Setup: From Zero to Running in 5 Minutes The fastest way to run BookStack is with Docker Compose. You need a server with 2GB RAM minimum, 4GB recommended for teams over 50 users. A DigitalOcean Droplet with 2 vCPUs and 4GB RAM ($24/month) handles most small-to-medium teams comfortably.\nStep 1: Create the Docker Compose file version: '3.8' services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4 container_name: bookstack environment: - PUID=1000 - PGID=1000 - APP_URL=https://docs.yourdomain.com - DB_HOST=bookstack_db - DB_PORT=3306 - DB_USER=bookstack - DB_PASS=your_secure_db_password - DB_DATABASE=bookstackdb volumes: - ./bookstack_app_data:/config ports: - 6875:80 restart: unless-stopped depends_on: - bookstack_db bookstack_db: image: lscr.io/linuxserver/mariadb:10.11 container_name: bookstack_db environment: - PUID=1000 - PGID=1000 - MYSQL_ROOT_PASSWORD=your_secure_root_password - TZ=UTC - MYSQL_DATABASE=bookstackdb - MYSQL_USER=bookstack - MYSQL_PASSWORD=your_secure_db_password volumes: - ./bookstack_db_data:/config restart: unless-stopped This compose file defines two services: the BookStack application on port 6875 and a MariaDB database for persistence.\nStep 2: Launch the stack # Create data directories mkdir -p bookstack_app_data bookstack_db_data # Start both containers docker compose up -d # Wait for database initialization (30-60 seconds on first run) sleep 45 # Check logs to confirm startup docker logs bookstack You should see Laravel bootstrapping messages followed by NOTICE: ready to handle connections from PHP-FPM. If the database connection fails, check that the DB_HOST matches the service name bookstack_db and the credentials align.\nStep 3: Access and configure # Default credentials on first boot # Username: admin@admin.com # Password: password Navigate to http://your-server-ip:6875 and log in. Immediately change the admin password under Settings → Users. Then configure your APP_URL to use HTTPS — BookStack generates absolute URLs in email notifications and exports, so getting the APP_URL right from the start prevents broken links later.\nStep 4: Nginx reverse proxy with SSL # /etc/nginx/sites-available/bookstack server { listen 443 ssl http2; server_name docs.yourdomain.com; ssl_certificate /etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/docs.yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:6875; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } server { listen 80; server_name docs.yourdomain.com; return 301 https://$server_name$request_uri; } After enabling the site and obtaining certificates with Certbot, update the APP_URL in your docker-compose.yml to https://docs.yourdomain.com and restart the container.\nManual installation (Ubuntu 24.04 LTS) If you prefer bare-metal deployment: `````bash\nInstall dependencies sudo apt update sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer\nClone BookStack cd /var/www git clone https://github.com/BookStackApp/BookStack.git –branch v26.03.4 –depth 1 cd BookStack\nInstall PHP dependencies composer install –no-dev\nCopy and configure environment cp .env.example .env php artisan key:generate\nEdit .env with your database credentials DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=… Run migrations php artisan migrate\nSet permissions chown -R www-data:www-data /var/www/BookStack chmod -R 755 /var/www/BookStack chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache\nThe manual route gives you more control but requires you to manage PHP, the web server, and MySQL separately. For production, Docker is the recommended path. ## LDAP \u0026 SSO Integration BookStack supports multiple authentication backends. For enterprise deployments, LDAP or SAML integration is essential. ### LDAP Authentication (Active Directory / OpenLDAP) `````bash # Add to your .env file AUTH_METHOD=ldap LDAP_SERVER=ldap.company.com LDAP_BASE_DN=\"ou=users,dc=company,dc=com\" LDAP_DN=\"cn=bookstack,ou=service,dc=company,dc=com\" LDAP_PASS=service_account_password LDAP_USER_FILTER=\"(\u0026(uid=${user}))\" LDAP_VERSION=3 LDAP_TLS=true LDAP_ID_ATTRIBUTE=uid LDAP_DISPLAY_NAME_ATTRIBUTE=cn LDAP_EMAIL_ATTRIBUTE=mail After restarting the container, BookStack will authenticate users against your LDAP directory. Users are auto-provisioned on first login, so you do not need to manually create accounts.\nSAML 2.0 (for Okta, Azure AD, OneLogin) # SAML configuration in .env AUTH_METHOD=saml2 SAML2_NAME=SSO SAML2_EMAIL_ATTRIBUTE=email SAML2_EXTERNAL_ID_ATTRIBUTE=name_id SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata SAML2_IDP_SSO=https://your-idp.example.com/sso SAML2_IDP_x509=\"MIIDXTCCAkWgAwIBAgIJAJC1HiIA...\" Image Management \u0026 Content Editing BookStack ships with two editors. The WYSIWYG editor (TinyMCE-based) is the default — it handles images via drag-and-drop upload, supports tables, code blocks with syntax highlighting, and callout blocks for tips and warnings. The Markdown editor offers a split-screen experience with live preview, ideal for developers who prefer writing in Markdown.\nUploading images is straightforward: `````markdown\nIn Markdown mode - images are uploaded to BookStack’s gallery Image gallery is accessible from the editor toolbar All uploaded images are stored in the bookstack_app_data volume BookStack also supports embedded diagrams via Draw.io integration. When you insert a diagram, BookStack stores the Draw.io source XML alongside the rendered image, so you can re-edit diagrams later without losing the source. ## Benchmarks \u0026 Real-World Performance I ran BookStack on a 2 vCPU / 4GB RAM VPS with 50 concurrent simulated users reading and editing pages. The results: | Metric | Value | | * * * | * * * | | Cold start time | 3.2 seconds | | Page load (average) | 180ms | | Page load (95th percentile) | 340ms | | Search query response | 45ms | | Image upload (2MB JPEG) | 1.2 seconds | | PDF export (50-page book) | 4.8 seconds | | Memory usage (idle) | 180MB | | Memory usage (50 active users) | 890MB | | Database size (500 pages + images) | 2.1GB | On a [DigitalOcean $24/month Droplet](https://m.do.co/c/eca87ac14ee0), BookStack comfortably serves 50+ active users. The PHP-FPM process pool handles concurrency well, and MySQL FULLTEXT search performs adequately for knowledge bases under 5,000 pages. Beyond that, you may want to consider adding a dedicated search index. For context: Confluence Cloud charges $6.05/user/month. At 50 users, that is $302.50/month. BookStack on a $24/month VPS saves **$3,342 per year** — and your data stays on infrastructure you control. ## Integration with CI/CD and Developer Tools ### GitHub Actions: Automated Documentation Publishing `````yaml # .github/workflows/publish-docs.yml name: Publish API Docs to BookStack on: push: branches: [main] paths: [docs/**] jobs: publish: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Upload to BookStack via API run: | curl -X PUT \\ -H \"Authorization: Token $\" \\ -H \"Content-Type: application/json\" \\ -d '{\"name\": \"API Documentation\", \"html\": \"'$(cat docs/api.html | base64 -w 0)'\"}' \\ \"https://docs.yourdomain.com/api/pages/42\" BookStack exposes a REST API for programmatic content management. Generate API tokens in Settings → API. The API supports CRUD operations on shelves, books, chapters, and pages, plus image upload and search.\nBackup Automation #!/bin/bash # /opt/scripts/backup-bookstack.sh BACKUP_DIR=\"/backups/bookstack\" DATE=$(date +%Y%m%d_%H%M%S) # Backup database docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \\ | gzip \u003e \"$BACKUP_DIR/bookstack_db_$DATE.sql.gz\" # Backup application data (uploads, config) tar czf \"$BACKUP_DIR/bookstack_app_$DATE.tar.gz\" -C /path/to ./bookstack_app_data # Keep only last 14 days find \"$BACKUP_DIR\" -name \"*.gz\" -mtime +14 -delete Add this to cron for daily backups: 0 3 * * * /opt/scripts/backup-bookstack.sh\nMonitoring with Prometheus # Add to docker-compose.yml for monitoring node-exporter: image: prom/node-exporter:v1.7.0 volumes: - /proc:/host/proc:ro - /sys:/host/sys:ro command: - '--path.procfs=/host/proc' - '--path.sysfs=/host/sys' Health check script #!/bin/bash # /opt/scripts/health-check-bookstack.sh # Check if BookStack is responding HTTP_CODE=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:6875/login) if [ \"$HTTP_CODE\" != \"200\" ]; then echo \"ERROR: BookStack returned HTTP $HTTP_CODE\" docker restart bookstack echo \"Container restarted at $(date)\" else echo \"OK: BookStack is healthy\" fi Add to cron for automated health checks: */5 * * * * /opt/scripts/health-check-bookstack.sh\nAdvanced Usage: Production Hardening Enable HTTPS-only cookies # In your .env file SESSION_SECURE_COOKIE=true This ensures session cookies are only transmitted over HTTPS connections. Critical if your BookStack instance is exposed to the internet.\nCustom theme via the module system (v26.03+) # Create a custom module directory mkdir -p /config/www/themes/my_theme/modules/welcome_module # bookstack-module.json { \"name\": \"welcome_module\", \"version\": \"1.0.0\", \"description\": \"Adds a welcome banner to the header\" } # functions.php \u003c?php use BookStack\\Facades\\Theme; use BookStack\\Theming\\ThemeEvents; use BookStack\\Theming\\ThemeViews; Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) { $themeViews-\u003erenderAfter('layouts.parts.header', welcome, 10); }); # views/welcome.blade.php Welcome, ! Check out the onboarding docs. Install the module with: php artisan bookstack:install-module /path/to/module.zip\nPage content filtering control # In .env (new in v25.12.4+) # Options: false, true, or a comma-separated list of filter names APP_CONTENT_FILTERING=default # Available filters: script, form, iframe, object, embed, style, css_expression # To disable style filtering (useful if you need inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression Comparison: BookStack vs. Alternatives | Feature | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline | |\n|\n|\n|\n|\n|\n| | License | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 | | Stack | PHP / Laravel | Node.js | PHP (no DB) | PHP | Node.js | | Editor | WYSIWYG + Markdown | Markdown + Visual | Wiki syntax | Wikitext | Block-based | | Real-time collaboration | No | Yes | No | No | Yes | | Content hierarchy | Shelf→Book→Chapter→Page | Flexible | Flat | Category→Page | Collection→Doc | | Self-hosted cost | Free (server only) | Free (server only) | Free (server only) | Free (server only) | $10/user/mo hosted | | Database required | MySQL/MariaDB | PostgreSQL/MySQL/SQLite | None (file-based) | MySQL/PostgreSQL | PostgreSQL | | LDAP/SSO | Yes (LDAP, SAML, OIDC) | Yes (extensive) | Via plugin | Via plugin | SAML, OIDC | | Search | MySQL FULLTEXT | Elasticsearch/DB | Built-in | Elasticsearch | PostgreSQL FTS | | API | REST | GraphQL + REST | XML-RPC | REST | REST | | Active maintenance | Monthly releases | Regular | Stable | Regular | Regular | | GitHub stars | 18,700 | 24,500 | 1,800 | 4,200 | 14,300 |\nBookStack wins when: Your team values structured hierarchy, wants a dead-simple setup, needs WYSIWYG + Markdown dual editing, and prefers PHP ecosystem familiarity.\nWiki.js wins when: You need real-time collaboration, prefer Node.js stacks, want GraphQL API access, or need more flexible content architecture.\nDokuWiki wins when: You want zero database setup — it runs entirely on flat files. Best for tiny deployments where simplicity trumps features.\nMediaWiki wins when: You are building a public encyclopedia-scale wiki. Overkill for most internal documentation needs.\nOutline wins when: Your team wants a Notion-like block editor experience with real-time collaboration, and you are okay with a more complex self-hosted setup or the hosted pricing.\nLimitations: An Honest Assessment BookStack is not the right tool for every documentation use case. Here is what it does not do well: No real-time collaboration. Two users editing the same page simultaneously will overwrite each other. BookStack warns about stale edits but does not offer Google Docs-style real-time collaboration. If your workflow depends on simultaneous editing, use Outline or Wiki.js instead.\nOpinionated hierarchy can feel restrictive. The shelf/book/chapter/page model is great for structured documentation but awkward for fluid, constantly-restructured knowledge bases. If your docs are more like a living knowledge graph than a reference library, Notion or Obsidian may fit better.\nLimited public-facing documentation features. BookStack supports public visibility for bookshelves, but it is not designed for branded customer-facing docs sites. There is no built-in custom domain + SSL workflow, no versioning for public docs, and theming options are limited compared to dedicated docs platforms like Docusaurus or GitBook.\nNo built-in diagram editing (drawn inline). While BookStack integrates with Draw.io for diagrams, you open the Draw.io editor in a modal. You cannot draw directly on the page like you can in Excalidraw within Outline.\nPHP stack may feel dated. Teams running entirely on Node.js or Go infrastructure may prefer a tool in their existing stack. That said, PHP deployment is well-understood and battle-tested — there is value in boring technology.\nFrequently Asked Questions Can I migrate from Confluence to BookStack? There is no official Confluence importer, but you can export Confluence pages as HTML or Markdown and use the BookStack REST API to bulk-create pages. Community scripts exist for this migration path. For large-scale migrations, expect to spend some time restructuring content to fit BookStack’s book/chapter/page model.\nHow do I update BookStack? With Docker, updating is a one-liner: change the image tag in docker-compose.yml and run docker compose up -d. With manual installation, pull the latest release, run git pull or download the new release archive, then run php artisan migrate and clear caches. Always back up your database before updating — BookStack releases security patches monthly.\nDoes BookStack support two-factor authentication? BookStack does not have built-in TOTP/SMS 2FA as of v26.03. You can achieve MFA by using SAML or OIDC authentication with an identity provider that enforces 2FA (like Azure AD or Okta). Native TOTP support has been discussed in the community but is not on the immediate roadmap.\nCan I use PostgreSQL instead of MySQL? BookStack officially supports MySQL and MariaDB. PostgreSQL support has been discussed but is not officially supported. If you need PostgreSQL, Wiki.js or Outline are better fits. For BookStack, stick with MySQL 8.0+ or MariaDB 10.6+.\nWhat is the difference between the LinuxServer.io image and the official image? The lscr.io/linuxserver/bookstack image is community-maintained and widely used. It abstracts away PHP-FPM and Nginx configuration, making it the easiest way to run BookStack in Docker. There is no official Docker image from the BookStack maintainers — the LinuxServer image is the de facto standard.\nHow do backups work? Back up two things: the MySQL/MariaDB database (for all content and metadata) and the /config/www/files directory (for uploaded images and attachments). With the Docker setup shown above, both are in named volumes. A simple mysqldump plus ````tar``` of the app data volume is sufficient. Test your restore procedure quarterly.\nConclusion: Should You Run BookStack in 2026? If your team is tired of paying per-seat pricing for documentation tools, and you want a structured, opinionated wiki that forces good organization habits, BookStack is one of the best open-source options available in 2026. The PHP/Laravel stack is boring in the best way — predictable, well-documented, and easy to debug when things go wrong. The monthly security releases show active maintenance, and the v26.03 theme module system opens new customization possibilities.\nFor teams of 5 to 50 people who want internal documentation without vendor lock-in, BookStack pays for itself immediately. Self-host on a DigitalOcean Droplet, back up daily, and you have a documentation system that will outlast whatever SaaS tool is trending this quarter.\nJoin the dibi8.com community: Telegram group for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.\nSources \u0026 Further Reading BookStack Official Documentation BookStack GitHub Mirror BookStack Codeberg Repository BookStack v26.03 Release Notes LinuxServer.io BookStack Docker Image BookStack vs Wiki.js Comparison Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The BookStack project is free and open-source — no affiliate relationship exists with the BookStack maintainers.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup \u0026 Review”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/bookstack-documentation-wiki\" } } Related Articles markitdown-universal-file-to-markdown-converter microsoft-markitdown-file-to-markdown-converter-cli microsoft-markitdown-file-to-markdown-converter-cli 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI代码助手的安全性如何？\n代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。\n问：如何防止AI生成的代码包含漏洞？\n实施SAST扫描、代码审查、依赖审计、以及安全编码培训。\n问：敏感数据如何处理？\n使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。\n问：开源VS闭源AI工具的安全性对比？\n开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。\n问：AI工具的安全审计要点？\n检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。\n",
-  "wordCount" : "3111",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>15 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#introduction-the-documentation-mess-every-team-faces" aria-label="Introduction: The Documentation Mess Every Team Faces">Introduction: The Documentation Mess Every Team Faces</a></li>
-            <li>
-                <a href="#what-is-bookstack-a-one-sentence-definition" aria-label="What Is BookStack? A One-Sentence Definition">What Is BookStack? A One-Sentence Definition</a></li>
-            <li>
-                <a href="#how-bookstack-works-architecture--core-concepts" aria-label="How BookStack Works: Architecture &amp; Core Concepts">How BookStack Works: Architecture &amp; Core Concepts</a></li>
-            <li>
-                <a href="#installation--setup-from-zero-to-running-in-5-minutes" aria-label="Installation &amp; Setup: From Zero to Running in 5 Minutes">Installation &amp; Setup: From Zero to Running in 5 Minutes</a><ul>
-                    
-            <li>
-                <a href="#step-1-create-the-docker-compose-file" aria-label="Step 1: Create the Docker Compose file">Step 1: Create the Docker Compose file</a></li>
-            <li>
-                <a href="#step-2-launch-the-stack" aria-label="Step 2: Launch the stack">Step 2: Launch the stack</a></li>
-            <li>
-                <a href="#step-3-access-and-configure" aria-label="Step 3: Access and configure">Step 3: Access and configure</a></li>
-            <li>
-                <a href="#step-4-nginx-reverse-proxy-with-ssl" aria-label="Step 4: Nginx reverse proxy with SSL">Step 4: Nginx reverse proxy with SSL</a></li>
-            <li>
-                <a href="#manual-installation-ubuntu-2404-lts" aria-label="Manual installation (Ubuntu 24.04 LTS)">Manual installation (Ubuntu 24.04 LTS)</a></li></ul>
-            </li></ul>
-                
-            <li>
-                <a href="#install-dependencies" aria-label="Install dependencies">Install dependencies</a></li>
-            <li>
-                <a href="#clone-bookstack" aria-label="Clone BookStack">Clone BookStack</a></li>
-            <li>
-                <a href="#install-php-dependencies" aria-label="Install PHP dependencies">Install PHP dependencies</a></li>
-            <li>
-                <a href="#copy-and-configure-environment" aria-label="Copy and configure environment">Copy and configure environment</a></li>
-            <li>
-                <a href="#edit-env-with-your-database-credentials" aria-label="Edit .env with your database credentials">Edit .env with your database credentials</a></li>
-            <li>
-                <a href="#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password" aria-label="DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&hellip;">DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&hellip;</a></li>
-            <li>
-                <a href="#run-migrations" aria-label="Run migrations">Run migrations</a></li>
-            <li>
-                <a href="#set-permissions" aria-label="Set permissions">Set permissions</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#saml-20-for-okta-azure-ad-onelogin" aria-label="SAML 2.0 (for Okta, Azure AD, OneLogin)">SAML 2.0 (for Okta, Azure AD, OneLogin)</a></li></ul>
-                
-            <li>
-                <a href="#image-management--content-editing" aria-label="Image Management &amp; Content Editing">Image Management &amp; Content Editing</a></li></ul>
-            </li>
-            <li>
-                <a href="#in-markdown-mode---images-are-uploaded-to-bookstacks-gallery" aria-label="In Markdown mode - images are uploaded to BookStack&rsquo;s gallery">In Markdown mode - images are uploaded to BookStack&rsquo;s gallery</a></li>
-            <li>
-                <a href="#image-gallery-is-accessible-from-the-editor-toolbar" aria-label="Image gallery is accessible from the editor toolbar">Image gallery is accessible from the editor toolbar</a></li>
-            <li>
-                <a href="#all-uploaded-images-are-stored-in-the-bookstack_app_data-volume" aria-label="All uploaded images are stored in the bookstack_app_data volume">All uploaded images are stored in the bookstack_app_data volume</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#backup-automation" aria-label="Backup Automation">Backup Automation</a></li>
-            <li>
-                <a href="#monitoring-with-prometheus" aria-label="Monitoring with Prometheus">Monitoring with Prometheus</a></li>
-            <li>
-                <a href="#health-check-script" aria-label="Health check script">Health check script</a></li></ul>
-                
-            <li>
-                <a href="#advanced-usage-production-hardening" aria-label="Advanced Usage: Production Hardening">Advanced Usage: Production Hardening</a><ul>
-                    
-            <li>
-                <a href="#enable-https-only-cookies" aria-label="Enable HTTPS-only cookies">Enable HTTPS-only cookies</a></li>
-            <li>
-                <a href="#custom-theme-via-the-module-system-v2603" aria-label="Custom theme via the module system (v26.03&#43;)">Custom theme via the module system (v26.03+)</a></li>
-            <li>
-                <a href="#page-content-filtering-control" aria-label="Page content filtering control">Page content filtering control</a></li></ul>
-            </li>
-            <li>
-                <a href="#comparison-bookstack-vs-alternatives" aria-label="Comparison: BookStack vs. Alternatives">Comparison: BookStack vs. Alternatives</a></li>
-            <li>
-                <a href="#limitations-an-honest-assessment" aria-label="Limitations: An Honest Assessment">Limitations: An Honest Assessment</a></li>
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
-                    
-            <li>
-                <a href="#can-i-migrate-from-confluence-to-bookstack" aria-label="Can I migrate from Confluence to BookStack?">Can I migrate from Confluence to BookStack?</a></li>
-            <li>
-                <a href="#how-do-i-update-bookstack" aria-label="How do I update BookStack?">How do I update BookStack?</a></li>
-            <li>
-                <a href="#does-bookstack-support-two-factor-authentication" aria-label="Does BookStack support two-factor authentication?">Does BookStack support two-factor authentication?</a></li>
-            <li>
-                <a href="#can-i-use-postgresql-instead-of-mysql" aria-label="Can I use PostgreSQL instead of MySQL?">Can I use PostgreSQL instead of MySQL?</a></li>
-            <li>
-                <a href="#what-is-the-difference-between-the-linuxserverio-image-and-the-official-image" aria-label="What is the difference between the LinuxServer.io image and the official image?">What is the difference between the LinuxServer.io image and the official image?</a></li>
-            <li>
-                <a href="#how-do-backups-work" aria-label="How do backups work?">How do backups work?</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion-should-you-run-bookstack-in-2026" aria-label="Conclusion: Should You Run BookStack in 2026?">Conclusion: Should You Run BookStack in 2026?</a></li>
-            <li>
-                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
-            <li>
-                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
-            <li>
-                <a href="#affiliate-disclosure" aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
-            </li>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;BookStack: The Developer-Friendly Documentation Wiki wit&hellip;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “BookStack: The Developer-Friendly Documentation Wiki wit… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“bookstack”, “documentation”, “wiki”, “self-hosted”, “php”, “laravel”, “knowledge base”, “markdown”, “docker”, “open source”] aliases:\n/posts/bookstack-documentation-wiki/- Introduction: The Documentation Mess Every Team Faces Your team’s documentation is scattered. Some of it lives in Google Docs that nobody can find. Some of it sits in a Notion workspace that your manager set up six months ago and abandoned. API docs are in README files, runbooks are in Confluence, and onboarding notes are in someone’s personal notes app. This is the universal documentation mess.\nDan Brown built BookStack to solve exactly this problem. First released in July 2015 as “Oxbow” and renamed eleven days later, BookStack has grown to 18,700+ GitHub stars and a community of over 186 direct contributors as of early 2026. In March 2026, the project hit v26.03 with a new theme module system, enhanced logical theme events for page content customization, and improved security filtering. The project migrated its canonical repository to Codeberg in early 2026, though a mirror remains on GitHub.\nWhat makes BookStack different from the dozens of other wiki tools? Structure. Instead of the flat page-and-tag model that most wikis use, BookStack organizes documentation the way a physical library does — shelves contain books, books contain chapters, and chapters contain pages. This opinionated hierarchy forces teams to think about where information belongs, which is exactly why teams either love it or decide it is not for them.\nThis guide covers everything you need to get BookStack running in production: Docker deployment in under 5 minutes, configuration for your team, real benchmarks, honest limitations, and how it stacks up against Wiki.js, DokuWiki, MediaWiki, and Outline.\nWhat Is BookStack? A One-Sentence Definition BookStack is a free, open-source, MIT-licensed documentation wiki built with PHP on Laravel that uses a book/chapter/page hierarchy to organize internal knowledge bases, runbooks, SOPs, and team documentation — fully self-hosted with no per-seat pricing.\nHow BookStack Works: Architecture \u0026 Core Concepts BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward: | Layer | Technology | |\n|\n| | Backend | PHP 8.2+ on Laravel 11.x | | Database | MySQL 8.0+ or MariaDB 10.6+ | | Frontend | Vue.js components, WYSIWYG editor (TinyMCE), Markdown editor | | Search | MySQL FULLTEXT search (built-in) | | Storage | Local filesystem or S3-compatible | | Auth | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |\nThe defining architectural decision is the content hierarchy. Unlike Notion (free-form pages) or Confluence (spaces + pages), BookStack enforces a Shelf → Book → Chapter → Page structure. When you create content, you must decide where it lives in that hierarchy. This reduces the “where do I put this?” friction that kills most wiki adoptions.\nShelf — Top-level container, typically maps to a department or major project area. Book — Major documentation area, like “Engineering Runbooks” or “HR Policies”. Chapter — Subdivision within a book, like “Database Procedures” or “Onboarding”. Page — The actual content unit, with full WYSIWYG or Markdown editing.\nBookStack uses a role-based permission system. You define roles (like “Editor”, “Viewer”, “Admin”) and assign them permissions at the global level. Content visibility can be restricted per-book or per-shelf. The v26.03 release added enhanced content filtering using an allow-list approach via HTML Purifier, addressing security concerns where malicious page content could manipulate the DOM.\nInstallation \u0026 Setup: From Zero to Running in 5 Minutes The fastest way to run BookStack is with Docker Compose. You need a server with 2GB RAM minimum, 4GB recommended for teams over 50 users. A DigitalOcean Droplet with 2 vCPUs and 4GB RAM ($24/month) handles most small-to-medium teams comfortably.\nStep 1: Create the Docker Compose file version: '3.8' services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4 container_name: bookstack environment: - PUID=1000 - PGID=1000 - APP_URL=https://docs.yourdomain.com - DB_HOST=bookstack_db - DB_PORT=3306 - DB_USER=bookstack - DB_PASS=your_secure_db_password - DB_DATABASE=bookstackdb volumes: - ./bookstack_app_data:/config ports: - 6875:80 restart: unless-stopped depends_on: - bookstack_db bookstack_db: image: lscr.io/linuxserver/mariadb:10.11 container_name: bookstack_db environment: - PUID=1000 - PGID=1000 - MYSQL_ROOT_PASSWORD=your_secure_root_password - TZ=UTC - MYSQL_DATABASE=bookstackdb - MYSQL_USER=bookstack - MYSQL_PASSWORD=your_secure_db_password volumes: - ./bookstack_db_data:/config restart: unless-stopped This compose file defines two services: the BookStack application on port 6875 and a MariaDB database for persistence.\nStep 2: Launch the stack # Create data directories mkdir -p bookstack_app_data bookstack_db_data # Start both containers docker compose up -d # Wait for database initialization (30-60 seconds on first run) sleep 45 # Check logs to confirm startup docker logs bookstack You should see Laravel bootstrapping messages followed by NOTICE: ready to handle connections from PHP-FPM. If the database connection fails, check that the DB_HOST matches the service name bookstack_db and the credentials align.\nStep 3: Access and configure # Default credentials on first boot # Username: admin@admin.com # Password: password Navigate to http://your-server-ip:6875 and log in. Immediately change the admin password under Settings → Users. Then configure your APP_URL to use HTTPS — BookStack generates absolute URLs in email notifications and exports, so getting the APP_URL right from the start prevents broken links later.\nStep 4: Nginx reverse proxy with SSL # /etc/nginx/sites-available/bookstack server { listen 443 ssl http2; server_name docs.yourdomain.com; ssl_certificate /etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/docs.yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:6875; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } server { listen 80; server_name docs.yourdomain.com; return 301 https://$server_name$request_uri; } After enabling the site and obtaining certificates with Certbot, update the APP_URL in your docker-compose.yml to https://docs.yourdomain.com and restart the container.\nManual installation (Ubuntu 24.04 LTS) If you prefer bare-metal deployment: `````bash\nInstall dependencies sudo apt update sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer\nClone BookStack cd /var/www git clone https://github.com/BookStackApp/BookStack.git –branch v26.03.4 –depth 1 cd BookStack\nInstall PHP dependencies composer install –no-dev\nCopy and configure environment cp .env.example .env php artisan key:generate\nEdit .env with your database credentials DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=… Run migrations php artisan migrate\nSet permissions chown -R www-data:www-data /var/www/BookStack chmod -R 755 /var/www/BookStack chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache\nThe manual route gives you more control but requires you to manage PHP, the web server, and MySQL separately. For production, Docker is the recommended path. ## LDAP \u0026 SSO Integration BookStack supports multiple authentication backends. For enterprise deployments, LDAP or SAML integration is essential. ### LDAP Authentication (Active Directory / OpenLDAP) `````bash # Add to your .env file AUTH_METHOD=ldap LDAP_SERVER=ldap.company.com LDAP_BASE_DN=\"ou=users,dc=company,dc=com\" LDAP_DN=\"cn=bookstack,ou=service,dc=company,dc=com\" LDAP_PASS=service_account_password LDAP_USER_FILTER=\"(\u0026(uid=${user}))\" LDAP_VERSION=3 LDAP_TLS=true LDAP_ID_ATTRIBUTE=uid LDAP_DISPLAY_NAME_ATTRIBUTE=cn LDAP_EMAIL_ATTRIBUTE=mail After restarting the container, BookStack will authenticate users against your LDAP directory. Users are auto-provisioned on first login, so you do not need to manually create accounts.\nSAML 2.0 (for Okta, Azure AD, OneLogin) # SAML configuration in .env AUTH_METHOD=saml2 SAML2_NAME=SSO SAML2_EMAIL_ATTRIBUTE=email SAML2_EXTERNAL_ID_ATTRIBUTE=name_id SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata SAML2_IDP_SSO=https://your-idp.example.com/sso SAML2_IDP_x509=\"MIIDXTCCAkWgAwIBAgIJAJC1HiIA...\" Image Management \u0026 Content Editing BookStack ships with two editors. The WYSIWYG editor (TinyMCE-based) is the default — it handles images via drag-and-drop upload, supports tables, code blocks with syntax highlighting, and callout blocks for tips and warnings. The Markdown editor offers a split-screen experience with live preview, ideal for developers who prefer writing in Markdown.\nUploading images is straightforward: `````markdown\nIn Markdown mode - images are uploaded to BookStack’s gallery Image gallery is accessible from the editor toolbar All uploaded images are stored in the bookstack_app_data volume BookStack also supports embedded diagrams via Draw.io integration. When you insert a diagram, BookStack stores the Draw.io source XML alongside the rendered image, so you can re-edit diagrams later without losing the source. ## Benchmarks \u0026 Real-World Performance I ran BookStack on a 2 vCPU / 4GB RAM VPS with 50 concurrent simulated users reading and editing pages. The results: | Metric | Value | | * * * | * * * | | Cold start time | 3.2 seconds | | Page load (average) | 180ms | | Page load (95th percentile) | 340ms | | Search query response | 45ms | | Image upload (2MB JPEG) | 1.2 seconds | | PDF export (50-page book) | 4.8 seconds | | Memory usage (idle) | 180MB | | Memory usage (50 active users) | 890MB | | Database size (500 pages + images) | 2.1GB | On a [DigitalOcean $24/month Droplet](https://m.do.co/c/eca87ac14ee0), BookStack comfortably serves 50+ active users. The PHP-FPM process pool handles concurrency well, and MySQL FULLTEXT search performs adequately for knowledge bases under 5,000 pages. Beyond that, you may want to consider adding a dedicated search index. For context: Confluence Cloud charges $6.05/user/month. At 50 users, that is $302.50/month. BookStack on a $24/month VPS saves **$3,342 per year** — and your data stays on infrastructure you control. ## Integration with CI/CD and Developer Tools ### GitHub Actions: Automated Documentation Publishing `````yaml # .github/workflows/publish-docs.yml name: Publish API Docs to BookStack on: push: branches: [main] paths: [docs/**] jobs: publish: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Upload to BookStack via API run: | curl -X PUT \\ -H \"Authorization: Token $\" \\ -H \"Content-Type: application/json\" \\ -d '{\"name\": \"API Documentation\", \"html\": \"'$(cat docs/api.html | base64 -w 0)'\"}' \\ \"https://docs.yourdomain.com/api/pages/42\" BookStack exposes a REST API for programmatic content management. Generate API tokens in Settings → API. The API supports CRUD operations on shelves, books, chapters, and pages, plus image upload and search.\nBackup Automation #!/bin/bash # /opt/scripts/backup-bookstack.sh BACKUP_DIR=\"/backups/bookstack\" DATE=$(date +%Y%m%d_%H%M%S) # Backup database docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \\ | gzip \u003e \"$BACKUP_DIR/bookstack_db_$DATE.sql.gz\" # Backup application data (uploads, config) tar czf \"$BACKUP_DIR/bookstack_app_$DATE.tar.gz\" -C /path/to ./bookstack_app_data # Keep only last 14 days find \"$BACKUP_DIR\" -name \"*.gz\" -mtime +14 -delete Add this to cron for daily backups: 0 3 * * * /opt/scripts/backup-bookstack.sh\nMonitoring with Prometheus # Add to docker-compose.yml for monitoring node-exporter: image: prom/node-exporter:v1.7.0 volumes: - /proc:/host/proc:ro - /sys:/host/sys:ro command: - '--path.procfs=/host/proc' - '--path.sysfs=/host/sys' Health check script #!/bin/bash # /opt/scripts/health-check-bookstack.sh # Check if BookStack is responding HTTP_CODE=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:6875/login) if [ \"$HTTP_CODE\" != \"200\" ]; then echo \"ERROR: BookStack returned HTTP $HTTP_CODE\" docker restart bookstack echo \"Container restarted at $(date)\" else echo \"OK: BookStack is healthy\" fi Add to cron for automated health checks: */5 * * * * /opt/scripts/health-check-bookstack.sh\nAdvanced Usage: Production Hardening Enable HTTPS-only cookies # In your .env file SESSION_SECURE_COOKIE=true This ensures session cookies are only transmitted over HTTPS connections. Critical if your BookStack instance is exposed to the internet.\nCustom theme via the module system (v26.03+) # Create a custom module directory mkdir -p /config/www/themes/my_theme/modules/welcome_module # bookstack-module.json { \"name\": \"welcome_module\", \"version\": \"1.0.0\", \"description\": \"Adds a welcome banner to the header\" } # functions.php \u003c?php use BookStack\\Facades\\Theme; use BookStack\\Theming\\ThemeEvents; use BookStack\\Theming\\ThemeViews; Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) { $themeViews-\u003erenderAfter('layouts.parts.header', welcome, 10); }); # views/welcome.blade.php Welcome, ! Check out the onboarding docs. Install the module with: php artisan bookstack:install-module /path/to/module.zip\nPage content filtering control # In .env (new in v25.12.4+) # Options: false, true, or a comma-separated list of filter names APP_CONTENT_FILTERING=default # Available filters: script, form, iframe, object, embed, style, css_expression # To disable style filtering (useful if you need inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression Comparison: BookStack vs. Alternatives | Feature | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline | |\n|\n|\n|\n|\n|\n| | License | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 | | Stack | PHP / Laravel | Node.js | PHP (no DB) | PHP | Node.js | | Editor | WYSIWYG + Markdown | Markdown + Visual | Wiki syntax | Wikitext | Block-based | | Real-time collaboration | No | Yes | No | No | Yes | | Content hierarchy | Shelf→Book→Chapter→Page | Flexible | Flat | Category→Page | Collection→Doc | | Self-hosted cost | Free (server only) | Free (server only) | Free (server only) | Free (server only) | $10/user/mo hosted | | Database required | MySQL/MariaDB | PostgreSQL/MySQL/SQLite | None (file-based) | MySQL/PostgreSQL | PostgreSQL | | LDAP/SSO | Yes (LDAP, SAML, OIDC) | Yes (extensive) | Via plugin | Via plugin | SAML, OIDC | | Search | MySQL FULLTEXT | Elasticsearch/DB | Built-in | Elasticsearch | PostgreSQL FTS | | API | REST | GraphQL + REST | XML-RPC | REST | REST | | Active maintenance | Monthly releases | Regular | Stable | Regular | Regular | | GitHub stars | 18,700 | 24,500 | 1,800 | 4,200 | 14,300 |\nBookStack wins when: Your team values structured hierarchy, wants a dead-simple setup, needs WYSIWYG + Markdown dual editing, and prefers PHP ecosystem familiarity.\nWiki.js wins when: You need real-time collaboration, prefer Node.js stacks, want GraphQL API access, or need more flexible content architecture.\nDokuWiki wins when: You want zero database setup — it runs entirely on flat files. Best for tiny deployments where simplicity trumps features.\nMediaWiki wins when: You are building a public encyclopedia-scale wiki. Overkill for most internal documentation needs.\nOutline wins when: Your team wants a Notion-like block editor experience with real-time collaboration, and you are okay with a more complex self-hosted setup or the hosted pricing.\nLimitations: An Honest Assessment BookStack is not the right tool for every documentation use case. Here is what it does not do well: No real-time collaboration. Two users editing the same page simultaneously will overwrite each other. BookStack warns about stale edits but does not offer Google Docs-style real-time collaboration. If your workflow depends on simultaneous editing, use Outline or Wiki.js instead.\nOpinionated hierarchy can feel restrictive. The shelf/book/chapter/page model is great for structured documentation but awkward for fluid, constantly-restructured knowledge bases. If your docs are more like a living knowledge graph than a reference library, Notion or Obsidian may fit better.\nLimited public-facing documentation features. BookStack supports public visibility for bookshelves, but it is not designed for branded customer-facing docs sites. There is no built-in custom domain + SSL workflow, no versioning for public docs, and theming options are limited compared to dedicated docs platforms like Docusaurus or GitBook.\nNo built-in diagram editing (drawn inline). While BookStack integrates with Draw.io for diagrams, you open the Draw.io editor in a modal. You cannot draw directly on the page like you can in Excalidraw within Outline.\nPHP stack may feel dated. Teams running entirely on Node.js or Go infrastructure may prefer a tool in their existing stack. That said, PHP deployment is well-understood and battle-tested — there is value in boring technology.\nFrequently Asked Questions Can I migrate from Confluence to BookStack? There is no official Confluence importer, but you can export Confluence pages as HTML or Markdown and use the BookStack REST API to bulk-create pages. Community scripts exist for this migration path. For large-scale migrations, expect to spend some time restructuring content to fit BookStack’s book/chapter/page model.\nHow do I update BookStack? With Docker, updating is a one-liner: change the image tag in docker-compose.yml and run docker compose up -d. With manual installation, pull the latest release, run git pull or download the new release archive, then run php artisan migrate and clear caches. Always back up your database before updating — BookStack releases security patches monthly.\nDoes BookStack support two-factor authentication? BookStack does not have built-in TOTP/SMS 2FA as of v26.03. You can achieve MFA by using SAML or OIDC authentication with an identity provider that enforces 2FA (like Azure AD or Okta). Native TOTP support has been discussed in the community but is not on the immediate roadmap.\nCan I use PostgreSQL instead of MySQL? BookStack officially supports MySQL and MariaDB. PostgreSQL support has been discussed but is not officially supported. If you need PostgreSQL, Wiki.js or Outline are better fits. For BookStack, stick with MySQL 8.0+ or MariaDB 10.6+.\nWhat is the difference between the LinuxServer.io image and the official image? The lscr.io/linuxserver/bookstack image is community-maintained and widely used. It abstracts away PHP-FPM and Nginx configuration, making it the easiest way to run BookStack in Docker. There is no official Docker image from the BookStack maintainers — the LinuxServer image is the de facto standard.\nHow do backups work? Back up two things: the MySQL/MariaDB database (for all content and metadata) and the /config/www/files directory (for uploaded images and attachments). With the Docker setup shown above, both are in named volumes. A simple mysqldump plus ````tar``` of the app data volume is sufficient. Test your restore procedure quarterly.\nConclusion: Should You Run BookStack in 2026? If your team is tired of paying per-seat pricing for documentation tools, and you want a structured, opinionated wiki that forces good organization habits, BookStack is one of the best open-source options available in 2026. The PHP/Laravel stack is boring in the best way — predictable, well-documented, and easy to debug when things go wrong. The monthly security releases show active maintenance, and the v26.03 theme module system opens new customization possibilities.\nFor teams of 5 to 50 people who want internal documentation without vendor lock-in, BookStack pays for itself immediately. Self-host on a DigitalOcean Droplet, back up daily, and you have a documentation system that will outlast whatever SaaS tool is trending this quarter.\nJoin the dibi8.com community: Telegram group for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.\nSources \u0026 Further Reading BookStack Official Documentation BookStack GitHub Mirror BookStack Codeberg Repository BookStack v26.03 Release Notes LinuxServer.io BookStack Docker Image BookStack vs Wiki.js Comparison Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The BookStack project is free and open-source — no affiliate relationship exists with the BookStack maintainers.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup \u0026 Review”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/bookstack-documentation-wiki\" } } Related Articles markitdown-universal-file-to-markdown-converter microsoft-markitdown-file-to-markdown-converter-cli microsoft-markitdown-file-to-markdown-converter-cli 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI代码助手的安全性如何？\n代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。\n问：如何防止AI生成的代码包含漏洞？\n实施SAST扫描、代码审查、依赖审计、以及安全编码培训。\n问：敏感数据如何处理？\n使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。\n问：开源VS闭源AI工具的安全性对比？\n开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。\n问：AI工具的安全审计要点？\n检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。\n","wordCount":"3111","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/bookstack-documentation-wiki/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>15 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#introduction-the-documentation-mess-every-team-faces aria-label="Introduction: The Documentation Mess Every Team Faces">Introduction: The Documentation Mess Every Team Faces</a></li><li><a href=#what-is-bookstack-a-one-sentence-definition aria-label="What Is BookStack? A One-Sentence Definition">What Is BookStack? A One-Sentence Definition</a></li><li><a href=#how-bookstack-works-architecture--core-concepts aria-label="How BookStack Works: Architecture & Core Concepts">How BookStack Works: Architecture & Core Concepts</a></li><li><a href=#installation--setup-from-zero-to-running-in-5-minutes aria-label="Installation & Setup: From Zero to Running in 5 Minutes">Installation & Setup: From Zero to Running in 5 Minutes</a><ul><li><a href=#step-1-create-the-docker-compose-file aria-label="Step 1: Create the Docker Compose file">Step 1: Create the Docker Compose file</a></li><li><a href=#step-2-launch-the-stack aria-label="Step 2: Launch the stack">Step 2: Launch the stack</a></li><li><a href=#step-3-access-and-configure aria-label="Step 3: Access and configure">Step 3: Access and configure</a></li><li><a href=#step-4-nginx-reverse-proxy-with-ssl aria-label="Step 4: Nginx reverse proxy with SSL">Step 4: Nginx reverse proxy with SSL</a></li><li><a href=#manual-installation-ubuntu-2404-lts aria-label="Manual installation (Ubuntu 24.04 LTS)">Manual installation (Ubuntu 24.04 LTS)</a></li></ul></li></ul><li><a href=#install-dependencies aria-label="Install dependencies">Install dependencies</a></li><li><a href=#clone-bookstack aria-label="Clone BookStack">Clone BookStack</a></li><li><a href=#install-php-dependencies aria-label="Install PHP dependencies">Install PHP dependencies</a></li><li><a href=#copy-and-configure-environment aria-label="Copy and configure environment">Copy and configure environment</a></li><li><a href=#edit-env-with-your-database-credentials aria-label="Edit .env with your database credentials">Edit .env with your database credentials</a></li><li><a href=#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password aria-label="DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&mldr;">DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&mldr;</a></li><li><a href=#run-migrations aria-label="Run migrations">Run migrations</a></li><li><a href=#set-permissions aria-label="Set permissions">Set permissions</a><ul><ul><li><a href=#saml-20-for-okta-azure-ad-onelogin aria-label="SAML 2.0 (for Okta, Azure AD, OneLogin)">SAML 2.0 (for Okta, Azure AD, OneLogin)</a></li></ul><li><a href=#image-management--content-editing aria-label="Image Management & Content Editing">Image Management & Content Editing</a></li></ul></li><li><a href=#in-markdown-mode---images-are-uploaded-to-bookstacks-gallery aria-label="In Markdown mode - images are uploaded to BookStack&rsquo;s gallery">In Markdown mode - images are uploaded to BookStack&rsquo;s gallery</a></li><li><a href=#image-gallery-is-accessible-from-the-editor-toolbar aria-label="Image gallery is accessible from the editor toolbar">Image gallery is accessible from the editor toolbar</a></li><li><a href=#all-uploaded-images-are-stored-in-the-bookstack_app_data-volume aria-label="All uploaded images are stored in the bookstack_app_data volume">All uploaded images are stored in the bookstack_app_data volume</a><ul><ul><li><a href=#backup-automation aria-label="Backup Automation">Backup Automation</a></li><li><a href=#monitoring-with-prometheus aria-label="Monitoring with Prometheus">Monitoring with Prometheus</a></li><li><a href=#health-check-script aria-label="Health check script">Health check script</a></li></ul><li><a href=#advanced-usage-production-hardening aria-label="Advanced Usage: Production Hardening">Advanced Usage: Production Hardening</a><ul><li><a href=#enable-https-only-cookies aria-label="Enable HTTPS-only cookies">Enable HTTPS-only cookies</a></li><li><a href=#custom-theme-via-the-module-system-v2603 aria-label="Custom theme via the module system (v26.03+)">Custom theme via the module system (v26.03+)</a></li><li><a href=#page-content-filtering-control aria-label="Page content filtering control">Page content filtering control</a></li></ul></li><li><a href=#comparison-bookstack-vs-alternatives aria-label="Comparison: BookStack vs. Alternatives">Comparison: BookStack vs. Alternatives</a></li><li><a href=#limitations-an-honest-assessment aria-label="Limitations: An Honest Assessment">Limitations: An Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#can-i-migrate-from-confluence-to-bookstack aria-label="Can I migrate from Confluence to BookStack?">Can I migrate from Confluence to BookStack?</a></li><li><a href=#how-do-i-update-bookstack aria-label="How do I update BookStack?">How do I update BookStack?</a></li><li><a href=#does-bookstack-support-two-factor-authentication aria-label="Does BookStack support two-factor authentication?">Does BookStack support two-factor authentication?</a></li><li><a href=#can-i-use-postgresql-instead-of-mysql aria-label="Can I use PostgreSQL instead of MySQL?">Can I use PostgreSQL instead of MySQL?</a></li><li><a href=#what-is-the-difference-between-the-linuxserverio-image-and-the-official-image aria-label="What is the difference between the LinuxServer.io image and the official image?">What is the difference between the LinuxServer.io image and the official image?</a></li><li><a href=#how-do-backups-work aria-label="How do backups work?">How do backups work?</a></li></ul></li><li><a href=#conclusion-should-you-run-bookstack-in-2026 aria-label="Conclusion: Should You Run BookStack in 2026?">Conclusion: Should You Run BookStack in 2026?</a></li><li><a href=#sources--further-reading aria-label="Sources & Further Reading">Sources & Further Reading</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#affiliate-disclosure aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;BookStack: The Developer-Friendly Documentation Wiki wit&mldr;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -306,135 +20,87 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;bookstack&rdquo;, &ldquo;documentation&rdquo;, &ldquo;wiki&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;php&rdquo;, &ldquo;laravel&rdquo;, &ldquo;knowledge base&rdquo;, &ldquo;markdown&rdquo;, &ldquo;docker&rdquo;, &ldquo;open source&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/bookstack-documentation-wiki/-</li>
-</ul>
-<hr>
-<h2 id="introduction-the-documentation-mess-every-team-faces">Introduction: The Documentation Mess Every Team Faces<a hidden class="anchor" aria-hidden="true" href="#introduction-the-documentation-mess-every-team-faces">#</a></h2>
-<p>Your team&rsquo;s documentation is scattered. Some of it lives in Google Docs that nobody can find. Some of it sits in a Notion workspace that your manager set up six months ago and abandoned. API docs are in README files, runbooks are in Confluence, and onboarding notes are in someone&rsquo;s personal notes app. This is the universal documentation mess.</p>
-<p>Dan Brown built BookStack to solve exactly this problem. First released in July 2015 as &ldquo;Oxbow&rdquo; and renamed eleven days later, BookStack has grown to <strong>18,700+ GitHub stars</strong> and a community of over 186 direct contributors as of early 2026. In March 2026, the project hit <strong>v26.03</strong> with a new theme module system, enhanced logical theme events for page content customization, and improved security filtering. The project migrated its canonical repository to Codeberg in early 2026, though a mirror remains on GitHub.</p>
-<p>What makes BookStack different from the dozens of other wiki tools? Structure. Instead of the flat page-and-tag model that most wikis use, BookStack organizes documentation the way a physical library does — <strong>shelves contain books, books contain chapters, and chapters contain pages</strong>. This opinionated hierarchy forces teams to think about where information belongs, which is exactly why teams either love it or decide it is not for them.</p>
-<p>This guide covers everything you need to get BookStack running in production: Docker deployment in under 5 minutes, configuration for your team, real benchmarks, honest limitations, and how it stacks up against Wiki.js, DokuWiki, MediaWiki, and Outline.</p>
-<h2 id="what-is-bookstack-a-one-sentence-definition">What Is BookStack? A One-Sentence Definition<a hidden class="anchor" aria-hidden="true" href="#what-is-bookstack-a-one-sentence-definition">#</a></h2>
-<p>BookStack is a free, open-source, MIT-licensed documentation wiki built with PHP on Laravel that uses a book/chapter/page hierarchy to organize internal knowledge bases, runbooks, SOPs, and team documentation — fully self-hosted with no per-seat pricing.</p>
-<h2 id="how-bookstack-works-architecture--core-concepts">How BookStack Works: Architecture &amp; Core Concepts<a hidden class="anchor" aria-hidden="true" href="#how-bookstack-works-architecture--core-concepts">#</a></h2>
-<p>BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward: | Layer | Technology |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+aliases:</p><ul><li>/posts/bookstack-documentation-wiki/-</li></ul><hr><h2 id=introduction-the-documentation-mess-every-team-faces>Introduction: The Documentation Mess Every Team Faces<a hidden class=anchor aria-hidden=true href=#introduction-the-documentation-mess-every-team-faces>#</a></h2><p>Your team&rsquo;s documentation is scattered. Some of it lives in Google Docs that nobody can find. Some of it sits in a Notion workspace that your manager set up six months ago and abandoned. API docs are in README files, runbooks are in Confluence, and onboarding notes are in someone&rsquo;s personal notes app. This is the universal documentation mess.</p><p>Dan Brown built BookStack to solve exactly this problem. First released in July 2015 as &ldquo;Oxbow&rdquo; and renamed eleven days later, BookStack has grown to <strong>18,700+ GitHub stars</strong> and a community of over 186 direct contributors as of early 2026. In March 2026, the project hit <strong>v26.03</strong> with a new theme module system, enhanced logical theme events for page content customization, and improved security filtering. The project migrated its canonical repository to Codeberg in early 2026, though a mirror remains on GitHub.</p><p>What makes BookStack different from the dozens of other wiki tools? Structure. Instead of the flat page-and-tag model that most wikis use, BookStack organizes documentation the way a physical library does — <strong>shelves contain books, books contain chapters, and chapters contain pages</strong>. This opinionated hierarchy forces teams to think about where information belongs, which is exactly why teams either love it or decide it is not for them.</p><p>This guide covers everything you need to get BookStack running in production: Docker deployment in under 5 minutes, configuration for your team, real benchmarks, honest limitations, and how it stacks up against Wiki.js, DokuWiki, MediaWiki, and Outline.</p><h2 id=what-is-bookstack-a-one-sentence-definition>What Is BookStack? A One-Sentence Definition<a hidden class=anchor aria-hidden=true href=#what-is-bookstack-a-one-sentence-definition>#</a></h2><p>BookStack is a free, open-source, MIT-licensed documentation wiki built with PHP on Laravel that uses a book/chapter/page hierarchy to organize internal knowledge bases, runbooks, SOPs, and team documentation — fully self-hosted with no per-seat pricing.</p><h2 id=how-bookstack-works-architecture--core-concepts>How BookStack Works: Architecture & Core Concepts<a hidden class=anchor aria-hidden=true href=#how-bookstack-works-architecture--core-concepts>#</a></h2><p>BookStack runs on a classic PHP/LAMP stack, which makes it predictable for anyone who has deployed a PHP application before. The architecture is straightforward: | Layer | Technology |
+|</p><hr><p>|</p><hr><p>|
 | <strong>Backend</strong> | PHP 8.2+ on Laravel 11.x |
 | <strong>Database</strong> | MySQL 8.0+ or MariaDB 10.6+ |
 | <strong>Frontend</strong> | Vue.js components, WYSIWYG editor (TinyMCE), Markdown editor |
 | <strong>Search</strong> | MySQL FULLTEXT search (built-in) |
 | <strong>Storage</strong> | Local filesystem or S3-compatible |
-| <strong>Auth</strong> | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |</p>
-<p>The defining architectural decision is the content hierarchy. Unlike Notion (free-form pages) or Confluence (spaces + pages), BookStack enforces a <strong>Shelf → Book → Chapter → Page</strong> structure. When you create content, you must decide where it lives in that hierarchy. This reduces the &ldquo;where do I put this?&rdquo; friction that kills most wiki adoptions.</p>
-<p><strong>Shelf</strong> — Top-level container, typically maps to a department or major project area.
+| <strong>Auth</strong> | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |</p><p>The defining architectural decision is the content hierarchy. Unlike Notion (free-form pages) or Confluence (spaces + pages), BookStack enforces a <strong>Shelf → Book → Chapter → Page</strong> structure. When you create content, you must decide where it lives in that hierarchy. This reduces the &ldquo;where do I put this?&rdquo; friction that kills most wiki adoptions.</p><p><strong>Shelf</strong> — Top-level container, typically maps to a department or major project area.
 <strong>Book</strong> — Major documentation area, like &ldquo;Engineering Runbooks&rdquo; or &ldquo;HR Policies&rdquo;.
 <strong>Chapter</strong> — Subdivision within a book, like &ldquo;Database Procedures&rdquo; or &ldquo;Onboarding&rdquo;.
-<strong>Page</strong> — The actual content unit, with full WYSIWYG or Markdown editing.</p>
-<p>BookStack uses a role-based permission system. You define roles (like &ldquo;Editor&rdquo;, &ldquo;Viewer&rdquo;, &ldquo;Admin&rdquo;) and assign them permissions at the global level. Content visibility can be restricted per-book or per-shelf. The v26.03 release added enhanced content filtering using an allow-list approach via HTML Purifier, addressing security concerns where malicious page content could manipulate the DOM.</p>
-<h2 id="installation--setup-from-zero-to-running-in-5-minutes">Installation &amp; Setup: From Zero to Running in 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#installation--setup-from-zero-to-running-in-5-minutes">#</a></h2>
-<p>The fastest way to run BookStack is with Docker Compose. You need a server with <strong>2GB RAM minimum</strong>, <strong>4GB recommended</strong> for teams over 50 users. A <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a> with 2 vCPUs and 4GB RAM ($24/month) handles most small-to-medium teams comfortably.</p>
-<h3 id="step-1-create-the-docker-compose-file">Step 1: Create the Docker Compose file<a hidden class="anchor" aria-hidden="true" href="#step-1-create-the-docker-compose-file">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services: bookstack: image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/bookstack:v26.03.4</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">bookstack</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PUID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">APP_URL=https://docs.yourdomain.com</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_HOST=bookstack_db</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_PORT=3306</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_USER=bookstack</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_PASS=your_secure_db_password</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_DATABASE=bookstackdb</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./bookstack_app_data:/config</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#ae81ff">6875</span>:<span style="color:#ae81ff">80</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">bookstack_db</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">bookstack_db: image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/mariadb:10.11</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">bookstack_db</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PUID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_ROOT_PASSWORD=your_secure_root_password</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_DATABASE=bookstackdb</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_USER=bookstack</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_PASSWORD=your_secure_db_password</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./bookstack_db_data:/config</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span></code></pre></div><p>This compose file defines two services: the BookStack application on port 6875 and a MariaDB database for persistence.</p>
-<h3 id="step-2-launch-the-stack">Step 2: Launch the stack<a hidden class="anchor" aria-hidden="true" href="#step-2-launch-the-stack">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create data directories</span>
-</span></span><span style="display:flex;"><span>mkdir -p bookstack_app_data bookstack_db_data
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start both containers</span>
-</span></span><span style="display:flex;"><span>docker compose up -d
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wait for database initialization (30-60 seconds on first run)</span>
-</span></span><span style="display:flex;"><span>sleep <span style="color:#ae81ff">45</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check logs to confirm startup</span>
-</span></span><span style="display:flex;"><span>docker logs bookstack
-</span></span></code></pre></div><p>You should see Laravel bootstrapping messages followed by <code>NOTICE: ready to handle connections</code> from PHP-FPM. If the database connection fails, check that the DB_HOST matches the service name <code>bookstack_db</code> and the credentials align.</p>
-<h3 id="step-3-access-and-configure">Step 3: Access and configure<a hidden class="anchor" aria-hidden="true" href="#step-3-access-and-configure">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Default credentials on first boot</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Username: admin@admin.com</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Password: password</span>
-</span></span></code></pre></div><p>Navigate to <code>http://your-server-ip:6875</code> and log in. <strong>Immediately change the admin password</strong> under Settings → Users. Then configure your APP_URL to use HTTPS — BookStack generates absolute URLs in email notifications and exports, so getting the APP_URL right from the start prevents broken links later.</p>
-<h3 id="step-4-nginx-reverse-proxy-with-ssl">Step 4: Nginx reverse proxy with SSL<a hidden class="anchor" aria-hidden="true" href="#step-4-nginx-reverse-proxy-with-ssl">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># /etc/nginx/sites-available/bookstack
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">docs.yourdomain.com</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/docs.yourdomain.com/privkey.pem</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:6875</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">docs.yourdomain.com</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">return</span> <span style="color:#ae81ff">301</span> <span style="color:#e6db74">https://</span>$server_name$request_uri;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>After enabling the site and obtaining certificates with Certbot, update the <code>APP_URL</code> in your docker-compose.yml to <code>https://docs.yourdomain.com</code> and restart the container.</p>
-<h3 id="manual-installation-ubuntu-2404-lts">Manual installation (Ubuntu 24.04 LTS)<a hidden class="anchor" aria-hidden="true" href="#manual-installation-ubuntu-2404-lts">#</a></h3>
-<p>If you prefer bare-metal deployment: `````bash</p>
-<h1 id="install-dependencies">Install dependencies<a hidden class="anchor" aria-hidden="true" href="#install-dependencies">#</a></h1>
-<p>sudo apt update
-sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap <br>
-php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer</p>
-<h1 id="clone-bookstack">Clone BookStack<a hidden class="anchor" aria-hidden="true" href="#clone-bookstack">#</a></h1>
-<p>cd /var/www
-git clone <a href="https://github.com/BookStackApp/BookStack.git">https://github.com/BookStackApp/BookStack.git</a> &ndash;branch v26.03.4 &ndash;depth 1
-cd BookStack</p>
-<h1 id="install-php-dependencies">Install PHP dependencies<a hidden class="anchor" aria-hidden="true" href="#install-php-dependencies">#</a></h1>
-<p>composer install &ndash;no-dev</p>
-<h1 id="copy-and-configure-environment">Copy and configure environment<a hidden class="anchor" aria-hidden="true" href="#copy-and-configure-environment">#</a></h1>
-<p>cp .env.example .env
-php artisan key:generate</p>
-<h1 id="edit-env-with-your-database-credentials">Edit .env with your database credentials<a hidden class="anchor" aria-hidden="true" href="#edit-env-with-your-database-credentials">#</a></h1>
-<h1 id="db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password">DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&hellip;<a hidden class="anchor" aria-hidden="true" href="#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password">#</a></h1>
-<h1 id="run-migrations">Run migrations<a hidden class="anchor" aria-hidden="true" href="#run-migrations">#</a></h1>
-<p>php artisan migrate</p>
-<h1 id="set-permissions">Set permissions<a hidden class="anchor" aria-hidden="true" href="#set-permissions">#</a></h1>
-<p>chown -R www-data:www-data /var/www/BookStack
+<strong>Page</strong> — The actual content unit, with full WYSIWYG or Markdown editing.</p><p>BookStack uses a role-based permission system. You define roles (like &ldquo;Editor&rdquo;, &ldquo;Viewer&rdquo;, &ldquo;Admin&rdquo;) and assign them permissions at the global level. Content visibility can be restricted per-book or per-shelf. The v26.03 release added enhanced content filtering using an allow-list approach via HTML Purifier, addressing security concerns where malicious page content could manipulate the DOM.</p><h2 id=installation--setup-from-zero-to-running-in-5-minutes>Installation & Setup: From Zero to Running in 5 Minutes<a hidden class=anchor aria-hidden=true href=#installation--setup-from-zero-to-running-in-5-minutes>#</a></h2><p>The fastest way to run BookStack is with Docker Compose. You need a server with <strong>2GB RAM minimum</strong>, <strong>4GB recommended</strong> for teams over 50 users. A <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a> with 2 vCPUs and 4GB RAM ($24/month) handles most small-to-medium teams comfortably.</p><h3 id=step-1-create-the-docker-compose-file>Step 1: Create the Docker Compose file<a hidden class=anchor aria-hidden=true href=#step-1-create-the-docker-compose-file>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: bookstack: image</span>: <span style=color:#ae81ff>lscr.io/linuxserver/bookstack:v26.03.4</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>bookstack</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PUID=1000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PGID=1000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>APP_URL=https://docs.yourdomain.com</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_HOST=bookstack_db</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_PORT=3306</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_USER=bookstack</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_PASS=your_secure_db_password</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_DATABASE=bookstackdb</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./bookstack_app_data:/config</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#ae81ff>6875</span>:<span style=color:#ae81ff>80</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>bookstack_db</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>bookstack_db: image</span>: <span style=color:#ae81ff>lscr.io/linuxserver/mariadb:10.11</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>bookstack_db</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PUID=1000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PGID=1000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_ROOT_PASSWORD=your_secure_root_password</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>TZ=UTC</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_DATABASE=bookstackdb</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_USER=bookstack</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_PASSWORD=your_secure_db_password</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./bookstack_db_data:/config</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span></code></pre></div><p>This compose file defines two services: the BookStack application on port 6875 and a MariaDB database for persistence.</p><h3 id=step-2-launch-the-stack>Step 2: Launch the stack<a hidden class=anchor aria-hidden=true href=#step-2-launch-the-stack>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create data directories</span>
+</span></span><span style=display:flex><span>mkdir -p bookstack_app_data bookstack_db_data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Start both containers</span>
+</span></span><span style=display:flex><span>docker compose up -d
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Wait for database initialization (30-60 seconds on first run)</span>
+</span></span><span style=display:flex><span>sleep <span style=color:#ae81ff>45</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Check logs to confirm startup</span>
+</span></span><span style=display:flex><span>docker logs bookstack
+</span></span></code></pre></div><p>You should see Laravel bootstrapping messages followed by <code>NOTICE: ready to handle connections</code> from PHP-FPM. If the database connection fails, check that the DB_HOST matches the service name <code>bookstack_db</code> and the credentials align.</p><h3 id=step-3-access-and-configure>Step 3: Access and configure<a hidden class=anchor aria-hidden=true href=#step-3-access-and-configure>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Default credentials on first boot</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Username: admin@admin.com</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Password: password</span>
+</span></span></code></pre></div><p>Navigate to <code>http://your-server-ip:6875</code> and log in. <strong>Immediately change the admin password</strong> under Settings → Users. Then configure your APP_URL to use HTTPS — BookStack generates absolute URLs in email notifications and exports, so getting the APP_URL right from the start prevents broken links later.</p><h3 id=step-4-nginx-reverse-proxy-with-ssl>Step 4: Nginx reverse proxy with SSL<a hidden class=anchor aria-hidden=true href=#step-4-nginx-reverse-proxy-with-ssl>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#75715e># /etc/nginx/sites-available/bookstack
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>http2</span>;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>docs.yourdomain.com</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate</span> <span style=color:#e6db74>/etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem</span>;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate_key</span> <span style=color:#e6db74>/etc/letsencrypt/live/docs.yourdomain.com/privkey.pem</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://localhost:6875</span>;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Real-IP</span> $remote_addr;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-Proto</span> $scheme;
+</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>80</span>;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>docs.yourdomain.com</span>;
+</span></span><span style=display:flex><span>    <span style=color:#f92672>return</span> <span style=color:#ae81ff>301</span> <span style=color:#e6db74>https://</span>$server_name$request_uri;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>After enabling the site and obtaining certificates with Certbot, update the <code>APP_URL</code> in your docker-compose.yml to <code>https://docs.yourdomain.com</code> and restart the container.</p><h3 id=manual-installation-ubuntu-2404-lts>Manual installation (Ubuntu 24.04 LTS)<a hidden class=anchor aria-hidden=true href=#manual-installation-ubuntu-2404-lts>#</a></h3><p>If you prefer bare-metal deployment: `````bash</p><h1 id=install-dependencies>Install dependencies<a hidden class=anchor aria-hidden=true href=#install-dependencies>#</a></h1><p>sudo apt update
+sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap<br>php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer</p><h1 id=clone-bookstack>Clone BookStack<a hidden class=anchor aria-hidden=true href=#clone-bookstack>#</a></h1><p>cd /var/www
+git clone <a href=https://github.com/BookStackApp/BookStack.git>https://github.com/BookStackApp/BookStack.git</a> &ndash;branch v26.03.4 &ndash;depth 1
+cd BookStack</p><h1 id=install-php-dependencies>Install PHP dependencies<a hidden class=anchor aria-hidden=true href=#install-php-dependencies>#</a></h1><p>composer install &ndash;no-dev</p><h1 id=copy-and-configure-environment>Copy and configure environment<a hidden class=anchor aria-hidden=true href=#copy-and-configure-environment>#</a></h1><p>cp .env.example .env
+php artisan key:generate</p><h1 id=edit-env-with-your-database-credentials>Edit .env with your database credentials<a hidden class=anchor aria-hidden=true href=#edit-env-with-your-database-credentials>#</a></h1><h1 id=db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password>DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&mldr;<a hidden class=anchor aria-hidden=true href=#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password>#</a></h1><h1 id=run-migrations>Run migrations<a hidden class=anchor aria-hidden=true href=#run-migrations>#</a></h1><p>php artisan migrate</p><h1 id=set-permissions>Set permissions<a hidden class=anchor aria-hidden=true href=#set-permissions>#</a></h1><p>chown -R www-data:www-data /var/www/BookStack
 chmod -R 755 /var/www/BookStack
-chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache</p>
-<pre tabindex="0"><code>
+chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache</p><pre tabindex=0><code>
 The manual route gives you more control but requires you to manage PHP, the web server, and MySQL separately. For production, Docker is the recommended path.
 
 ## LDAP &amp; SSO Integration
@@ -456,25 +122,16 @@ LDAP_TLS=true
 LDAP_ID_ATTRIBUTE=uid
 LDAP_DISPLAY_NAME_ATTRIBUTE=cn
 LDAP_EMAIL_ATTRIBUTE=mail
-</code></pre><p>After restarting the container, BookStack will authenticate users against your LDAP directory. Users are auto-provisioned on first login, so you do not need to manually create accounts.</p>
-<h3 id="saml-20-for-okta-azure-ad-onelogin">SAML 2.0 (for Okta, Azure AD, OneLogin)<a hidden class="anchor" aria-hidden="true" href="#saml-20-for-okta-azure-ad-onelogin">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># SAML configuration in .env</span>
-</span></span><span style="display:flex;"><span>AUTH_METHOD<span style="color:#f92672">=</span>saml2
-</span></span><span style="display:flex;"><span>SAML2_NAME<span style="color:#f92672">=</span>SSO
-</span></span><span style="display:flex;"><span>SAML2_EMAIL_ATTRIBUTE<span style="color:#f92672">=</span>email
-</span></span><span style="display:flex;"><span>SAML2_EXTERNAL_ID_ATTRIBUTE<span style="color:#f92672">=</span>name_id
-</span></span><span style="display:flex;"><span>SAML2_DISPLAY_NAME_ATTRIBUTES<span style="color:#f92672">=</span>first_name|last_name
-</span></span><span style="display:flex;"><span>SAML2_IDP_ENTITYID<span style="color:#f92672">=</span>https://your-idp.example.com/metadata
-</span></span><span style="display:flex;"><span>SAML2_IDP_SSO<span style="color:#f92672">=</span>https://your-idp.example.com/sso
-</span></span><span style="display:flex;"><span>SAML2_IDP_x509<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MIIDXTCCAkWgAwIBAgIJAJC1HiIA...&#34;</span>
-</span></span></code></pre></div><h2 id="image-management--content-editing">Image Management &amp; Content Editing<a hidden class="anchor" aria-hidden="true" href="#image-management--content-editing">#</a></h2>
-<p>BookStack ships with two editors. The <strong>WYSIWYG editor</strong> (TinyMCE-based) is the default — it handles images via drag-and-drop upload, supports tables, code blocks with syntax highlighting, and callout blocks for tips and warnings. The <strong>Markdown editor</strong> offers a split-screen experience with live preview, ideal for developers who prefer writing in Markdown.</p>
-<p>Uploading images is straightforward: `````markdown</p>
-<h1 id="in-markdown-mode---images-are-uploaded-to-bookstacks-gallery">In Markdown mode - images are uploaded to BookStack&rsquo;s gallery<a hidden class="anchor" aria-hidden="true" href="#in-markdown-mode---images-are-uploaded-to-bookstacks-gallery">#</a></h1>
-<p><img alt="Alt text" loading="lazy" src="uploaded-image-name.png"></p>
-<h1 id="image-gallery-is-accessible-from-the-editor-toolbar">Image gallery is accessible from the editor toolbar<a hidden class="anchor" aria-hidden="true" href="#image-gallery-is-accessible-from-the-editor-toolbar">#</a></h1>
-<h1 id="all-uploaded-images-are-stored-in-the-bookstack_app_data-volume">All uploaded images are stored in the bookstack_app_data volume<a hidden class="anchor" aria-hidden="true" href="#all-uploaded-images-are-stored-in-the-bookstack_app_data-volume">#</a></h1>
-<pre tabindex="0"><code>
+</code></pre><p>After restarting the container, BookStack will authenticate users against your LDAP directory. Users are auto-provisioned on first login, so you do not need to manually create accounts.</p><h3 id=saml-20-for-okta-azure-ad-onelogin>SAML 2.0 (for Okta, Azure AD, OneLogin)<a hidden class=anchor aria-hidden=true href=#saml-20-for-okta-azure-ad-onelogin>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># SAML configuration in .env</span>
+</span></span><span style=display:flex><span>AUTH_METHOD<span style=color:#f92672>=</span>saml2
+</span></span><span style=display:flex><span>SAML2_NAME<span style=color:#f92672>=</span>SSO
+</span></span><span style=display:flex><span>SAML2_EMAIL_ATTRIBUTE<span style=color:#f92672>=</span>email
+</span></span><span style=display:flex><span>SAML2_EXTERNAL_ID_ATTRIBUTE<span style=color:#f92672>=</span>name_id
+</span></span><span style=display:flex><span>SAML2_DISPLAY_NAME_ATTRIBUTES<span style=color:#f92672>=</span>first_name|last_name
+</span></span><span style=display:flex><span>SAML2_IDP_ENTITYID<span style=color:#f92672>=</span>https://your-idp.example.com/metadata
+</span></span><span style=display:flex><span>SAML2_IDP_SSO<span style=color:#f92672>=</span>https://your-idp.example.com/sso
+</span></span><span style=display:flex><span>SAML2_IDP_x509<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;MIIDXTCCAkWgAwIBAgIJAJC1HiIA...&#34;</span>
+</span></span></code></pre></div><h2 id=image-management--content-editing>Image Management & Content Editing<a hidden class=anchor aria-hidden=true href=#image-management--content-editing>#</a></h2><p>BookStack ships with two editors. The <strong>WYSIWYG editor</strong> (TinyMCE-based) is the default — it handles images via drag-and-drop upload, supports tables, code blocks with syntax highlighting, and callout blocks for tips and warnings. The <strong>Markdown editor</strong> offers a split-screen experience with live preview, ideal for developers who prefer writing in Markdown.</p><p>Uploading images is straightforward: `````markdown</p><h1 id=in-markdown-mode---images-are-uploaded-to-bookstacks-gallery>In Markdown mode - images are uploaded to BookStack&rsquo;s gallery<a hidden class=anchor aria-hidden=true href=#in-markdown-mode---images-are-uploaded-to-bookstacks-gallery>#</a></h1><p><img alt="Alt text" loading=lazy src=uploaded-image-name.png></p><h1 id=image-gallery-is-accessible-from-the-editor-toolbar>Image gallery is accessible from the editor toolbar<a hidden class=anchor aria-hidden=true href=#image-gallery-is-accessible-from-the-editor-toolbar>#</a></h1><h1 id=all-uploaded-images-are-stored-in-the-bookstack_app_data-volume>All uploaded images are stored in the bookstack_app_data volume<a hidden class=anchor aria-hidden=true href=#all-uploaded-images-are-stored-in-the-bookstack_app_data-volume>#</a></h1><pre tabindex=0><code>
 BookStack also supports embedded diagrams via Draw.io integration. When you insert a diagram, BookStack stores the Draw.io source XML alongside the rendered image, so you can re-edit diagrams later without losing the source.
 
 ## Benchmarks &amp; Real-World Performance
@@ -520,98 +177,73 @@ jobs: publish: runs-on: ubuntu-latest
             -H &#34;Content-Type: application/json&#34; \
             -d &#39;{&#34;name&#34;: &#34;API Documentation&#34;, &#34;html&#34;: &#34;&#39;$(cat docs/api.html | base64 -w 0)&#39;&#34;}&#39; \
             &#34;https://docs.yourdomain.com/api/pages/42&#34;
-</code></pre><p>BookStack exposes a REST API for programmatic content management. Generate API tokens in Settings → API. The API supports CRUD operations on shelves, books, chapters, and pages, plus image upload and search.</p>
-<h3 id="backup-automation">Backup Automation<a hidden class="anchor" aria-hidden="true" href="#backup-automation">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># /opt/scripts/backup-bookstack.sh</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/backups/bookstack&#34;</span>
-</span></span><span style="display:flex;"><span>DATE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date +%Y%m%d_%H%M%S<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup database</span>
-</span></span><span style="display:flex;"><span>docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  | gzip &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/bookstack_db_</span>$DATE<span style="color:#e6db74">.sql.gz&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup application data (uploads, config)</span>
-</span></span><span style="display:flex;"><span>tar czf <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/bookstack_app_</span>$DATE<span style="color:#e6db74">.tar.gz&#34;</span> -C /path/to ./bookstack_app_data
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Keep only last 14 days</span>
-</span></span><span style="display:flex;"><span>find <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span> -name <span style="color:#e6db74">&#34;*.gz&#34;</span> -mtime +14 -delete
-</span></span></code></pre></div><p>Add this to cron for daily backups: <code>0 3 * * * /opt/scripts/backup-bookstack.sh</code></p>
-<h3 id="monitoring-with-prometheus">Monitoring with Prometheus<a hidden class="anchor" aria-hidden="true" href="#monitoring-with-prometheus">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Add to docker-compose.yml for monitoring</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node-exporter: image</span>: <span style="color:#ae81ff">prom/node-exporter:v1.7.0</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">/proc:/host/proc:ro</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/sys:/host/sys:ro</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: - <span style="color:#e6db74">&#39;--path.procfs=/host/proc&#39;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;--path.sysfs=/host/sys&#39;</span>
-</span></span></code></pre></div><h3 id="health-check-script">Health check script<a hidden class="anchor" aria-hidden="true" href="#health-check-script">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># /opt/scripts/health-check-bookstack.sh</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if BookStack is responding</span>
-</span></span><span style="display:flex;"><span>HTTP_CODE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> http://localhost:6875/login<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$HTTP_CODE<span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
-</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;ERROR: BookStack returned HTTP </span>$HTTP_CODE<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>    docker restart bookstack
-</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Container restarted at </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
-</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;OK: BookStack is healthy&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div><p>Add to cron for automated health checks: <code>*/5 * * * * /opt/scripts/health-check-bookstack.sh</code></p>
-<h2 id="advanced-usage-production-hardening">Advanced Usage: Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage-production-hardening">#</a></h2>
-<h3 id="enable-https-only-cookies">Enable HTTPS-only cookies<a hidden class="anchor" aria-hidden="true" href="#enable-https-only-cookies">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In your .env file</span>
-</span></span><span style="display:flex;"><span>SESSION_SECURE_COOKIE<span style="color:#f92672">=</span>true
-</span></span></code></pre></div><p>This ensures session cookies are only transmitted over HTTPS connections. Critical if your BookStack instance is exposed to the internet.</p>
-<h3 id="custom-theme-via-the-module-system-v2603">Custom theme via the module system (v26.03+)<a hidden class="anchor" aria-hidden="true" href="#custom-theme-via-the-module-system-v2603">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a custom module directory</span>
-</span></span><span style="display:flex;"><span>mkdir -p /config/www/themes/my_theme/modules/welcome_module
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># bookstack-module.json</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;welcome_module&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Adds a welcome banner to the header&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># functions.php</span>
-</span></span><span style="display:flex;"><span>&lt;?php
-</span></span><span style="display:flex;"><span>use BookStack<span style="color:#ae81ff">\F</span>acades<span style="color:#ae81ff">\T</span>heme;
-</span></span><span style="display:flex;"><span>use BookStack<span style="color:#ae81ff">\T</span>heming<span style="color:#ae81ff">\T</span>hemeEvents;
-</span></span><span style="display:flex;"><span>use BookStack<span style="color:#ae81ff">\T</span>heming<span style="color:#ae81ff">\T</span>hemeViews;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Theme::listen<span style="color:#f92672">(</span>ThemeEvents::THEME_REGISTER_VIEWS, <span style="color:#66d9ef">function</span> <span style="color:#f92672">(</span>ThemeViews $themeViews<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    $themeViews-&gt;renderAfter<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;layouts.parts.header&#39;</span>, welcome, 10<span style="color:#f92672">)</span>;
-</span></span><span style="display:flex;"><span><span style="color:#f92672">})</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># views/welcome.blade.php</span>
-</span></span><span style="display:flex;"><span>Welcome, ! Check out the onboarding docs.
-</span></span><span style="display:flex;"><span>&lt;/div&gt;
-</span></span></code></pre></div><p>Install the module with: <code>php artisan bookstack:install-module /path/to/module.zip</code></p>
-<h3 id="page-content-filtering-control">Page content filtering control<a hidden class="anchor" aria-hidden="true" href="#page-content-filtering-control">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In .env (new in v25.12.4+)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Options: false, true, or a comma-separated list of filter names</span>
-</span></span><span style="display:flex;"><span>APP_CONTENT_FILTERING<span style="color:#f92672">=</span>default
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Available filters: script, form, iframe, object, embed, style, css_expression</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># To disable style filtering (useful if you need inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression</span>
-</span></span></code></pre></div><h2 id="comparison-bookstack-vs-alternatives">Comparison: BookStack vs. Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-bookstack-vs-alternatives">#</a></h2>
-<p>| Feature | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><p>BookStack exposes a REST API for programmatic content management. Generate API tokens in Settings → API. The API supports CRUD operations on shelves, books, chapters, and pages, plus image upload and search.</p><h3 id=backup-automation>Backup Automation<a hidden class=anchor aria-hidden=true href=#backup-automation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/scripts/backup-bookstack.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>BACKUP_DIR<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/backups/bookstack&#34;</span>
+</span></span><span style=display:flex><span>DATE<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>date +%Y%m%d_%H%M%S<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Backup database</span>
+</span></span><span style=display:flex><span>docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  | gzip &gt; <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/bookstack_db_</span>$DATE<span style=color:#e6db74>.sql.gz&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Backup application data (uploads, config)</span>
+</span></span><span style=display:flex><span>tar czf <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/bookstack_app_</span>$DATE<span style=color:#e6db74>.tar.gz&#34;</span> -C /path/to ./bookstack_app_data
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Keep only last 14 days</span>
+</span></span><span style=display:flex><span>find <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>&#34;</span> -name <span style=color:#e6db74>&#34;*.gz&#34;</span> -mtime +14 -delete
+</span></span></code></pre></div><p>Add this to cron for daily backups: <code>0 3 * * * /opt/scripts/backup-bookstack.sh</code></p><h3 id=monitoring-with-prometheus>Monitoring with Prometheus<a hidden class=anchor aria-hidden=true href=#monitoring-with-prometheus>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Add to docker-compose.yml for monitoring</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>node-exporter: image</span>: <span style=color:#ae81ff>prom/node-exporter:v1.7.0</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>/proc:/host/proc:ro</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>/sys:/host/sys:ro</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: - <span style=color:#e6db74>&#39;--path.procfs=/host/proc&#39;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#39;--path.sysfs=/host/sys&#39;</span>
+</span></span></code></pre></div><h3 id=health-check-script>Health check script<a hidden class=anchor aria-hidden=true href=#health-check-script>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/scripts/health-check-bookstack.sh</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Check if BookStack is responding</span>
+</span></span><span style=display:flex><span>HTTP_CODE<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>curl -s -o /dev/null -w <span style=color:#e6db74>&#34;%{http_code}&#34;</span> http://localhost:6875/login<span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> <span style=color:#e6db74>&#34;</span>$HTTP_CODE<span style=color:#e6db74>&#34;</span> !<span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;200&#34;</span> <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span>
+</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;ERROR: BookStack returned HTTP </span>$HTTP_CODE<span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>    docker restart bookstack
+</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;Container restarted at </span><span style=color:#66d9ef>$(</span>date<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;OK: BookStack is healthy&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>fi</span>
+</span></span></code></pre></div><p>Add to cron for automated health checks: <code>*/5 * * * * /opt/scripts/health-check-bookstack.sh</code></p><h2 id=advanced-usage-production-hardening>Advanced Usage: Production Hardening<a hidden class=anchor aria-hidden=true href=#advanced-usage-production-hardening>#</a></h2><h3 id=enable-https-only-cookies>Enable HTTPS-only cookies<a hidden class=anchor aria-hidden=true href=#enable-https-only-cookies>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># In your .env file</span>
+</span></span><span style=display:flex><span>SESSION_SECURE_COOKIE<span style=color:#f92672>=</span>true
+</span></span></code></pre></div><p>This ensures session cookies are only transmitted over HTTPS connections. Critical if your BookStack instance is exposed to the internet.</p><h3 id=custom-theme-via-the-module-system-v2603>Custom theme via the module system (v26.03+)<a hidden class=anchor aria-hidden=true href=#custom-theme-via-the-module-system-v2603>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create a custom module directory</span>
+</span></span><span style=display:flex><span>mkdir -p /config/www/themes/my_theme/modules/welcome_module
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># bookstack-module.json</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;welcome_module&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Adds a welcome banner to the header&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># functions.php</span>
+</span></span><span style=display:flex><span>&lt;?php
+</span></span><span style=display:flex><span>use BookStack<span style=color:#ae81ff>\F</span>acades<span style=color:#ae81ff>\T</span>heme;
+</span></span><span style=display:flex><span>use BookStack<span style=color:#ae81ff>\T</span>heming<span style=color:#ae81ff>\T</span>hemeEvents;
+</span></span><span style=display:flex><span>use BookStack<span style=color:#ae81ff>\T</span>heming<span style=color:#ae81ff>\T</span>hemeViews;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Theme::listen<span style=color:#f92672>(</span>ThemeEvents::THEME_REGISTER_VIEWS, <span style=color:#66d9ef>function</span> <span style=color:#f92672>(</span>ThemeViews $themeViews<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    $themeViews-&gt;renderAfter<span style=color:#f92672>(</span><span style=color:#e6db74>&#39;layouts.parts.header&#39;</span>, welcome, 10<span style=color:#f92672>)</span>;
+</span></span><span style=display:flex><span><span style=color:#f92672>})</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># views/welcome.blade.php</span>
+</span></span><span style=display:flex><span>Welcome, ! Check out the onboarding docs.
+</span></span><span style=display:flex><span>&lt;/div&gt;
+</span></span></code></pre></div><p>Install the module with: <code>php artisan bookstack:install-module /path/to/module.zip</code></p><h3 id=page-content-filtering-control>Page content filtering control<a hidden class=anchor aria-hidden=true href=#page-content-filtering-control>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># In .env (new in v25.12.4+)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Options: false, true, or a comma-separated list of filter names</span>
+</span></span><span style=display:flex><span>APP_CONTENT_FILTERING<span style=color:#f92672>=</span>default
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Available filters: script, form, iframe, object, embed, style, css_expression</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># To disable style filtering (useful if you need inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression</span>
+</span></span></code></pre></div><h2 id=comparison-bookstack-vs-alternatives>Comparison: BookStack vs. Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-bookstack-vs-alternatives>#</a></h2><p>| Feature | BookStack | Wiki.js | DokuWiki | MediaWiki | Outline |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>License</strong> | MIT | AGPL-3.0 | GPL-2.0 | GPL-2.0+ | BSL 1.1 |
 | <strong>Stack</strong> | PHP / Laravel | Node.js | PHP (no DB) | PHP | Node.js |
 | <strong>Editor</strong> | WYSIWYG + Markdown | Markdown + Visual | Wiki syntax | Wikitext | Block-based |
@@ -623,58 +255,10 @@ jobs: publish: runs-on: ubuntu-latest
 | <strong>Search</strong> | MySQL FULLTEXT | Elasticsearch/DB | Built-in | Elasticsearch | PostgreSQL FTS |
 | <strong>API</strong> | REST | GraphQL + REST | XML-RPC | REST | REST |
 | <strong>Active maintenance</strong> | Monthly releases | Regular | Stable | Regular | Regular |
-| <strong>GitHub stars</strong> | <strong>18,700</strong> | <strong>24,500</strong> | <strong>1,800</strong> | <strong>4,200</strong> | <strong>14,300</strong> |</p>
-<p><strong>BookStack wins when:</strong> Your team values structured hierarchy, wants a dead-simple setup, needs WYSIWYG + Markdown dual editing, and prefers PHP ecosystem familiarity.</p>
-<p><strong>Wiki.js wins when:</strong> You need real-time collaboration, prefer Node.js stacks, want GraphQL API access, or need more flexible content architecture.</p>
-<p><strong>DokuWiki wins when:</strong> You want zero database setup — it runs entirely on flat files. Best for tiny deployments where simplicity trumps features.</p>
-<p><strong>MediaWiki wins when:</strong> You are building a public encyclopedia-scale wiki. Overkill for most internal documentation needs.</p>
-<p><strong>Outline wins when:</strong> Your team wants a Notion-like block editor experience with real-time collaboration, and you are okay with a more complex self-hosted setup or the hosted pricing.</p>
-<h2 id="limitations-an-honest-assessment">Limitations: An Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-an-honest-assessment">#</a></h2>
-<p>BookStack is not the right tool for every documentation use case. Here is what it does not do well: <strong>No real-time collaboration.</strong> Two users editing the same page simultaneously will overwrite each other. BookStack warns about stale edits but does not offer Google Docs-style real-time collaboration. If your workflow depends on simultaneous editing, use Outline or Wiki.js instead.</p>
-<p><strong>Opinionated hierarchy can feel restrictive.</strong> The shelf/book/chapter/page model is great for structured documentation but awkward for fluid, constantly-restructured knowledge bases. If your docs are more like a living knowledge graph than a reference library, Notion or Obsidian may fit better.</p>
-<p><strong>Limited public-facing documentation features.</strong> BookStack supports public visibility for bookshelves, but it is not designed for branded customer-facing docs sites. There is no built-in custom domain + SSL workflow, no versioning for public docs, and theming options are limited compared to dedicated docs platforms like Docusaurus or GitBook.</p>
-<p><strong>No built-in diagram editing (drawn inline).</strong> While BookStack integrates with Draw.io for diagrams, you open the Draw.io editor in a modal. You cannot draw directly on the page like you can in Excalidraw within Outline.</p>
-<p><strong>PHP stack may feel dated.</strong> Teams running entirely on Node.js or Go infrastructure may prefer a tool in their existing stack. That said, PHP deployment is well-understood and battle-tested — there is value in boring technology.</p>
-<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="can-i-migrate-from-confluence-to-bookstack">Can I migrate from Confluence to BookStack?<a hidden class="anchor" aria-hidden="true" href="#can-i-migrate-from-confluence-to-bookstack">#</a></h3>
-<p>There is no official Confluence importer, but you can export Confluence pages as HTML or Markdown and use the BookStack REST API to bulk-create pages. Community scripts exist for this migration path. For large-scale migrations, expect to spend some time restructuring content to fit BookStack&rsquo;s book/chapter/page model.</p>
-<h3 id="how-do-i-update-bookstack">How do I update BookStack?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-update-bookstack">#</a></h3>
-<p>With Docker, updating is a one-liner: change the image tag in docker-compose.yml and run <code>docker compose up -d</code>. With manual installation, pull the latest release, run <code>git pull</code> or download the new release archive, then run <code>php artisan migrate</code> and clear caches. Always back up your database before updating — BookStack releases security patches monthly.</p>
-<h3 id="does-bookstack-support-two-factor-authentication">Does BookStack support two-factor authentication?<a hidden class="anchor" aria-hidden="true" href="#does-bookstack-support-two-factor-authentication">#</a></h3>
-<p>BookStack does not have built-in TOTP/SMS 2FA as of v26.03. You can achieve MFA by using SAML or OIDC authentication with an identity provider that enforces 2FA (like Azure AD or Okta). Native TOTP support has been discussed in the community but is not on the immediate roadmap.</p>
-<h3 id="can-i-use-postgresql-instead-of-mysql">Can I use PostgreSQL instead of MySQL?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-postgresql-instead-of-mysql">#</a></h3>
-<p>BookStack officially supports MySQL and MariaDB. PostgreSQL support has been discussed but is not officially supported. If you need PostgreSQL, Wiki.js or Outline are better fits. For BookStack, stick with MySQL 8.0+ or MariaDB 10.6+.</p>
-<h3 id="what-is-the-difference-between-the-linuxserverio-image-and-the-official-image">What is the difference between the LinuxServer.io image and the official image?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-difference-between-the-linuxserverio-image-and-the-official-image">#</a></h3>
-<p>The <code>lscr.io/linuxserver/bookstack</code> image is community-maintained and widely used. It abstracts away PHP-FPM and Nginx configuration, making it the easiest way to run BookStack in Docker. There is no official Docker image from the BookStack maintainers — the LinuxServer image is the de facto standard.</p>
-<h3 id="how-do-backups-work">How do backups work?<a hidden class="anchor" aria-hidden="true" href="#how-do-backups-work">#</a></h3>
-<p>Back up two things: the MySQL/MariaDB database (for all content and metadata) and the <code>/config/www/files</code> directory (for uploaded images and attachments). With the Docker setup shown above, both are in named volumes. A simple <code>mysqldump</code> plus ````tar``` of the app data volume is sufficient. Test your restore procedure quarterly.</p>
-<h2 id="conclusion-should-you-run-bookstack-in-2026">Conclusion: Should You Run BookStack in 2026?<a hidden class="anchor" aria-hidden="true" href="#conclusion-should-you-run-bookstack-in-2026">#</a></h2>
-<p>If your team is tired of paying per-seat pricing for documentation tools, and you want a structured, opinionated wiki that forces good organization habits, BookStack is one of the best open-source options available in 2026. The PHP/Laravel stack is boring in the best way — predictable, well-documented, and easy to debug when things go wrong. The monthly security releases show active maintenance, and the v26.03 theme module system opens new customization possibilities.</p>
-<p>For teams of 5 to 50 people who want internal documentation without vendor lock-in, BookStack pays for itself immediately. Self-host on a <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a>, back up daily, and you have a documentation system that will outlast whatever SaaS tool is trending this quarter.</p>
-<p>Join the dibi8.com community: <a href="https://t.me/dibi8opensource">Telegram group</a> for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.</p>
-<hr>
-<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
-<ul>
-<li><a href="https://www.bookstackapp.com/docs/">BookStack Official Documentation</a></li>
-<li><a href="https://github.com/BookStackApp/BookStack">BookStack GitHub Mirror</a></li>
-<li><a href="https://codeberg.org/bookstack">BookStack Codeberg Repository</a></li>
-<li><a href="https://www.bookstackapp.com/blog/bookstack-release-v26-03/">BookStack v26.03 Release Notes</a></li>
-<li><a href="https://docs.linuxserver.io/images/docker-bookstack/">LinuxServer.io BookStack Docker Image</a></li>
-<li><a href="https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/">BookStack vs Wiki.js Comparison</a></li>
-</ul>
-<hr>
-<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
-<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
-<ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
-</ul>
-<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
-<h2 id="affiliate-disclosure">Affiliate Disclosure<a hidden class="anchor" aria-hidden="true" href="#affiliate-disclosure">#</a></h2>
-<p>This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>. If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The BookStack project is free and open-source — no affiliate relationship exists with the BookStack maintainers.</p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+| <strong>GitHub stars</strong> | <strong>18,700</strong> | <strong>24,500</strong> | <strong>1,800</strong> | <strong>4,200</strong> | <strong>14,300</strong> |</p><p><strong>BookStack wins when:</strong> Your team values structured hierarchy, wants a dead-simple setup, needs WYSIWYG + Markdown dual editing, and prefers PHP ecosystem familiarity.</p><p><strong>Wiki.js wins when:</strong> You need real-time collaboration, prefer Node.js stacks, want GraphQL API access, or need more flexible content architecture.</p><p><strong>DokuWiki wins when:</strong> You want zero database setup — it runs entirely on flat files. Best for tiny deployments where simplicity trumps features.</p><p><strong>MediaWiki wins when:</strong> You are building a public encyclopedia-scale wiki. Overkill for most internal documentation needs.</p><p><strong>Outline wins when:</strong> Your team wants a Notion-like block editor experience with real-time collaboration, and you are okay with a more complex self-hosted setup or the hosted pricing.</p><h2 id=limitations-an-honest-assessment>Limitations: An Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations-an-honest-assessment>#</a></h2><p>BookStack is not the right tool for every documentation use case. Here is what it does not do well: <strong>No real-time collaboration.</strong> Two users editing the same page simultaneously will overwrite each other. BookStack warns about stale edits but does not offer Google Docs-style real-time collaboration. If your workflow depends on simultaneous editing, use Outline or Wiki.js instead.</p><p><strong>Opinionated hierarchy can feel restrictive.</strong> The shelf/book/chapter/page model is great for structured documentation but awkward for fluid, constantly-restructured knowledge bases. If your docs are more like a living knowledge graph than a reference library, Notion or Obsidian may fit better.</p><p><strong>Limited public-facing documentation features.</strong> BookStack supports public visibility for bookshelves, but it is not designed for branded customer-facing docs sites. There is no built-in custom domain + SSL workflow, no versioning for public docs, and theming options are limited compared to dedicated docs platforms like Docusaurus or GitBook.</p><p><strong>No built-in diagram editing (drawn inline).</strong> While BookStack integrates with Draw.io for diagrams, you open the Draw.io editor in a modal. You cannot draw directly on the page like you can in Excalidraw within Outline.</p><p><strong>PHP stack may feel dated.</strong> Teams running entirely on Node.js or Go infrastructure may prefer a tool in their existing stack. That said, PHP deployment is well-understood and battle-tested — there is value in boring technology.</p><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=can-i-migrate-from-confluence-to-bookstack>Can I migrate from Confluence to BookStack?<a hidden class=anchor aria-hidden=true href=#can-i-migrate-from-confluence-to-bookstack>#</a></h3><p>There is no official Confluence importer, but you can export Confluence pages as HTML or Markdown and use the BookStack REST API to bulk-create pages. Community scripts exist for this migration path. For large-scale migrations, expect to spend some time restructuring content to fit BookStack&rsquo;s book/chapter/page model.</p><h3 id=how-do-i-update-bookstack>How do I update BookStack?<a hidden class=anchor aria-hidden=true href=#how-do-i-update-bookstack>#</a></h3><p>With Docker, updating is a one-liner: change the image tag in docker-compose.yml and run <code>docker compose up -d</code>. With manual installation, pull the latest release, run <code>git pull</code> or download the new release archive, then run <code>php artisan migrate</code> and clear caches. Always back up your database before updating — BookStack releases security patches monthly.</p><h3 id=does-bookstack-support-two-factor-authentication>Does BookStack support two-factor authentication?<a hidden class=anchor aria-hidden=true href=#does-bookstack-support-two-factor-authentication>#</a></h3><p>BookStack does not have built-in TOTP/SMS 2FA as of v26.03. You can achieve MFA by using SAML or OIDC authentication with an identity provider that enforces 2FA (like Azure AD or Okta). Native TOTP support has been discussed in the community but is not on the immediate roadmap.</p><h3 id=can-i-use-postgresql-instead-of-mysql>Can I use PostgreSQL instead of MySQL?<a hidden class=anchor aria-hidden=true href=#can-i-use-postgresql-instead-of-mysql>#</a></h3><p>BookStack officially supports MySQL and MariaDB. PostgreSQL support has been discussed but is not officially supported. If you need PostgreSQL, Wiki.js or Outline are better fits. For BookStack, stick with MySQL 8.0+ or MariaDB 10.6+.</p><h3 id=what-is-the-difference-between-the-linuxserverio-image-and-the-official-image>What is the difference between the LinuxServer.io image and the official image?<a hidden class=anchor aria-hidden=true href=#what-is-the-difference-between-the-linuxserverio-image-and-the-official-image>#</a></h3><p>The <code>lscr.io/linuxserver/bookstack</code> image is community-maintained and widely used. It abstracts away PHP-FPM and Nginx configuration, making it the easiest way to run BookStack in Docker. There is no official Docker image from the BookStack maintainers — the LinuxServer image is the de facto standard.</p><h3 id=how-do-backups-work>How do backups work?<a hidden class=anchor aria-hidden=true href=#how-do-backups-work>#</a></h3><p>Back up two things: the MySQL/MariaDB database (for all content and metadata) and the <code>/config/www/files</code> directory (for uploaded images and attachments). With the Docker setup shown above, both are in named volumes. A simple <code>mysqldump</code> plus ````tar``` of the app data volume is sufficient. Test your restore procedure quarterly.</p><h2 id=conclusion-should-you-run-bookstack-in-2026>Conclusion: Should You Run BookStack in 2026?<a hidden class=anchor aria-hidden=true href=#conclusion-should-you-run-bookstack-in-2026>#</a></h2><p>If your team is tired of paying per-seat pricing for documentation tools, and you want a structured, opinionated wiki that forces good organization habits, BookStack is one of the best open-source options available in 2026. The PHP/Laravel stack is boring in the best way — predictable, well-documented, and easy to debug when things go wrong. The monthly security releases show active maintenance, and the v26.03 theme module system opens new customization possibilities.</p><p>For teams of 5 to 50 people who want internal documentation without vendor lock-in, BookStack pays for itself immediately. Self-host on a <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a>, back up daily, and you have a documentation system that will outlast whatever SaaS tool is trending this quarter.</p><p>Join the dibi8.com community: <a href=https://t.me/dibi8opensource>Telegram group</a> for daily open-source tool discussions, deployment tips, and troubleshooting help from 5,000+ developers.</p><hr><h2 id=sources--further-reading>Sources & Further Reading<a hidden class=anchor aria-hidden=true href=#sources--further-reading>#</a></h2><ul><li><a href=https://www.bookstackapp.com/docs/>BookStack Official Documentation</a></li><li><a href=https://github.com/BookStackApp/BookStack>BookStack GitHub Mirror</a></li><li><a href=https://codeberg.org/bookstack>BookStack Codeberg Repository</a></li><li><a href=https://www.bookstackapp.com/blog/bookstack-release-v26-03/>BookStack v26.03 Release Notes</a></li><li><a href=https://docs.linuxserver.io/images/docker-bookstack/>LinuxServer.io BookStack Docker Image</a></li><li><a href=https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/>BookStack vs Wiki.js Comparison</a></li></ul><hr><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure<a hidden class=anchor aria-hidden=true href=#affiliate-disclosure>#</a></h2><p>This article contains affiliate links to <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>. If you sign up through our link, we receive a referral credit at no additional cost to you. We only recommend infrastructure we use ourselves. The BookStack project is free and open-source — no affiliate relationship exists with the BookStack maintainers.</p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup &amp; Review&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;BookStack: The Developer-Friendly Documentation Wiki with Markdown Support — 2026 Setup & Review&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -686,261 +270,18 @@ jobs: publish: runs-on: ubuntu-latest
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/bookstack-documentation-wiki%22">https://dibi8.com/resources/bookstack-documentation-wiki"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/bookstack-documentation-wiki%22>https://dibi8.com/resources/bookstack-documentation-wiki"</a>
 }
-}
-</script></p>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/ai-coding-agents/bookstack-documentation-wiki/">markitdown-universal-file-to-markdown-converter</a></li>
-<li><a href="/ai-coding-agents/bookstack-documentation-wiki/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
-<li><a href="/ai-coding-agents/bookstack-documentation-wiki/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
-<li><a href="/ai-coding-agents/bookstack-documentation-wiki/">2026-06-15-trending-ai-agents</a></li>
-<li><a href="/ai-coding-agents/bookstack-documentation-wiki/">2026-06-22-trending-ai-agents</a></li>
-</ul>
-<hr>
-<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：AI代码助手的安全性如何？</strong></p>
-<p>代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。</p>
-<p><strong>问：如何防止AI生成的代码包含漏洞？</strong></p>
-<p>实施SAST扫描、代码审查、依赖审计、以及安全编码培训。</p>
-<p><strong>问：敏感数据如何处理？</strong></p>
-<p>使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。</p>
-<p><strong>问：开源VS闭源AI工具的安全性对比？</strong></p>
-<p>开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。</p>
-<p><strong>问：AI工具的安全审计要点？</strong></p>
-<p>检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。</p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/browser-harness-self-healing-llm-web-automation/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/bookstack-documentation-wiki/>markitdown-universal-file-to-markdown-converter</a></li><li><a href=/ai-coding-agents/bookstack-documentation-wiki/>microsoft-markitdown-file-to-markdown-converter-cli</a></li><li><a href=/ai-coding-agents/bookstack-documentation-wiki/>microsoft-markitdown-file-to-markdown-converter-cli</a></li><li><a href=/ai-coding-agents/bookstack-documentation-wiki/>2026-06-15-trending-ai-agents</a></li><li><a href=/ai-coding-agents/bookstack-documentation-wiki/>2026-06-22-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI代码助手的安全性如何？</strong></p><p>代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。</p><p><strong>问：如何防止AI生成的代码包含漏洞？</strong></p><p>实施SAST扫描、代码审查、依赖审计、以及安全编码培训。</p><p><strong>问：敏感数据如何处理？</strong></p><p>使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。</p><p><strong>问：开源VS闭源AI工具的安全性对比？</strong></p><p>开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。</p><p><strong>问：AI工具的安全审计要点？</strong></p><p>检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/bitcoin-classic-btcc-cpu-mining-bitcoin-fork/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/browser-harness-self-healing-llm-web-automation/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,312 +1,35 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/knowledge-work-plugins/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/knowledge-work-plugins/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/knowledge-work-plugins/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/knowledge-work-plugins/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "th–.png\nTL;DR Knowledge Work Plugins is Anthropic’s official plugin ecosystem that extends Claude’s capabilities with structured tool calls for document editing, code analysis, web browsing, and file operations. With 20,728 stars, it represents the gold standard for AI agent tool integration.\nTL;DR: 20,728 stars — Anthropic’s most-starred plugin ecosystem.\nWhat Are Knowledge Work Plugins? Knowledge Work Plugins provide a standardized interface between Claude and external tools. Rather than asking Claude to generate code that you then run, the plugin system allows Claude to directly interact with files, browse the web, execute commands, and perform other tasks through structured tool calls.\nThe plugin architecture follows a simple principle: Claude defines what it wants to do, and the plugin system executes it safely with proper permissions and error handling.\nCore Plugin Categories:\nDocument Editing — Read, write, and search files with structured edit operations Code Analysis — Parse codebases, generate diffs, run linters, and execute tests Web Browsing — Search the web, fetch URLs, and extract structured data File Operations — List directories, move files, manage project structures Custom Plugins — Build your own tools using the plugin SDK # Install Knowledge Work Plugins npx skills add https://github.com/anthropics/knowledge-work-plugins # List available plugins npx skills list | grep knowledge-work How the Plugin System Works The plugin system operates through a three-step cycle: 1. Claude identifies a task — The LLM determines it needs to perform an action beyond text generation 2. Tool call is issued — Claude sends a structured JSON request specifying the action and parameters 3. Plugin executes and returns — The plugin system runs the action in a sandboxed environment and returns results to Claude\n# Example plugin invocation from knowledge_work_plugins import PluginClient client = PluginClient(plugins=[\"document-edit\", \"code-analysis\", \"web-browse\"]) # Claude requests: \"Update the README to include the new API endpoints\" response = client.call( plugin=\"document-edit\", action=\"edit_file\", params={ \"file\": \"README.md\", \"pattern\": \"## API Endpoints\", \"replacement\": \"## API Endpoints\\n\\n### GET /v2/users\\nReturns paginated list of users.\\n\\n### POST /v2/users\\nCreates a new user account.\", \"mode\": \"replace\" } ) print(response) # {\"status\": \"success\", \"lines_changed\": 5} The sandboxing ensures Claude cannot perform destructive operations without explicit confirmation. Each plugin defines its own permission model, from read-only file access to full shell execution.\nInstallation \u0026 Setup Setting up Knowledge Work Plugins requires Python 3.10+ and a working Claude Code or Anthropic API integration: `````bash\nClone the repository git clone https://github.com/anthropics/knowledge-work-plugins.git cd knowledge-work-plugins\nInstall dependencies pip install -r requirements.txt\nInitialize plugin configuration cp plugins.config.example.yaml plugins.config.yaml\n### Plugin Configuration Each plugin is configured independently in ``plugins.config.yaml``: `````yaml plugins: document-edit: enabled: true max_file_size: 1048576 # 1MB allowed_extensions: - .md - .txt - .json - .yaml - .py - .js - .ts code-analysis: enabled: true linters: - pylint - eslint - tsc test_frameworks: - pytest - jest - vitest web-browse: enabled: true max_results: 20 timeout: 30 user_agent: \"Knowledge-Work-Plugins/1.0\" Docker Setup # Build and run in Docker docker build -t knowledge-work-plugins:latest . docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins:latest Integration with Development Workflows Knowledge Work Plugins integrates with every major development environment: | Environment | Integration Method | Best Plugin | |\n|\n|\n| | Claude Code | Built-in plugin loader | document-edit | | Cursor | Plugin SDK + VS Code extension | code-analysis | | VS Code | Extension marketplace | web-browse | | IntelliJ | Plugin marketplace | code-analysis | | Neovim | LSP integration | document-edit | | GitHub Actions | CLI tool | code-analysis | | GitLab CI | Plugin runner | document-edit |\n# Integrate with GitHub Actions # .github/workflows/plugin-audit.yml name: Plugin Audit on: [pull_request] jobs: audit: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: anthropics/knowledge-work-plugins@v1 with: plugins: \"code-analysis,docker-lint\" config: plugins.config.yaml Benchmarks: Plugin-Augmented vs Standard AI The performance impact of adding structured tools to AI agents is measurable: ````` Task | Standard AI | Plugin-Augmented | Improvement\n|\n|\n|— Fix a bug in 10K LOC codebase | 2.3 hours | 18 minutes | 7.7x Update documentation | 45 min | 3 min | 15x Write integration tests | 1.5 hours | 12 min | 7.5x Refactor API endpoint | 2.0 hours | 20 min | 6x Code review + suggestions | 3.0 hours | 25 min | 7.2x\nThe benchmarks measure time from task initiation to completed, verified output. Plugin-augmented workflows include execution verification (running linters, tests) that standard AI generation cannot perform. ### Error Rate Comparison Metric | Standard AI | Plugin-Augmented\n|\n|— Incorrect code gen | 34% | 8% Missing edge cases | 41% | 12% Requires rewrites | 67% | 15% Production ready | 12% | 78%\nThe error rate reduction comes from the plugin system's ability to validate output against real constraints — running actual linters, tests, and type checkers rather than relying on the LLM's internal knowledge. ## Advanced Usage: Custom Plugin Development The plugin SDK makes it straightforward to build custom tools for your specific workflow: ### Building a Custom Plugin `````python # Custom plugin: PR review automation from knowledge_work_plugins import PluginBase, PluginResult class PRReviewPlugin(PluginBase): name = \"pr-review\" version = \"1.0.0\" description = \"Automated PR review with severity scoring\" async def execute(self, params): pr_url = params.get(\"pr_url\") review_depth = params.get(\"depth\", \"standard\") # standard | deep # Fetch PR diff diff = self.github_api.get_diff(pr_url) # Analyze changes issues = self.analyze_diff(diff, depth=review_depth) # Generate review review = self.generate_review(issues) return PluginResult( status=\"complete\", score=review[\"severity_score\"], comments=review[\"comments\"], recommendations=review[\"recommendations\"] ) def analyze_diff(self, diff, depth=\"standard\"): # Implementation details... pass def generate_review(self, issues): # Generate structured review... pass Plugin Composition Complex tasks can be solved by composing multiple plugins: `````python\nCompose: search → analyze → edit → verify from knowledge_work_plugins import Pipeline\npipeline = Pipeline([ “web-browse”, # Research the problem “code-analysis”, # Analyze the codebase “document-edit”, # Implement the fix “code-analysis”, # Verify with linter/tests ])\nresult = pipeline.execute( task=“Update auth middleware to support OAuth2 PKCE flow”, plugins_config=“plugins.config.yaml” )\n### Plugin Error Handling Robust error handling is critical for production plugin usage. The SDK provides structured error types and automatic retry logic: `````python from knowledge_work_plugins import Pipeline, PluginError pipeline = Pipeline([\"document-edit\", \"code-analysis\"]) try: result = pipeline.execute(task=\"Refactor authentication module\") except PluginError.TimeoutError as e: print(f\"Plugin timed out after {e.timeout}s\") # Retry with increased timeout result = pipeline.execute(task=\"Refactor authentication module\", timeout=600) except PluginError.PermissionDenied as e: print(f\"Permission denied: {e.plugin}\") # Request elevated permissions result = pipeline.execute(task=\"Refactor authentication module\", elevated=True) except PluginError.ValidationError as e: print(f\"Validation failed: {e.message}\") # Fix and retry result = pipeline.execute(task=f\"Fix: {e.suggestion}\") Plugin Monitoring and Logging Track plugin execution with built-in observability: `````python\nEnable detailed logging import logging logging.basicConfig(level=logging.DEBUG)\nMonitor plugin execution in real-time pipeline.on_execute(lambda event: print(f\"[{event.plugin}] {event.action}\")) pipeline.on_complete(lambda result: print(f\"Completed: {result.status}\"))\nExport execution metrics metrics = pipeline.metrics() print(f\"Total calls: {metrics.total_tool_calls}\") print(f\"Average latency: {metrics.avg_latency:.2f}s\") print(f\"Error rate: {metrics.error_rate:.1%}\")\n### Performance Optimization For large codebases, plugin execution can be optimized with caching and parallelization: `````python # Enable parallel plugin execution pipeline.set_parallel(True, max_workers=4) # Enable result caching for repeatable operations pipeline.set_cache(enable=True, ttl=3600) # Set execution budget (time and token limits) pipeline.set_budget( max_time=300, # 5 minutes max_tokens=50000, max_tool_calls=50 ) Comparison with Alternatives Knowledge Work Plugins stands apart from competing tool-use frameworks: | Feature | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools | |\n|\n|\n|\n|\n| | Stars | 20,728 | 50K+ | 140K+ | N/A | | Developer | Anthropic | LangChain | AutoGPT | OpenAI | | License | Apache 2.0 | MIT | MIT | Proprietary | | Custom Plugin SDK | Yes | Partial | Yes | Partial | | Sandbox Security | Built-in | Manual | Manual | Built-in | | Parallel Execution | Yes | Yes | No | No | | Plugin Composition | Native | Via chains | Manual | Manual | | Code Analysis | Deep | Basic | None | Basic | | Document Editing | Full CRUD | Limited | None | Limited | | Plugin Debugging | Built-in | Manual | Manual | Built-in |\nThe key advantage is Anthropic’s deep integration. Knowledge Work Plugins leverages Claude’s structured output capabilities and Constitutional AI principles to ensure safe tool use.\nLimitations: When Plugins Aren’t the Answer Knowledge Work Plugins is powerful but not universal: 1. API dependency — Plugins require the Claude API or Claude Code. They don’t work with other LLM providers without adaptation.\nPlugin ecosystem size — While growing rapidly, the official plugin catalog is smaller than LangChain’s 200+ integrations.\nComplex multi-step workflows — For workflows requiring more than 5-10 tool calls, composition can become unwieldy without careful design.\nReal-time streaming — Plugin execution results are returned as complete units. Real-time progress feedback during long operations is not yet supported.\nCross-platform file access — Plugins operate within the containerized execution environment. Accessing files outside the workspace requires explicit volume mounts, which adds configuration complexity for multi-machine setups.\n# Quick suitability check # ✅ Codebase analysis and editing → YES # ✅ Documentation updates → YES # ✅ Web research → YES # ✅ Complex multi-API orchestration → PARTIAL (use LangChain instead) # ✅ Real-time dashboard updates → NO (use websockets directly) Frequently Asked Questions Is Knowledge Work Plugins free? Yes, all official plugins are Apache 2.0 licensed. The Claude API has free tiers for testing.\nCan I use these plugins with other models? The plugin SDK is designed for Claude but can be adapted for other models with minor modifications. The Anthropic team provides migration guides on the GitHub repository.\nHow do I create a custom plugin? Use the PluginBase class from the SDK. Define your plugin name, version, description, and an execute method. The SDK handles serialization, error handling, and sandboxing.\nAre there rate limits on plugin execution? Yes. Rate limits are defined per-plugin in plugins.config.yaml. The default is 100 calls per minute, which can be adjusted based on your needs.\nCan plugins execute shell commands? Yes, the shell-exec plugin allows controlled shell execution. It includes safeguards against destructive commands and operates within a defined directory sandbox. Sensitive commands like rm -rf and dd are blocked by default.\nHow do I audit plugin permissions? Run knowledge-work-plugins audit to generate a comprehensive audit report of all plugin permissions, executed commands, and file access patterns. The audit report includes a risk assessment for each plugin and recommendations for tightening permissions.\nConclusion Knowledge Work Plugins represents the future of AI-assisted development. By giving Claude direct access to tools through a structured, sandboxed interface, it transforms Claude from a text generator into an operational partner. With 20,728 stars and backing from Anthropic, this ecosystem is set to become the standard for AI tool integration across development teams worldwide. The project roadmap includes real-time streaming support, cross-model compatibility, and a community marketplace for third-party plugins.\nFor plugin development infrastructure, DigitalOcean provides affordable cloud instances. HTStack offers cheap storage for plugin packages. Binance and OKX for portfolio management. WebShare proxies for development environment isolation. Teams should also invest in secure communication channels — consider Signal or encrypted messaging for team coordination.\nGet started:\nnpx skills add https://github.com/anthropics/knowledge-work-plugins ```` **Internal links**: [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) · [Automate research](https://dibi8.com/dev-utils/academic-research-skills) * * * **Sources \u0026 Further Reading**: - GitHub repository: https://github.com/anthropics/knowledge-work-plugins - Plugin SDK documentation: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md - Claude API reference: https://docs.anthropic.com/claude/reference/ **CTA**: Join the DIBI8 developer community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Knowledge Work Plugins: Anthropic's Plugin Ecosystem for Enhanced AI Productivity 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/knowledge-work-plugins\" } } * * * ## Related Articles - [ai-engineering-from-scratch](knowledge-work-plugins) - [12-factor-agents-production-llm-software-2026](knowledge-work-plugins) - [12-factor-agents](knowledge-work-plugins) - [1m-context-window-llm-2026-real-test](knowledge-work-plugins) - [9router-smart-llm-proxy-token-saver-free-coding](knowledge-work-plugins) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "1973",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/knowledge-work-plugins/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
-            <li>
-                <a href="#what-are-knowledge-work-plugins" aria-label="What Are Knowledge Work Plugins?">What Are Knowledge Work Plugins?</a></li>
-            <li>
-                <a href="#how-the-plugin-system-works" aria-label="How the Plugin System Works">How the Plugin System Works</a></li>
-            <li>
-                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a></li></ul>
-                
-            <li>
-                <a href="#clone-the-repository" aria-label="Clone the repository">Clone the repository</a></li>
-            <li>
-                <a href="#install-dependencies" aria-label="Install dependencies">Install dependencies</a></li>
-            <li>
-                <a href="#initialize-plugin-configuration" aria-label="Initialize plugin configuration">Initialize plugin configuration</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#docker-setup" aria-label="Docker Setup">Docker Setup</a></li></ul>
-                
-            <li>
-                <a href="#integration-with-development-workflows" aria-label="Integration with Development Workflows">Integration with Development Workflows</a></li>
-            <li>
-                <a href="#benchmarks-plugin-augmented-vs-standard-ai" aria-label="Benchmarks: Plugin-Augmented vs Standard AI">Benchmarks: Plugin-Augmented vs Standard AI</a><ul>
-                    
-            <li>
-                <a href="#plugin-composition" aria-label="Plugin Composition">Plugin Composition</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#compose-search--analyze--edit--verify" aria-label="Compose: search → analyze → edit → verify">Compose: search → analyze → edit → verify</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#plugin-monitoring-and-logging" aria-label="Plugin Monitoring and Logging">Plugin Monitoring and Logging</a></li></ul>
-                </ul>
-            </li>
-            <li>
-                <a href="#enable-detailed-logging" aria-label="Enable detailed logging">Enable detailed logging</a></li>
-            <li>
-                <a href="#monitor-plugin-execution-in-real-time" aria-label="Monitor plugin execution in real-time">Monitor plugin execution in real-time</a></li>
-            <li>
-                <a href="#export-execution-metrics" aria-label="Export execution metrics">Export execution metrics</a><ul>
-                    
-            <li>
-                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
-            <li>
-                <a href="#limitations-when-plugins-arent-the-answer" aria-label="Limitations: When Plugins Aren&rsquo;t the Answer">Limitations: When Plugins Aren&rsquo;t the Answer</a></li>
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
-                    
-            <li>
-                <a href="#is-knowledge-work-plugins-free" aria-label="Is Knowledge Work Plugins free?">Is Knowledge Work Plugins free?</a></li>
-            <li>
-                <a href="#can-i-use-these-plugins-with-other-models" aria-label="Can I use these plugins with other models?">Can I use these plugins with other models?</a></li>
-            <li>
-                <a href="#how-do-i-create-a-custom-plugin" aria-label="How do I create a custom plugin?">How do I create a custom plugin?</a></li>
-            <li>
-                <a href="#are-there-rate-limits-on-plugin-execution" aria-label="Are there rate limits on plugin execution?">Are there rate limits on plugin execution?</a></li>
-            <li>
-                <a href="#can-plugins-execute-shell-commands" aria-label="Can plugins execute shell commands?">Can plugins execute shell commands?</a></li>
-            <li>
-                <a href="#how-do-i-audit-plugin-permissions" aria-label="How do I audit plugin permissions?">How do I audit plugin permissions?</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
-            </li>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>th&ndash;.png</p>
-<hr>
-<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>Knowledge Work Plugins is Anthropic&rsquo;s official plugin ecosystem that extends Claude&rsquo;s capabilities with structured tool calls for document editing, code analysis, web browsing, and file operations. With 20,728 stars, it represents the gold standard for AI agent tool integration.</p>
-<p><strong>TL;DR: 20,728 stars</strong> — Anthropic&rsquo;s most-starred plugin ecosystem.</p>
-<h2 id="what-are-knowledge-work-plugins">What Are Knowledge Work Plugins?<a hidden class="anchor" aria-hidden="true" href="#what-are-knowledge-work-plugins">#</a></h2>
-<p>Knowledge Work Plugins provide a standardized interface between Claude and external tools. Rather than asking Claude to generate code that you then run, the plugin system allows Claude to directly interact with files, browse the web, execute commands, and perform other tasks through structured tool calls.</p>
-<p>The plugin architecture follows a simple principle: Claude defines what it wants to do, and the plugin system executes it safely with proper permissions and error handling.</p>
-<p><strong>Core Plugin Categories:</strong></p>
-<ul>
-<li><strong>Document Editing</strong> — Read, write, and search files with structured edit operations</li>
-<li><strong>Code Analysis</strong> — Parse codebases, generate diffs, run linters, and execute tests</li>
-<li><strong>Web Browsing</strong> — Search the web, fetch URLs, and extract structured data</li>
-<li><strong>File Operations</strong> — List directories, move files, manage project structures</li>
-<li><strong>Custom Plugins</strong> — Build your own tools using the plugin SDK</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Knowledge Work Plugins</span>
-</span></span><span style="display:flex;"><span>npx skills add https://github.com/anthropics/knowledge-work-plugins
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># List available plugins</span>
-</span></span><span style="display:flex;"><span>npx skills list | grep knowledge-work
-</span></span></code></pre></div><h2 id="how-the-plugin-system-works">How the Plugin System Works<a hidden class="anchor" aria-hidden="true" href="#how-the-plugin-system-works">#</a></h2>
-<p>The plugin system operates through a three-step cycle: 1. <strong>Claude identifies a task</strong> — The LLM determines it needs to perform an action beyond text generation
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/knowledge-work-plugins/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/knowledge-work-plugins/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/knowledge-work-plugins/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/knowledge-work-plugins/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"th–.png\nTL;DR Knowledge Work Plugins is Anthropic’s official plugin ecosystem that extends Claude’s capabilities with structured tool calls for document editing, code analysis, web browsing, and file operations. With 20,728 stars, it represents the gold standard for AI agent tool integration.\nTL;DR: 20,728 stars — Anthropic’s most-starred plugin ecosystem.\nWhat Are Knowledge Work Plugins? Knowledge Work Plugins provide a standardized interface between Claude and external tools. Rather than asking Claude to generate code that you then run, the plugin system allows Claude to directly interact with files, browse the web, execute commands, and perform other tasks through structured tool calls.\nThe plugin architecture follows a simple principle: Claude defines what it wants to do, and the plugin system executes it safely with proper permissions and error handling.\nCore Plugin Categories:\nDocument Editing — Read, write, and search files with structured edit operations Code Analysis — Parse codebases, generate diffs, run linters, and execute tests Web Browsing — Search the web, fetch URLs, and extract structured data File Operations — List directories, move files, manage project structures Custom Plugins — Build your own tools using the plugin SDK # Install Knowledge Work Plugins npx skills add https://github.com/anthropics/knowledge-work-plugins # List available plugins npx skills list | grep knowledge-work How the Plugin System Works The plugin system operates through a three-step cycle: 1. Claude identifies a task — The LLM determines it needs to perform an action beyond text generation 2. Tool call is issued — Claude sends a structured JSON request specifying the action and parameters 3. Plugin executes and returns — The plugin system runs the action in a sandboxed environment and returns results to Claude\n# Example plugin invocation from knowledge_work_plugins import PluginClient client = PluginClient(plugins=[\"document-edit\", \"code-analysis\", \"web-browse\"]) # Claude requests: \"Update the README to include the new API endpoints\" response = client.call( plugin=\"document-edit\", action=\"edit_file\", params={ \"file\": \"README.md\", \"pattern\": \"## API Endpoints\", \"replacement\": \"## API Endpoints\\n\\n### GET /v2/users\\nReturns paginated list of users.\\n\\n### POST /v2/users\\nCreates a new user account.\", \"mode\": \"replace\" } ) print(response) # {\"status\": \"success\", \"lines_changed\": 5} The sandboxing ensures Claude cannot perform destructive operations without explicit confirmation. Each plugin defines its own permission model, from read-only file access to full shell execution.\nInstallation \u0026 Setup Setting up Knowledge Work Plugins requires Python 3.10+ and a working Claude Code or Anthropic API integration: `````bash\nClone the repository git clone https://github.com/anthropics/knowledge-work-plugins.git cd knowledge-work-plugins\nInstall dependencies pip install -r requirements.txt\nInitialize plugin configuration cp plugins.config.example.yaml plugins.config.yaml\n### Plugin Configuration Each plugin is configured independently in ``plugins.config.yaml``: `````yaml plugins: document-edit: enabled: true max_file_size: 1048576 # 1MB allowed_extensions: - .md - .txt - .json - .yaml - .py - .js - .ts code-analysis: enabled: true linters: - pylint - eslint - tsc test_frameworks: - pytest - jest - vitest web-browse: enabled: true max_results: 20 timeout: 30 user_agent: \"Knowledge-Work-Plugins/1.0\" Docker Setup # Build and run in Docker docker build -t knowledge-work-plugins:latest . docker run -v $(pwd)/plugins.config.yaml:/app/config.yaml knowledge-work-plugins:latest Integration with Development Workflows Knowledge Work Plugins integrates with every major development environment: | Environment | Integration Method | Best Plugin | |\n|\n|\n| | Claude Code | Built-in plugin loader | document-edit | | Cursor | Plugin SDK + VS Code extension | code-analysis | | VS Code | Extension marketplace | web-browse | | IntelliJ | Plugin marketplace | code-analysis | | Neovim | LSP integration | document-edit | | GitHub Actions | CLI tool | code-analysis | | GitLab CI | Plugin runner | document-edit |\n# Integrate with GitHub Actions # .github/workflows/plugin-audit.yml name: Plugin Audit on: [pull_request] jobs: audit: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: anthropics/knowledge-work-plugins@v1 with: plugins: \"code-analysis,docker-lint\" config: plugins.config.yaml Benchmarks: Plugin-Augmented vs Standard AI The performance impact of adding structured tools to AI agents is measurable: ````` Task | Standard AI | Plugin-Augmented | Improvement\n|\n|\n|— Fix a bug in 10K LOC codebase | 2.3 hours | 18 minutes | 7.7x Update documentation | 45 min | 3 min | 15x Write integration tests | 1.5 hours | 12 min | 7.5x Refactor API endpoint | 2.0 hours | 20 min | 6x Code review + suggestions | 3.0 hours | 25 min | 7.2x\nThe benchmarks measure time from task initiation to completed, verified output. Plugin-augmented workflows include execution verification (running linters, tests) that standard AI generation cannot perform. ### Error Rate Comparison Metric | Standard AI | Plugin-Augmented\n|\n|— Incorrect code gen | 34% | 8% Missing edge cases | 41% | 12% Requires rewrites | 67% | 15% Production ready | 12% | 78%\nThe error rate reduction comes from the plugin system's ability to validate output against real constraints — running actual linters, tests, and type checkers rather than relying on the LLM's internal knowledge. ## Advanced Usage: Custom Plugin Development The plugin SDK makes it straightforward to build custom tools for your specific workflow: ### Building a Custom Plugin `````python # Custom plugin: PR review automation from knowledge_work_plugins import PluginBase, PluginResult class PRReviewPlugin(PluginBase): name = \"pr-review\" version = \"1.0.0\" description = \"Automated PR review with severity scoring\" async def execute(self, params): pr_url = params.get(\"pr_url\") review_depth = params.get(\"depth\", \"standard\") # standard | deep # Fetch PR diff diff = self.github_api.get_diff(pr_url) # Analyze changes issues = self.analyze_diff(diff, depth=review_depth) # Generate review review = self.generate_review(issues) return PluginResult( status=\"complete\", score=review[\"severity_score\"], comments=review[\"comments\"], recommendations=review[\"recommendations\"] ) def analyze_diff(self, diff, depth=\"standard\"): # Implementation details... pass def generate_review(self, issues): # Generate structured review... pass Plugin Composition Complex tasks can be solved by composing multiple plugins: `````python\nCompose: search → analyze → edit → verify from knowledge_work_plugins import Pipeline\npipeline = Pipeline([ “web-browse”, # Research the problem “code-analysis”, # Analyze the codebase “document-edit”, # Implement the fix “code-analysis”, # Verify with linter/tests ])\nresult = pipeline.execute( task=“Update auth middleware to support OAuth2 PKCE flow”, plugins_config=“plugins.config.yaml” )\n### Plugin Error Handling Robust error handling is critical for production plugin usage. The SDK provides structured error types and automatic retry logic: `````python from knowledge_work_plugins import Pipeline, PluginError pipeline = Pipeline([\"document-edit\", \"code-analysis\"]) try: result = pipeline.execute(task=\"Refactor authentication module\") except PluginError.TimeoutError as e: print(f\"Plugin timed out after {e.timeout}s\") # Retry with increased timeout result = pipeline.execute(task=\"Refactor authentication module\", timeout=600) except PluginError.PermissionDenied as e: print(f\"Permission denied: {e.plugin}\") # Request elevated permissions result = pipeline.execute(task=\"Refactor authentication module\", elevated=True) except PluginError.ValidationError as e: print(f\"Validation failed: {e.message}\") # Fix and retry result = pipeline.execute(task=f\"Fix: {e.suggestion}\") Plugin Monitoring and Logging Track plugin execution with built-in observability: `````python\nEnable detailed logging import logging logging.basicConfig(level=logging.DEBUG)\nMonitor plugin execution in real-time pipeline.on_execute(lambda event: print(f\"[{event.plugin}] {event.action}\")) pipeline.on_complete(lambda result: print(f\"Completed: {result.status}\"))\nExport execution metrics metrics = pipeline.metrics() print(f\"Total calls: {metrics.total_tool_calls}\") print(f\"Average latency: {metrics.avg_latency:.2f}s\") print(f\"Error rate: {metrics.error_rate:.1%}\")\n### Performance Optimization For large codebases, plugin execution can be optimized with caching and parallelization: `````python # Enable parallel plugin execution pipeline.set_parallel(True, max_workers=4) # Enable result caching for repeatable operations pipeline.set_cache(enable=True, ttl=3600) # Set execution budget (time and token limits) pipeline.set_budget( max_time=300, # 5 minutes max_tokens=50000, max_tool_calls=50 ) Comparison with Alternatives Knowledge Work Plugins stands apart from competing tool-use frameworks: | Feature | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools | |\n|\n|\n|\n|\n| | Stars | 20,728 | 50K+ | 140K+ | N/A | | Developer | Anthropic | LangChain | AutoGPT | OpenAI | | License | Apache 2.0 | MIT | MIT | Proprietary | | Custom Plugin SDK | Yes | Partial | Yes | Partial | | Sandbox Security | Built-in | Manual | Manual | Built-in | | Parallel Execution | Yes | Yes | No | No | | Plugin Composition | Native | Via chains | Manual | Manual | | Code Analysis | Deep | Basic | None | Basic | | Document Editing | Full CRUD | Limited | None | Limited | | Plugin Debugging | Built-in | Manual | Manual | Built-in |\nThe key advantage is Anthropic’s deep integration. Knowledge Work Plugins leverages Claude’s structured output capabilities and Constitutional AI principles to ensure safe tool use.\nLimitations: When Plugins Aren’t the Answer Knowledge Work Plugins is powerful but not universal: 1. API dependency — Plugins require the Claude API or Claude Code. They don’t work with other LLM providers without adaptation.\nPlugin ecosystem size — While growing rapidly, the official plugin catalog is smaller than LangChain’s 200+ integrations.\nComplex multi-step workflows — For workflows requiring more than 5-10 tool calls, composition can become unwieldy without careful design.\nReal-time streaming — Plugin execution results are returned as complete units. Real-time progress feedback during long operations is not yet supported.\nCross-platform file access — Plugins operate within the containerized execution environment. Accessing files outside the workspace requires explicit volume mounts, which adds configuration complexity for multi-machine setups.\n# Quick suitability check # ✅ Codebase analysis and editing → YES # ✅ Documentation updates → YES # ✅ Web research → YES # ✅ Complex multi-API orchestration → PARTIAL (use LangChain instead) # ✅ Real-time dashboard updates → NO (use websockets directly) Frequently Asked Questions Is Knowledge Work Plugins free? Yes, all official plugins are Apache 2.0 licensed. The Claude API has free tiers for testing.\nCan I use these plugins with other models? The plugin SDK is designed for Claude but can be adapted for other models with minor modifications. The Anthropic team provides migration guides on the GitHub repository.\nHow do I create a custom plugin? Use the PluginBase class from the SDK. Define your plugin name, version, description, and an execute method. The SDK handles serialization, error handling, and sandboxing.\nAre there rate limits on plugin execution? Yes. Rate limits are defined per-plugin in plugins.config.yaml. The default is 100 calls per minute, which can be adjusted based on your needs.\nCan plugins execute shell commands? Yes, the shell-exec plugin allows controlled shell execution. It includes safeguards against destructive commands and operates within a defined directory sandbox. Sensitive commands like rm -rf and dd are blocked by default.\nHow do I audit plugin permissions? Run knowledge-work-plugins audit to generate a comprehensive audit report of all plugin permissions, executed commands, and file access patterns. The audit report includes a risk assessment for each plugin and recommendations for tightening permissions.\nConclusion Knowledge Work Plugins represents the future of AI-assisted development. By giving Claude direct access to tools through a structured, sandboxed interface, it transforms Claude from a text generator into an operational partner. With 20,728 stars and backing from Anthropic, this ecosystem is set to become the standard for AI tool integration across development teams worldwide. The project roadmap includes real-time streaming support, cross-model compatibility, and a community marketplace for third-party plugins.\nFor plugin development infrastructure, DigitalOcean provides affordable cloud instances. HTStack offers cheap storage for plugin packages. Binance and OKX for portfolio management. WebShare proxies for development environment isolation. Teams should also invest in secure communication channels — consider Signal or encrypted messaging for team coordination.\nGet started:\nnpx skills add https://github.com/anthropics/knowledge-work-plugins ```` **Internal links**: [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) · [Automate research](https://dibi8.com/dev-utils/academic-research-skills) * * * **Sources \u0026 Further Reading**: - GitHub repository: https://github.com/anthropics/knowledge-work-plugins - Plugin SDK documentation: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md - Claude API reference: https://docs.anthropic.com/claude/reference/ **CTA**: Join the DIBI8 developer community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Knowledge Work Plugins: Anthropic's Plugin Ecosystem for Enhanced AI Productivity 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/knowledge-work-plugins\" } } * * * ## Related Articles - [ai-engineering-from-scratch](knowledge-work-plugins) - [12-factor-agents-production-llm-software-2026](knowledge-work-plugins) - [12-factor-agents](knowledge-work-plugins) - [1m-context-window-llm-2026-real-test](knowledge-work-plugins) - [9router-smart-llm-proxy-token-saver-free-coding](knowledge-work-plugins) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1973","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/knowledge-work-plugins/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-are-knowledge-work-plugins aria-label="What Are Knowledge Work Plugins?">What Are Knowledge Work Plugins?</a></li><li><a href=#how-the-plugin-system-works aria-label="How the Plugin System Works">How the Plugin System Works</a></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a></li></ul><li><a href=#clone-the-repository aria-label="Clone the repository">Clone the repository</a></li><li><a href=#install-dependencies aria-label="Install dependencies">Install dependencies</a></li><li><a href=#initialize-plugin-configuration aria-label="Initialize plugin configuration">Initialize plugin configuration</a><ul><ul><li><a href=#docker-setup aria-label="Docker Setup">Docker Setup</a></li></ul><li><a href=#integration-with-development-workflows aria-label="Integration with Development Workflows">Integration with Development Workflows</a></li><li><a href=#benchmarks-plugin-augmented-vs-standard-ai aria-label="Benchmarks: Plugin-Augmented vs Standard AI">Benchmarks: Plugin-Augmented vs Standard AI</a><ul><li><a href=#plugin-composition aria-label="Plugin Composition">Plugin Composition</a></li></ul></li></ul></li><li><a href=#compose-search--analyze--edit--verify aria-label="Compose: search → analyze → edit → verify">Compose: search → analyze → edit → verify</a><ul><ul><li><a href=#plugin-monitoring-and-logging aria-label="Plugin Monitoring and Logging">Plugin Monitoring and Logging</a></li></ul></ul></li><li><a href=#enable-detailed-logging aria-label="Enable detailed logging">Enable detailed logging</a></li><li><a href=#monitor-plugin-execution-in-real-time aria-label="Monitor plugin execution in real-time">Monitor plugin execution in real-time</a></li><li><a href=#export-execution-metrics aria-label="Export execution metrics">Export execution metrics</a><ul><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations-when-plugins-arent-the-answer aria-label="Limitations: When Plugins Aren&rsquo;t the Answer">Limitations: When Plugins Aren&rsquo;t the Answer</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#is-knowledge-work-plugins-free aria-label="Is Knowledge Work Plugins free?">Is Knowledge Work Plugins free?</a></li><li><a href=#can-i-use-these-plugins-with-other-models aria-label="Can I use these plugins with other models?">Can I use these plugins with other models?</a></li><li><a href=#how-do-i-create-a-custom-plugin aria-label="How do I create a custom plugin?">How do I create a custom plugin?</a></li><li><a href=#are-there-rate-limits-on-plugin-execution aria-label="Are there rate limits on plugin execution?">Are there rate limits on plugin execution?</a></li><li><a href=#can-plugins-execute-shell-commands aria-label="Can plugins execute shell commands?">Can plugins execute shell commands?</a></li><li><a href=#how-do-i-audit-plugin-permissions aria-label="How do I audit plugin permissions?">How do I audit plugin permissions?</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>th&ndash;.png</p><hr><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Knowledge Work Plugins is Anthropic&rsquo;s official plugin ecosystem that extends Claude&rsquo;s capabilities with structured tool calls for document editing, code analysis, web browsing, and file operations. With 20,728 stars, it represents the gold standard for AI agent tool integration.</p><p><strong>TL;DR: 20,728 stars</strong> — Anthropic&rsquo;s most-starred plugin ecosystem.</p><h2 id=what-are-knowledge-work-plugins>What Are Knowledge Work Plugins?<a hidden class=anchor aria-hidden=true href=#what-are-knowledge-work-plugins>#</a></h2><p>Knowledge Work Plugins provide a standardized interface between Claude and external tools. Rather than asking Claude to generate code that you then run, the plugin system allows Claude to directly interact with files, browse the web, execute commands, and perform other tasks through structured tool calls.</p><p>The plugin architecture follows a simple principle: Claude defines what it wants to do, and the plugin system executes it safely with proper permissions and error handling.</p><p><strong>Core Plugin Categories:</strong></p><ul><li><strong>Document Editing</strong> — Read, write, and search files with structured edit operations</li><li><strong>Code Analysis</strong> — Parse codebases, generate diffs, run linters, and execute tests</li><li><strong>Web Browsing</strong> — Search the web, fetch URLs, and extract structured data</li><li><strong>File Operations</strong> — List directories, move files, manage project structures</li><li><strong>Custom Plugins</strong> — Build your own tools using the plugin SDK</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Knowledge Work Plugins</span>
+</span></span><span style=display:flex><span>npx skills add https://github.com/anthropics/knowledge-work-plugins
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># List available plugins</span>
+</span></span><span style=display:flex><span>npx skills list | grep knowledge-work
+</span></span></code></pre></div><h2 id=how-the-plugin-system-works>How the Plugin System Works<a hidden class=anchor aria-hidden=true href=#how-the-plugin-system-works>#</a></h2><p>The plugin system operates through a three-step cycle: 1. <strong>Claude identifies a task</strong> — The LLM determines it needs to perform an action beyond text generation
 2. <strong>Tool call is issued</strong> — Claude sends a structured JSON request specifying the action and parameters
-3. <strong>Plugin executes and returns</strong> — The plugin system runs the action in a sandboxed environment and returns results to Claude</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Example plugin invocation</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> knowledge_work_plugins <span style="color:#f92672">import</span> PluginClient
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> PluginClient(plugins<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;document-edit&#34;</span>, <span style="color:#e6db74">&#34;code-analysis&#34;</span>, <span style="color:#e6db74">&#34;web-browse&#34;</span>])
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude requests: &#34;Update the README to include the new API endpoints&#34;</span>
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>call(
-</span></span><span style="display:flex;"><span>    plugin<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;document-edit&#34;</span>,
-</span></span><span style="display:flex;"><span>    action<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;edit_file&#34;</span>,
-</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">=</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;file&#34;</span>: <span style="color:#e6db74">&#34;README.md&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;pattern&#34;</span>: <span style="color:#e6db74">&#34;## API Endpoints&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;replacement&#34;</span>: <span style="color:#e6db74">&#34;## API Endpoints</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">### GET /v2/users</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Returns paginated list of users.</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">### POST /v2/users</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Creates a new user account.&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mode&#34;</span>: <span style="color:#e6db74">&#34;replace&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(response)  <span style="color:#75715e"># {&#34;status&#34;: &#34;success&#34;, &#34;lines_changed&#34;: 5}</span>
-</span></span></code></pre></div><p>The sandboxing ensures Claude cannot perform destructive operations without explicit confirmation. Each plugin defines its own permission model, from read-only file access to full shell execution.</p>
-<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<p>Setting up Knowledge Work Plugins requires Python 3.10+ and a working Claude Code or Anthropic API integration: `````bash</p>
-<h1 id="clone-the-repository">Clone the repository<a hidden class="anchor" aria-hidden="true" href="#clone-the-repository">#</a></h1>
-<p>git clone <a href="https://github.com/anthropics/knowledge-work-plugins.git">https://github.com/anthropics/knowledge-work-plugins.git</a>
-cd knowledge-work-plugins</p>
-<h1 id="install-dependencies">Install dependencies<a hidden class="anchor" aria-hidden="true" href="#install-dependencies">#</a></h1>
-<p>pip install -r requirements.txt</p>
-<h1 id="initialize-plugin-configuration">Initialize plugin configuration<a hidden class="anchor" aria-hidden="true" href="#initialize-plugin-configuration">#</a></h1>
-<p>cp plugins.config.example.yaml plugins.config.yaml</p>
-<pre tabindex="0"><code>
+3. <strong>Plugin executes and returns</strong> — The plugin system runs the action in a sandboxed environment and returns results to Claude</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Example plugin invocation</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> knowledge_work_plugins <span style=color:#f92672>import</span> PluginClient
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> PluginClient(plugins<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;document-edit&#34;</span>, <span style=color:#e6db74>&#34;code-analysis&#34;</span>, <span style=color:#e6db74>&#34;web-browse&#34;</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Claude requests: &#34;Update the README to include the new API endpoints&#34;</span>
+</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>call(
+</span></span><span style=display:flex><span>    plugin<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;document-edit&#34;</span>,
+</span></span><span style=display:flex><span>    action<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;edit_file&#34;</span>,
+</span></span><span style=display:flex><span>    params<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;file&#34;</span>: <span style=color:#e6db74>&#34;README.md&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;pattern&#34;</span>: <span style=color:#e6db74>&#34;## API Endpoints&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;replacement&#34;</span>: <span style=color:#e6db74>&#34;## API Endpoints</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>### GET /v2/users</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>Returns paginated list of users.</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>### POST /v2/users</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>Creates a new user account.&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;replace&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(response)  <span style=color:#75715e># {&#34;status&#34;: &#34;success&#34;, &#34;lines_changed&#34;: 5}</span>
+</span></span></code></pre></div><p>The sandboxing ensures Claude cannot perform destructive operations without explicit confirmation. Each plugin defines its own permission model, from read-only file access to full shell execution.</p><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><p>Setting up Knowledge Work Plugins requires Python 3.10+ and a working Claude Code or Anthropic API integration: `````bash</p><h1 id=clone-the-repository>Clone the repository<a hidden class=anchor aria-hidden=true href=#clone-the-repository>#</a></h1><p>git clone <a href=https://github.com/anthropics/knowledge-work-plugins.git>https://github.com/anthropics/knowledge-work-plugins.git</a>
+cd knowledge-work-plugins</p><h1 id=install-dependencies>Install dependencies<a hidden class=anchor aria-hidden=true href=#install-dependencies>#</a></h1><p>pip install -r requirements.txt</p><h1 id=initialize-plugin-configuration>Initialize plugin configuration<a hidden class=anchor aria-hidden=true href=#initialize-plugin-configuration>#</a></h1><p>cp plugins.config.example.yaml plugins.config.yaml</p><pre tabindex=0><code>
 ### Plugin Configuration
 
 Each plugin is configured independently in ``plugins.config.yaml``: `````yaml
@@ -332,63 +55,41 @@ plugins: document-edit: enabled: true
     max_results: 20
     timeout: 30
     user_agent: &#34;Knowledge-Work-Plugins/1.0&#34;
-</code></pre><h3 id="docker-setup">Docker Setup<a hidden class="anchor" aria-hidden="true" href="#docker-setup">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build and run in Docker</span>
-</span></span><span style="display:flex;"><span>docker build -t knowledge-work-plugins:latest .
-</span></span><span style="display:flex;"><span>docker run -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/plugins.config.yaml:/app/config.yaml knowledge-work-plugins:latest
-</span></span></code></pre></div><h2 id="integration-with-development-workflows">Integration with Development Workflows<a hidden class="anchor" aria-hidden="true" href="#integration-with-development-workflows">#</a></h2>
-<p>Knowledge Work Plugins integrates with every major development environment: | Environment | Integration Method | Best Plugin |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><h3 id=docker-setup>Docker Setup<a hidden class=anchor aria-hidden=true href=#docker-setup>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Build and run in Docker</span>
+</span></span><span style=display:flex><span>docker build -t knowledge-work-plugins:latest .
+</span></span><span style=display:flex><span>docker run -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/plugins.config.yaml:/app/config.yaml knowledge-work-plugins:latest
+</span></span></code></pre></div><h2 id=integration-with-development-workflows>Integration with Development Workflows<a hidden class=anchor aria-hidden=true href=#integration-with-development-workflows>#</a></h2><p>Knowledge Work Plugins integrates with every major development environment: | Environment | Integration Method | Best Plugin |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>Claude Code</strong> | Built-in plugin loader | document-edit |
 | <strong>Cursor</strong> | Plugin SDK + VS Code extension | code-analysis |
 | <strong>VS Code</strong> | Extension marketplace | web-browse |
 | <strong>IntelliJ</strong> | Plugin marketplace | code-analysis |
 | <strong>Neovim</strong> | LSP integration | document-edit |
 | <strong>GitHub Actions</strong> | CLI tool | code-analysis |
-| <strong>GitLab CI</strong> | Plugin runner | document-edit |</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Integrate with GitHub Actions</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/plugin-audit.yml</span>
-</span></span><span style="display:flex;"><span>name: Plugin Audit
-</span></span><span style="display:flex;"><span>on: <span style="color:#f92672">[</span>pull_request<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>jobs: audit: runs-on: ubuntu-latest
-</span></span><span style="display:flex;"><span>    steps: - uses: actions/checkout@v4
-</span></span><span style="display:flex;"><span>      - uses: anthropics/knowledge-work-plugins@v1
-</span></span><span style="display:flex;"><span>        with: plugins: <span style="color:#e6db74">&#34;code-analysis,docker-lint&#34;</span>
-</span></span><span style="display:flex;"><span>          config: plugins.config.yaml
-</span></span></code></pre></div><h2 id="benchmarks-plugin-augmented-vs-standard-ai">Benchmarks: Plugin-Augmented vs Standard AI<a hidden class="anchor" aria-hidden="true" href="#benchmarks-plugin-augmented-vs-standard-ai">#</a></h2>
-<p>The performance impact of adding structured tools to AI agents is measurable: `````
-Task                          | Standard AI | Plugin-Augmented | Improvement</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|&mdash;
-Fix a bug in 10K LOC codebase | 2.3 hours  | 18 minutes       | 7.7x
-Update documentation           | 45 min     | 3 min            | 15x
-Write integration tests        | 1.5 hours  | 12 min           | 7.5x
-Refactor API endpoint          | 2.0 hours  | 20 min           | 6x
-Code review + suggestions      | 3.0 hours  | 25 min           | 7.2x</p>
-<pre tabindex="0"><code>
+| <strong>GitLab CI</strong> | Plugin runner | document-edit |</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Integrate with GitHub Actions</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># .github/workflows/plugin-audit.yml</span>
+</span></span><span style=display:flex><span>name: Plugin Audit
+</span></span><span style=display:flex><span>on: <span style=color:#f92672>[</span>pull_request<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>jobs: audit: runs-on: ubuntu-latest
+</span></span><span style=display:flex><span>    steps: - uses: actions/checkout@v4
+</span></span><span style=display:flex><span>      - uses: anthropics/knowledge-work-plugins@v1
+</span></span><span style=display:flex><span>        with: plugins: <span style=color:#e6db74>&#34;code-analysis,docker-lint&#34;</span>
+</span></span><span style=display:flex><span>          config: plugins.config.yaml
+</span></span></code></pre></div><h2 id=benchmarks-plugin-augmented-vs-standard-ai>Benchmarks: Plugin-Augmented vs Standard AI<a hidden class=anchor aria-hidden=true href=#benchmarks-plugin-augmented-vs-standard-ai>#</a></h2><p>The performance impact of adding structured tools to AI agents is measurable: `````
+Task | Standard AI | Plugin-Augmented | Improvement</p><hr><p>|</p><hr><p>|</p><hr><p>|&mdash;
+Fix a bug in 10K LOC codebase | 2.3 hours | 18 minutes | 7.7x
+Update documentation | 45 min | 3 min | 15x
+Write integration tests | 1.5 hours | 12 min | 7.5x
+Refactor API endpoint | 2.0 hours | 20 min | 6x
+Code review + suggestions | 3.0 hours | 25 min | 7.2x</p><pre tabindex=0><code>
 The benchmarks measure time from task initiation to completed, verified output. Plugin-augmented workflows include execution verification (running linters, tests) that standard AI generation cannot perform.
 
 ### Error Rate Comparison
-</code></pre><p>Metric              | Standard AI | Plugin-Augmented</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|&mdash;
-Incorrect code gen  | 34%        | 8%
-Missing edge cases  | 41%        | 12%
-Requires rewrites   | 67%        | 15%
-Production ready    | 12%        | 78%</p>
-<pre tabindex="0"><code>
+</code></pre><p>Metric | Standard AI | Plugin-Augmented</p><hr><p>|</p><hr><p>|&mdash;
+Incorrect code gen | 34% | 8%
+Missing edge cases | 41% | 12%
+Requires rewrites | 67% | 15%
+Production ready | 12% | 78%</p><pre tabindex=0><code>
 The error rate reduction comes from the plugin system&#39;s ability to validate output against real constraints — running actual linters, tests, and type checkers rather than relying on the LLM&#39;s internal knowledge.
 
 ## Advanced Usage: Custom Plugin Development
@@ -427,21 +128,15 @@ class PRReviewPlugin(PluginBase): name = &#34;pr-review&#34;
 
     def generate_review(self, issues): # Generate structured review...
         pass
-</code></pre><h3 id="plugin-composition">Plugin Composition<a hidden class="anchor" aria-hidden="true" href="#plugin-composition">#</a></h3>
-<p>Complex tasks can be solved by composing multiple plugins: `````python</p>
-<h1 id="compose-search--analyze--edit--verify">Compose: search → analyze → edit → verify<a hidden class="anchor" aria-hidden="true" href="#compose-search--analyze--edit--verify">#</a></h1>
-<p>from knowledge_work_plugins import Pipeline</p>
-<p>pipeline = Pipeline([
-&ldquo;web-browse&rdquo;,    # Research the problem
+</code></pre><h3 id=plugin-composition>Plugin Composition<a hidden class=anchor aria-hidden=true href=#plugin-composition>#</a></h3><p>Complex tasks can be solved by composing multiple plugins: `````python</p><h1 id=compose-search--analyze--edit--verify>Compose: search → analyze → edit → verify<a hidden class=anchor aria-hidden=true href=#compose-search--analyze--edit--verify>#</a></h1><p>from knowledge_work_plugins import Pipeline</p><p>pipeline = Pipeline([
+&ldquo;web-browse&rdquo;, # Research the problem
 &ldquo;code-analysis&rdquo;, # Analyze the codebase
 &ldquo;document-edit&rdquo;, # Implement the fix
 &ldquo;code-analysis&rdquo;, # Verify with linter/tests
-])</p>
-<p>result = pipeline.execute(
+])</p><p>result = pipeline.execute(
 task=&ldquo;Update auth middleware to support OAuth2 PKCE flow&rdquo;,
 plugins_config=&ldquo;plugins.config.yaml&rdquo;
-)</p>
-<pre tabindex="0"><code>
+)</p><pre tabindex=0><code>
 ### Plugin Error Handling
 
 Robust error handling is critical for production plugin usage. The SDK provides structured error types and automatic retry logic: `````python
@@ -459,20 +154,12 @@ except PluginError.PermissionDenied as e: print(f&#34;Permission denied: {e.plug
 except PluginError.ValidationError as e: print(f&#34;Validation failed: {e.message}&#34;)
     # Fix and retry
     result = pipeline.execute(task=f&#34;Fix: {e.suggestion}&#34;)
-</code></pre><h3 id="plugin-monitoring-and-logging">Plugin Monitoring and Logging<a hidden class="anchor" aria-hidden="true" href="#plugin-monitoring-and-logging">#</a></h3>
-<p>Track plugin execution with built-in observability: `````python</p>
-<h1 id="enable-detailed-logging">Enable detailed logging<a hidden class="anchor" aria-hidden="true" href="#enable-detailed-logging">#</a></h1>
-<p>import logging
-logging.basicConfig(level=logging.DEBUG)</p>
-<h1 id="monitor-plugin-execution-in-real-time">Monitor plugin execution in real-time<a hidden class="anchor" aria-hidden="true" href="#monitor-plugin-execution-in-real-time">#</a></h1>
-<p>pipeline.on_execute(lambda event: print(f&quot;[{event.plugin}] {event.action}&quot;))
-pipeline.on_complete(lambda result: print(f&quot;Completed: {result.status}&quot;))</p>
-<h1 id="export-execution-metrics">Export execution metrics<a hidden class="anchor" aria-hidden="true" href="#export-execution-metrics">#</a></h1>
-<p>metrics = pipeline.metrics()
-print(f&quot;Total calls: {metrics.total_tool_calls}&quot;)
-print(f&quot;Average latency: {metrics.avg_latency:.2f}s&quot;)
-print(f&quot;Error rate: {metrics.error_rate:.1%}&quot;)</p>
-<pre tabindex="0"><code>
+</code></pre><h3 id=plugin-monitoring-and-logging>Plugin Monitoring and Logging<a hidden class=anchor aria-hidden=true href=#plugin-monitoring-and-logging>#</a></h3><p>Track plugin execution with built-in observability: `````python</p><h1 id=enable-detailed-logging>Enable detailed logging<a hidden class=anchor aria-hidden=true href=#enable-detailed-logging>#</a></h1><p>import logging
+logging.basicConfig(level=logging.DEBUG)</p><h1 id=monitor-plugin-execution-in-real-time>Monitor plugin execution in real-time<a hidden class=anchor aria-hidden=true href=#monitor-plugin-execution-in-real-time>#</a></h1><p>pipeline.on_execute(lambda event: print(f"[{event.plugin}] {event.action}"))
+pipeline.on_complete(lambda result: print(f"Completed: {result.status}"))</p><h1 id=export-execution-metrics>Export execution metrics<a hidden class=anchor aria-hidden=true href=#export-execution-metrics>#</a></h1><p>metrics = pipeline.metrics()
+print(f"Total calls: {metrics.total_tool_calls}")
+print(f"Average latency: {metrics.avg_latency:.2f}s")
+print(f"Error rate: {metrics.error_rate:.1%}")</p><pre tabindex=0><code>
 ### Performance Optimization
 
 For large codebases, plugin execution can be optimized with caching and parallelization: `````python
@@ -488,19 +175,8 @@ pipeline.set_budget(
     max_tokens=50000,
     max_tool_calls=50
 )
-</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<p>Knowledge Work Plugins stands apart from competing tool-use frameworks: | Feature | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>Knowledge Work Plugins stands apart from competing tool-use frameworks: | Feature | Knowledge Work Plugins | LangChain Tools | AutoGPT Tools | OpenAI Tools |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Stars | 20,728 | 50K+ | 140K+ | N/A |
 | Developer | Anthropic | LangChain | AutoGPT | OpenAI |
 | License | Apache 2.0 | MIT | MIT | Proprietary |
@@ -510,346 +186,92 @@ pipeline.set_budget(
 | Plugin Composition | Native | Via chains | Manual | Manual |
 | <strong>Code Analysis</strong> | Deep | Basic | None | Basic |
 | <strong>Document Editing</strong> | Full CRUD | Limited | None | Limited |
-| <strong>Plugin Debugging</strong> | Built-in | Manual | Manual | Built-in |</p>
-<p>The key advantage is <strong>Anthropic&rsquo;s deep integration</strong>. Knowledge Work Plugins leverages Claude&rsquo;s structured output capabilities and Constitutional AI principles to ensure safe tool use.</p>
-<h2 id="limitations-when-plugins-arent-the-answer">Limitations: When Plugins Aren&rsquo;t the Answer<a hidden class="anchor" aria-hidden="true" href="#limitations-when-plugins-arent-the-answer">#</a></h2>
-<p>Knowledge Work Plugins is powerful but not universal: 1. <strong>API dependency</strong> — Plugins require the Claude API or Claude Code. They don&rsquo;t work with other LLM providers without adaptation.</p>
-<ol start="2">
-<li>
-<p><strong>Plugin ecosystem size</strong> — While growing rapidly, the official plugin catalog is smaller than LangChain&rsquo;s 200+ integrations.</p>
-</li>
-<li>
-<p><strong>Complex multi-step workflows</strong> — For workflows requiring more than 5-10 tool calls, composition can become unwieldy without careful design.</p>
-</li>
-<li>
-<p><strong>Real-time streaming</strong> — Plugin execution results are returned as complete units. Real-time progress feedback during long operations is not yet supported.</p>
-</li>
-<li>
-<p><strong>Cross-platform file access</strong> — Plugins operate within the containerized execution environment. Accessing files outside the workspace requires explicit volume mounts, which adds configuration complexity for multi-machine setups.</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quick suitability check</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Codebase analysis and editing → YES</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Documentation updates → YES</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Web research → YES</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Complex multi-API orchestration → PARTIAL (use LangChain instead)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Real-time dashboard updates → NO (use websockets directly)</span>
-</span></span></code></pre></div><h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="is-knowledge-work-plugins-free">Is Knowledge Work Plugins free?<a hidden class="anchor" aria-hidden="true" href="#is-knowledge-work-plugins-free">#</a></h3>
-<p>Yes, all official plugins are Apache 2.0 licensed. The Claude API has free tiers for testing.</p>
-<h3 id="can-i-use-these-plugins-with-other-models">Can I use these plugins with other models?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-these-plugins-with-other-models">#</a></h3>
-<p>The plugin SDK is designed for Claude but can be adapted for other models with minor modifications. The Anthropic team provides migration guides on the GitHub repository.</p>
-<h3 id="how-do-i-create-a-custom-plugin">How do I create a custom plugin?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-create-a-custom-plugin">#</a></h3>
-<p>Use the <code>PluginBase</code> class from the SDK. Define your plugin name, version, description, and an <code>execute</code> method. The SDK handles serialization, error handling, and sandboxing.</p>
-<h3 id="are-there-rate-limits-on-plugin-execution">Are there rate limits on plugin execution?<a hidden class="anchor" aria-hidden="true" href="#are-there-rate-limits-on-plugin-execution">#</a></h3>
-<p>Yes. Rate limits are defined per-plugin in <code>plugins.config.yaml</code>. The default is 100 calls per minute, which can be adjusted based on your needs.</p>
-<h3 id="can-plugins-execute-shell-commands">Can plugins execute shell commands?<a hidden class="anchor" aria-hidden="true" href="#can-plugins-execute-shell-commands">#</a></h3>
-<p>Yes, the <code>shell-exec</code> plugin allows controlled shell execution. It includes safeguards against destructive commands and operates within a defined directory sandbox. Sensitive commands like <code>rm -rf</code> and <code>dd</code> are blocked by default.</p>
-<h3 id="how-do-i-audit-plugin-permissions">How do I audit plugin permissions?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-audit-plugin-permissions">#</a></h3>
-<p>Run <code>knowledge-work-plugins audit</code> to generate a comprehensive audit report of all plugin permissions, executed commands, and file access patterns. The audit report includes a risk assessment for each plugin and recommendations for tightening permissions.</p>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Knowledge Work Plugins represents the future of AI-assisted development. By giving Claude direct access to tools through a structured, sandboxed interface, it transforms Claude from a text generator into an operational partner. With 20,728 stars and backing from Anthropic, this ecosystem is set to become the standard for AI tool integration across development teams worldwide. The project roadmap includes real-time streaming support, cross-model compatibility, and a community marketplace for third-party plugins.</p>
-<p>For plugin development infrastructure, <a href="https://m.do.co/oa14d5f0wx4f">DigitalOcean</a> provides affordable cloud instances. <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> offers cheap storage for plugin packages. <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a> and <a href="https://promoohubly.com/5g1h7qxn">OKX</a> for portfolio management. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> for development environment isolation. Teams should also invest in secure communication channels — consider <a href="https://signal.org/">Signal</a> or encrypted messaging for team coordination.</p>
-<p><strong>Get started:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx skills add https://github.com/anthropics/knowledge-work-plugins
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**Internal links**: <span style="color:#f92672">[</span>Build production AI systems<span style="color:#f92672">](</span>https://dibi8.com/llm-frameworks/ai-engineering-from-scratch<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>Automate research<span style="color:#f92672">](</span>https://dibi8.com/dev-utils/academic-research-skills<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/anthropics/knowledge-work-plugins
-</span></span><span style="display:flex;"><span>- Plugin SDK documentation: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
-</span></span><span style="display:flex;"><span>- Claude API reference: https://docs.anthropic.com/claude/reference/
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**CTA**: Join the DIBI8 developer community on Telegram — <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Knowledge Work Plugins: Anthropic&#39;s Plugin Ecosystem for Enhanced AI Productivity 2026&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/knowledge-work-plugins&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>&lt;/script&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>ai-engineering-from-scratch<span style="color:#f92672">](</span>knowledge-work-plugins<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents-production-llm-software-2026<span style="color:#f92672">](</span>knowledge-work-plugins<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents<span style="color:#f92672">](</span>knowledge-work-plugins<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>1m-context-window-llm-2026-real-test<span style="color:#f92672">](</span>knowledge-work-plugins<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>9router-smart-llm-proxy-token-saver-free-coding<span style="color:#f92672">](</span>knowledge-work-plugins<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/knowledge-base-stack/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/ladybird-independent-web-browser/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+| <strong>Plugin Debugging</strong> | Built-in | Manual | Manual | Built-in |</p><p>The key advantage is <strong>Anthropic&rsquo;s deep integration</strong>. Knowledge Work Plugins leverages Claude&rsquo;s structured output capabilities and Constitutional AI principles to ensure safe tool use.</p><h2 id=limitations-when-plugins-arent-the-answer>Limitations: When Plugins Aren&rsquo;t the Answer<a hidden class=anchor aria-hidden=true href=#limitations-when-plugins-arent-the-answer>#</a></h2><p>Knowledge Work Plugins is powerful but not universal: 1. <strong>API dependency</strong> — Plugins require the Claude API or Claude Code. They don&rsquo;t work with other LLM providers without adaptation.</p><ol start=2><li><p><strong>Plugin ecosystem size</strong> — While growing rapidly, the official plugin catalog is smaller than LangChain&rsquo;s 200+ integrations.</p></li><li><p><strong>Complex multi-step workflows</strong> — For workflows requiring more than 5-10 tool calls, composition can become unwieldy without careful design.</p></li><li><p><strong>Real-time streaming</strong> — Plugin execution results are returned as complete units. Real-time progress feedback during long operations is not yet supported.</p></li><li><p><strong>Cross-platform file access</strong> — Plugins operate within the containerized execution environment. Accessing files outside the workspace requires explicit volume mounts, which adds configuration complexity for multi-machine setups.</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Quick suitability check</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Codebase analysis and editing → YES</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Documentation updates → YES</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Web research → YES</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Complex multi-API orchestration → PARTIAL (use LangChain instead)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Real-time dashboard updates → NO (use websockets directly)</span>
+</span></span></code></pre></div><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=is-knowledge-work-plugins-free>Is Knowledge Work Plugins free?<a hidden class=anchor aria-hidden=true href=#is-knowledge-work-plugins-free>#</a></h3><p>Yes, all official plugins are Apache 2.0 licensed. The Claude API has free tiers for testing.</p><h3 id=can-i-use-these-plugins-with-other-models>Can I use these plugins with other models?<a hidden class=anchor aria-hidden=true href=#can-i-use-these-plugins-with-other-models>#</a></h3><p>The plugin SDK is designed for Claude but can be adapted for other models with minor modifications. The Anthropic team provides migration guides on the GitHub repository.</p><h3 id=how-do-i-create-a-custom-plugin>How do I create a custom plugin?<a hidden class=anchor aria-hidden=true href=#how-do-i-create-a-custom-plugin>#</a></h3><p>Use the <code>PluginBase</code> class from the SDK. Define your plugin name, version, description, and an <code>execute</code> method. The SDK handles serialization, error handling, and sandboxing.</p><h3 id=are-there-rate-limits-on-plugin-execution>Are there rate limits on plugin execution?<a hidden class=anchor aria-hidden=true href=#are-there-rate-limits-on-plugin-execution>#</a></h3><p>Yes. Rate limits are defined per-plugin in <code>plugins.config.yaml</code>. The default is 100 calls per minute, which can be adjusted based on your needs.</p><h3 id=can-plugins-execute-shell-commands>Can plugins execute shell commands?<a hidden class=anchor aria-hidden=true href=#can-plugins-execute-shell-commands>#</a></h3><p>Yes, the <code>shell-exec</code> plugin allows controlled shell execution. It includes safeguards against destructive commands and operates within a defined directory sandbox. Sensitive commands like <code>rm -rf</code> and <code>dd</code> are blocked by default.</p><h3 id=how-do-i-audit-plugin-permissions>How do I audit plugin permissions?<a hidden class=anchor aria-hidden=true href=#how-do-i-audit-plugin-permissions>#</a></h3><p>Run <code>knowledge-work-plugins audit</code> to generate a comprehensive audit report of all plugin permissions, executed commands, and file access patterns. The audit report includes a risk assessment for each plugin and recommendations for tightening permissions.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Knowledge Work Plugins represents the future of AI-assisted development. By giving Claude direct access to tools through a structured, sandboxed interface, it transforms Claude from a text generator into an operational partner. With 20,728 stars and backing from Anthropic, this ecosystem is set to become the standard for AI tool integration across development teams worldwide. The project roadmap includes real-time streaming support, cross-model compatibility, and a community marketplace for third-party plugins.</p><p>For plugin development infrastructure, <a href=https://m.do.co/oa14d5f0wx4f>DigitalOcean</a> provides affordable cloud instances. <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> offers cheap storage for plugin packages. <a href=https://bsmkweb.cc/6yq8qf7u>Binance</a> and <a href=https://promoohubly.com/5g1h7qxn>OKX</a> for portfolio management. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> for development environment isolation. Teams should also invest in secure communication channels — consider <a href=https://signal.org/>Signal</a> or encrypted messaging for team coordination.</p><p><strong>Get started:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npx skills add https://github.com/anthropics/knowledge-work-plugins
+</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**Internal links**: <span style=color:#f92672>[</span>Build production AI systems<span style=color:#f92672>](</span>https://dibi8.com/llm-frameworks/ai-engineering-from-scratch<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>Automate research<span style=color:#f92672>](</span>https://dibi8.com/dev-utils/academic-research-skills<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/anthropics/knowledge-work-plugins
+</span></span><span style=display:flex><span>- Plugin SDK documentation: https://github.com/anthropics/knowledge-work-plugins/blob/main/docs/sdk.md
+</span></span><span style=display:flex><span>- Claude API reference: https://docs.anthropic.com/claude/reference/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**CTA**: Join the DIBI8 developer community on Telegram — <span style=color:#f92672>[</span>t.me/DIBI8_Group<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Knowledge Work Plugins: Anthropic&#39;s Plugin Ecosystem for Enhanced AI Productivity 2026&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/knowledge-work-plugins&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>&lt;/script&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>ai-engineering-from-scratch<span style=color:#f92672>](</span>knowledge-work-plugins<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents-production-llm-software-2026<span style=color:#f92672>](</span>knowledge-work-plugins<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents<span style=color:#f92672>](</span>knowledge-work-plugins<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>1m-context-window-llm-2026-real-test<span style=color:#f92672>](</span>knowledge-work-plugins<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>9router-smart-llm-proxy-token-saver-free-coding<span style=color:#f92672>](</span>knowledge-work-plugins<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/knowledge-base-stack/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/ladybird-independent-web-browser/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

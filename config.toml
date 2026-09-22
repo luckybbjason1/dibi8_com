@@ -1,7 +1,7 @@
 # Hugo Configuration for dibi8.com
 baseURL = "https://dibi8.com/"
-languageCode = "en-us"
-title = "Dibi8 - AI Tools Directory"
+languageCode = "zh-cn"
+title = "Dibi8 - AI工具目录"
 theme = "PaperMod"
 
 # Enable pluralize link titles

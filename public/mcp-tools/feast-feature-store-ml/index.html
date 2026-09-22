@@ -1,294 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/mcp-tools/feast-feature-store-ml/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/mcp-tools/feast-feature-store-ml/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/mcp-tools/feast-feature-store-ml/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="mcp-tools">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "MCP Tools - dibi8",
-      "item": "https://dibi8.com/mcp-tools/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/mcp-tools/feast-feature-store-ml/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “Feast: The Open-Source Feature Store Serving ML Features… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“feast”, “feature store”, “mlops”, “ml pipeline”, “redis”, “bigquery”, “online store”, “offline store”, “real-time ml”, “feature engineering”] aliases:\n/posts/feast-feature-store-ml/- Introduction: The 200ms Feature Engineering Crisis A fintech startup running real-time fraud detection found their inference latency spiking to 800ms during peak hours. The culprit was not the model — it was the feature retrieval pipeline. Every prediction triggered 7 separate database queries, 2 API calls to external services, and a real-time aggregation computed on-the-fly. Training-serving skew was causing 12% accuracy degradation between offline evaluation and live predictions.\nThis is the feature engineering crisis that silently destroys production ML systems. Without a centralized feature store, every team builds custom feature pipelines, features diverge between training and serving, and real-time inference becomes a latency nightmare.\nFeast (Feature Store) solves this exact problem. With 7,000+ GitHub stars, 361 contributors, and the latest release v0.63.0 (May 2026), Feast is the most widely adopted open-source feature store. Originally developed at GO-JEK and now a Linux Foundation project under Apache-2.0, Feast provides a unified layer for defining, storing, and serving ML features with sub-second latency.\nIn this guide, you will install Feast, configure online (Redis) and offline (BigQuery) stores, define feature views, serve features via REST API, and deploy a production-hardened feature store — all in under 30 minutes.\nWhat Is Feast? Feast is an open-source feature store that provides a unified interface for defining, registering, storing, and serving ML features. It separates feature storage into two tiers: an offline store for training data generation (batch, historical queries) and an online store for real-time feature serving (sub-second lookups). A central feature registry tracks all feature definitions, metadata, and lineage.\nKey capabilities at a glance: - Feature registry: Central catalog of feature definitions, versioned in code, searchable and reusable across teams\nOffline store: Batch retrieval of historical features for model training — supports BigQuery, Snowflake, Redshift, DuckDB, Spark Online store: Sub-second (p99 \u003c 10ms) feature lookups for real-time inference — supports Redis, DynamoDB, Bigtable, SQLite, Dragonfly Point-in-time joins: Correct retrieval of historical feature values to prevent data leakage in training Materialization: Sync computed features from offline to online store on a schedule Feature server: Go-based high-performance REST/gRPC server for feature retrieval Stream features: Integration with Kafka, Kinesis, and Spark Streaming for real-time feature computation Feast does not compute features — it stores and serves pre-computed features generated by your data pipelines (Spark, Airflow, dbt, etc.). This design keeps Feast lightweight while integrating with your existing data infrastructure.\nHow Feast Works: Architecture Deep Dive Feast architecture consists of four core components: ### 1. Feature Registry\nThe registry is the brain of Feast. It stores all feature definitions as code (in feature_store.yaml and Python files) and persists metadata to a backend — either a file (local, S3, GCS) or SQL database (PostgreSQL, MySQL): ````yaml\nfeature_store.yaml — Feast project configuration project: fraud_detection provider: local registry: path: s3://my-bucket/registry.db # SQL registry for production online_store: type: redis connection_string: “redis://localhost:6379” offline_store: type: bigquery project: my-gcp-project dataset: feast_offline entity_key_serialization_version: 2\nFor production, use a **SQL registry** (PostgreSQL) to prevent conflicts when multiple team members run ````feast apply```` simultaneously. ### 2. Offline Store The offline store holds large volumes of historical feature data. It serves two purposes: - **Training data generation**: Point-in-time joins to get feature values as they existed at specific historical timestamps - **Batch scoring**: Large-scale feature retrieval for batch predictions Supported backends: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino** `````python # Retrieve historical features for training from feast import FeatureStore store = FeatureStore(repo_path=\".\") historical_df = store.get_historical_features( entity_df=entity_df, # DataFrame with entity IDs and timestamps features=[ \"user_features:avg_order_amount_30d\", \"user_features:total_transactions_90d\", \"user_features:days_since_last_order\", ], ).to_df() The get_historical_features() call performs a point-in-time join — it retrieves each feature value as it existed at the timestamp specified in entity_df. This prevents data leakage, one of the most common mistakes in ML training pipelines.\n3. Online Store The online store is a low-latency key-value database for real-time feature serving. During inference, the model server requests the latest feature values for given entity IDs, and the online store returns results in under 10ms (p99).\nSupported backends: Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL\n# Retrieve online features for real-time inference features = store.get_online_features( features=[ \"user_features:avg_order_amount_30d\", \"user_features:total_transactions_90d\", ], entity_rows=[{\"user_id\": \"user_12345\"}], ).to_dict() # Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]} 4. Feature Server The Feast feature server is a Go-based high-performance service that exposes feature retrieval via REST and gRPC. Deploy it as a sidecar alongside your model serving infrastructure (KServe, Seldon, custom): `````bash\nStart the feature server feast serve –port 6566\nREST API endpoint for feature retrieval curl -X POST “http://localhost:6566/get-online-features” -H “Content-Type: application/json” -d ‘{ “features”: [“user_features:avg_order_amount_30d”], “entities”: {“user_id”: [“user_12345”]} }’\n## Installation \u0026 Setup: Under 5 Minutes Feast requires Python 3.9+ and pip. Install with your desired backends: `````bash # Core Feast (minimal) pip install feast # With BigQuery offline store pip install \"feast[bigquery]\" # With Redis online store pip install \"feast[redis]\" # With Snowflake pip install \"feast[snowflake]\" # With PostgreSQL pip install \"feast[postgres]\" # Full install with all common backends pip install \"feast[gcp,redis,postgres,snowflake]\" Verify installation: `````bash feast version\nFeast SDK Version: 0.63.0 Initialize a new Feast project: `````bash # Create and enter project directory mkdir fraud_detection_feature_store cd fraud_detection_feature_store # Initialize Feast (creates feature_store.yaml and example/) feast init # Project structure: # . # ├── feature_store.yaml # Main configuration # ├── example/ # │ ├── repo/ # │ │ ├── example.py # Feature definitions # │ │ └── test_workflow.py Defining Features: Entities, Feature Views, and Feature Services Feast organizes features around entities (the objects your model makes predictions about) and feature views (groups of related features computed from a data source).\nStep 1: Define the Entity # features/entities.py from feast import Entity, ValueType # Define the primary entity for our fraud model user = Entity( name=\"user_id\", value_type=ValueType.STRING, description=\"Unique identifier for each user\", join_key=\"user_id\", ) Step 2: Define the Data Source # features/data_sources.py from feast import BigQuerySource # Historical data source for the offline store transaction_stats_source = BigQuerySource( name=\"transaction_stats\", query=\"\"\" SELECT user_id, event_timestamp, avg_order_amount_30d, total_transactions_90d, days_since_last_order, unique_merchants_30d, avg_transaction_amount_7d, failed_transaction_rate_30d, created FROM ````my-gcp-project.featds.transaction_aggregates```` \"\"\", timestamp_field=\"event_timestamp\", created_timestamp_column=\"created\", ) Step 3: Define the Feature View # features/feature_views.py from feast import FeatureView, Field from feast.types import Float32, Int64, Float64 from datetime import timedelta from features.entities import user from features.data_sources import transaction_stats_source # Feature view with sliding window aggregations user_transaction_features = FeatureView( name=\"user_transaction_features\", entities=[user], ttl=timedelta(days=90), # Features valid for 90 days schema=[ Field(name=\"avg_order_amount_30d\", dtype=Float64), Field(name=\"total_transactions_90d\", dtype=Int64), Field(name=\"days_since_last_order\", dtype=Int64), Field(name=\"unique_merchants_30d\", dtype=Int64), Field(name=\"avg_transaction_amount_7d\", dtype=Float64), Field(name=\"failed_transaction_rate_30d\", dtype=Float32), ], online=True, # Serve from online store (Redis) source=transaction_stats_source, tags={\"team\": \"fraud\", \"domain\": \"transactions\"}, owner=\"ml-team@company.com\", ) Step 4: Define a Feature Service # features/feature_services.py from feast import FeatureService from features.feature_views import user_transaction_features # Feature service — the interface your model consumes fraud_detection_v1 = FeatureService( name=\"fraud_detection_v1\", features=[user_transaction_features], tags={\"version\": \"1.0\", \"model\": \"fraud_xgboost\"}, owner=\"ml-team@company.com\", ) Step 5: Apply and Materialize # Apply feature definitions to the registry feast apply # Materialize features from offline to online store # (populate Redis with latest feature values) feast materialize-incremental $(date -u +\"%Y-%m-%dT%H:%M:%S\") # Or materialize a specific time range feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00 Production Configuration: Redis + BigQuery For production deployments, the Redis + BigQuery combination offers the best balance of performance, cost, and scalability.\nfeature_store.yaml (Production) # feature_store.yaml — Production configuration project: fraud_detection provider: gcp registry: registry_store_type: sql path: \"postgresql://user:pass@pg-host:5432/feast_registry\" cache_ttl_seconds: 60 online_store: type: redis connection_string: \"redis://:password@redis-cluster.internal:6379\" key_ttl_seconds: 604800 # 7-day TTL for feature keys offline_store: type: bigquery project: my-gcp-project dataset: feast_offline location: US entity_key_serialization_version: 2 flags: alpha_features: true on_demand_transforms: true Redis Online Store Configuration For sub-millisecond serving, use Redis Cluster with proper sharding: `````yaml\nRedis Cluster configuration online_store: type: redis redis_type: redis_cluster connection_string: “redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379” key_ttl_seconds: 604800\n### Deploying Redis on a VPS For self-hosted deployments, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers managed Redis clusters starting at $15/month with automatic failover. Alternatively, deploy Redis on a Droplet: `````bash # Deploy Redis on Ubuntu 22.04 (DigitalOcean Droplet) sudo apt update sudo apt install redis-server # Configure for production sudo tee -a /etc/redis/redis.conf \u003c",
-  "wordCount" : "3735",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/mcp-tools/feast-feature-store-ml/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/mcp-tools/">MCP Tools - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>18 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#introduction-the-200ms-feature-engineering-crisis" aria-label="Introduction: The 200ms Feature Engineering Crisis">Introduction: The 200ms Feature Engineering Crisis</a></li>
-            <li>
-                <a href="#what-is-feast" aria-label="What Is Feast?">What Is Feast?</a></li>
-            <li>
-                <a href="#how-feast-works-architecture-deep-dive" aria-label="How Feast Works: Architecture Deep Dive">How Feast Works: Architecture Deep Dive</a></li></ul>
-                
-            <li>
-                <a href="#feature_storeyaml--feast-project-configuration" aria-label="feature_store.yaml — Feast project configuration">feature_store.yaml — Feast project configuration</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#3-online-store" aria-label="3. Online Store">3. Online Store</a></li>
-            <li>
-                <a href="#4-feature-server" aria-label="4. Feature Server">4. Feature Server</a></li></ul>
-                </ul>
-            </li>
-            <li>
-                <a href="#start-the-feature-server" aria-label="Start the feature server">Start the feature server</a></li>
-            <li>
-                <a href="#rest-api-endpoint-for-feature-retrieval" aria-label="REST API endpoint for feature retrieval">REST API endpoint for feature retrieval</a></li>
-            <li>
-                <a href="#feast-sdk-version-0630" aria-label="Feast SDK Version: 0.63.0">Feast SDK Version: 0.63.0</a><ul>
-                    
-            <li>
-                <a href="#defining-features-entities-feature-views-and-feature-services" aria-label="Defining Features: Entities, Feature Views, and Feature Services">Defining Features: Entities, Feature Views, and Feature Services</a><ul>
-                    
-            <li>
-                <a href="#step-1-define-the-entity" aria-label="Step 1: Define the Entity">Step 1: Define the Entity</a></li>
-            <li>
-                <a href="#step-2-define-the-data-source" aria-label="Step 2: Define the Data Source">Step 2: Define the Data Source</a></li>
-            <li>
-                <a href="#step-3-define-the-feature-view" aria-label="Step 3: Define the Feature View">Step 3: Define the Feature View</a></li>
-            <li>
-                <a href="#step-4-define-a-feature-service" aria-label="Step 4: Define a Feature Service">Step 4: Define a Feature Service</a></li>
-            <li>
-                <a href="#step-5-apply-and-materialize" aria-label="Step 5: Apply and Materialize">Step 5: Apply and Materialize</a></li></ul>
-            </li>
-            <li>
-                <a href="#production-configuration-redis--bigquery" aria-label="Production Configuration: Redis &#43; BigQuery">Production Configuration: Redis + BigQuery</a><ul>
-                    
-            <li>
-                <a href="#feature_storeyaml-production" aria-label="feature_store.yaml (Production)">feature_store.yaml (Production)</a></li>
-            <li>
-                <a href="#redis-online-store-configuration" aria-label="Redis Online Store Configuration">Redis Online Store Configuration</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#redis-cluster-configuration" aria-label="Redis Cluster configuration">Redis Cluster configuration</a><ul>
-                    
-            <li>
-                <a href="#integration-with-ml-pipelines" aria-label="Integration with ML Pipelines">Integration with ML Pipelines</a><ul>
-                    
-            <li>
-                <a href="#training-pipeline-integration-python-sdk" aria-label="Training Pipeline Integration (Python SDK)">Training Pipeline Integration (Python SDK)</a></li>
-            <li>
-                <a href="#real-time-inference-integration" aria-label="Real-Time Inference Integration">Real-Time Inference Integration</a></li>
-            <li>
-                <a href="#airflow-dag-for-materialization" aria-label="Airflow DAG for Materialization">Airflow DAG for Materialization</a></li></ul>
-            </li>
-            <li>
-                <a href="#benchmarks--real-world-use-cases" aria-label="Benchmarks &amp; Real-World Use Cases">Benchmarks &amp; Real-World Use Cases</a><ul>
-                    
-            <li>
-                <a href="#latency-benchmarks" aria-label="Latency Benchmarks">Latency Benchmarks</a></li>
-            <li>
-                <a href="#real-world-use-cases" aria-label="Real-World Use Cases">Real-World Use Cases</a></li></ul>
-            </li>
-            <li>
-                <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage &amp; Production Hardening">Advanced Usage &amp; Production Hardening</a><ul>
-                    
-            <li>
-                <a href="#on-demand-feature-transformations" aria-label="On-Demand Feature Transformations">On-Demand Feature Transformations</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#define-an-on-demand-transformation" aria-label="Define an on-demand transformation">Define an on-demand transformation</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#multi-project-setup-for-different-teams" aria-label="Multi-Project Setup for Different Teams">Multi-Project Setup for Different Teams</a></li>
-            <li>
-                <a href="#feature-versioning-and-rollback" aria-label="Feature Versioning and Rollback">Feature Versioning and Rollback</a></li>
-            <li>
-                <a href="#securing-the-feature-store" aria-label="Securing the Feature Store">Securing the Feature Store</a></li>
-            <li>
-                <a href="#stream-feature-ingestion-kafka--redis" aria-label="Stream Feature Ingestion (Kafka → Redis)">Stream Feature Ingestion (Kafka → Redis)</a></li></ul>
-                
-            <li>
-                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul>
-                    
-            <li>
-                <a href="#when-to-choose-what" aria-label="When to Choose What">When to Choose What</a></li></ul>
-            </li>
-            <li>
-                <a href="#limitations-an-honest-assessment" aria-label="Limitations: An Honest Assessment">Limitations: An Honest Assessment</a></li>
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
-            <li>
-                <a href="#conclusion-serve-features-at-the-speed-of-inference" aria-label="Conclusion: Serve Features at the Speed of Inference">Conclusion: Serve Features at the Speed of Inference</a></li></ul>
-            </li>
-            <li>
-                <a href="#define-your-entities-feature-views-and-feature-services" aria-label="Define your entities, feature views, and feature services">Define your entities, feature views, and feature services</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;Feast: The Open-Source Feature Store Serving ML Features&hellip;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/mcp-tools/feast-feature-store-ml/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/mcp-tools/feast-feature-store-ml/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/mcp-tools/feast-feature-store-ml/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/mcp-tools/feast-feature-store-ml/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Feast: The Open-Source Feature Store Serving ML Features… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“feast”, “feature store”, “mlops”, “ml pipeline”, “redis”, “bigquery”, “online store”, “offline store”, “real-time ml”, “feature engineering”] aliases:\n/posts/feast-feature-store-ml/- Introduction: The 200ms Feature Engineering Crisis A fintech startup running real-time fraud detection found their inference latency spiking to 800ms during peak hours. The culprit was not the model — it was the feature retrieval pipeline. Every prediction triggered 7 separate database queries, 2 API calls to external services, and a real-time aggregation computed on-the-fly. Training-serving skew was causing 12% accuracy degradation between offline evaluation and live predictions.\nThis is the feature engineering crisis that silently destroys production ML systems. Without a centralized feature store, every team builds custom feature pipelines, features diverge between training and serving, and real-time inference becomes a latency nightmare.\nFeast (Feature Store) solves this exact problem. With 7,000+ GitHub stars, 361 contributors, and the latest release v0.63.0 (May 2026), Feast is the most widely adopted open-source feature store. Originally developed at GO-JEK and now a Linux Foundation project under Apache-2.0, Feast provides a unified layer for defining, storing, and serving ML features with sub-second latency.\nIn this guide, you will install Feast, configure online (Redis) and offline (BigQuery) stores, define feature views, serve features via REST API, and deploy a production-hardened feature store — all in under 30 minutes.\nWhat Is Feast? Feast is an open-source feature store that provides a unified interface for defining, registering, storing, and serving ML features. It separates feature storage into two tiers: an offline store for training data generation (batch, historical queries) and an online store for real-time feature serving (sub-second lookups). A central feature registry tracks all feature definitions, metadata, and lineage.\nKey capabilities at a glance: - Feature registry: Central catalog of feature definitions, versioned in code, searchable and reusable across teams\nOffline store: Batch retrieval of historical features for model training — supports BigQuery, Snowflake, Redshift, DuckDB, Spark Online store: Sub-second (p99 \u003c 10ms) feature lookups for real-time inference — supports Redis, DynamoDB, Bigtable, SQLite, Dragonfly Point-in-time joins: Correct retrieval of historical feature values to prevent data leakage in training Materialization: Sync computed features from offline to online store on a schedule Feature server: Go-based high-performance REST/gRPC server for feature retrieval Stream features: Integration with Kafka, Kinesis, and Spark Streaming for real-time feature computation Feast does not compute features — it stores and serves pre-computed features generated by your data pipelines (Spark, Airflow, dbt, etc.). This design keeps Feast lightweight while integrating with your existing data infrastructure.\nHow Feast Works: Architecture Deep Dive Feast architecture consists of four core components: ### 1. Feature Registry\nThe registry is the brain of Feast. It stores all feature definitions as code (in feature_store.yaml and Python files) and persists metadata to a backend — either a file (local, S3, GCS) or SQL database (PostgreSQL, MySQL): ````yaml\nfeature_store.yaml — Feast project configuration project: fraud_detection provider: local registry: path: s3://my-bucket/registry.db # SQL registry for production online_store: type: redis connection_string: “redis://localhost:6379” offline_store: type: bigquery project: my-gcp-project dataset: feast_offline entity_key_serialization_version: 2\nFor production, use a **SQL registry** (PostgreSQL) to prevent conflicts when multiple team members run ````feast apply```` simultaneously. ### 2. Offline Store The offline store holds large volumes of historical feature data. It serves two purposes: - **Training data generation**: Point-in-time joins to get feature values as they existed at specific historical timestamps - **Batch scoring**: Large-scale feature retrieval for batch predictions Supported backends: **BigQuery, Snowflake, Redshift, Spark, DuckDB, PostgreSQL, Trino** `````python # Retrieve historical features for training from feast import FeatureStore store = FeatureStore(repo_path=\".\") historical_df = store.get_historical_features( entity_df=entity_df, # DataFrame with entity IDs and timestamps features=[ \"user_features:avg_order_amount_30d\", \"user_features:total_transactions_90d\", \"user_features:days_since_last_order\", ], ).to_df() The get_historical_features() call performs a point-in-time join — it retrieves each feature value as it existed at the timestamp specified in entity_df. This prevents data leakage, one of the most common mistakes in ML training pipelines.\n3. Online Store The online store is a low-latency key-value database for real-time feature serving. During inference, the model server requests the latest feature values for given entity IDs, and the online store returns results in under 10ms (p99).\nSupported backends: Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL\n# Retrieve online features for real-time inference features = store.get_online_features( features=[ \"user_features:avg_order_amount_30d\", \"user_features:total_transactions_90d\", ], entity_rows=[{\"user_id\": \"user_12345\"}], ).to_dict() # Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]} 4. Feature Server The Feast feature server is a Go-based high-performance service that exposes feature retrieval via REST and gRPC. Deploy it as a sidecar alongside your model serving infrastructure (KServe, Seldon, custom): `````bash\nStart the feature server feast serve –port 6566\nREST API endpoint for feature retrieval curl -X POST “http://localhost:6566/get-online-features” -H “Content-Type: application/json” -d ‘{ “features”: [“user_features:avg_order_amount_30d”], “entities”: {“user_id”: [“user_12345”]} }’\n## Installation \u0026 Setup: Under 5 Minutes Feast requires Python 3.9+ and pip. Install with your desired backends: `````bash # Core Feast (minimal) pip install feast # With BigQuery offline store pip install \"feast[bigquery]\" # With Redis online store pip install \"feast[redis]\" # With Snowflake pip install \"feast[snowflake]\" # With PostgreSQL pip install \"feast[postgres]\" # Full install with all common backends pip install \"feast[gcp,redis,postgres,snowflake]\" Verify installation: `````bash feast version\nFeast SDK Version: 0.63.0 Initialize a new Feast project: `````bash # Create and enter project directory mkdir fraud_detection_feature_store cd fraud_detection_feature_store # Initialize Feast (creates feature_store.yaml and example/) feast init # Project structure: # . # ├── feature_store.yaml # Main configuration # ├── example/ # │ ├── repo/ # │ │ ├── example.py # Feature definitions # │ │ └── test_workflow.py Defining Features: Entities, Feature Views, and Feature Services Feast organizes features around entities (the objects your model makes predictions about) and feature views (groups of related features computed from a data source).\nStep 1: Define the Entity # features/entities.py from feast import Entity, ValueType # Define the primary entity for our fraud model user = Entity( name=\"user_id\", value_type=ValueType.STRING, description=\"Unique identifier for each user\", join_key=\"user_id\", ) Step 2: Define the Data Source # features/data_sources.py from feast import BigQuerySource # Historical data source for the offline store transaction_stats_source = BigQuerySource( name=\"transaction_stats\", query=\"\"\" SELECT user_id, event_timestamp, avg_order_amount_30d, total_transactions_90d, days_since_last_order, unique_merchants_30d, avg_transaction_amount_7d, failed_transaction_rate_30d, created FROM ````my-gcp-project.featds.transaction_aggregates```` \"\"\", timestamp_field=\"event_timestamp\", created_timestamp_column=\"created\", ) Step 3: Define the Feature View # features/feature_views.py from feast import FeatureView, Field from feast.types import Float32, Int64, Float64 from datetime import timedelta from features.entities import user from features.data_sources import transaction_stats_source # Feature view with sliding window aggregations user_transaction_features = FeatureView( name=\"user_transaction_features\", entities=[user], ttl=timedelta(days=90), # Features valid for 90 days schema=[ Field(name=\"avg_order_amount_30d\", dtype=Float64), Field(name=\"total_transactions_90d\", dtype=Int64), Field(name=\"days_since_last_order\", dtype=Int64), Field(name=\"unique_merchants_30d\", dtype=Int64), Field(name=\"avg_transaction_amount_7d\", dtype=Float64), Field(name=\"failed_transaction_rate_30d\", dtype=Float32), ], online=True, # Serve from online store (Redis) source=transaction_stats_source, tags={\"team\": \"fraud\", \"domain\": \"transactions\"}, owner=\"ml-team@company.com\", ) Step 4: Define a Feature Service # features/feature_services.py from feast import FeatureService from features.feature_views import user_transaction_features # Feature service — the interface your model consumes fraud_detection_v1 = FeatureService( name=\"fraud_detection_v1\", features=[user_transaction_features], tags={\"version\": \"1.0\", \"model\": \"fraud_xgboost\"}, owner=\"ml-team@company.com\", ) Step 5: Apply and Materialize # Apply feature definitions to the registry feast apply # Materialize features from offline to online store # (populate Redis with latest feature values) feast materialize-incremental $(date -u +\"%Y-%m-%dT%H:%M:%S\") # Or materialize a specific time range feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00 Production Configuration: Redis + BigQuery For production deployments, the Redis + BigQuery combination offers the best balance of performance, cost, and scalability.\nfeature_store.yaml (Production) # feature_store.yaml — Production configuration project: fraud_detection provider: gcp registry: registry_store_type: sql path: \"postgresql://user:pass@pg-host:5432/feast_registry\" cache_ttl_seconds: 60 online_store: type: redis connection_string: \"redis://:password@redis-cluster.internal:6379\" key_ttl_seconds: 604800 # 7-day TTL for feature keys offline_store: type: bigquery project: my-gcp-project dataset: feast_offline location: US entity_key_serialization_version: 2 flags: alpha_features: true on_demand_transforms: true Redis Online Store Configuration For sub-millisecond serving, use Redis Cluster with proper sharding: `````yaml\nRedis Cluster configuration online_store: type: redis redis_type: redis_cluster connection_string: “redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379” key_ttl_seconds: 604800\n### Deploying Redis on a VPS For self-hosted deployments, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers managed Redis clusters starting at $15/month with automatic failover. Alternatively, deploy Redis on a Droplet: `````bash # Deploy Redis on Ubuntu 22.04 (DigitalOcean Droplet) sudo apt update sudo apt install redis-server # Configure for production sudo tee -a /etc/redis/redis.conf \u003c","wordCount":"3735","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/mcp-tools/feast-feature-store-ml/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/mcp-tools/>MCP Tools - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>18 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#introduction-the-200ms-feature-engineering-crisis aria-label="Introduction: The 200ms Feature Engineering Crisis">Introduction: The 200ms Feature Engineering Crisis</a></li><li><a href=#what-is-feast aria-label="What Is Feast?">What Is Feast?</a></li><li><a href=#how-feast-works-architecture-deep-dive aria-label="How Feast Works: Architecture Deep Dive">How Feast Works: Architecture Deep Dive</a></li></ul><li><a href=#feature_storeyaml--feast-project-configuration aria-label="feature_store.yaml — Feast project configuration">feature_store.yaml — Feast project configuration</a><ul><ul><li><a href=#3-online-store aria-label="3. Online Store">3. Online Store</a></li><li><a href=#4-feature-server aria-label="4. Feature Server">4. Feature Server</a></li></ul></ul></li><li><a href=#start-the-feature-server aria-label="Start the feature server">Start the feature server</a></li><li><a href=#rest-api-endpoint-for-feature-retrieval aria-label="REST API endpoint for feature retrieval">REST API endpoint for feature retrieval</a></li><li><a href=#feast-sdk-version-0630 aria-label="Feast SDK Version: 0.63.0">Feast SDK Version: 0.63.0</a><ul><li><a href=#defining-features-entities-feature-views-and-feature-services aria-label="Defining Features: Entities, Feature Views, and Feature Services">Defining Features: Entities, Feature Views, and Feature Services</a><ul><li><a href=#step-1-define-the-entity aria-label="Step 1: Define the Entity">Step 1: Define the Entity</a></li><li><a href=#step-2-define-the-data-source aria-label="Step 2: Define the Data Source">Step 2: Define the Data Source</a></li><li><a href=#step-3-define-the-feature-view aria-label="Step 3: Define the Feature View">Step 3: Define the Feature View</a></li><li><a href=#step-4-define-a-feature-service aria-label="Step 4: Define a Feature Service">Step 4: Define a Feature Service</a></li><li><a href=#step-5-apply-and-materialize aria-label="Step 5: Apply and Materialize">Step 5: Apply and Materialize</a></li></ul></li><li><a href=#production-configuration-redis--bigquery aria-label="Production Configuration: Redis + BigQuery">Production Configuration: Redis + BigQuery</a><ul><li><a href=#feature_storeyaml-production aria-label="feature_store.yaml (Production)">feature_store.yaml (Production)</a></li><li><a href=#redis-online-store-configuration aria-label="Redis Online Store Configuration">Redis Online Store Configuration</a></li></ul></li></ul></li><li><a href=#redis-cluster-configuration aria-label="Redis Cluster configuration">Redis Cluster configuration</a><ul><li><a href=#integration-with-ml-pipelines aria-label="Integration with ML Pipelines">Integration with ML Pipelines</a><ul><li><a href=#training-pipeline-integration-python-sdk aria-label="Training Pipeline Integration (Python SDK)">Training Pipeline Integration (Python SDK)</a></li><li><a href=#real-time-inference-integration aria-label="Real-Time Inference Integration">Real-Time Inference Integration</a></li><li><a href=#airflow-dag-for-materialization aria-label="Airflow DAG for Materialization">Airflow DAG for Materialization</a></li></ul></li><li><a href=#benchmarks--real-world-use-cases aria-label="Benchmarks & Real-World Use Cases">Benchmarks & Real-World Use Cases</a><ul><li><a href=#latency-benchmarks aria-label="Latency Benchmarks">Latency Benchmarks</a></li><li><a href=#real-world-use-cases aria-label="Real-World Use Cases">Real-World Use Cases</a></li></ul></li><li><a href=#advanced-usage--production-hardening aria-label="Advanced Usage & Production Hardening">Advanced Usage & Production Hardening</a><ul><li><a href=#on-demand-feature-transformations aria-label="On-Demand Feature Transformations">On-Demand Feature Transformations</a></li></ul></li></ul></li><li><a href=#define-an-on-demand-transformation aria-label="Define an on-demand transformation">Define an on-demand transformation</a><ul><ul><li><a href=#multi-project-setup-for-different-teams aria-label="Multi-Project Setup for Different Teams">Multi-Project Setup for Different Teams</a></li><li><a href=#feature-versioning-and-rollback aria-label="Feature Versioning and Rollback">Feature Versioning and Rollback</a></li><li><a href=#securing-the-feature-store aria-label="Securing the Feature Store">Securing the Feature Store</a></li><li><a href=#stream-feature-ingestion-kafka--redis aria-label="Stream Feature Ingestion (Kafka → Redis)">Stream Feature Ingestion (Kafka → Redis)</a></li></ul><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul><li><a href=#when-to-choose-what aria-label="When to Choose What">When to Choose What</a></li></ul></li><li><a href=#limitations-an-honest-assessment aria-label="Limitations: An Honest Assessment">Limitations: An Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li><li><a href=#conclusion-serve-features-at-the-speed-of-inference aria-label="Conclusion: Serve Features at the Speed of Inference">Conclusion: Serve Features at the Speed of Inference</a></li></ul></li><li><a href=#define-your-entities-feature-views-and-feature-services aria-label="Define your entities, feature views, and feature services">Define your entities, feature views, and feature services</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Feast: The Open-Source Feature Store Serving ML Features&mldr;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -305,42 +20,15 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;feast&rdquo;, &ldquo;feature store&rdquo;, &ldquo;mlops&rdquo;, &ldquo;ml pipeline&rdquo;, &ldquo;redis&rdquo;, &ldquo;bigquery&rdquo;, &ldquo;online store&rdquo;, &ldquo;offline store&rdquo;, &ldquo;real-time ml&rdquo;, &ldquo;feature engineering&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/feast-feature-store-ml/-</li>
-</ul>
-<hr>
-<h2 id="introduction-the-200ms-feature-engineering-crisis">Introduction: The 200ms Feature Engineering Crisis<a hidden class="anchor" aria-hidden="true" href="#introduction-the-200ms-feature-engineering-crisis">#</a></h2>
-<p>A fintech startup running real-time fraud detection found their inference latency spiking to <strong>800ms</strong> during peak hours. The culprit was not the model — it was the feature retrieval pipeline. Every prediction triggered <strong>7 separate database queries</strong>, 2 API calls to external services, and a real-time aggregation computed on-the-fly. Training-serving skew was causing <strong>12% accuracy degradation</strong> between offline evaluation and live predictions.</p>
-<p>This is the feature engineering crisis that silently destroys production ML systems. Without a centralized feature store, every team builds custom feature pipelines, features diverge between training and serving, and real-time inference becomes a latency nightmare.</p>
-<p><a href="https://feast.dev">Feast</a> (Feature Store) solves this exact problem. With <strong>7,000+ GitHub stars</strong>, <strong>361 contributors</strong>, and the latest release <strong>v0.63.0</strong> (May 2026), Feast is the most widely adopted open-source feature store. Originally developed at <a href="https://www.gojek.com">GO-JEK</a> and now a <a href="https://www.linuxfoundation.org">Linux Foundation</a> project under Apache-2.0, Feast provides a unified layer for defining, storing, and serving ML features with sub-second latency.</p>
-<p>In this guide, you will install Feast, configure online (Redis) and offline (BigQuery) stores, define feature views, serve features via REST API, and deploy a production-hardened feature store — all in under 30 minutes.</p>
-<h2 id="what-is-feast">What Is Feast?<a hidden class="anchor" aria-hidden="true" href="#what-is-feast">#</a></h2>
-<p><strong>Feast is an open-source feature store that provides a unified interface for defining, registering, storing, and serving ML features.</strong> It separates feature storage into two tiers: an <strong>offline store</strong> for training data generation (batch, historical queries) and an <strong>online store</strong> for real-time feature serving (sub-second lookups). A central <strong>feature registry</strong> tracks all feature definitions, metadata, and lineage.</p>
-<p>Key capabilities at a glance: - <strong>Feature registry</strong>: Central catalog of feature definitions, versioned in code, searchable and reusable across teams</p>
-<ul>
-<li><strong>Offline store</strong>: Batch retrieval of historical features for model training — supports BigQuery, Snowflake, Redshift, DuckDB, Spark</li>
-<li><strong>Online store</strong>: Sub-second (p99 &lt; 10ms) feature lookups for real-time inference — supports Redis, DynamoDB, Bigtable, SQLite, Dragonfly</li>
-<li><strong>Point-in-time joins</strong>: Correct retrieval of historical feature values to prevent data leakage in training</li>
-<li><strong>Materialization</strong>: Sync computed features from offline to online store on a schedule</li>
-<li><strong>Feature server</strong>: Go-based high-performance REST/gRPC server for feature retrieval</li>
-<li><strong>Stream features</strong>: Integration with Kafka, Kinesis, and Spark Streaming for real-time feature computation</li>
-</ul>
-<p>Feast does <strong>not</strong> compute features — it stores and serves pre-computed features generated by your data pipelines (Spark, Airflow, dbt, etc.). This design keeps Feast lightweight while integrating with your existing data infrastructure.</p>
-<h2 id="how-feast-works-architecture-deep-dive">How Feast Works: Architecture Deep Dive<a hidden class="anchor" aria-hidden="true" href="#how-feast-works-architecture-deep-dive">#</a></h2>
-<p>Feast architecture consists of four core components: ### 1. Feature Registry</p>
-<p>The registry is the brain of Feast. It stores all feature definitions as code (in <code>feature_store.yaml</code> and Python files) and persists metadata to a backend — either a file (local, S3, GCS) or SQL database (PostgreSQL, MySQL): ````yaml</p>
-<h1 id="feature_storeyaml--feast-project-configuration">feature_store.yaml — Feast project configuration<a hidden class="anchor" aria-hidden="true" href="#feature_storeyaml--feast-project-configuration">#</a></h1>
-<p>project: fraud_detection
+aliases:</p><ul><li>/posts/feast-feature-store-ml/-</li></ul><hr><h2 id=introduction-the-200ms-feature-engineering-crisis>Introduction: The 200ms Feature Engineering Crisis<a hidden class=anchor aria-hidden=true href=#introduction-the-200ms-feature-engineering-crisis>#</a></h2><p>A fintech startup running real-time fraud detection found their inference latency spiking to <strong>800ms</strong> during peak hours. The culprit was not the model — it was the feature retrieval pipeline. Every prediction triggered <strong>7 separate database queries</strong>, 2 API calls to external services, and a real-time aggregation computed on-the-fly. Training-serving skew was causing <strong>12% accuracy degradation</strong> between offline evaluation and live predictions.</p><p>This is the feature engineering crisis that silently destroys production ML systems. Without a centralized feature store, every team builds custom feature pipelines, features diverge between training and serving, and real-time inference becomes a latency nightmare.</p><p><a href=https://feast.dev>Feast</a> (Feature Store) solves this exact problem. With <strong>7,000+ GitHub stars</strong>, <strong>361 contributors</strong>, and the latest release <strong>v0.63.0</strong> (May 2026), Feast is the most widely adopted open-source feature store. Originally developed at <a href=https://www.gojek.com>GO-JEK</a> and now a <a href=https://www.linuxfoundation.org>Linux Foundation</a> project under Apache-2.0, Feast provides a unified layer for defining, storing, and serving ML features with sub-second latency.</p><p>In this guide, you will install Feast, configure online (Redis) and offline (BigQuery) stores, define feature views, serve features via REST API, and deploy a production-hardened feature store — all in under 30 minutes.</p><h2 id=what-is-feast>What Is Feast?<a hidden class=anchor aria-hidden=true href=#what-is-feast>#</a></h2><p><strong>Feast is an open-source feature store that provides a unified interface for defining, registering, storing, and serving ML features.</strong> It separates feature storage into two tiers: an <strong>offline store</strong> for training data generation (batch, historical queries) and an <strong>online store</strong> for real-time feature serving (sub-second lookups). A central <strong>feature registry</strong> tracks all feature definitions, metadata, and lineage.</p><p>Key capabilities at a glance: - <strong>Feature registry</strong>: Central catalog of feature definitions, versioned in code, searchable and reusable across teams</p><ul><li><strong>Offline store</strong>: Batch retrieval of historical features for model training — supports BigQuery, Snowflake, Redshift, DuckDB, Spark</li><li><strong>Online store</strong>: Sub-second (p99 &lt; 10ms) feature lookups for real-time inference — supports Redis, DynamoDB, Bigtable, SQLite, Dragonfly</li><li><strong>Point-in-time joins</strong>: Correct retrieval of historical feature values to prevent data leakage in training</li><li><strong>Materialization</strong>: Sync computed features from offline to online store on a schedule</li><li><strong>Feature server</strong>: Go-based high-performance REST/gRPC server for feature retrieval</li><li><strong>Stream features</strong>: Integration with Kafka, Kinesis, and Spark Streaming for real-time feature computation</li></ul><p>Feast does <strong>not</strong> compute features — it stores and serves pre-computed features generated by your data pipelines (Spark, Airflow, dbt, etc.). This design keeps Feast lightweight while integrating with your existing data infrastructure.</p><h2 id=how-feast-works-architecture-deep-dive>How Feast Works: Architecture Deep Dive<a hidden class=anchor aria-hidden=true href=#how-feast-works-architecture-deep-dive>#</a></h2><p>Feast architecture consists of four core components: ### 1. Feature Registry</p><p>The registry is the brain of Feast. It stores all feature definitions as code (in <code>feature_store.yaml</code> and Python files) and persists metadata to a backend — either a file (local, S3, GCS) or SQL database (PostgreSQL, MySQL): ````yaml</p><h1 id=feature_storeyaml--feast-project-configuration>feature_store.yaml — Feast project configuration<a hidden class=anchor aria-hidden=true href=#feature_storeyaml--feast-project-configuration>#</a></h1><p>project: fraud_detection
 provider: local
-registry: path: s3://my-bucket/registry.db  # SQL registry for production
+registry: path: s3://my-bucket/registry.db # SQL registry for production
 online_store: type: redis
 connection_string: &ldquo;redis://localhost:6379&rdquo;
 offline_store: type: bigquery
 project: my-gcp-project
 dataset: feast_offline
-entity_key_serialization_version: 2</p>
-<pre tabindex="0"><code>
+entity_key_serialization_version: 2</p><pre tabindex=0><code>
 For production, use a **SQL registry** (PostgreSQL) to prevent conflicts when multiple team members run ````feast apply```` simultaneously.
 
 ### 2. Offline Store
@@ -364,32 +52,20 @@ historical_df = store.get_historical_features(
         &#34;user_features:days_since_last_order&#34;,
     ],
 ).to_df()
-</code></pre><p>The <code>get_historical_features()</code> call performs a <strong>point-in-time join</strong> — it retrieves each feature value as it existed at the timestamp specified in <code>entity_df</code>. This prevents data leakage, one of the most common mistakes in ML training pipelines.</p>
-<h3 id="3-online-store">3. Online Store<a hidden class="anchor" aria-hidden="true" href="#3-online-store">#</a></h3>
-<p>The online store is a low-latency key-value database for real-time feature serving. During inference, the model server requests the latest feature values for given entity IDs, and the online store returns results in under 10ms (p99).</p>
-<p>Supported backends: <strong>Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Retrieve online features for real-time inference</span>
-</span></span><span style="display:flex;"><span>features <span style="color:#f92672">=</span> store<span style="color:#f92672">.</span>get_online_features(
-</span></span><span style="display:flex;"><span>    features<span style="color:#f92672">=</span>[
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;user_features:avg_order_amount_30d&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;user_features:total_transactions_90d&#34;</span>,
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>    entity_rows<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;user_12345&#34;</span>}],
-</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>to_dict()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}</span>
-</span></span></code></pre></div><h3 id="4-feature-server">4. Feature Server<a hidden class="anchor" aria-hidden="true" href="#4-feature-server">#</a></h3>
-<p>The Feast feature server is a Go-based high-performance service that exposes feature retrieval via REST and gRPC. Deploy it as a sidecar alongside your model serving infrastructure (KServe, Seldon, custom): `````bash</p>
-<h1 id="start-the-feature-server">Start the feature server<a hidden class="anchor" aria-hidden="true" href="#start-the-feature-server">#</a></h1>
-<p>feast serve &ndash;port 6566</p>
-<h1 id="rest-api-endpoint-for-feature-retrieval">REST API endpoint for feature retrieval<a hidden class="anchor" aria-hidden="true" href="#rest-api-endpoint-for-feature-retrieval">#</a></h1>
-<p>curl -X POST &ldquo;http://localhost:6566/get-online-features&rdquo; <br>
--H &ldquo;Content-Type: application/json&rdquo; <br>
--d &lsquo;{
+</code></pre><p>The <code>get_historical_features()</code> call performs a <strong>point-in-time join</strong> — it retrieves each feature value as it existed at the timestamp specified in <code>entity_df</code>. This prevents data leakage, one of the most common mistakes in ML training pipelines.</p><h3 id=3-online-store>3. Online Store<a hidden class=anchor aria-hidden=true href=#3-online-store>#</a></h3><p>The online store is a low-latency key-value database for real-time feature serving. During inference, the model server requests the latest feature values for given entity IDs, and the online store returns results in under 10ms (p99).</p><p>Supported backends: <strong>Redis, Redis Cluster, Dragonfly, DynamoDB, Bigtable, Cassandra, SQLite, PostgreSQL, MySQL</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Retrieve online features for real-time inference</span>
+</span></span><span style=display:flex><span>features <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_online_features(
+</span></span><span style=display:flex><span>    features<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_features:avg_order_amount_30d&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_features:total_transactions_90d&#34;</span>,
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    entity_rows<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;user_12345&#34;</span>}],
+</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>to_dict()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Returns: {avg_order_amount_30d: [245.50], total_transactions_90d: [12]}</span>
+</span></span></code></pre></div><h3 id=4-feature-server>4. Feature Server<a hidden class=anchor aria-hidden=true href=#4-feature-server>#</a></h3><p>The Feast feature server is a Go-based high-performance service that exposes feature retrieval via REST and gRPC. Deploy it as a sidecar alongside your model serving infrastructure (KServe, Seldon, custom): `````bash</p><h1 id=start-the-feature-server>Start the feature server<a hidden class=anchor aria-hidden=true href=#start-the-feature-server>#</a></h1><p>feast serve &ndash;port 6566</p><h1 id=rest-api-endpoint-for-feature-retrieval>REST API endpoint for feature retrieval<a hidden class=anchor aria-hidden=true href=#rest-api-endpoint-for-feature-retrieval>#</a></h1><p>curl -X POST &ldquo;http://localhost:6566/get-online-features&rdquo;<br>-H &ldquo;Content-Type: application/json&rdquo;<br>-d &lsquo;{
 &ldquo;features&rdquo;: [&ldquo;user_features:avg_order_amount_30d&rdquo;],
 &ldquo;entities&rdquo;: {&ldquo;user_id&rdquo;: [&ldquo;user_12345&rdquo;]}
-}&rsquo;</p>
-<pre tabindex="0"><code>
+}&rsquo;</p><pre tabindex=0><code>
 ## Installation &amp; Setup: Under 5 Minutes
 
 Feast requires Python 3.9+ and pip. Install with your desired backends: `````bash
@@ -411,9 +87,7 @@ pip install &#34;feast[postgres]&#34;
 # Full install with all common backends
 pip install &#34;feast[gcp,redis,postgres,snowflake]&#34;
 </code></pre><p>Verify installation: `````bash
-feast version</p>
-<h1 id="feast-sdk-version-0630">Feast SDK Version: 0.63.0<a hidden class="anchor" aria-hidden="true" href="#feast-sdk-version-0630">#</a></h1>
-<pre tabindex="0"><code>
+feast version</p><h1 id=feast-sdk-version-0630>Feast SDK Version: 0.63.0<a hidden class=anchor aria-hidden=true href=#feast-sdk-version-0630>#</a></h1><pre tabindex=0><code>
 Initialize a new Feast project: `````bash
 # Create and enter project directory
 mkdir fraud_detection_feature_store
@@ -428,121 +102,107 @@ feast init
 # │   ├── repo/
 # │   │   ├── example.py    # Feature definitions
 # │   │   └── test_workflow.py
-</code></pre><h2 id="defining-features-entities-feature-views-and-feature-services">Defining Features: Entities, Feature Views, and Feature Services<a hidden class="anchor" aria-hidden="true" href="#defining-features-entities-feature-views-and-feature-services">#</a></h2>
-<p>Feast organizes features around <strong>entities</strong> (the objects your model makes predictions about) and <strong>feature views</strong> (groups of related features computed from a data source).</p>
-<h3 id="step-1-define-the-entity">Step 1: Define the Entity<a hidden class="anchor" aria-hidden="true" href="#step-1-define-the-entity">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># features/entities.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> Entity, ValueType
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the primary entity for our fraud model</span>
-</span></span><span style="display:flex;"><span>user <span style="color:#f92672">=</span> Entity(
-</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_id&#34;</span>,
-</span></span><span style="display:flex;"><span>    value_type<span style="color:#f92672">=</span>ValueType<span style="color:#f92672">.</span>STRING,
-</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Unique identifier for each user&#34;</span>,
-</span></span><span style="display:flex;"><span>    join_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_id&#34;</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="step-2-define-the-data-source">Step 2: Define the Data Source<a hidden class="anchor" aria-hidden="true" href="#step-2-define-the-data-source">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># features/data_sources.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> BigQuerySource
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Historical data source for the offline store</span>
-</span></span><span style="display:flex;"><span>transaction_stats_source <span style="color:#f92672">=</span> BigQuerySource(
-</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;transaction_stats&#34;</span>,
-</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        SELECT 
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            user_id,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            event_timestamp,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            avg_order_amount_30d,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            total_transactions_90d,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            days_since_last_order,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            unique_merchants_30d,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            avg_transaction_amount_7d,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            failed_transaction_rate_30d,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            created
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        FROM ````my-gcp-project.featds.transaction_aggregates````
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span>    timestamp_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;event_timestamp&#34;</span>,
-</span></span><span style="display:flex;"><span>    created_timestamp_column<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;created&#34;</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="step-3-define-the-feature-view">Step 3: Define the Feature View<a hidden class="anchor" aria-hidden="true" href="#step-3-define-the-feature-view">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># features/feature_views.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> FeatureView, Field
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast.types <span style="color:#f92672">import</span> Float32, Int64, Float64
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> timedelta
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> features.entities <span style="color:#f92672">import</span> user
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> features.data_sources <span style="color:#f92672">import</span> transaction_stats_source
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Feature view with sliding window aggregations</span>
-</span></span><span style="display:flex;"><span>user_transaction_features <span style="color:#f92672">=</span> FeatureView(
-</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_transaction_features&#34;</span>,
-</span></span><span style="display:flex;"><span>    entities<span style="color:#f92672">=</span>[user],
-</span></span><span style="display:flex;"><span>    ttl<span style="color:#f92672">=</span>timedelta(days<span style="color:#f92672">=</span><span style="color:#ae81ff">90</span>),  <span style="color:#75715e"># Features valid for 90 days</span>
-</span></span><span style="display:flex;"><span>    schema<span style="color:#f92672">=</span>[
-</span></span><span style="display:flex;"><span>        Field(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;avg_order_amount_30d&#34;</span>, dtype<span style="color:#f92672">=</span>Float64),
-</span></span><span style="display:flex;"><span>        Field(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;total_transactions_90d&#34;</span>, dtype<span style="color:#f92672">=</span>Int64),
-</span></span><span style="display:flex;"><span>        Field(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;days_since_last_order&#34;</span>, dtype<span style="color:#f92672">=</span>Int64),
-</span></span><span style="display:flex;"><span>        Field(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;unique_merchants_30d&#34;</span>, dtype<span style="color:#f92672">=</span>Int64),
-</span></span><span style="display:flex;"><span>        Field(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;avg_transaction_amount_7d&#34;</span>, dtype<span style="color:#f92672">=</span>Float64),
-</span></span><span style="display:flex;"><span>        Field(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;failed_transaction_rate_30d&#34;</span>, dtype<span style="color:#f92672">=</span>Float32),
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>    online<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,   <span style="color:#75715e"># Serve from online store (Redis)</span>
-</span></span><span style="display:flex;"><span>    source<span style="color:#f92672">=</span>transaction_stats_source,
-</span></span><span style="display:flex;"><span>    tags<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;team&#34;</span>: <span style="color:#e6db74">&#34;fraud&#34;</span>, <span style="color:#e6db74">&#34;domain&#34;</span>: <span style="color:#e6db74">&#34;transactions&#34;</span>},
-</span></span><span style="display:flex;"><span>    owner<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ml-team@company.com&#34;</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="step-4-define-a-feature-service">Step 4: Define a Feature Service<a hidden class="anchor" aria-hidden="true" href="#step-4-define-a-feature-service">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># features/feature_services.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> FeatureService
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> features.feature_views <span style="color:#f92672">import</span> user_transaction_features
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Feature service — the interface your model consumes</span>
-</span></span><span style="display:flex;"><span>fraud_detection_v1 <span style="color:#f92672">=</span> FeatureService(
-</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fraud_detection_v1&#34;</span>,
-</span></span><span style="display:flex;"><span>    features<span style="color:#f92672">=</span>[user_transaction_features],
-</span></span><span style="display:flex;"><span>    tags<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>, <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;fraud_xgboost&#34;</span>},
-</span></span><span style="display:flex;"><span>    owner<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ml-team@company.com&#34;</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="step-5-apply-and-materialize">Step 5: Apply and Materialize<a hidden class="anchor" aria-hidden="true" href="#step-5-apply-and-materialize">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Apply feature definitions to the registry</span>
-</span></span><span style="display:flex;"><span>feast apply
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Materialize features from offline to online store</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># (populate Redis with latest feature values)</span>
-</span></span><span style="display:flex;"><span>feast materialize-incremental <span style="color:#66d9ef">$(</span>date -u +<span style="color:#e6db74">&#34;%Y-%m-%dT%H:%M:%S&#34;</span><span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or materialize a specific time range</span>
-</span></span><span style="display:flex;"><span>feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
-</span></span></code></pre></div><h2 id="production-configuration-redis--bigquery">Production Configuration: Redis + BigQuery<a hidden class="anchor" aria-hidden="true" href="#production-configuration-redis--bigquery">#</a></h2>
-<p>For production deployments, the Redis + BigQuery combination offers the best balance of performance, cost, and scalability.</p>
-<h3 id="feature_storeyaml-production">feature_store.yaml (Production)<a hidden class="anchor" aria-hidden="true" href="#feature_storeyaml-production">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># feature_store.yaml — Production configuration</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">project</span>: <span style="color:#ae81ff">fraud_detection</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">provider</span>: <span style="color:#ae81ff">gcp</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">registry: registry_store_type</span>: <span style="color:#ae81ff">sql</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>: <span style="color:#e6db74">&#34;postgresql://user:pass@pg-host:5432/feast_registry&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cache_ttl_seconds</span>: <span style="color:#ae81ff">60</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">online_store: type</span>: <span style="color:#ae81ff">redis</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connection_string</span>: <span style="color:#e6db74">&#34;redis://:password@redis-cluster.internal:6379&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">key_ttl_seconds</span>: <span style="color:#ae81ff">604800</span>  <span style="color:#75715e"># 7-day TTL for feature keys</span>
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span><span style="color:#f92672">offline_store: type</span>: <span style="color:#ae81ff">bigquery</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">my-gcp-project</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dataset</span>: <span style="color:#ae81ff">feast_offline</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span>: <span style="color:#ae81ff">US</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">entity_key_serialization_version</span>: <span style="color:#ae81ff">2</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">flags: alpha_features</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">on_demand_transforms</span>: <span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><h3 id="redis-online-store-configuration">Redis Online Store Configuration<a hidden class="anchor" aria-hidden="true" href="#redis-online-store-configuration">#</a></h3>
-<p>For sub-millisecond serving, use Redis Cluster with proper sharding: `````yaml</p>
-<h1 id="redis-cluster-configuration">Redis Cluster configuration<a hidden class="anchor" aria-hidden="true" href="#redis-cluster-configuration">#</a></h1>
-<p>online_store: type: redis
+</code></pre><h2 id=defining-features-entities-feature-views-and-feature-services>Defining Features: Entities, Feature Views, and Feature Services<a hidden class=anchor aria-hidden=true href=#defining-features-entities-feature-views-and-feature-services>#</a></h2><p>Feast organizes features around <strong>entities</strong> (the objects your model makes predictions about) and <strong>feature views</strong> (groups of related features computed from a data source).</p><h3 id=step-1-define-the-entity>Step 1: Define the Entity<a hidden class=anchor aria-hidden=true href=#step-1-define-the-entity>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/entities.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> Entity, ValueType
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Define the primary entity for our fraud model</span>
+</span></span><span style=display:flex><span>user <span style=color:#f92672>=</span> Entity(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_id&#34;</span>,
+</span></span><span style=display:flex><span>    value_type<span style=color:#f92672>=</span>ValueType<span style=color:#f92672>.</span>STRING,
+</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Unique identifier for each user&#34;</span>,
+</span></span><span style=display:flex><span>    join_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_id&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=step-2-define-the-data-source>Step 2: Define the Data Source<a hidden class=anchor aria-hidden=true href=#step-2-define-the-data-source>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/data_sources.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> BigQuerySource
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Historical data source for the offline store</span>
+</span></span><span style=display:flex><span>transaction_stats_source <span style=color:#f92672>=</span> BigQuerySource(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;transaction_stats&#34;</span>,
+</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        SELECT 
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            user_id,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            event_timestamp,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            avg_order_amount_30d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            total_transactions_90d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            days_since_last_order,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            unique_merchants_30d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            avg_transaction_amount_7d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            failed_transaction_rate_30d,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            created
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        FROM ````my-gcp-project.featds.transaction_aggregates````
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    timestamp_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;event_timestamp&#34;</span>,
+</span></span><span style=display:flex><span>    created_timestamp_column<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;created&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=step-3-define-the-feature-view>Step 3: Define the Feature View<a hidden class=anchor aria-hidden=true href=#step-3-define-the-feature-view>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/feature_views.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureView, Field
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast.types <span style=color:#f92672>import</span> Float32, Int64, Float64
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> timedelta
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> features.entities <span style=color:#f92672>import</span> user
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> features.data_sources <span style=color:#f92672>import</span> transaction_stats_source
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Feature view with sliding window aggregations</span>
+</span></span><span style=display:flex><span>user_transaction_features <span style=color:#f92672>=</span> FeatureView(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_transaction_features&#34;</span>,
+</span></span><span style=display:flex><span>    entities<span style=color:#f92672>=</span>[user],
+</span></span><span style=display:flex><span>    ttl<span style=color:#f92672>=</span>timedelta(days<span style=color:#f92672>=</span><span style=color:#ae81ff>90</span>),  <span style=color:#75715e># Features valid for 90 days</span>
+</span></span><span style=display:flex><span>    schema<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;avg_order_amount_30d&#34;</span>, dtype<span style=color:#f92672>=</span>Float64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;total_transactions_90d&#34;</span>, dtype<span style=color:#f92672>=</span>Int64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;days_since_last_order&#34;</span>, dtype<span style=color:#f92672>=</span>Int64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;unique_merchants_30d&#34;</span>, dtype<span style=color:#f92672>=</span>Int64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;avg_transaction_amount_7d&#34;</span>, dtype<span style=color:#f92672>=</span>Float64),
+</span></span><span style=display:flex><span>        Field(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;failed_transaction_rate_30d&#34;</span>, dtype<span style=color:#f92672>=</span>Float32),
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    online<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,   <span style=color:#75715e># Serve from online store (Redis)</span>
+</span></span><span style=display:flex><span>    source<span style=color:#f92672>=</span>transaction_stats_source,
+</span></span><span style=display:flex><span>    tags<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;team&#34;</span>: <span style=color:#e6db74>&#34;fraud&#34;</span>, <span style=color:#e6db74>&#34;domain&#34;</span>: <span style=color:#e6db74>&#34;transactions&#34;</span>},
+</span></span><span style=display:flex><span>    owner<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ml-team@company.com&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=step-4-define-a-feature-service>Step 4: Define a Feature Service<a hidden class=anchor aria-hidden=true href=#step-4-define-a-feature-service>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># features/feature_services.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureService
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> features.feature_views <span style=color:#f92672>import</span> user_transaction_features
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Feature service — the interface your model consumes</span>
+</span></span><span style=display:flex><span>fraud_detection_v1 <span style=color:#f92672>=</span> FeatureService(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;fraud_detection_v1&#34;</span>,
+</span></span><span style=display:flex><span>    features<span style=color:#f92672>=</span>[user_transaction_features],
+</span></span><span style=display:flex><span>    tags<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;1.0&#34;</span>, <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;fraud_xgboost&#34;</span>},
+</span></span><span style=display:flex><span>    owner<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ml-team@company.com&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=step-5-apply-and-materialize>Step 5: Apply and Materialize<a hidden class=anchor aria-hidden=true href=#step-5-apply-and-materialize>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Apply feature definitions to the registry</span>
+</span></span><span style=display:flex><span>feast apply
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Materialize features from offline to online store</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># (populate Redis with latest feature values)</span>
+</span></span><span style=display:flex><span>feast materialize-incremental <span style=color:#66d9ef>$(</span>date -u +<span style=color:#e6db74>&#34;%Y-%m-%dT%H:%M:%S&#34;</span><span style=color:#66d9ef>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Or materialize a specific time range</span>
+</span></span><span style=display:flex><span>feast materialize 2026-01-01T00:00:00 2026-05-19T00:00:00
+</span></span></code></pre></div><h2 id=production-configuration-redis--bigquery>Production Configuration: Redis + BigQuery<a hidden class=anchor aria-hidden=true href=#production-configuration-redis--bigquery>#</a></h2><p>For production deployments, the Redis + BigQuery combination offers the best balance of performance, cost, and scalability.</p><h3 id=feature_storeyaml-production>feature_store.yaml (Production)<a hidden class=anchor aria-hidden=true href=#feature_storeyaml-production>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># feature_store.yaml — Production configuration</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>project</span>: <span style=color:#ae81ff>fraud_detection</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>provider</span>: <span style=color:#ae81ff>gcp</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>registry: registry_store_type</span>: <span style=color:#ae81ff>sql</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>path</span>: <span style=color:#e6db74>&#34;postgresql://user:pass@pg-host:5432/feast_registry&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>cache_ttl_seconds</span>: <span style=color:#ae81ff>60</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>online_store: type</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>connection_string</span>: <span style=color:#e6db74>&#34;redis://:password@redis-cluster.internal:6379&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>key_ttl_seconds</span>: <span style=color:#ae81ff>604800</span>  <span style=color:#75715e># 7-day TTL for feature keys</span>
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span><span style=color:#f92672>offline_store: type</span>: <span style=color:#ae81ff>bigquery</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>project</span>: <span style=color:#ae81ff>my-gcp-project</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dataset</span>: <span style=color:#ae81ff>feast_offline</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>location</span>: <span style=color:#ae81ff>US</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>entity_key_serialization_version</span>: <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>flags: alpha_features</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>on_demand_transforms</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><h3 id=redis-online-store-configuration>Redis Online Store Configuration<a hidden class=anchor aria-hidden=true href=#redis-online-store-configuration>#</a></h3><p>For sub-millisecond serving, use Redis Cluster with proper sharding: `````yaml</p><h1 id=redis-cluster-configuration>Redis Cluster configuration<a hidden class=anchor aria-hidden=true href=#redis-cluster-configuration>#</a></h1><p>online_store: type: redis
 redis_type: redis_cluster
 connection_string: &ldquo;redis://redis-node-1:6379,redis-node-2:6379,redis-node-3:6379&rdquo;
-key_ttl_seconds: 604800</p>
-<pre tabindex="0"><code>
+key_ttl_seconds: 604800</p><pre tabindex=0><code>
 ### Deploying Redis on a VPS
 
 For self-hosted deployments, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers managed Redis clusters starting at $15/month with automatic failover. Alternatively, deploy Redis on a Droplet: `````bash
@@ -564,131 +224,120 @@ sudo systemctl restart redis
 # Verify
 redis-cli ping
 # PONG
-</code></pre><h2 id="integration-with-ml-pipelines">Integration with ML Pipelines<a hidden class="anchor" aria-hidden="true" href="#integration-with-ml-pipelines">#</a></h2>
-<h3 id="training-pipeline-integration-python-sdk">Training Pipeline Integration (Python SDK)<a hidden class="anchor" aria-hidden="true" href="#training-pipeline-integration-python-sdk">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># training_pipeline.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> FeatureStore
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> xgboost <span style="color:#66d9ef">as</span> xgb
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize feature store</span>
-</span></span><span style="display:flex;"><span>store <span style="color:#f92672">=</span> FeatureStore(repo_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load labeled entity DataFrame (user_id + target timestamp + label)</span>
-</span></span><span style="display:flex;"><span>entity_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_parquet(<span style="color:#e6db74">&#34;s3://training-data/labeled_users.parquet&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Retrieve point-in-time correct features</span>
-</span></span><span style="display:flex;"><span>feature_service <span style="color:#f92672">=</span> store<span style="color:#f92672">.</span>get_feature_service(<span style="color:#e6db74">&#34;fraud_detection_v1&#34;</span>)
-</span></span><span style="display:flex;"><span>training_df <span style="color:#f92672">=</span> store<span style="color:#f92672">.</span>get_historical_features(
-</span></span><span style="display:flex;"><span>    entity_df<span style="color:#f92672">=</span>entity_df,
-</span></span><span style="display:flex;"><span>    features<span style="color:#f92672">=</span>feature_service,
-</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>to_df()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Split and train</span>
-</span></span><span style="display:flex;"><span>X <span style="color:#f92672">=</span> training_df<span style="color:#f92672">.</span>drop(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;user_id&#34;</span>, <span style="color:#e6db74">&#34;event_timestamp&#34;</span>, <span style="color:#e6db74">&#34;is_fraud&#34;</span>])
-</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> training_df[<span style="color:#e6db74">&#34;is_fraud&#34;</span>]
-</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> xgb<span style="color:#f92672">.</span>XGBClassifier(
-</span></span><span style="display:flex;"><span>    max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>,
-</span></span><span style="display:flex;"><span>    learning_rate<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>,
-</span></span><span style="display:flex;"><span>    n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>,
-</span></span><span style="display:flex;"><span>    subsample<span style="color:#f92672">=</span><span style="color:#ae81ff">0.8</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>fit(X_train, y_train)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Evaluate</span>
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;AUC-ROC: </span><span style="color:#e6db74">{</span>roc_auc_score(y_test, model<span style="color:#f92672">.</span>predict_proba(X_test)[:, <span style="color:#ae81ff">1</span>])<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h3 id="real-time-inference-integration">Real-Time Inference Integration<a hidden class="anchor" aria-hidden="true" href="#real-time-inference-integration">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># inference_service.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> FeatureStore
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> xgboost <span style="color:#66d9ef">as</span> xgb
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> joblib
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI()
-</span></span><span style="display:flex;"><span>store <span style="color:#f92672">=</span> FeatureStore(repo_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.&#34;</span>)
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> joblib<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;models/fraud_xgboost.pkl&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/predict&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict</span>(user_id: str, transaction_amount: float): <span style="color:#75715e"># Retrieve online features from Redis (&lt; 5ms)</span>
-</span></span><span style="display:flex;"><span>    features <span style="color:#f92672">=</span> store<span style="color:#f92672">.</span>get_online_features(
-</span></span><span style="display:flex;"><span>        features<span style="color:#f92672">=</span>[
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;user_transaction_features:avg_order_amount_30d&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;user_transaction_features:total_transactions_90d&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;user_transaction_features:days_since_last_order&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;user_transaction_features:unique_merchants_30d&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;user_transaction_features:failed_transaction_rate_30d&#34;</span>,
-</span></span><span style="display:flex;"><span>        ],
-</span></span><span style="display:flex;"><span>        entity_rows<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;user_id&#34;</span>: user_id}],
-</span></span><span style="display:flex;"><span>    )<span style="color:#f92672">.</span>to_dict()
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Build feature vector</span>
-</span></span><span style="display:flex;"><span>    feature_vector <span style="color:#f92672">=</span> [
-</span></span><span style="display:flex;"><span>        transaction_amount,
-</span></span><span style="display:flex;"><span>        features[<span style="color:#e6db74">&#34;avg_order_amount_30d&#34;</span>][<span style="color:#ae81ff">0</span>],
-</span></span><span style="display:flex;"><span>        features[<span style="color:#e6db74">&#34;total_transactions_90d&#34;</span>][<span style="color:#ae81ff">0</span>],
-</span></span><span style="display:flex;"><span>        features[<span style="color:#e6db74">&#34;days_since_last_order&#34;</span>][<span style="color:#ae81ff">0</span>],
-</span></span><span style="display:flex;"><span>        features[<span style="color:#e6db74">&#34;unique_merchants_30d&#34;</span>][<span style="color:#ae81ff">0</span>],
-</span></span><span style="display:flex;"><span>        features[<span style="color:#e6db74">&#34;failed_transaction_rate_30d&#34;</span>][<span style="color:#ae81ff">0</span>],
-</span></span><span style="display:flex;"><span>    ]
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Predict</span>
-</span></span><span style="display:flex;"><span>    fraud_probability <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict_proba([feature_vector])[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;user_id&#34;</span>: user_id,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;fraud_probability&#34;</span>: float(fraud_probability),
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;is_fraud&#34;</span>: fraud_probability <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.7</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;features_retrieved&#34;</span>: {k: v[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> features<span style="color:#f92672">.</span>items()},
-</span></span><span style="display:flex;"><span>    }
-</span></span></code></pre></div><h3 id="airflow-dag-for-materialization">Airflow DAG for Materialization<a hidden class="anchor" aria-hidden="true" href="#airflow-dag-for-materialization">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># dags/feast_materialize.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> airflow.operators.bash <span style="color:#f92672">import</span> BashOperator
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>default_args <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;owner&#34;</span>: <span style="color:#e6db74">&#34;ml-team&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;depends_on_past&#34;</span>: <span style="color:#66d9ef">False</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;email_on_failure&#34;</span>: <span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;retries&#34;</span>: <span style="color:#ae81ff">2</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;retry_delay&#34;</span>: timedelta(minutes<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>),
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> DAG(
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;feast_materialize&#34;</span>,
-</span></span><span style="display:flex;"><span>    default_args<span style="color:#f92672">=</span>default_args,
-</span></span><span style="display:flex;"><span>    schedule_interval<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;@hourly&#34;</span>,
-</span></span><span style="display:flex;"><span>    start_date<span style="color:#f92672">=</span>datetime(<span style="color:#ae81ff">2026</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
-</span></span><span style="display:flex;"><span>    catchup<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
-</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">as</span> dag: materialize <span style="color:#f92672">=</span> BashOperator(
-</span></span><span style="display:flex;"><span>        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;materialize_features&#34;</span>,
-</span></span><span style="display:flex;"><span>        bash_command<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            cd /opt/feast/fraud_detection_feature_store &amp;&amp; </span><span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            feast materialize-incremental T
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    validate <span style="color:#f92672">=</span> BashOperator(
-</span></span><span style="display:flex;"><span>        task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;validate_online_store&#34;</span>,
-</span></span><span style="display:flex;"><span>        bash_command<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            cd /opt/feast/fraud_detection_feature_store &amp;&amp; </span><span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            python scripts/validate_online_features.py
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    materialize <span style="color:#f92672">&gt;&gt;</span> validate
-</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use-cases">#</a></h2>
-<p>Feast powers production ML systems at companies ranging from startups to enterprises. Here are performance benchmarks and adoption metrics: | Metric | Value | Source |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><h2 id=integration-with-ml-pipelines>Integration with ML Pipelines<a hidden class=anchor aria-hidden=true href=#integration-with-ml-pipelines>#</a></h2><h3 id=training-pipeline-integration-python-sdk>Training Pipeline Integration (Python SDK)<a hidden class=anchor aria-hidden=true href=#training-pipeline-integration-python-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># training_pipeline.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureStore
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> xgboost <span style=color:#66d9ef>as</span> xgb
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> sklearn.model_selection <span style=color:#f92672>import</span> train_test_split
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Initialize feature store</span>
+</span></span><span style=display:flex><span>store <span style=color:#f92672>=</span> FeatureStore(repo_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Load labeled entity DataFrame (user_id + target timestamp + label)</span>
+</span></span><span style=display:flex><span>entity_df <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>read_parquet(<span style=color:#e6db74>&#34;s3://training-data/labeled_users.parquet&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Retrieve point-in-time correct features</span>
+</span></span><span style=display:flex><span>feature_service <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_feature_service(<span style=color:#e6db74>&#34;fraud_detection_v1&#34;</span>)
+</span></span><span style=display:flex><span>training_df <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_historical_features(
+</span></span><span style=display:flex><span>    entity_df<span style=color:#f92672>=</span>entity_df,
+</span></span><span style=display:flex><span>    features<span style=color:#f92672>=</span>feature_service,
+</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>to_df()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Split and train</span>
+</span></span><span style=display:flex><span>X <span style=color:#f92672>=</span> training_df<span style=color:#f92672>.</span>drop(columns<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;user_id&#34;</span>, <span style=color:#e6db74>&#34;event_timestamp&#34;</span>, <span style=color:#e6db74>&#34;is_fraud&#34;</span>])
+</span></span><span style=display:flex><span>y <span style=color:#f92672>=</span> training_df[<span style=color:#e6db74>&#34;is_fraud&#34;</span>]
+</span></span><span style=display:flex><span>X_train, X_test, y_train, y_test <span style=color:#f92672>=</span> train_test_split(X, y, test_size<span style=color:#f92672>=</span><span style=color:#ae81ff>0.2</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> xgb<span style=color:#f92672>.</span>XGBClassifier(
+</span></span><span style=display:flex><span>    max_depth<span style=color:#f92672>=</span><span style=color:#ae81ff>6</span>,
+</span></span><span style=display:flex><span>    learning_rate<span style=color:#f92672>=</span><span style=color:#ae81ff>0.1</span>,
+</span></span><span style=display:flex><span>    n_estimators<span style=color:#f92672>=</span><span style=color:#ae81ff>200</span>,
+</span></span><span style=display:flex><span>    subsample<span style=color:#f92672>=</span><span style=color:#ae81ff>0.8</span>,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>fit(X_train, y_train)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Evaluate</span>
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;AUC-ROC: </span><span style=color:#e6db74>{</span>roc_auc_score(y_test, model<span style=color:#f92672>.</span>predict_proba(X_test)[:, <span style=color:#ae81ff>1</span>])<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</span></span></code></pre></div><h3 id=real-time-inference-integration>Real-Time Inference Integration<a hidden class=anchor aria-hidden=true href=#real-time-inference-integration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># inference_service.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureStore
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> xgboost <span style=color:#66d9ef>as</span> xgb
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> joblib
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI()
+</span></span><span style=display:flex><span>store <span style=color:#f92672>=</span> FeatureStore(repo_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> joblib<span style=color:#f92672>.</span>load(<span style=color:#e6db74>&#34;models/fraud_xgboost.pkl&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/predict&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>predict</span>(user_id: str, transaction_amount: float): <span style=color:#75715e># Retrieve online features from Redis (&lt; 5ms)</span>
+</span></span><span style=display:flex><span>    features <span style=color:#f92672>=</span> store<span style=color:#f92672>.</span>get_online_features(
+</span></span><span style=display:flex><span>        features<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:avg_order_amount_30d&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:total_transactions_90d&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:days_since_last_order&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:unique_merchants_30d&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_transaction_features:failed_transaction_rate_30d&#34;</span>,
+</span></span><span style=display:flex><span>        ],
+</span></span><span style=display:flex><span>        entity_rows<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;user_id&#34;</span>: user_id}],
+</span></span><span style=display:flex><span>    )<span style=color:#f92672>.</span>to_dict()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Build feature vector</span>
+</span></span><span style=display:flex><span>    feature_vector <span style=color:#f92672>=</span> [
+</span></span><span style=display:flex><span>        transaction_amount,
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;avg_order_amount_30d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;total_transactions_90d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;days_since_last_order&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;unique_merchants_30d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>        features[<span style=color:#e6db74>&#34;failed_transaction_rate_30d&#34;</span>][<span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>    ]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Predict</span>
+</span></span><span style=display:flex><span>    fraud_probability <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>predict_proba([feature_vector])[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;user_id&#34;</span>: user_id,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;fraud_probability&#34;</span>: float(fraud_probability),
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;is_fraud&#34;</span>: fraud_probability <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.7</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;features_retrieved&#34;</span>: {k: v[<span style=color:#ae81ff>0</span>] <span style=color:#66d9ef>for</span> k, v <span style=color:#f92672>in</span> features<span style=color:#f92672>.</span>items()},
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><h3 id=airflow-dag-for-materialization>Airflow DAG for Materialization<a hidden class=anchor aria-hidden=true href=#airflow-dag-for-materialization>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># dags/feast_materialize.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> airflow <span style=color:#f92672>import</span> DAG
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> airflow.operators.bash <span style=color:#f92672>import</span> BashOperator
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime, timedelta
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>default_args <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;owner&#34;</span>: <span style=color:#e6db74>&#34;ml-team&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;depends_on_past&#34;</span>: <span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;email_on_failure&#34;</span>: <span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;retries&#34;</span>: <span style=color:#ae81ff>2</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;retry_delay&#34;</span>: timedelta(minutes<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>),
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> DAG(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;feast_materialize&#34;</span>,
+</span></span><span style=display:flex><span>    default_args<span style=color:#f92672>=</span>default_args,
+</span></span><span style=display:flex><span>    schedule_interval<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;@hourly&#34;</span>,
+</span></span><span style=display:flex><span>    start_date<span style=color:#f92672>=</span>datetime(<span style=color:#ae81ff>2026</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>),
+</span></span><span style=display:flex><span>    catchup<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>) <span style=color:#66d9ef>as</span> dag: materialize <span style=color:#f92672>=</span> BashOperator(
+</span></span><span style=display:flex><span>        task_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;materialize_features&#34;</span>,
+</span></span><span style=display:flex><span>        bash_command<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            cd /opt/feast/fraud_detection_feature_store &amp;&amp; </span><span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            feast materialize-incremental T
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    validate <span style=color:#f92672>=</span> BashOperator(
+</span></span><span style=display:flex><span>        task_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;validate_online_store&#34;</span>,
+</span></span><span style=display:flex><span>        bash_command<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            cd /opt/feast/fraud_detection_feature_store &amp;&amp; </span><span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>            python scripts/validate_online_features.py
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;&#34;&#34;</span>,
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    materialize <span style=color:#f92672>&gt;&gt;</span> validate
+</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases<a hidden class=anchor aria-hidden=true href=#benchmarks--real-world-use-cases>#</a></h2><p>Feast powers production ML systems at companies ranging from startups to enterprises. Here are performance benchmarks and adoption metrics: | Metric | Value | Source |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | GitHub Stars | <strong>7,000+</strong> | GitHub (May 2026) |
 | Contributors | <strong>361</strong> | GitHub |
 | Latest Release | <strong>v0.63.0</strong> | May 2026 |
@@ -696,49 +345,17 @@ redis-cli ping
 | Supported Backends | <strong>20+</strong> | Official Docs |
 | Max Entities in Registry | <strong>10,000+</strong> | Community Reports |
 | Online Store Backends | <strong>9</strong> | Redis, DynamoDB, Bigtable, etc. |
-| Offline Store Backends | <strong>8</strong> | BigQuery, Snowflake, Redshift, etc. |</p>
-<h3 id="latency-benchmarks">Latency Benchmarks<a hidden class="anchor" aria-hidden="true" href="#latency-benchmarks">#</a></h3>
-<p>| Operation | p50 Latency | p99 Latency | Test Setup |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| Offline Store Backends | <strong>8</strong> | BigQuery, Snowflake, Redshift, etc. |</p><h3 id=latency-benchmarks>Latency Benchmarks<a hidden class=anchor aria-hidden=true href=#latency-benchmarks>#</a></h3><p>| Operation | p50 Latency | p99 Latency | Test Setup |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Online feature retrieval (Redis, 6 features) | <strong>1.2ms</strong> | <strong>3.8ms</strong> | Single Redis node, local network |
 | Online feature retrieval (DynamoDB, 6 features) | <strong>4.5ms</strong> | <strong>12ms</strong> | DynamoDB on-demand, us-east-1 |
 | Online feature retrieval (Dragonfly, 6 features) | <strong>0.8ms</strong> | <strong>2.1ms</strong> | Single Dragonfly node |
 | Historical feature query (BigQuery, 1M rows) | <strong>8.2s</strong> | <strong>14s</strong> | BigQuery US, cached |
 | Feature server REST call (Redis backend) | <strong>2.1ms</strong> | <strong>5.5ms</strong> | Go server, single instance |
-| Registry load (SQL, 500 features) | <strong>45ms</strong> | <strong>120ms</strong> | PostgreSQL 14, same region |</p>
-<p><em>Benchmarks run on c5.2xlarge (8 vCPU, 16 GB RAM) with Redis 7.0 and BigQuery US. Times are averages of 100 requests.</em></p>
-<p>The standout number: <strong>p50 online feature retrieval from Redis is 1.2ms</strong> — well under the 10ms threshold required for real-time ML applications.</p>
-<h3 id="real-world-use-cases">Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#real-world-use-cases">#</a></h3>
-<ol>
-<li>
-<p><strong>Real-Time Fraud Detection</strong>: A payment processor serves 50,000 transactions/second with sub-5ms feature lookups from Redis. Feast eliminates training-serving skew, improving fraud detection accuracy from <strong>89.2% to 94.7%</strong>.</p>
-</li>
-<li>
-<p><strong>E-Commerce Recommendations</strong>: A marketplace uses Feast to serve 200+ features per user to their recommendation model. Materialization runs every 15 minutes via Airflow, keeping online features fresh. Click-through rate improved <strong>23%</strong> after eliminating feature drift.</p>
-</li>
-<li>
-<p><strong>Credit Risk Scoring</strong>: A neobank generates training datasets with point-in-time correct features spanning 3 years of transaction history. Feast&rsquo;s BigQuery integration handles 50+ terabyte feature tables without performance degradation.</p>
-</li>
-<li>
-<p><strong>AdTech Real-Time Bidding</strong>: An ad platform serves user segment features with sub-millisecond latency using Dragonfly as the online store. The platform processes <strong>2 million bids/second</strong> during peak hours.</p>
-</li>
-</ol>
-<h2 id="advanced-usage--production-hardening">Advanced Usage &amp; Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
-<h3 id="on-demand-feature-transformations">On-Demand Feature Transformations<a hidden class="anchor" aria-hidden="true" href="#on-demand-feature-transformations">#</a></h3>
-<p>Compute features at request time that cannot be pre-materialized: `````python
+| Registry load (SQL, 500 features) | <strong>45ms</strong> | <strong>120ms</strong> | PostgreSQL 14, same region |</p><p><em>Benchmarks run on c5.2xlarge (8 vCPU, 16 GB RAM) with Redis 7.0 and BigQuery US. Times are averages of 100 requests.</em></p><p>The standout number: <strong>p50 online feature retrieval from Redis is 1.2ms</strong> — well under the 10ms threshold required for real-time ML applications.</p><h3 id=real-world-use-cases>Real-World Use Cases<a hidden class=anchor aria-hidden=true href=#real-world-use-cases>#</a></h3><ol><li><p><strong>Real-Time Fraud Detection</strong>: A payment processor serves 50,000 transactions/second with sub-5ms feature lookups from Redis. Feast eliminates training-serving skew, improving fraud detection accuracy from <strong>89.2% to 94.7%</strong>.</p></li><li><p><strong>E-Commerce Recommendations</strong>: A marketplace uses Feast to serve 200+ features per user to their recommendation model. Materialization runs every 15 minutes via Airflow, keeping online features fresh. Click-through rate improved <strong>23%</strong> after eliminating feature drift.</p></li><li><p><strong>Credit Risk Scoring</strong>: A neobank generates training datasets with point-in-time correct features spanning 3 years of transaction history. Feast&rsquo;s BigQuery integration handles 50+ terabyte feature tables without performance degradation.</p></li><li><p><strong>AdTech Real-Time Bidding</strong>: An ad platform serves user segment features with sub-millisecond latency using Dragonfly as the online store. The platform processes <strong>2 million bids/second</strong> during peak hours.</p></li></ol><h2 id=advanced-usage--production-hardening>Advanced Usage & Production Hardening<a hidden class=anchor aria-hidden=true href=#advanced-usage--production-hardening>#</a></h2><h3 id=on-demand-feature-transformations>On-Demand Feature Transformations<a hidden class=anchor aria-hidden=true href=#on-demand-feature-transformations>#</a></h3><p>Compute features at request time that cannot be pre-materialized: `````python
 from feast import on_demand_feature_view
 from feast.types import Float64
-from pyspark.sql import functions as F</p>
-<h1 id="define-an-on-demand-transformation">Define an on-demand transformation<a hidden class="anchor" aria-hidden="true" href="#define-an-on-demand-transformation">#</a></h1>
-<p>@on_demand_feature_view(
+from pyspark.sql import functions as F</p><h1 id=define-an-on-demand-transformation>Define an on-demand transformation<a hidden class=anchor aria-hidden=true href=#define-an-on-demand-transformation>#</a></h1><p>@on_demand_feature_view(
 sources=[user_transaction_features],
 schema=[
 Field(name=&ldquo;transaction_amount_ratio&rdquo;, dtype=Float64),
@@ -750,8 +367,7 @@ df = pd.DataFrame()
 df[&ldquo;transaction_amount_ratio&rdquo;] = (
 inputs[&ldquo;transaction_amount&rdquo;] / inputs[&ldquo;avg_order_amount_30d&rdquo;]
 ).fillna(0)
-return df</p>
-<pre tabindex="0"><code>
+return df</p><pre tabindex=0><code>
 ### Feature Monitoring and Validation
 
 `````python
@@ -787,99 +403,82 @@ user_transaction_features_with_validation = FeatureView(
         ]
     ),
 )
-</code></pre><h3 id="multi-project-setup-for-different-teams">Multi-Project Setup for Different Teams<a hidden class="anchor" aria-hidden="true" href="#multi-project-setup-for-different-teams">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># feature_store_team_a.yaml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">project</span>: <span style="color:#ae81ff">team_a_fraud</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">registry: path</span>: <span style="color:#ae81ff">s3://shared-bucket/registry_team_a.db</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">online_store: type</span>: <span style="color:#ae81ff">redis</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connection_string</span>: <span style="color:#e6db74">&#34;redis://shared-redis:6379/0&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">offline_store: type</span>: <span style="color:#ae81ff">bigquery</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">my-gcp-project</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dataset</span>: <span style="color:#ae81ff">team_a_features</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># feature_store_team_b.yaml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">project</span>: <span style="color:#ae81ff">team_b_recommendations</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">registry: path</span>: <span style="color:#ae81ff">s3://shared-bucket/registry_team_b.db</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">online_store: type</span>: <span style="color:#ae81ff">redis</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connection_string</span>: <span style="color:#e6db74">&#34;redis://shared-redis:6379/1&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">offline_store: type</span>: <span style="color:#ae81ff">bigquery</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">my-gcp-project</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dataset</span>: <span style="color:#ae81ff">team_b_features</span>
-</span></span></code></pre></div><h3 id="feature-versioning-and-rollback">Feature Versioning and Rollback<a hidden class="anchor" aria-hidden="true" href="#feature-versioning-and-rollback">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Tag feature definitions with version metadata</span>
-</span></span><span style="display:flex;"><span>user_transaction_features_v2 <span style="color:#f92672">=</span> FeatureView(
-</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_transaction_features_v2&#34;</span>,
-</span></span><span style="display:flex;"><span>    entities<span style="color:#f92672">=</span>[user],
-</span></span><span style="display:flex;"><span>    schema<span style="color:#f92672">=</span>[<span style="color:#f92672">...</span>],
-</span></span><span style="display:flex;"><span>    source<span style="color:#f92672">=</span>transaction_stats_source,
-</span></span><span style="display:flex;"><span>    tags<span style="color:#f92672">=</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;fraud_xgboost_v3&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;changelog&#34;</span>: <span style="color:#e6db74">&#34;Added velocity features&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;owner&#34;</span>: <span style="color:#e6db74">&#34;ml-team@company.com&#34;</span>,
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="securing-the-feature-store">Securing the Feature Store<a hidden class="anchor" aria-hidden="true" href="#securing-the-feature-store">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># RBAC configuration (Feast 0.60+)</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">auth: type</span>: <span style="color:#ae81ff">oidc</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">oidc_server_url</span>: <span style="color:#e6db74">&#34;https://auth.company.com&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">client_id</span>: <span style="color:#e6db74">&#34;feast-app&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">client_secret</span>: <span style="color:#e6db74">&#34;${OIDC_CLIENT_SECRET}&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">token_introspection_url</span>: <span style="color:#e6db74">&#34;https://auth.company.com/introspect&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">authorization: enabled</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">policies: - resource</span>: <span style="color:#e6db74">&#34;feature_view:user_transaction_features&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">actions</span>: [<span style="color:#e6db74">&#34;read&#34;</span>, <span style="color:#e6db74">&#34;materialize&#34;</span>]
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">roles</span>: [<span style="color:#e6db74">&#34;ml-engineer&#34;</span>, <span style="color:#e6db74">&#34;data-scientist&#34;</span>]
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">resource</span>: <span style="color:#e6db74">&#34;feature_service:fraud_detection_v1&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">actions</span>: [<span style="color:#e6db74">&#34;read&#34;</span>]
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">roles</span>: [<span style="color:#e6db74">&#34;model-server&#34;</span>]
-</span></span></code></pre></div><h3 id="stream-feature-ingestion-kafka--redis">Stream Feature Ingestion (Kafka → Redis)<a hidden class="anchor" aria-hidden="true" href="#stream-feature-ingestion-kafka--redis">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># stream_ingestion.py</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> feast <span style="color:#f92672">import</span> FeatureStore
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> confluent_kafka <span style="color:#f92672">import</span> Consumer
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>store <span style="color:#f92672">=</span> FeatureStore(repo_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>consumer <span style="color:#f92672">=</span> Consumer({
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;bootstrap.servers&#34;</span>: <span style="color:#e6db74">&#34;kafka:9092&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;group.id&#34;</span>: <span style="color:#e6db74">&#34;feast-stream-ingestion&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;auto.offset.reset&#34;</span>: <span style="color:#e6db74">&#34;latest&#34;</span>,
-</span></span><span style="display:flex;"><span>})
-</span></span><span style="display:flex;"><span>consumer<span style="color:#f92672">.</span>subscribe([<span style="color:#e6db74">&#34;transaction-events&#34;</span>])
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>: msg <span style="color:#f92672">=</span> consumer<span style="color:#f92672">.</span>poll(timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">1.0</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> msg <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>: <span style="color:#66d9ef">continue</span>
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    event <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(msg<span style="color:#f92672">.</span>value()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;utf-8&#34;</span>))
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Push feature update directly to online store</span>
-</span></span><span style="display:flex;"><span>    store<span style="color:#f92672">.</span>push(
-</span></span><span style="display:flex;"><span>        feature_view_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_transaction_features&#34;</span>,
-</span></span><span style="display:flex;"><span>        df<span style="color:#f92672">=</span>pd<span style="color:#f92672">.</span>DataFrame([{
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;user_id&#34;</span>: event[<span style="color:#e6db74">&#34;user_id&#34;</span>],
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;event_timestamp&#34;</span>: event[<span style="color:#e6db74">&#34;timestamp&#34;</span>],
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;avg_transaction_amount_7d&#34;</span>: event[<span style="color:#e6db74">&#34;amount&#34;</span>],
-</span></span><span style="display:flex;"><span>        }]),
-</span></span><span style="display:flex;"><span>    )
-</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<p>| Feature | Feast | Tecton | SageMaker Feature Store | Vertex AI Feature Store | Hopsworks |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><h3 id=multi-project-setup-for-different-teams>Multi-Project Setup for Different Teams<a hidden class=anchor aria-hidden=true href=#multi-project-setup-for-different-teams>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># feature_store_team_a.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>project</span>: <span style=color:#ae81ff>team_a_fraud</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>registry: path</span>: <span style=color:#ae81ff>s3://shared-bucket/registry_team_a.db</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>online_store: type</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>connection_string</span>: <span style=color:#e6db74>&#34;redis://shared-redis:6379/0&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>offline_store: type</span>: <span style=color:#ae81ff>bigquery</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>project</span>: <span style=color:#ae81ff>my-gcp-project</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dataset</span>: <span style=color:#ae81ff>team_a_features</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#75715e># feature_store_team_b.yaml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>project</span>: <span style=color:#ae81ff>team_b_recommendations</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>registry: path</span>: <span style=color:#ae81ff>s3://shared-bucket/registry_team_b.db</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>online_store: type</span>: <span style=color:#ae81ff>redis</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>connection_string</span>: <span style=color:#e6db74>&#34;redis://shared-redis:6379/1&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>offline_store: type</span>: <span style=color:#ae81ff>bigquery</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>project</span>: <span style=color:#ae81ff>my-gcp-project</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>dataset</span>: <span style=color:#ae81ff>team_b_features</span>
+</span></span></code></pre></div><h3 id=feature-versioning-and-rollback>Feature Versioning and Rollback<a hidden class=anchor aria-hidden=true href=#feature-versioning-and-rollback>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Tag feature definitions with version metadata</span>
+</span></span><span style=display:flex><span>user_transaction_features_v2 <span style=color:#f92672>=</span> FeatureView(
+</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_transaction_features_v2&#34;</span>,
+</span></span><span style=display:flex><span>    entities<span style=color:#f92672>=</span>[user],
+</span></span><span style=display:flex><span>    schema<span style=color:#f92672>=</span>[<span style=color:#f92672>...</span>],
+</span></span><span style=display:flex><span>    source<span style=color:#f92672>=</span>transaction_stats_source,
+</span></span><span style=display:flex><span>    tags<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;model&#34;</span>: <span style=color:#e6db74>&#34;fraud_xgboost_v3&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;changelog&#34;</span>: <span style=color:#e6db74>&#34;Added velocity features&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;owner&#34;</span>: <span style=color:#e6db74>&#34;ml-team@company.com&#34;</span>,
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><h3 id=securing-the-feature-store>Securing the Feature Store<a hidden class=anchor aria-hidden=true href=#securing-the-feature-store>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># RBAC configuration (Feast 0.60+)</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>auth: type</span>: <span style=color:#ae81ff>oidc</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>oidc_server_url</span>: <span style=color:#e6db74>&#34;https://auth.company.com&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>client_id</span>: <span style=color:#e6db74>&#34;feast-app&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>client_secret</span>: <span style=color:#e6db74>&#34;${OIDC_CLIENT_SECRET}&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>token_introspection_url</span>: <span style=color:#e6db74>&#34;https://auth.company.com/introspect&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>authorization: enabled</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>policies: - resource</span>: <span style=color:#e6db74>&#34;feature_view:user_transaction_features&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>actions</span>: [<span style=color:#e6db74>&#34;read&#34;</span>, <span style=color:#e6db74>&#34;materialize&#34;</span>]
+</span></span><span style=display:flex><span>      <span style=color:#f92672>roles</span>: [<span style=color:#e6db74>&#34;ml-engineer&#34;</span>, <span style=color:#e6db74>&#34;data-scientist&#34;</span>]
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>resource</span>: <span style=color:#e6db74>&#34;feature_service:fraud_detection_v1&#34;</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>actions</span>: [<span style=color:#e6db74>&#34;read&#34;</span>]
+</span></span><span style=display:flex><span>      <span style=color:#f92672>roles</span>: [<span style=color:#e6db74>&#34;model-server&#34;</span>]
+</span></span></code></pre></div><h3 id=stream-feature-ingestion-kafka--redis>Stream Feature Ingestion (Kafka → Redis)<a hidden class=anchor aria-hidden=true href=#stream-feature-ingestion-kafka--redis>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># stream_ingestion.py</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> feast <span style=color:#f92672>import</span> FeatureStore
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> confluent_kafka <span style=color:#f92672>import</span> Consumer
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>store <span style=color:#f92672>=</span> FeatureStore(repo_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;.&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>consumer <span style=color:#f92672>=</span> Consumer({
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;bootstrap.servers&#34;</span>: <span style=color:#e6db74>&#34;kafka:9092&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;group.id&#34;</span>: <span style=color:#e6db74>&#34;feast-stream-ingestion&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;auto.offset.reset&#34;</span>: <span style=color:#e6db74>&#34;latest&#34;</span>,
+</span></span><span style=display:flex><span>})
+</span></span><span style=display:flex><span>consumer<span style=color:#f92672>.</span>subscribe([<span style=color:#e6db74>&#34;transaction-events&#34;</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>: msg <span style=color:#f92672>=</span> consumer<span style=color:#f92672>.</span>poll(timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>1.0</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> msg <span style=color:#f92672>is</span> <span style=color:#66d9ef>None</span>: <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    event <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span>loads(msg<span style=color:#f92672>.</span>value()<span style=color:#f92672>.</span>decode(<span style=color:#e6db74>&#34;utf-8&#34;</span>))
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e># Push feature update directly to online store</span>
+</span></span><span style=display:flex><span>    store<span style=color:#f92672>.</span>push(
+</span></span><span style=display:flex><span>        feature_view_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_transaction_features&#34;</span>,
+</span></span><span style=display:flex><span>        df<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>DataFrame([{
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;user_id&#34;</span>: event[<span style=color:#e6db74>&#34;user_id&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;event_timestamp&#34;</span>: event[<span style=color:#e6db74>&#34;timestamp&#34;</span>],
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;avg_transaction_amount_7d&#34;</span>: event[<span style=color:#e6db74>&#34;amount&#34;</span>],
+</span></span><span style=display:flex><span>        }]),
+</span></span><span style=display:flex><span>    )
+</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| Feature | Feast | Tecton | SageMaker Feature Store | Vertex AI Feature Store | Hopsworks |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>Open Source</strong> | Yes (Apache-2.0) | No | No (AWS managed) | No (GCP managed) | Yes (AGPL) |
 | <strong>Online Store Latency</strong> | <strong>p99 &lt; 5ms</strong> (Redis) | <strong>p99 &lt; 10ms</strong> | <strong>p99 &lt; 15ms</strong> | <strong>p99 &lt; 10ms</strong> | <strong>p99 &lt; 5ms</strong> (RonDB) |
 | <strong>Offline Store Options</strong> | 8+ backends | Built-in (Spark) | S3 | BigQuery | Built-in (Hive) |
@@ -890,71 +489,18 @@ user_transaction_features_with_validation = FeatureView(
 | <strong>Cost</strong> | Free (infra only) | $$$ (managed) | Pay per use | Pay per use | Free (infra only) |
 | <strong>GitOps Support</strong> | Native | Limited | No | No | Limited |
 | <strong>Multi-Cloud</strong> | Yes | Yes | AWS only | GCP only | Yes |
-| <strong>Community Stars</strong> | 7,000+ | N/A | N/A | N/A | 2,500+ |</p>
-<h3 id="when-to-choose-what">When to Choose What<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-what">#</a></h3>
-<ul>
-<li>
-<p><strong>Choose Feast</strong> when you want maximum flexibility, multi-cloud portability, and are comfortable managing your own infrastructure. Best for teams that already have data pipelines (Spark, Airflow) and want a lightweight feature registry + serving layer.</p>
-</li>
-<li>
-<p><strong>Choose Tecton</strong> when you need a fully managed solution with native streaming, automatic backfills, and real-time feature computation. Tecton handles the infrastructure but comes at a premium price point.</p>
-</li>
-<li>
-<p><strong>Choose SageMaker Feature Store</strong> when your entire ML stack runs on AWS and you want tight integration with SageMaker Pipelines, Model Registry, and Model Monitor.</p>
-</li>
-<li>
-<p><strong>Choose Vertex AI Feature Store</strong> when you are all-in on GCP and want native BigQuery + Vertex AI integration with minimal operational overhead.</p>
-</li>
-<li>
-<p><strong>Choose Hopsworks</strong> when you want a feature store tightly coupled with model training pipelines and an integrated experimentation platform. The RonDB online store offers exceptional latency performance.</p>
-</li>
-</ul>
-<h2 id="limitations-an-honest-assessment">Limitations: An Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-an-honest-assessment">#</a></h2>
-<p><strong>Feast is not a silver bullet. Here are its real limitations:</strong></p>
-<ol>
-<li>
-<p><strong>No Built-in Feature Computation</strong>: Feast stores and serves features but does not compute them. You need separate infrastructure (Spark, dbt, Airflow) to compute aggregations and populate the offline store. This adds operational complexity compared to managed solutions like Tecton.</p>
-</li>
-<li>
-<p><strong>Operational Burden</strong>: You manage the Redis cluster, BigQuery datasets, PostgreSQL registry, and the Feast feature server. For small teams without dedicated platform engineers, this can be overwhelming.</p>
-</li>
-<li>
-<p><strong>No Automatic Feature Backfill</strong>: When you add a new feature, you must manually backfill historical values. Managed solutions like Tecton handle this automatically.</p>
-</li>
-<li>
-<p><strong>Limited Monitoring</strong>: Feast has basic data quality profiling but lacks built-in feature drift detection, point-in-time correctness validation, and automated alerting. You need third-party tools (Evidently, WhyLabs) for comprehensive feature monitoring.</p>
-</li>
-<li>
-<p><strong>Stream Feature Complexity</strong>: Real-time feature ingestion via the Push API requires careful handling of duplicate events, late arrivals, and exactly-once semantics. This complexity is abstracted away in managed solutions.</p>
-</li>
-</ol>
-<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<p><strong>Q: What is the difference between a feature store and a data warehouse?</strong>
-A data warehouse (BigQuery, Snowflake) stores raw and aggregated data for analytics. A feature store adds three things: (1) an online store for sub-second serving, (2) point-in-time correct joins to prevent data leakage, and (3) a feature registry for discovery and governance. You can use BigQuery as both your data warehouse and Feast&rsquo;s offline store — they complement each other.</p>
-<p><strong>Q: How fresh are online features in Feast?</strong>
-Feature freshness depends on your materialization schedule. If you run <code>feast materialize-incremental</code> every 5 minutes, your online features are at most 5 minutes stale. For true real-time features, use the Push API or stream ingestion to update the online store within seconds of event arrival.</p>
-<p><strong>Q: Can I use Feast without a cloud provider?</strong>
-Yes. Use SQLite or PostgreSQL as the offline store and Redis (self-hosted) or SQLite as the online store. Feast runs entirely on-premises or in a single VM. For a cost-effective setup, deploy on a <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a> with self-hosted Redis and PostgreSQL.</p>
-<p><strong>Q: How does Feast prevent training-serving skew?</strong>
-Feast ensures consistency through two mechanisms: (1) the same feature view definition generates both offline training data and online serving values from identical source logic, and (2) point-in-time joins retrieve historical feature values exactly as they existed at training time, preventing data leakage.</p>
-<p><strong>Q: What is the performance cost of adding a feature store?</strong>
-The feature store adds 1-5ms to inference latency for online lookups (Redis p50: 1.2ms). This is negligible compared to the latency of computing features on-the-fly (often 100-500ms). For batch training, point-in-time joins add 10-30 seconds per million rows — a small cost for correctness.</p>
-<p><strong>Q: Can multiple teams share a single Feast deployment?</strong>
-Yes. Use separate projects within the same Feast instance, each with its own registry and feature definitions. Alternatively, share the online store (Redis) across teams while maintaining separate offline stores and registries per domain.</p>
-<p><strong>Q: How do I monitor feature drift with Feast?</strong>
-Feast does not include built-in drift detection. Integrate with third-party tools: <a href="https://evidentlyai.com">Evidently AI</a> for statistical drift detection, <a href="https://whylabs.ai">WhyLabs</a> for data profiling, or custom monitoring pipelines that compare online feature distributions against training baselines.</p>
-<p><strong>Q: Does Feast support feature transformations?</strong>
-Feast supports on-demand transformations computed at request time (Python or Spark UDFs). For batch transformations, compute features upstream using dbt, Spark, or SQL and load the results into Feast&rsquo;s offline store. Feast does not replace your transformation layer — it sits on top of it.</p>
-<h2 id="conclusion-serve-features-at-the-speed-of-inference">Conclusion: Serve Features at the Speed of Inference<a hidden class="anchor" aria-hidden="true" href="#conclusion-serve-features-at-the-speed-of-inference">#</a></h2>
-<p>If your ML models suffer from training-serving skew, your inference pipeline makes too many database calls, or your data scientists cannot find and reuse features built by other teams — you need a feature store.</p>
-<p>Feast, with <strong>7,000+ stars</strong>, a vibrant community of <strong>361 contributors</strong>, and support for <strong>20+ storage backends</strong>, is the open-source feature store of choice for teams who value flexibility and multi-cloud portability. The Redis + BigQuery combination delivers <strong>p50 online serving latency under 2ms</strong>, while point-in-time joins ensure your training data is free from leakage.</p>
-<p>Start today: `````bash
+| <strong>Community Stars</strong> | 7,000+ | N/A | N/A | N/A | 2,500+ |</p><h3 id=when-to-choose-what>When to Choose What<a hidden class=anchor aria-hidden=true href=#when-to-choose-what>#</a></h3><ul><li><p><strong>Choose Feast</strong> when you want maximum flexibility, multi-cloud portability, and are comfortable managing your own infrastructure. Best for teams that already have data pipelines (Spark, Airflow) and want a lightweight feature registry + serving layer.</p></li><li><p><strong>Choose Tecton</strong> when you need a fully managed solution with native streaming, automatic backfills, and real-time feature computation. Tecton handles the infrastructure but comes at a premium price point.</p></li><li><p><strong>Choose SageMaker Feature Store</strong> when your entire ML stack runs on AWS and you want tight integration with SageMaker Pipelines, Model Registry, and Model Monitor.</p></li><li><p><strong>Choose Vertex AI Feature Store</strong> when you are all-in on GCP and want native BigQuery + Vertex AI integration with minimal operational overhead.</p></li><li><p><strong>Choose Hopsworks</strong> when you want a feature store tightly coupled with model training pipelines and an integrated experimentation platform. The RonDB online store offers exceptional latency performance.</p></li></ul><h2 id=limitations-an-honest-assessment>Limitations: An Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations-an-honest-assessment>#</a></h2><p><strong>Feast is not a silver bullet. Here are its real limitations:</strong></p><ol><li><p><strong>No Built-in Feature Computation</strong>: Feast stores and serves features but does not compute them. You need separate infrastructure (Spark, dbt, Airflow) to compute aggregations and populate the offline store. This adds operational complexity compared to managed solutions like Tecton.</p></li><li><p><strong>Operational Burden</strong>: You manage the Redis cluster, BigQuery datasets, PostgreSQL registry, and the Feast feature server. For small teams without dedicated platform engineers, this can be overwhelming.</p></li><li><p><strong>No Automatic Feature Backfill</strong>: When you add a new feature, you must manually backfill historical values. Managed solutions like Tecton handle this automatically.</p></li><li><p><strong>Limited Monitoring</strong>: Feast has basic data quality profiling but lacks built-in feature drift detection, point-in-time correctness validation, and automated alerting. You need third-party tools (Evidently, WhyLabs) for comprehensive feature monitoring.</p></li><li><p><strong>Stream Feature Complexity</strong>: Real-time feature ingestion via the Push API requires careful handling of duplicate events, late arrivals, and exactly-once semantics. This complexity is abstracted away in managed solutions.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><p><strong>Q: What is the difference between a feature store and a data warehouse?</strong>
+A data warehouse (BigQuery, Snowflake) stores raw and aggregated data for analytics. A feature store adds three things: (1) an online store for sub-second serving, (2) point-in-time correct joins to prevent data leakage, and (3) a feature registry for discovery and governance. You can use BigQuery as both your data warehouse and Feast&rsquo;s offline store — they complement each other.</p><p><strong>Q: How fresh are online features in Feast?</strong>
+Feature freshness depends on your materialization schedule. If you run <code>feast materialize-incremental</code> every 5 minutes, your online features are at most 5 minutes stale. For true real-time features, use the Push API or stream ingestion to update the online store within seconds of event arrival.</p><p><strong>Q: Can I use Feast without a cloud provider?</strong>
+Yes. Use SQLite or PostgreSQL as the offline store and Redis (self-hosted) or SQLite as the online store. Feast runs entirely on-premises or in a single VM. For a cost-effective setup, deploy on a <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a> with self-hosted Redis and PostgreSQL.</p><p><strong>Q: How does Feast prevent training-serving skew?</strong>
+Feast ensures consistency through two mechanisms: (1) the same feature view definition generates both offline training data and online serving values from identical source logic, and (2) point-in-time joins retrieve historical feature values exactly as they existed at training time, preventing data leakage.</p><p><strong>Q: What is the performance cost of adding a feature store?</strong>
+The feature store adds 1-5ms to inference latency for online lookups (Redis p50: 1.2ms). This is negligible compared to the latency of computing features on-the-fly (often 100-500ms). For batch training, point-in-time joins add 10-30 seconds per million rows — a small cost for correctness.</p><p><strong>Q: Can multiple teams share a single Feast deployment?</strong>
+Yes. Use separate projects within the same Feast instance, each with its own registry and feature definitions. Alternatively, share the online store (Redis) across teams while maintaining separate offline stores and registries per domain.</p><p><strong>Q: How do I monitor feature drift with Feast?</strong>
+Feast does not include built-in drift detection. Integrate with third-party tools: <a href=https://evidentlyai.com>Evidently AI</a> for statistical drift detection, <a href=https://whylabs.ai>WhyLabs</a> for data profiling, or custom monitoring pipelines that compare online feature distributions against training baselines.</p><p><strong>Q: Does Feast support feature transformations?</strong>
+Feast supports on-demand transformations computed at request time (Python or Spark UDFs). For batch transformations, compute features upstream using dbt, Spark, or SQL and load the results into Feast&rsquo;s offline store. Feast does not replace your transformation layer — it sits on top of it.</p><h2 id=conclusion-serve-features-at-the-speed-of-inference>Conclusion: Serve Features at the Speed of Inference<a hidden class=anchor aria-hidden=true href=#conclusion-serve-features-at-the-speed-of-inference>#</a></h2><p>If your ML models suffer from training-serving skew, your inference pipeline makes too many database calls, or your data scientists cannot find and reuse features built by other teams — you need a feature store.</p><p>Feast, with <strong>7,000+ stars</strong>, a vibrant community of <strong>361 contributors</strong>, and support for <strong>20+ storage backends</strong>, is the open-source feature store of choice for teams who value flexibility and multi-cloud portability. The Redis + BigQuery combination delivers <strong>p50 online serving latency under 2ms</strong>, while point-in-time joins ensure your training data is free from leakage.</p><p>Start today: `````bash
 pip install feast[redis,bigquery]
-feast init</p>
-<h1 id="define-your-entities-feature-views-and-feature-services">Define your entities, feature views, and feature services<a hidden class="anchor" aria-hidden="true" href="#define-your-entities-feature-views-and-feature-services">#</a></h1>
-<p>feast apply
-feast materialize-incremental $(date -u +&quot;%Y-%m-%dT%H:%M:%S&rdquo;)</p>
-<pre tabindex="0"><code>
+feast init</p><h1 id=define-your-entities-feature-views-and-feature-services>Define your entities, feature views, and feature services<a hidden class=anchor aria-hidden=true href=#define-your-entities-feature-views-and-feature-services>#</a></h1><p>feast apply
+feast materialize-incremental $(date -u +"%Y-%m-%dT%H:%M:%S&rdquo;)</p><pre tabindex=0><code>
 Join the Feast community on [Slack](https://join.slack.com/t/feastopensource/shared_invite) and follow the project on [GitHub](https://github.com/feast-dev/feast) for updates.
 
 For production deployments, host your Redis online store and PostgreSQL registry on [DigitalOcean](https://m.do.co/c/eca87ac14ee0) — reliable, cost-effective infrastructure starting at $5/month that scales with your ML workloads.
@@ -1022,220 +568,8 @@ This article contains affiliate links for [DigitalOcean](https://m.do.co/c/eca87
 
 * * *
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

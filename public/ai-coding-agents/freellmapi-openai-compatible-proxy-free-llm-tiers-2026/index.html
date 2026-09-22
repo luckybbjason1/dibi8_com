@@ -1,311 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: ‘FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co… description: “Technical guide and comparison.” date: 2026-06-22 lastmod: 2026-06-22 draft: false tags: [“ai tools”, “llm proxy”, “free tier”, “openai compatible”, “self-hosted”, “docker”] categories: [“ai-tools”] slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026\naliases: [/freellmapi] sources: - name: GitHub url: ‘https://github.com/tashfeenahmed/freellmapi'\nname: ‘Official Site’ url: ‘https://freellmapi.co’ FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint TL;DR — FreeLLMAPI aggregates the free tiers of 16+ LLM providers (Google Gemini, Groq, Cerebras, Mistral, NVIDIA, OpenRouter, GitHub Models, Cohere, Cloudflare, HuggingFace, Z.ai, Ollama Cloud, Kilo, Pollinations, LLM7, OVH) behind a single ```/v1/chat/completions```` endpoint. Combined, they yield roughly 1.7 billion tokens per month of working inference capacity. Install via Docker in one command, add your provider keys, and point any OpenAI-compatible client at your local server.\nWhat Is FreeLLMAPI? Every major AI lab now offers a free tier — a few million tokens a month, a few thousand requests a day. On its own each tier is a toy. Stacked together, they add up to roughly 1.7 billion tokens per month of working inference capacity, across 100+ models from small-and-fast to reasonably capable.\nThe problem is that stacking them by hand is painful: seventeen different SDKs, seventeen different rate limits, seventeen places a request can fail. FreeLLMAPI collapses that into one OpenAI-compatible endpoint. Point any OpenAI client library at your local server, and it routes transparently across whichever providers you’ve added keys for.\nBuilt by Tashfeen Ahmed, FreeLLMAPI is a self-hosted Node.js proxy (TypeScript/Express) with a React admin dashboard. It supports: - OpenAI Chat Completions API (/v1/chat/completions)\nAnthropic Messages API (/v1/messages) — works with Claude Code Responses API (/v1/responses) — for Codex CLI Image generation (/v1/images/generations) Text-to-speech (/v1/audio/speech) Tool calling with round-trip multi-step flows Embeddings with family-based routing Streaming and non-streaming responses Automatic failover on 429/5xx/timeout AES-256-GCM encrypted key storage in SQLite GitHub: tashfeenahmed/freellmapi · Stars: 11,381+ · License: MIT · Language: TypeScript\nSupported Providers FreeLLMAPI currently supports 16 free-tier providers with 100+ models: | Provider | Key Models | Rate Limits | |\n|\n|\n| | Google AI | Gemini 2.5 Flash, 3.x previews | ~30 RPM | | Groq | Llama 3.3 70B, Llama 4, GPT-OSS, Qwen3 | ~40 RPM | | Cerebras | Qwen3 235B | Fast inference | | Mistral | Large 3, Medium 3.5, Codestral, Devstral | ~60 RPM | | OpenRouter | 21 free-tier models | Varies | | GitHub Models | GPT-4.1, GPT-4o | ~10K tokens/day | | Cloudflare Workers AI | Kimi K2, GLM-4.7, GPT-OSS, Granite 4 | ~40 RPM | | Cohere | Command R+, Command-A | ~15 RPM | | Z.ai (Zhipu) | GLM-4.5, GLM-4.7 Flash | Varies | | NVIDIA NIM | 40 RPM free (eval-only ToS) | ~40 RPM | | HuggingFace | Router, DeepSeek V4, Kimi K2.6, Qwen3 | Varies | | Ollama Cloud | GLM-4.7, Kimi K2, gpt-oss, Qwen3 | Varies | | Kilo Gateway | :free routes | Anonymous OK | | Pollinations | GPT-OSS 20B | Anonymous OK | | LLM7 | GPT-OSS, Llama 3.1, GLM | Anonymous OK | | OVH AI Endpoints | Qwen3.5 397B, GPT-OSS, Llama 3.3 | Anonymous OK | | OpenCode Zen | DeepSeek V4 Flash, Nemotron | Promo period |\nPlus a custom provider — point at any OpenAI-compatible endpoint (llama.cpp, LM Studio, vLLM, a local Ollama, or a remote gateway) from the Keys page.\nInstallation One-Liner (Docker) The fastest path is a single command that sets up everything: `````bash curl -fsSL https://freellmapi.co/install.sh | bash\nThis creates ````~/freellmapi````, generates an encryption key, pulls the Docker image, and starts the container on port 3001. Re-running is safe — your ````.env```` and encryption key are preserved. ### Docker Compose (Manual) `````bash git clone https://github.com/tashfeenahmed/freellmapi.git cd freellmapi # Generate an encryption key for at-rest key storage ENCRYPTION_KEY=\"$(openssl rand -hex 32)\" printf \"ENCRYPTION_KEY=%s\\nPORT=3001\\n\" \"$ENCRYPTION_KEY\" \u003e .env docker compose up -d Open http://localhost:3001, add your provider keys on the Keys page, reorder the Fallback Chain to taste, and grab your unified API key from the Keys page header.\nLocal Development git clone https://github.com/tashfeenahmed/freellmapi.git cd freellmapi npm install cp .env.example .env ENCRYPTION_KEY=\"$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')\" printf \"ENCRYPTION_KEY=%s\\nPORT=3001\\n\" \"$ENCRYPTION_KEY\" \u003e .env npm run dev Desktop Apps Native .dmg (macOS) and .exe (Windows) installers are available from Releases. The desktop app runs the entire router and dashboard from your system tray with a glass popover showing live request stats.\nHow the Router Works FreeLLMAPI’s router makes a per-request decision: 1. Pick the highest-priority model that has a healthy key and is under all rate limits 2. Decrypt the key (AES-256-GCM), call the provider SDK 3. On 429/5xx/timeout → cooldown + retry next model in the fallback chain (up to 20 attempts)\n┌──────────────────┐ Bearer freellmapi-… ┌─────────────────────────┐ │ OpenAI SDK / │ ──────────────────────▶ │ Express proxy (:3001) │ │ curl / any │ ◀────────────────────── │ /v1/chat/completions │ │ OpenAI client │ streamed tokens └────────────┬────────────┘ └──────────────────┘ │ ▼ ┌────────────────────────────────────────────────┐ │ Router │ │ 1. Pick highest-priority model that │ │ (a) has a healthy key and │ │ (b) is under all its rate limits. │ │ 2. Decrypt key, call provider SDK. │ │ 3. On 429/5xx → cooldown + retry next model. │ └────────────────────────────────────────────────┘ │ ┌──────────────┬────────────┬──────────┴─────────┬─────────────┬──────────┐ ▼ ▼ ▼ ▼ ▼ ▼ Google Groq Cerebras OpenRouter HF …10 more Every response carries an X-Routed-Via: / header so you can see which provider actually served each call. If a request fell over between providers, you’ll also see X-Fallback-Attempts: N.\nUsing FreeLLMAPI with Any Client Python (OpenAI SDK) from openai import OpenAI client = OpenAI( base_url=\"http://localhost:3001/v1\", api_key=\"freellmapi-your-unified-key\", ) resp = client.chat.completions.create( model=\"auto\", # let the router pick; or specify e.g. \"gemini-2.5-flash\" messages=[{\"role\": \"user\", \"content\": \"Summarise the fall of Rome in one sentence.\"}], ) print(resp.choices[0].message.content) print(\"Routed via:\", resp.headers.get(\"x-routed-via\")) Streaming stream = client.chat.completions.create( model=\"auto\", messages=[{\"role\": \"user\", \"content\": \"Stream me a haiku about SQLite.\"}], stream=True, ) for chunk in stream: print(chunk.choices[0].delta.content or \"\", end=\"\", flush=True) Tool Calling tools = [{ \"type\": \"function\", \"function\": { \"name\": \"get_weather\", \"description\": \"Get current weather for a city.\", \"parameters\": { \"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}}, \"required\": [\"city\"], }, }, }] # 1. Model asks for a tool call first = client.chat.completions.create( model=\"auto\", messages=[{\"role\": \"user\", \"content\": \"What's the weather in Karachi?\"}], tools=tools, tool_choice=\"required\", ) call = first.choices[0].message.tool_calls[0] # 2. You execute the tool, feed the result back final = client.chat.completions.create( model=\"auto\", messages=[ {\"role\": \"user\", \"content\": \"What's the weather in Karachi?\"}, first.choices[0].message, {\"role\": \"tool\", \"tool_call_id\": call.id, \"content\": '{\"temp_c\": 32, \"cond\": \"sunny\"}'}, ], tools=tools, ) print(final.choices[0].message.content) Gemini Google Search Grounding resp = client.chat.completions.create( model=\"gemini-2.5-flash\", messages=[{\"role\": \"user\", \"content\": \"Who won the F1 race this weekend?\"}], tools=[{\"type\": \"function\", \"function\": {\"name\": \"google_search\", \"parameters\": {}}}], ) print(resp.choices[0].message.content) Vision / Image Input resp = client.chat.completions.create( model=\"auto\", messages=[{ \"role\": \"user\", \"content\": [ {\"type\": \"text\", \"text\": \"What's in this image?\"}, {\"type\": \"image_url\", \"image_url\": {\"url\": \"data:image/png;base64,\u003c...\u003e\"}}, ], }], ) print(resp.choices[0].message.content) Claude Code Integration FreeLLMAPI also speaks the Anthropic Messages API, so Claude Code and the official Anthropic SDKs can run against your free pool: `````bash export ANTHROPIC_BASE_URL=http://localhost:3001 export ANTHROPIC_AUTH_TOKEN=freellmapi-your-unified-key claude\n\u003e Use ````ANTHROPIC_AUTH_TOKEN```` (sent as a Bearer token), **not** ````ANTHROPIC_API_KEY```` — Claude Code treats a set ````ANTHROPIC_API_KEY```` as a conflicting first-party credential and refuses to start. Claude model names map to your free pool on the **Keys → Anthropic** tab: each family (````default````, ````opus````, ````sonnet````, ````haiku````) routes to ````auto```` (the router picks a free model) or a model you pin. Streaming, system prompts, tool use, and image input all translate across the same router as the OpenAI endpoints. ## Embeddings ``/v1/embeddings`` is OpenAI-compatible with one deliberate difference: **failover never crosses models.** Vectors from different models live in incompatible spaces. Embeddings route by family: `````python resp = client.embeddings.create( model=\"auto\", input=[\"the quick brown fox\", \"pack my box with five dozen liquor jugs\"], ) print(len(resp.data), \"vectors of\", len(resp.data[0].embedding), \"dims\") Available embedding families: | Family | Dims | Providers | |\n|\n|\n| | gemini-embedding-001 | 3072 | Google | | text-embedding-3-large | 3072 | GitHub Models | | text-embedding-3-small | 1536 | GitHub Models | | embed-v4.0 | 1536 | Cohere | | bge-m3 | 1024 | Cloudflare → Hugging Face | | qwen3-embedding-0.6b | 1024 | Cloudflare | | nv-embedqa-e5-v5 | 1024 | NVIDIA |\nKey Features Automatic Failover — If the chosen provider returns a 429, 5xx, or times out, the router skips it, puts the key on a short cooldown, and retries on the next model in your fallback chain (up to 20 attempts) Sticky Sessions — Multi-turn conversations keep talking to the same model for 30 minutes to avoid the hallucination spike from mid-conversation model switches Encrypted Key Storage — API keys are encrypted with AES-256-GCM before hitting SQLite; decryption happens in-memory just before a request Unified API Key — Clients authenticate to your proxy with a single freellmapi-… bearer token. You never expose upstream provider keys to your apps Health Checks — Periodic probes mark keys as healthy, rate_limited, invalid, or error so the router skips dead ones automatically Analytics — Per-request logging with latency, token counts, success rate, and per-provider breakdowns Context Handoff — Optional feature that injects a compact system message when a session falls over to a different model, so the new model knows it is continuing an existing task Runs Anywhere — Windows, macOS, Linux servers, or a small ARM SBC (Raspberry Pi included). ~40 MB RSS at idle Performance and Capacity The combined free-tier capacity is approximately 1.7 billion tokens per month. Here’s a rough breakdown by tier: | Tier | Estimated Monthly Tokens | |\n|\n| | Top tier (Gemini Pro, GPT-4o via GitHub) | ~500M tokens | | Mid tier (Groq, Cerebras, Mistral) | ~600M tokens | | Lower tier (Cloudflare, OVH, Pollinations) | ~600M tokens |\nYour actual capacity depends on which providers you enable and their current free-tier quotas. The router tracks per-key RPM, RPD, TPM, and TPD counters so it always picks a key that’s under its caps.\nLimitations Be honest about the trade-offs: - No frontier models. The free-tier catalog tops out around Llama 3.3 70B, GLM-4.5, Qwen 3 Coder, and Gemini 2.5 Pro. You will not get GPT-5 or Claude Opus class reasoning through this. For hard problems, pay for a real API.\nIntelligence degrades as the day progresses. Your top-ranked models have the lowest daily caps. Once they hit their limits, the router falls down your priority chain to smaller/weaker models. Expect effective intelligence to drop in the late hours of each day — then reset at UTC midnight. Latency is highly variable. Cerebras and Groq are extremely fast; others are not. You get whichever one is available. Free tiers can change without notice. Providers regularly tighten, loosen, or remove free tiers. When that happens you’ll see 429s or auth errors until you update the catalog. No SLA, by definition. If you need reliability, use a paid provider with a contract. Local-first. There’s no multi-tenant auth. Run this for yourself; don’t expose it to the internet. Legacy completions not supported. Only /v1/chat/completions is implemented, not /v1/completions or /v1/moderations. Who Should Use FreeLLMAPI? Individual developers who want to prototype with multiple models without managing 17 API keys AI hobbyists on a budget who want maximum inference capacity for zero cost Claude Code / Codex CLI users who want to run their agents against a free pool RAG builders who need embeddings from multiple providers with automatic fallback Anyone building OpenAI-compatible apps who wants a resilient proxy that survives individual provider rate limits Alternatives Compared | Feature | FreeLLMAPI | LiteLLM | OpenRouter | |\n|\n|\n|\n| | Free tier aggregation | ✅ 16 providers | ❌ Paid only | ❌ Paid only | | Self-hosted | ✅ Docker/Node | ✅ Docker/Node | ❌ Cloud only | | Anthropic API support | ✅ /v1/messages | ✅ | ✅ | | Encrypted key storage | ✅ AES-256-GCM | ✅ | N/A | | Admin dashboard | ✅ React + Vite | ❌ CLI only | ✅ Web | | Local/desktop app | ✅ macOS/Windows | ❌ | ❌ | | Cost | Free (MIT) | Free (Apache 2.0) | Pay per token | | Multi-tenant | ❌ Single-user | ✅ | ✅ |\nGetting Started Checklist Install Docker (or Node.js 20+ for local dev) Run curl -fsSL https://freellmapi.co/install.sh | bash Open http://localhost:3001 and sign in Add provider keys on the Keys page Reorder your Fallback Chain to prioritize models you use most Grab your unified API key Point your OpenAI SDK at http://localhost:3001/v1 Start prompting with model: \"auto\" Frequently Asked Questions Q: Do I need API keys for all 16 providers? No. FreeLLMAPI works with whatever keys you add. Some providers (Kilo, Pollinations, LLM7, OVH) accept anonymous requests. Others require free-tier signups. Start with 2-3 keys and add more as needed.\nQ: Can I use FreeLLMAPI with LangChain or LlamaIndex? Yes. FreeLLMAPI implements the OpenAI-compatible wire format. Any client that works with base_url + api_key will work — LangChain, LlamaIndex, Continue, Hermès Agent, and more. Just change the base_url to http://localhost:3001/v1.\nQ: How does the fallback chain work? You define a priority order of models in the dashboard. When a request is made, the router picks the highest-priority healthy model. If that model returns a 429, 5xx, or times out, it moves to the next model in your chain. Each key gets a short cooldown before being retried.\nQ: Is my data safe? All provider API keys are encrypted with AES-256-GCM and stored in a local SQLite database. Decryption happens in-memory only, just before a request is sent. Your prompts and completions are not stored externally — request analytics are retained locally for 90 days or 100,000 rows (configurable).\nQ: Can I add my own custom provider? Yes. The Custom provider lets you point at any OpenAI-compatible endpoint — llama.cpp, LM Studio, vLLM, a remote Ollama instance, or any other proxy. It appears at the end of your fallback chain and can be reordered like any other provider.\nQ: What about the Premium tier? Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/year or $49 lifetime) follows the live feed, refreshed every 2-3 days, so new free models are added to your router immediately. The catalog server never sees your prompts, completions, or provider keys.\nDocker Compose Setup For teams that prefer Docker Compose over the install script: `````yaml version: ‘3.8\" services: freellmapi: image: freellmapi/server:latest ports: - “3001:3001” volumes: - ./data:/app/data environment: - ENCRYPTION_KEY=your-random-32-char-key-here restart: unless-stopped\n`````bash # Create data directory and start mkdir -p data docker compose up -d # Admin dashboard at http://localhost:3001 Environment Variables All configuration can be set via environment variables: `````bash export PORT=3001 export ENCRYPTION_KEY=“a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6” export LOG_LEVEL=info export MAX_RETRIES=3 export REQUEST_TIMEOUT=30000\n`````bash # Verify your configuration docker exec freellmapi node --eval \"console.log(process.env.PORT)\" CLI Management FreeLLMAPI ships with a management CLI for automation: `````bash\nCheck server status freellmapi status\nList active providers and their key counts freellmapi providers –list\nExport your configuration for backup freellmapi config export \u003e freellmapi-backup.json\nRestore configuration from backup freellmapi config restore \u003c freellmapi-backup.json\n`````bash # Monitor real-time request logs freellmapi logs --follow --since 5m # Check which providers are rate-limited right now freellmapi health --providers ```` ## Sources - [FreeLLMAPI on GitHub](https://github.com/tashfeenahmed/freellmapi) - [freellmapi.co — Live Model Catalog](https://freellmapi.co) - [FreeLLMAPI Install Script](https://freellmapi.co/install.sh) - [FreeLLMAPI Desktop Releases](https://github.com/tashfeenahmed/freellmapi/releases) * * * **Want to try FreeLLMAPI?** Deploy it in under 2 minutes with Docker. No credit card, no API key management, no vendor lock-in. Just one endpoint for 16 free LLM providers. **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint\", \"datePublished\": \"2026-06-22\", \"dateModified\": \"2026-06-22\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/freellmapi-openai-compatible-proxy-free-llm-tiers-2026\" } } * * * ## Related Articles - [2026-05-25-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-01-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-08-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-15-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-22-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
-  "wordCount" : "2647",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#freellmapi-stack-16-free-llm-tiers-behind-one-openai-compatible-endpoint" aria-label="FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint">FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint</a><ul>
-                    
-            <li>
-                <a href="#what-is-freellmapi" aria-label="What Is FreeLLMAPI?">What Is FreeLLMAPI?</a></li>
-            <li>
-                <a href="#supported-providers" aria-label="Supported Providers">Supported Providers</a></li>
-            <li>
-                <a href="#installation" aria-label="Installation">Installation</a><ul>
-                    
-            <li>
-                <a href="#one-liner-docker" aria-label="One-Liner (Docker)">One-Liner (Docker)</a></li>
-            <li>
-                <a href="#local-development" aria-label="Local Development">Local Development</a></li>
-            <li>
-                <a href="#desktop-apps" aria-label="Desktop Apps">Desktop Apps</a></li></ul>
-            </li>
-            <li>
-                <a href="#how-the-router-works" aria-label="How the Router Works">How the Router Works</a></li>
-            <li>
-                <a href="#using-freellmapi-with-any-client" aria-label="Using FreeLLMAPI with Any Client">Using FreeLLMAPI with Any Client</a><ul>
-                    
-            <li>
-                <a href="#python-openai-sdk" aria-label="Python (OpenAI SDK)">Python (OpenAI SDK)</a></li>
-            <li>
-                <a href="#streaming" aria-label="Streaming">Streaming</a></li>
-            <li>
-                <a href="#tool-calling" aria-label="Tool Calling">Tool Calling</a></li>
-            <li>
-                <a href="#gemini-google-search-grounding" aria-label="Gemini Google Search Grounding">Gemini Google Search Grounding</a></li>
-            <li>
-                <a href="#vision--image-input" aria-label="Vision / Image Input">Vision / Image Input</a></li></ul>
-            </li>
-            <li>
-                <a href="#claude-code-integration" aria-label="Claude Code Integration">Claude Code Integration</a></li>
-            <li>
-                <a href="#key-features" aria-label="Key Features">Key Features</a></li>
-            <li>
-                <a href="#performance-and-capacity" aria-label="Performance and Capacity">Performance and Capacity</a></li>
-            <li>
-                <a href="#limitations" aria-label="Limitations">Limitations</a></li>
-            <li>
-                <a href="#who-should-use-freellmapi" aria-label="Who Should Use FreeLLMAPI?">Who Should Use FreeLLMAPI?</a></li>
-            <li>
-                <a href="#alternatives-compared" aria-label="Alternatives Compared">Alternatives Compared</a></li>
-            <li>
-                <a href="#getting-started-checklist" aria-label="Getting Started Checklist">Getting Started Checklist</a></li>
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
-                    
-            <li>
-                <a href="#q-do-i-need-api-keys-for-all-16-providers" aria-label="Q: Do I need API keys for all 16 providers?">Q: Do I need API keys for all 16 providers?</a></li>
-            <li>
-                <a href="#q-can-i-use-freellmapi-with-langchain-or-llamaindex" aria-label="Q: Can I use FreeLLMAPI with LangChain or LlamaIndex?">Q: Can I use FreeLLMAPI with LangChain or LlamaIndex?</a></li>
-            <li>
-                <a href="#q-how-does-the-fallback-chain-work" aria-label="Q: How does the fallback chain work?">Q: How does the fallback chain work?</a></li>
-            <li>
-                <a href="#q-is-my-data-safe" aria-label="Q: Is my data safe?">Q: Is my data safe?</a></li>
-            <li>
-                <a href="#q-can-i-add-my-own-custom-provider" aria-label="Q: Can I add my own custom provider?">Q: Can I add my own custom provider?</a></li>
-            <li>
-                <a href="#q-what-about-the-premium-tier" aria-label="Q: What about the Premium tier?">Q: What about the Premium tier?</a></li></ul>
-            </li>
-            <li>
-                <a href="#docker-compose-setup" aria-label="Docker Compose Setup">Docker Compose Setup</a></li>
-            <li>
-                <a href="#environment-variables" aria-label="Environment Variables">Environment Variables</a></li>
-            <li>
-                <a href="#cli-management" aria-label="CLI Management">CLI Management</a></li></ul>
-            </li>
-            <li>
-                <a href="#check-server-status" aria-label="Check server status">Check server status</a></li>
-            <li>
-                <a href="#list-active-providers-and-their-key-counts" aria-label="List active providers and their key counts">List active providers and their key counts</a></li>
-            <li>
-                <a href="#export-your-configuration-for-backup" aria-label="Export your configuration for backup">Export your configuration for backup</a></li>
-            <li>
-                <a href="#restore-configuration-from-backup" aria-label="Restore configuration from backup">Restore configuration from backup</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &lsquo;FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co&hellip;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: ‘FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co… description: “Technical guide and comparison.” date: 2026-06-22 lastmod: 2026-06-22 draft: false tags: [“ai tools”, “llm proxy”, “free tier”, “openai compatible”, “self-hosted”, “docker”] categories: [“ai-tools”] slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026\naliases: [/freellmapi] sources: - name: GitHub url: ‘https://github.com/tashfeenahmed/freellmapi'\nname: ‘Official Site’ url: ‘https://freellmapi.co’ FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint TL;DR — FreeLLMAPI aggregates the free tiers of 16+ LLM providers (Google Gemini, Groq, Cerebras, Mistral, NVIDIA, OpenRouter, GitHub Models, Cohere, Cloudflare, HuggingFace, Z.ai, Ollama Cloud, Kilo, Pollinations, LLM7, OVH) behind a single ```/v1/chat/completions```` endpoint. Combined, they yield roughly 1.7 billion tokens per month of working inference capacity. Install via Docker in one command, add your provider keys, and point any OpenAI-compatible client at your local server.\nWhat Is FreeLLMAPI? Every major AI lab now offers a free tier — a few million tokens a month, a few thousand requests a day. On its own each tier is a toy. Stacked together, they add up to roughly 1.7 billion tokens per month of working inference capacity, across 100+ models from small-and-fast to reasonably capable.\nThe problem is that stacking them by hand is painful: seventeen different SDKs, seventeen different rate limits, seventeen places a request can fail. FreeLLMAPI collapses that into one OpenAI-compatible endpoint. Point any OpenAI client library at your local server, and it routes transparently across whichever providers you’ve added keys for.\nBuilt by Tashfeen Ahmed, FreeLLMAPI is a self-hosted Node.js proxy (TypeScript/Express) with a React admin dashboard. It supports: - OpenAI Chat Completions API (/v1/chat/completions)\nAnthropic Messages API (/v1/messages) — works with Claude Code Responses API (/v1/responses) — for Codex CLI Image generation (/v1/images/generations) Text-to-speech (/v1/audio/speech) Tool calling with round-trip multi-step flows Embeddings with family-based routing Streaming and non-streaming responses Automatic failover on 429/5xx/timeout AES-256-GCM encrypted key storage in SQLite GitHub: tashfeenahmed/freellmapi · Stars: 11,381+ · License: MIT · Language: TypeScript\nSupported Providers FreeLLMAPI currently supports 16 free-tier providers with 100+ models: | Provider | Key Models | Rate Limits | |\n|\n|\n| | Google AI | Gemini 2.5 Flash, 3.x previews | ~30 RPM | | Groq | Llama 3.3 70B, Llama 4, GPT-OSS, Qwen3 | ~40 RPM | | Cerebras | Qwen3 235B | Fast inference | | Mistral | Large 3, Medium 3.5, Codestral, Devstral | ~60 RPM | | OpenRouter | 21 free-tier models | Varies | | GitHub Models | GPT-4.1, GPT-4o | ~10K tokens/day | | Cloudflare Workers AI | Kimi K2, GLM-4.7, GPT-OSS, Granite 4 | ~40 RPM | | Cohere | Command R+, Command-A | ~15 RPM | | Z.ai (Zhipu) | GLM-4.5, GLM-4.7 Flash | Varies | | NVIDIA NIM | 40 RPM free (eval-only ToS) | ~40 RPM | | HuggingFace | Router, DeepSeek V4, Kimi K2.6, Qwen3 | Varies | | Ollama Cloud | GLM-4.7, Kimi K2, gpt-oss, Qwen3 | Varies | | Kilo Gateway | :free routes | Anonymous OK | | Pollinations | GPT-OSS 20B | Anonymous OK | | LLM7 | GPT-OSS, Llama 3.1, GLM | Anonymous OK | | OVH AI Endpoints | Qwen3.5 397B, GPT-OSS, Llama 3.3 | Anonymous OK | | OpenCode Zen | DeepSeek V4 Flash, Nemotron | Promo period |\nPlus a custom provider — point at any OpenAI-compatible endpoint (llama.cpp, LM Studio, vLLM, a local Ollama, or a remote gateway) from the Keys page.\nInstallation One-Liner (Docker) The fastest path is a single command that sets up everything: `````bash curl -fsSL https://freellmapi.co/install.sh | bash\nThis creates ````~/freellmapi````, generates an encryption key, pulls the Docker image, and starts the container on port 3001. Re-running is safe — your ````.env```` and encryption key are preserved. ### Docker Compose (Manual) `````bash git clone https://github.com/tashfeenahmed/freellmapi.git cd freellmapi # Generate an encryption key for at-rest key storage ENCRYPTION_KEY=\"$(openssl rand -hex 32)\" printf \"ENCRYPTION_KEY=%s\\nPORT=3001\\n\" \"$ENCRYPTION_KEY\" \u003e .env docker compose up -d Open http://localhost:3001, add your provider keys on the Keys page, reorder the Fallback Chain to taste, and grab your unified API key from the Keys page header.\nLocal Development git clone https://github.com/tashfeenahmed/freellmapi.git cd freellmapi npm install cp .env.example .env ENCRYPTION_KEY=\"$(node -e 'console.log(require(\"crypto\").randomBytes(32).toString(\"hex\"))')\" printf \"ENCRYPTION_KEY=%s\\nPORT=3001\\n\" \"$ENCRYPTION_KEY\" \u003e .env npm run dev Desktop Apps Native .dmg (macOS) and .exe (Windows) installers are available from Releases. The desktop app runs the entire router and dashboard from your system tray with a glass popover showing live request stats.\nHow the Router Works FreeLLMAPI’s router makes a per-request decision: 1. Pick the highest-priority model that has a healthy key and is under all rate limits 2. Decrypt the key (AES-256-GCM), call the provider SDK 3. On 429/5xx/timeout → cooldown + retry next model in the fallback chain (up to 20 attempts)\n┌──────────────────┐ Bearer freellmapi-… ┌─────────────────────────┐ │ OpenAI SDK / │ ──────────────────────▶ │ Express proxy (:3001) │ │ curl / any │ ◀────────────────────── │ /v1/chat/completions │ │ OpenAI client │ streamed tokens └────────────┬────────────┘ └──────────────────┘ │ ▼ ┌────────────────────────────────────────────────┐ │ Router │ │ 1. Pick highest-priority model that │ │ (a) has a healthy key and │ │ (b) is under all its rate limits. │ │ 2. Decrypt key, call provider SDK. │ │ 3. On 429/5xx → cooldown + retry next model. │ └────────────────────────────────────────────────┘ │ ┌──────────────┬────────────┬──────────┴─────────┬─────────────┬──────────┐ ▼ ▼ ▼ ▼ ▼ ▼ Google Groq Cerebras OpenRouter HF …10 more Every response carries an X-Routed-Via: / header so you can see which provider actually served each call. If a request fell over between providers, you’ll also see X-Fallback-Attempts: N.\nUsing FreeLLMAPI with Any Client Python (OpenAI SDK) from openai import OpenAI client = OpenAI( base_url=\"http://localhost:3001/v1\", api_key=\"freellmapi-your-unified-key\", ) resp = client.chat.completions.create( model=\"auto\", # let the router pick; or specify e.g. \"gemini-2.5-flash\" messages=[{\"role\": \"user\", \"content\": \"Summarise the fall of Rome in one sentence.\"}], ) print(resp.choices[0].message.content) print(\"Routed via:\", resp.headers.get(\"x-routed-via\")) Streaming stream = client.chat.completions.create( model=\"auto\", messages=[{\"role\": \"user\", \"content\": \"Stream me a haiku about SQLite.\"}], stream=True, ) for chunk in stream: print(chunk.choices[0].delta.content or \"\", end=\"\", flush=True) Tool Calling tools = [{ \"type\": \"function\", \"function\": { \"name\": \"get_weather\", \"description\": \"Get current weather for a city.\", \"parameters\": { \"type\": \"object\", \"properties\": {\"city\": {\"type\": \"string\"}}, \"required\": [\"city\"], }, }, }] # 1. Model asks for a tool call first = client.chat.completions.create( model=\"auto\", messages=[{\"role\": \"user\", \"content\": \"What's the weather in Karachi?\"}], tools=tools, tool_choice=\"required\", ) call = first.choices[0].message.tool_calls[0] # 2. You execute the tool, feed the result back final = client.chat.completions.create( model=\"auto\", messages=[ {\"role\": \"user\", \"content\": \"What's the weather in Karachi?\"}, first.choices[0].message, {\"role\": \"tool\", \"tool_call_id\": call.id, \"content\": '{\"temp_c\": 32, \"cond\": \"sunny\"}'}, ], tools=tools, ) print(final.choices[0].message.content) Gemini Google Search Grounding resp = client.chat.completions.create( model=\"gemini-2.5-flash\", messages=[{\"role\": \"user\", \"content\": \"Who won the F1 race this weekend?\"}], tools=[{\"type\": \"function\", \"function\": {\"name\": \"google_search\", \"parameters\": {}}}], ) print(resp.choices[0].message.content) Vision / Image Input resp = client.chat.completions.create( model=\"auto\", messages=[{ \"role\": \"user\", \"content\": [ {\"type\": \"text\", \"text\": \"What's in this image?\"}, {\"type\": \"image_url\", \"image_url\": {\"url\": \"data:image/png;base64,\u003c...\u003e\"}}, ], }], ) print(resp.choices[0].message.content) Claude Code Integration FreeLLMAPI also speaks the Anthropic Messages API, so Claude Code and the official Anthropic SDKs can run against your free pool: `````bash export ANTHROPIC_BASE_URL=http://localhost:3001 export ANTHROPIC_AUTH_TOKEN=freellmapi-your-unified-key claude\n\u003e Use ````ANTHROPIC_AUTH_TOKEN```` (sent as a Bearer token), **not** ````ANTHROPIC_API_KEY```` — Claude Code treats a set ````ANTHROPIC_API_KEY```` as a conflicting first-party credential and refuses to start. Claude model names map to your free pool on the **Keys → Anthropic** tab: each family (````default````, ````opus````, ````sonnet````, ````haiku````) routes to ````auto```` (the router picks a free model) or a model you pin. Streaming, system prompts, tool use, and image input all translate across the same router as the OpenAI endpoints. ## Embeddings ``/v1/embeddings`` is OpenAI-compatible with one deliberate difference: **failover never crosses models.** Vectors from different models live in incompatible spaces. Embeddings route by family: `````python resp = client.embeddings.create( model=\"auto\", input=[\"the quick brown fox\", \"pack my box with five dozen liquor jugs\"], ) print(len(resp.data), \"vectors of\", len(resp.data[0].embedding), \"dims\") Available embedding families: | Family | Dims | Providers | |\n|\n|\n| | gemini-embedding-001 | 3072 | Google | | text-embedding-3-large | 3072 | GitHub Models | | text-embedding-3-small | 1536 | GitHub Models | | embed-v4.0 | 1536 | Cohere | | bge-m3 | 1024 | Cloudflare → Hugging Face | | qwen3-embedding-0.6b | 1024 | Cloudflare | | nv-embedqa-e5-v5 | 1024 | NVIDIA |\nKey Features Automatic Failover — If the chosen provider returns a 429, 5xx, or times out, the router skips it, puts the key on a short cooldown, and retries on the next model in your fallback chain (up to 20 attempts) Sticky Sessions — Multi-turn conversations keep talking to the same model for 30 minutes to avoid the hallucination spike from mid-conversation model switches Encrypted Key Storage — API keys are encrypted with AES-256-GCM before hitting SQLite; decryption happens in-memory just before a request Unified API Key — Clients authenticate to your proxy with a single freellmapi-… bearer token. You never expose upstream provider keys to your apps Health Checks — Periodic probes mark keys as healthy, rate_limited, invalid, or error so the router skips dead ones automatically Analytics — Per-request logging with latency, token counts, success rate, and per-provider breakdowns Context Handoff — Optional feature that injects a compact system message when a session falls over to a different model, so the new model knows it is continuing an existing task Runs Anywhere — Windows, macOS, Linux servers, or a small ARM SBC (Raspberry Pi included). ~40 MB RSS at idle Performance and Capacity The combined free-tier capacity is approximately 1.7 billion tokens per month. Here’s a rough breakdown by tier: | Tier | Estimated Monthly Tokens | |\n|\n| | Top tier (Gemini Pro, GPT-4o via GitHub) | ~500M tokens | | Mid tier (Groq, Cerebras, Mistral) | ~600M tokens | | Lower tier (Cloudflare, OVH, Pollinations) | ~600M tokens |\nYour actual capacity depends on which providers you enable and their current free-tier quotas. The router tracks per-key RPM, RPD, TPM, and TPD counters so it always picks a key that’s under its caps.\nLimitations Be honest about the trade-offs: - No frontier models. The free-tier catalog tops out around Llama 3.3 70B, GLM-4.5, Qwen 3 Coder, and Gemini 2.5 Pro. You will not get GPT-5 or Claude Opus class reasoning through this. For hard problems, pay for a real API.\nIntelligence degrades as the day progresses. Your top-ranked models have the lowest daily caps. Once they hit their limits, the router falls down your priority chain to smaller/weaker models. Expect effective intelligence to drop in the late hours of each day — then reset at UTC midnight. Latency is highly variable. Cerebras and Groq are extremely fast; others are not. You get whichever one is available. Free tiers can change without notice. Providers regularly tighten, loosen, or remove free tiers. When that happens you’ll see 429s or auth errors until you update the catalog. No SLA, by definition. If you need reliability, use a paid provider with a contract. Local-first. There’s no multi-tenant auth. Run this for yourself; don’t expose it to the internet. Legacy completions not supported. Only /v1/chat/completions is implemented, not /v1/completions or /v1/moderations. Who Should Use FreeLLMAPI? Individual developers who want to prototype with multiple models without managing 17 API keys AI hobbyists on a budget who want maximum inference capacity for zero cost Claude Code / Codex CLI users who want to run their agents against a free pool RAG builders who need embeddings from multiple providers with automatic fallback Anyone building OpenAI-compatible apps who wants a resilient proxy that survives individual provider rate limits Alternatives Compared | Feature | FreeLLMAPI | LiteLLM | OpenRouter | |\n|\n|\n|\n| | Free tier aggregation | ✅ 16 providers | ❌ Paid only | ❌ Paid only | | Self-hosted | ✅ Docker/Node | ✅ Docker/Node | ❌ Cloud only | | Anthropic API support | ✅ /v1/messages | ✅ | ✅ | | Encrypted key storage | ✅ AES-256-GCM | ✅ | N/A | | Admin dashboard | ✅ React + Vite | ❌ CLI only | ✅ Web | | Local/desktop app | ✅ macOS/Windows | ❌ | ❌ | | Cost | Free (MIT) | Free (Apache 2.0) | Pay per token | | Multi-tenant | ❌ Single-user | ✅ | ✅ |\nGetting Started Checklist Install Docker (or Node.js 20+ for local dev) Run curl -fsSL https://freellmapi.co/install.sh | bash Open http://localhost:3001 and sign in Add provider keys on the Keys page Reorder your Fallback Chain to prioritize models you use most Grab your unified API key Point your OpenAI SDK at http://localhost:3001/v1 Start prompting with model: \"auto\" Frequently Asked Questions Q: Do I need API keys for all 16 providers? No. FreeLLMAPI works with whatever keys you add. Some providers (Kilo, Pollinations, LLM7, OVH) accept anonymous requests. Others require free-tier signups. Start with 2-3 keys and add more as needed.\nQ: Can I use FreeLLMAPI with LangChain or LlamaIndex? Yes. FreeLLMAPI implements the OpenAI-compatible wire format. Any client that works with base_url + api_key will work — LangChain, LlamaIndex, Continue, Hermès Agent, and more. Just change the base_url to http://localhost:3001/v1.\nQ: How does the fallback chain work? You define a priority order of models in the dashboard. When a request is made, the router picks the highest-priority healthy model. If that model returns a 429, 5xx, or times out, it moves to the next model in your chain. Each key gets a short cooldown before being retried.\nQ: Is my data safe? All provider API keys are encrypted with AES-256-GCM and stored in a local SQLite database. Decryption happens in-memory only, just before a request is sent. Your prompts and completions are not stored externally — request analytics are retained locally for 90 days or 100,000 rows (configurable).\nQ: Can I add my own custom provider? Yes. The Custom provider lets you point at any OpenAI-compatible endpoint — llama.cpp, LM Studio, vLLM, a remote Ollama instance, or any other proxy. It appears at the end of your fallback chain and can be reordered like any other provider.\nQ: What about the Premium tier? Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/year or $49 lifetime) follows the live feed, refreshed every 2-3 days, so new free models are added to your router immediately. The catalog server never sees your prompts, completions, or provider keys.\nDocker Compose Setup For teams that prefer Docker Compose over the install script: `````yaml version: ‘3.8\" services: freellmapi: image: freellmapi/server:latest ports: - “3001:3001” volumes: - ./data:/app/data environment: - ENCRYPTION_KEY=your-random-32-char-key-here restart: unless-stopped\n`````bash # Create data directory and start mkdir -p data docker compose up -d # Admin dashboard at http://localhost:3001 Environment Variables All configuration can be set via environment variables: `````bash export PORT=3001 export ENCRYPTION_KEY=“a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6” export LOG_LEVEL=info export MAX_RETRIES=3 export REQUEST_TIMEOUT=30000\n`````bash # Verify your configuration docker exec freellmapi node --eval \"console.log(process.env.PORT)\" CLI Management FreeLLMAPI ships with a management CLI for automation: `````bash\nCheck server status freellmapi status\nList active providers and their key counts freellmapi providers –list\nExport your configuration for backup freellmapi config export \u003e freellmapi-backup.json\nRestore configuration from backup freellmapi config restore \u003c freellmapi-backup.json\n`````bash # Monitor real-time request logs freellmapi logs --follow --since 5m # Check which providers are rate-limited right now freellmapi health --providers ```` ## Sources - [FreeLLMAPI on GitHub](https://github.com/tashfeenahmed/freellmapi) - [freellmapi.co — Live Model Catalog](https://freellmapi.co) - [FreeLLMAPI Install Script](https://freellmapi.co/install.sh) - [FreeLLMAPI Desktop Releases](https://github.com/tashfeenahmed/freellmapi/releases) * * * **Want to try FreeLLMAPI?** Deploy it in under 2 minutes with Docker. No credit card, no API key management, no vendor lock-in. Just one endpoint for 16 free LLM providers. **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint\", \"datePublished\": \"2026-06-22\", \"dateModified\": \"2026-06-22\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/freellmapi-openai-compatible-proxy-free-llm-tiers-2026\" } } * * * ## Related Articles - [2026-05-25-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-01-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-08-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-15-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) - [2026-06-22-trending-ai-agents](freellmapi-openai-compatible-proxy-free-llm-tiers-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2647","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#freellmapi-stack-16-free-llm-tiers-behind-one-openai-compatible-endpoint aria-label="FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint">FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint</a><ul><li><a href=#what-is-freellmapi aria-label="What Is FreeLLMAPI?">What Is FreeLLMAPI?</a></li><li><a href=#supported-providers aria-label="Supported Providers">Supported Providers</a></li><li><a href=#installation aria-label=Installation>Installation</a><ul><li><a href=#one-liner-docker aria-label="One-Liner (Docker)">One-Liner (Docker)</a></li><li><a href=#local-development aria-label="Local Development">Local Development</a></li><li><a href=#desktop-apps aria-label="Desktop Apps">Desktop Apps</a></li></ul></li><li><a href=#how-the-router-works aria-label="How the Router Works">How the Router Works</a></li><li><a href=#using-freellmapi-with-any-client aria-label="Using FreeLLMAPI with Any Client">Using FreeLLMAPI with Any Client</a><ul><li><a href=#python-openai-sdk aria-label="Python (OpenAI SDK)">Python (OpenAI SDK)</a></li><li><a href=#streaming aria-label=Streaming>Streaming</a></li><li><a href=#tool-calling aria-label="Tool Calling">Tool Calling</a></li><li><a href=#gemini-google-search-grounding aria-label="Gemini Google Search Grounding">Gemini Google Search Grounding</a></li><li><a href=#vision--image-input aria-label="Vision / Image Input">Vision / Image Input</a></li></ul></li><li><a href=#claude-code-integration aria-label="Claude Code Integration">Claude Code Integration</a></li><li><a href=#key-features aria-label="Key Features">Key Features</a></li><li><a href=#performance-and-capacity aria-label="Performance and Capacity">Performance and Capacity</a></li><li><a href=#limitations aria-label=Limitations>Limitations</a></li><li><a href=#who-should-use-freellmapi aria-label="Who Should Use FreeLLMAPI?">Who Should Use FreeLLMAPI?</a></li><li><a href=#alternatives-compared aria-label="Alternatives Compared">Alternatives Compared</a></li><li><a href=#getting-started-checklist aria-label="Getting Started Checklist">Getting Started Checklist</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#q-do-i-need-api-keys-for-all-16-providers aria-label="Q: Do I need API keys for all 16 providers?">Q: Do I need API keys for all 16 providers?</a></li><li><a href=#q-can-i-use-freellmapi-with-langchain-or-llamaindex aria-label="Q: Can I use FreeLLMAPI with LangChain or LlamaIndex?">Q: Can I use FreeLLMAPI with LangChain or LlamaIndex?</a></li><li><a href=#q-how-does-the-fallback-chain-work aria-label="Q: How does the fallback chain work?">Q: How does the fallback chain work?</a></li><li><a href=#q-is-my-data-safe aria-label="Q: Is my data safe?">Q: Is my data safe?</a></li><li><a href=#q-can-i-add-my-own-custom-provider aria-label="Q: Can I add my own custom provider?">Q: Can I add my own custom provider?</a></li><li><a href=#q-what-about-the-premium-tier aria-label="Q: What about the Premium tier?">Q: What about the Premium tier?</a></li></ul></li><li><a href=#docker-compose-setup aria-label="Docker Compose Setup">Docker Compose Setup</a></li><li><a href=#environment-variables aria-label="Environment Variables">Environment Variables</a></li><li><a href=#cli-management aria-label="CLI Management">CLI Management</a></li></ul></li><li><a href=#check-server-status aria-label="Check server status">Check server status</a></li><li><a href=#list-active-providers-and-their-key-counts aria-label="List active providers and their key counts">List active providers and their key counts</a></li><li><a href=#export-your-configuration-for-backup aria-label="Export your configuration for backup">Export your configuration for backup</a></li><li><a href=#restore-configuration-from-backup aria-label="Restore configuration from backup">Restore configuration from backup</a></li></ul></div></details><div class="post-content md-content"><p>title: &lsquo;FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Co&mldr;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-22
 lastmod: 2026-06-22
 draft: false
 tags: [&ldquo;ai tools&rdquo;, &ldquo;llm proxy&rdquo;, &ldquo;free tier&rdquo;, &ldquo;openai compatible&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;]
 categories: [&ldquo;ai-tools&rdquo;]
-slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026</p>
-<p>aliases: [/freellmapi]
+slug: freellmapi-openai-compatible-proxy-free-llm-tiers-2026</p><p>aliases: [/freellmapi]
 sources: - name: GitHub
-url: &lsquo;<a href="https://github.com/tashfeenahmed/freellmapi%27">https://github.com/tashfeenahmed/freellmapi'</a></p>
-<ul>
-<li>name: &lsquo;Official Site&rsquo;
-url: &lsquo;<a href="https://freellmapi.co">https://freellmapi.co</a>&rsquo;</li>
-</ul>
-<hr>
-<h1 id="freellmapi-stack-16-free-llm-tiers-behind-one-openai-compatible-endpoint">FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint<a hidden class="anchor" aria-hidden="true" href="#freellmapi-stack-16-free-llm-tiers-behind-one-openai-compatible-endpoint">#</a></h1>
-<p>TL;DR — <strong>FreeLLMAPI</strong> aggregates the free tiers of 16+ LLM providers (Google Gemini, Groq, Cerebras, Mistral, NVIDIA, OpenRouter, GitHub Models, Cohere, Cloudflare, HuggingFace, Z.ai, Ollama Cloud, Kilo, Pollinations, LLM7, OVH) behind a single ```/v1/chat/completions```` endpoint. Combined, they yield roughly <strong>1.7 billion tokens per month</strong> of working inference capacity. Install via Docker in one command, add your provider keys, and point any OpenAI-compatible client at your local server.</p>
-<h2 id="what-is-freellmapi">What Is FreeLLMAPI?<a hidden class="anchor" aria-hidden="true" href="#what-is-freellmapi">#</a></h2>
-<p>Every major AI lab now offers a free tier — a few million tokens a month, a few thousand requests a day. On its own each tier is a toy. Stacked together, they add up to roughly <strong>1.7 billion tokens per month</strong> of working inference capacity, across 100+ models from small-and-fast to reasonably capable.</p>
-<p>The problem is that stacking them by hand is painful: seventeen different SDKs, seventeen different rate limits, seventeen places a request can fail. <strong>FreeLLMAPI</strong> collapses that into one OpenAI-compatible endpoint. Point any OpenAI client library at your local server, and it routes transparently across whichever providers you&rsquo;ve added keys for.</p>
-<p>Built by <strong>Tashfeen Ahmed</strong>, FreeLLMAPI is a self-hosted Node.js proxy (TypeScript/Express) with a React admin dashboard. It supports: - OpenAI Chat Completions API (<code>/v1/chat/completions</code>)</p>
-<ul>
-<li>Anthropic Messages API (<code>/v1/messages</code>) — works with Claude Code</li>
-<li>Responses API (<code>/v1/responses</code>) — for Codex CLI</li>
-<li>Image generation (<code>/v1/images/generations</code>)</li>
-<li>Text-to-speech (<code>/v1/audio/speech</code>)</li>
-<li>Tool calling with round-trip multi-step flows</li>
-<li>Embeddings with family-based routing</li>
-<li>Streaming and non-streaming responses</li>
-<li>Automatic failover on 429/5xx/timeout</li>
-<li>AES-256-GCM encrypted key storage in SQLite</li>
-</ul>
-<p><strong>GitHub:</strong> <a href="https://github.com/tashfeenahmed/freellmapi">tashfeenahmed/freellmapi</a> · <strong>Stars:</strong> 11,381+ · <strong>License:</strong> MIT · <strong>Language:</strong> TypeScript</p>
-<h2 id="supported-providers">Supported Providers<a hidden class="anchor" aria-hidden="true" href="#supported-providers">#</a></h2>
-<p>FreeLLMAPI currently supports 16 free-tier providers with 100+ models: | Provider | Key Models | Rate Limits |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+url: &lsquo;<a href=https://github.com/tashfeenahmed/freellmapi%27>https://github.com/tashfeenahmed/freellmapi'</a></p><ul><li>name: &lsquo;Official Site&rsquo;
+url: &lsquo;<a href=https://freellmapi.co>https://freellmapi.co</a>&rsquo;</li></ul><hr><h1 id=freellmapi-stack-16-free-llm-tiers-behind-one-openai-compatible-endpoint>FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint<a hidden class=anchor aria-hidden=true href=#freellmapi-stack-16-free-llm-tiers-behind-one-openai-compatible-endpoint>#</a></h1><p>TL;DR — <strong>FreeLLMAPI</strong> aggregates the free tiers of 16+ LLM providers (Google Gemini, Groq, Cerebras, Mistral, NVIDIA, OpenRouter, GitHub Models, Cohere, Cloudflare, HuggingFace, Z.ai, Ollama Cloud, Kilo, Pollinations, LLM7, OVH) behind a single ```/v1/chat/completions```` endpoint. Combined, they yield roughly <strong>1.7 billion tokens per month</strong> of working inference capacity. Install via Docker in one command, add your provider keys, and point any OpenAI-compatible client at your local server.</p><h2 id=what-is-freellmapi>What Is FreeLLMAPI?<a hidden class=anchor aria-hidden=true href=#what-is-freellmapi>#</a></h2><p>Every major AI lab now offers a free tier — a few million tokens a month, a few thousand requests a day. On its own each tier is a toy. Stacked together, they add up to roughly <strong>1.7 billion tokens per month</strong> of working inference capacity, across 100+ models from small-and-fast to reasonably capable.</p><p>The problem is that stacking them by hand is painful: seventeen different SDKs, seventeen different rate limits, seventeen places a request can fail. <strong>FreeLLMAPI</strong> collapses that into one OpenAI-compatible endpoint. Point any OpenAI client library at your local server, and it routes transparently across whichever providers you&rsquo;ve added keys for.</p><p>Built by <strong>Tashfeen Ahmed</strong>, FreeLLMAPI is a self-hosted Node.js proxy (TypeScript/Express) with a React admin dashboard. It supports: - OpenAI Chat Completions API (<code>/v1/chat/completions</code>)</p><ul><li>Anthropic Messages API (<code>/v1/messages</code>) — works with Claude Code</li><li>Responses API (<code>/v1/responses</code>) — for Codex CLI</li><li>Image generation (<code>/v1/images/generations</code>)</li><li>Text-to-speech (<code>/v1/audio/speech</code>)</li><li>Tool calling with round-trip multi-step flows</li><li>Embeddings with family-based routing</li><li>Streaming and non-streaming responses</li><li>Automatic failover on 429/5xx/timeout</li><li>AES-256-GCM encrypted key storage in SQLite</li></ul><p><strong>GitHub:</strong> <a href=https://github.com/tashfeenahmed/freellmapi>tashfeenahmed/freellmapi</a> · <strong>Stars:</strong> 11,381+ · <strong>License:</strong> MIT · <strong>Language:</strong> TypeScript</p><h2 id=supported-providers>Supported Providers<a hidden class=anchor aria-hidden=true href=#supported-providers>#</a></h2><p>FreeLLMAPI currently supports 16 free-tier providers with 100+ models: | Provider | Key Models | Rate Limits |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Google AI | Gemini 2.5 Flash, 3.x previews | ~30 RPM |
 | Groq | Llama 3.3 70B, Llama 4, GPT-OSS, Qwen3 | ~40 RPM |
 | Cerebras | Qwen3 235B | Fast inference |
@@ -322,13 +31,8 @@ url: &lsquo;<a href="https://freellmapi.co">https://freellmapi.co</a>&rsquo;</li
 | Pollinations | GPT-OSS 20B | Anonymous OK |
 | LLM7 | GPT-OSS, Llama 3.1, GLM | Anonymous OK |
 | OVH AI Endpoints | Qwen3.5 397B, GPT-OSS, Llama 3.3 | Anonymous OK |
-| OpenCode Zen | DeepSeek V4 Flash, Nemotron | Promo period |</p>
-<p>Plus a <strong>custom</strong> provider — point at any OpenAI-compatible endpoint (llama.cpp, LM Studio, vLLM, a local Ollama, or a remote gateway) from the Keys page.</p>
-<h2 id="installation">Installation<a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h2>
-<h3 id="one-liner-docker">One-Liner (Docker)<a hidden class="anchor" aria-hidden="true" href="#one-liner-docker">#</a></h3>
-<p>The fastest path is a single command that sets up everything: `````bash
-curl -fsSL <a href="https://freellmapi.co/install.sh">https://freellmapi.co/install.sh</a> | bash</p>
-<pre tabindex="0"><code>
+| OpenCode Zen | DeepSeek V4 Flash, Nemotron | Promo period |</p><p>Plus a <strong>custom</strong> provider — point at any OpenAI-compatible endpoint (llama.cpp, LM Studio, vLLM, a local Ollama, or a remote gateway) from the Keys page.</p><h2 id=installation>Installation<a hidden class=anchor aria-hidden=true href=#installation>#</a></h2><h3 id=one-liner-docker>One-Liner (Docker)<a hidden class=anchor aria-hidden=true href=#one-liner-docker>#</a></h3><p>The fastest path is a single command that sets up everything: `````bash
+curl -fsSL <a href=https://freellmapi.co/install.sh>https://freellmapi.co/install.sh</a> | bash</p><pre tabindex=0><code>
 This creates ````~/freellmapi````, generates an encryption key, pulls the Docker image, and starts the container on port 3001. Re-running is safe — your ````.env```` and encryption key are preserved.
 
 ### Docker Compose (Manual)
@@ -342,22 +46,16 @@ ENCRYPTION_KEY=&#34;$(openssl rand -hex 32)&#34;
 printf &#34;ENCRYPTION_KEY=%s\nPORT=3001\n&#34; &#34;$ENCRYPTION_KEY&#34; &gt; .env
 
 docker compose up -d
-</code></pre><p>Open <code>http://localhost:3001</code>, add your provider keys on the <strong>Keys</strong> page, reorder the <strong>Fallback Chain</strong> to taste, and grab your unified API key from the <strong>Keys</strong> page header.</p>
-<h3 id="local-development">Local Development<a hidden class="anchor" aria-hidden="true" href="#local-development">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/tashfeenahmed/freellmapi.git
-</span></span><span style="display:flex;"><span>cd freellmapi
-</span></span><span style="display:flex;"><span>npm install
-</span></span><span style="display:flex;"><span>cp .env.example .env
-</span></span><span style="display:flex;"><span>ENCRYPTION_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>node -e <span style="color:#e6db74">&#39;console.log(require(&#34;crypto&#34;).randomBytes(32).toString(&#34;hex&#34;))&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34;ENCRYPTION_KEY=%s\nPORT=3001\n&#34;</span> <span style="color:#e6db74">&#34;</span>$ENCRYPTION_KEY<span style="color:#e6db74">&#34;</span> &gt; .env
-</span></span><span style="display:flex;"><span>npm run dev
-</span></span></code></pre></div><h3 id="desktop-apps">Desktop Apps<a hidden class="anchor" aria-hidden="true" href="#desktop-apps">#</a></h3>
-<p>Native <code>.dmg</code> (macOS) and <code>.exe</code> (Windows) installers are available from <a href="https://github.com/tashfeenahmed/freellmapi/releases/latest">Releases</a>. The desktop app runs the entire router and dashboard from your system tray with a glass popover showing live request stats.</p>
-<h2 id="how-the-router-works">How the Router Works<a hidden class="anchor" aria-hidden="true" href="#how-the-router-works">#</a></h2>
-<p>FreeLLMAPI&rsquo;s router makes a per-request decision: 1. Pick the highest-priority model that has a healthy key and is under all rate limits
+</code></pre><p>Open <code>http://localhost:3001</code>, add your provider keys on the <strong>Keys</strong> page, reorder the <strong>Fallback Chain</strong> to taste, and grab your unified API key from the <strong>Keys</strong> page header.</p><h3 id=local-development>Local Development<a hidden class=anchor aria-hidden=true href=#local-development>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/tashfeenahmed/freellmapi.git
+</span></span><span style=display:flex><span>cd freellmapi
+</span></span><span style=display:flex><span>npm install
+</span></span><span style=display:flex><span>cp .env.example .env
+</span></span><span style=display:flex><span>ENCRYPTION_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>node -e <span style=color:#e6db74>&#39;console.log(require(&#34;crypto&#34;).randomBytes(32).toString(&#34;hex&#34;))&#39;</span><span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>printf <span style=color:#e6db74>&#34;ENCRYPTION_KEY=%s\nPORT=3001\n&#34;</span> <span style=color:#e6db74>&#34;</span>$ENCRYPTION_KEY<span style=color:#e6db74>&#34;</span> &gt; .env
+</span></span><span style=display:flex><span>npm run dev
+</span></span></code></pre></div><h3 id=desktop-apps>Desktop Apps<a hidden class=anchor aria-hidden=true href=#desktop-apps>#</a></h3><p>Native <code>.dmg</code> (macOS) and <code>.exe</code> (Windows) installers are available from <a href=https://github.com/tashfeenahmed/freellmapi/releases/latest>Releases</a>. The desktop app runs the entire router and dashboard from your system tray with a glass popover showing live request stats.</p><h2 id=how-the-router-works>How the Router Works<a hidden class=anchor aria-hidden=true href=#how-the-router-works>#</a></h2><p>FreeLLMAPI&rsquo;s router makes a per-request decision: 1. Pick the highest-priority model that has a healthy key and is under all rate limits
 2. Decrypt the key (AES-256-GCM), call the provider SDK
-3. On 429/5xx/timeout → cooldown + retry next model in the fallback chain (up to 20 attempts)</p>
-<pre tabindex="0"><code>┌──────────────────┐   Bearer freellmapi-…   ┌─────────────────────────┐
+3. On 429/5xx/timeout → cooldown + retry next model in the fallback chain (up to 20 attempts)</p><pre tabindex=0><code>┌──────────────────┐   Bearer freellmapi-…   ┌─────────────────────────┐
 │  OpenAI SDK /    │ ──────────────────────▶ │  Express proxy (:3001)  │
 │  curl / any      │ ◀────────────────────── │  /v1/chat/completions   │
 │  OpenAI client   │      streamed tokens    └────────────┬────────────┘
@@ -375,88 +73,79 @@ docker compose up -d
    ┌──────────────┬────────────┬──────────┴─────────┬─────────────┬──────────┐
    ▼              ▼            ▼                    ▼             ▼          ▼
  Google         Groq        Cerebras           OpenRouter        HF       …10 more
-</code></pre><p>Every response carries an <code>X-Routed-Via: &lt;platform&gt;/&lt;model&gt;</code> header so you can see which provider actually served each call. If a request fell over between providers, you&rsquo;ll also see <code>X-Fallback-Attempts: N</code>.</p>
-<h2 id="using-freellmapi-with-any-client">Using FreeLLMAPI with Any Client<a hidden class="anchor" aria-hidden="true" href="#using-freellmapi-with-any-client">#</a></h2>
-<h3 id="python-openai-sdk">Python (OpenAI SDK)<a hidden class="anchor" aria-hidden="true" href="#python-openai-sdk">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
-</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:3001/v1&#34;</span>,
-</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;freellmapi-your-unified-key&#34;</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>resp <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,  <span style="color:#75715e"># let the router pick; or specify e.g. &#34;gemini-2.5-flash&#34;</span>
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Summarise the fall of Rome in one sentence.&#34;</span>}],
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>print(resp<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Routed via:&#34;</span>, resp<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;x-routed-via&#34;</span>))
-</span></span></code></pre></div><h3 id="streaming">Streaming<a hidden class="anchor" aria-hidden="true" href="#streaming">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>stream <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Stream me a haiku about SQLite.&#34;</span>}],
-</span></span><span style="display:flex;"><span>    stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> stream: print(chunk<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>delta<span style="color:#f92672">.</span>content <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;&#34;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span></code></pre></div><h3 id="tool-calling">Tool Calling<a hidden class="anchor" aria-hidden="true" href="#tool-calling">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tools <span style="color:#f92672">=</span> [{
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;function&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;function&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;get_weather&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Get current weather for a city.&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;parameters&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;properties&#34;</span>: {<span style="color:#e6db74">&#34;city&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>}},
-</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;required&#34;</span>: [<span style="color:#e6db74">&#34;city&#34;</span>],
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>}]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Model asks for a tool call</span>
-</span></span><span style="display:flex;"><span>first <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;What&#39;s the weather in Karachi?&#34;</span>}],
-</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>tools,
-</span></span><span style="display:flex;"><span>    tool_choice<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;required&#34;</span>,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>call <span style="color:#f92672">=</span> first<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>tool_calls[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. You execute the tool, feed the result back</span>
-</span></span><span style="display:flex;"><span>final <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
-</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;What&#39;s the weather in Karachi?&#34;</span>},
-</span></span><span style="display:flex;"><span>        first<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message,
-</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;tool&#34;</span>, <span style="color:#e6db74">&#34;tool_call_id&#34;</span>: call<span style="color:#f92672">.</span>id, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#39;{&#34;temp_c&#34;: 32, &#34;cond&#34;: &#34;sunny&#34;}&#39;</span>},
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>tools,
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>print(final<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
-</span></span></code></pre></div><h3 id="gemini-google-search-grounding">Gemini Google Search Grounding<a hidden class="anchor" aria-hidden="true" href="#gemini-google-search-grounding">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>resp <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gemini-2.5-flash&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Who won the F1 race this weekend?&#34;</span>}],
-</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;function&#34;</span>, <span style="color:#e6db74">&#34;function&#34;</span>: {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;google_search&#34;</span>, <span style="color:#e6db74">&#34;parameters&#34;</span>: {}}}],
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>print(resp<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
-</span></span></code></pre></div><h3 id="vision--image-input">Vision / Image Input<a hidden class="anchor" aria-hidden="true" href="#vision--image-input">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>resp <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;content&#34;</span>: [
-</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;What&#39;s in this image?&#34;</span>},
-</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;image_url&#34;</span>, <span style="color:#e6db74">&#34;image_url&#34;</span>: {<span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;data:image/png;base64,&lt;...&gt;&#34;</span>}},
-</span></span><span style="display:flex;"><span>        ],
-</span></span><span style="display:flex;"><span>    }],
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>print(resp<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
-</span></span></code></pre></div><h2 id="claude-code-integration">Claude Code Integration<a hidden class="anchor" aria-hidden="true" href="#claude-code-integration">#</a></h2>
-<p>FreeLLMAPI also speaks the Anthropic Messages API, so <strong>Claude Code</strong> and the official Anthropic SDKs can run against your free pool: `````bash
+</code></pre><p>Every response carries an <code>X-Routed-Via: &lt;platform>/&lt;model></code> header so you can see which provider actually served each call. If a request fell over between providers, you&rsquo;ll also see <code>X-Fallback-Attempts: N</code>.</p><h2 id=using-freellmapi-with-any-client>Using FreeLLMAPI with Any Client<a hidden class=anchor aria-hidden=true href=#using-freellmapi-with-any-client>#</a></h2><h3 id=python-openai-sdk>Python (OpenAI SDK)<a hidden class=anchor aria-hidden=true href=#python-openai-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI(
+</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:3001/v1&#34;</span>,
+</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;freellmapi-your-unified-key&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>resp <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,  <span style=color:#75715e># let the router pick; or specify e.g. &#34;gemini-2.5-flash&#34;</span>
+</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Summarise the fall of Rome in one sentence.&#34;</span>}],
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(resp<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;Routed via:&#34;</span>, resp<span style=color:#f92672>.</span>headers<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;x-routed-via&#34;</span>))
+</span></span></code></pre></div><h3 id=streaming>Streaming<a hidden class=anchor aria-hidden=true href=#streaming>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>stream <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,
+</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Stream me a haiku about SQLite.&#34;</span>}],
+</span></span><span style=display:flex><span>    stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> chunk <span style=color:#f92672>in</span> stream: print(chunk<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>delta<span style=color:#f92672>.</span>content <span style=color:#f92672>or</span> <span style=color:#e6db74>&#34;&#34;</span>, end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>, flush<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span></code></pre></div><h3 id=tool-calling>Tool Calling<a hidden class=anchor aria-hidden=true href=#tool-calling>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>tools <span style=color:#f92672>=</span> [{
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;function&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;function&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;get_weather&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Get current weather for a city.&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;parameters&#34;</span>: {
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;object&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;properties&#34;</span>: {<span style=color:#e6db74>&#34;city&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>}},
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;required&#34;</span>: [<span style=color:#e6db74>&#34;city&#34;</span>],
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>}]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 1. Model asks for a tool call</span>
+</span></span><span style=display:flex><span>first <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,
+</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;What&#39;s the weather in Karachi?&#34;</span>}],
+</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>tools,
+</span></span><span style=display:flex><span>    tool_choice<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;required&#34;</span>,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>call <span style=color:#f92672>=</span> first<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>tool_calls[<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 2. You execute the tool, feed the result back</span>
+</span></span><span style=display:flex><span>final <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,
+</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[
+</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;What&#39;s the weather in Karachi?&#34;</span>},
+</span></span><span style=display:flex><span>        first<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message,
+</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;tool&#34;</span>, <span style=color:#e6db74>&#34;tool_call_id&#34;</span>: call<span style=color:#f92672>.</span>id, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#39;{&#34;temp_c&#34;: 32, &#34;cond&#34;: &#34;sunny&#34;}&#39;</span>},
+</span></span><span style=display:flex><span>    ],
+</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>tools,
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(final<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
+</span></span></code></pre></div><h3 id=gemini-google-search-grounding>Gemini Google Search Grounding<a hidden class=anchor aria-hidden=true href=#gemini-google-search-grounding>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>resp <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gemini-2.5-flash&#34;</span>,
+</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Who won the F1 race this weekend?&#34;</span>}],
+</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;function&#34;</span>, <span style=color:#e6db74>&#34;function&#34;</span>: {<span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;google_search&#34;</span>, <span style=color:#e6db74>&#34;parameters&#34;</span>: {}}}],
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(resp<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
+</span></span></code></pre></div><h3 id=vision--image-input>Vision / Image Input<a hidden class=anchor aria-hidden=true href=#vision--image-input>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>resp <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,
+</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;content&#34;</span>: [
+</span></span><span style=display:flex><span>            {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;text&#34;</span>, <span style=color:#e6db74>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;What&#39;s in this image?&#34;</span>},
+</span></span><span style=display:flex><span>            {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;image_url&#34;</span>, <span style=color:#e6db74>&#34;image_url&#34;</span>: {<span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;data:image/png;base64,&lt;...&gt;&#34;</span>}},
+</span></span><span style=display:flex><span>        ],
+</span></span><span style=display:flex><span>    }],
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>print(resp<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
+</span></span></code></pre></div><h2 id=claude-code-integration>Claude Code Integration<a hidden class=anchor aria-hidden=true href=#claude-code-integration>#</a></h2><p>FreeLLMAPI also speaks the Anthropic Messages API, so <strong>Claude Code</strong> and the official Anthropic SDKs can run against your free pool: `````bash
 export ANTHROPIC_BASE_URL=http://localhost:3001
 export ANTHROPIC_AUTH_TOKEN=freellmapi-your-unified-key
-claude</p>
-<pre tabindex="0"><code>
+claude</p><pre tabindex=0><code>
 &gt; Use ````ANTHROPIC_AUTH_TOKEN```` (sent as a Bearer token), **not** ````ANTHROPIC_API_KEY```` — Claude Code treats a set ````ANTHROPIC_API_KEY```` as a conflicting first-party credential and refuses to start.
 
 Claude model names map to your free pool on the **Keys → Anthropic** tab: each family (````default````, ````opus````, ````sonnet````, ````haiku````) routes to ````auto```` (the router picks a free model) or a model you pin. Streaming, system prompts, tool use, and image input all translate across the same router as the OpenAI endpoints.
@@ -470,71 +159,19 @@ resp = client.embeddings.create(
 )
 print(len(resp.data), &#34;vectors of&#34;, len(resp.data[0].embedding), &#34;dims&#34;)
 </code></pre><p>Available embedding families: | Family | Dims | Providers |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <code>gemini-embedding-001</code> | 3072 | Google |
 | <code>text-embedding-3-large</code> | 3072 | GitHub Models |
 | <code>text-embedding-3-small</code> | 1536 | GitHub Models |
 | <code>embed-v4.0</code> | 1536 | Cohere |
 | <code>bge-m3</code> | 1024 | Cloudflare → Hugging Face |
 | <code>qwen3-embedding-0.6b</code> | 1024 | Cloudflare |
-| <code>nv-embedqa-e5-v5</code> | 1024 | NVIDIA |</p>
-<h2 id="key-features">Key Features<a hidden class="anchor" aria-hidden="true" href="#key-features">#</a></h2>
-<ul>
-<li><strong>Automatic Failover</strong> — If the chosen provider returns a 429, 5xx, or times out, the router skips it, puts the key on a short cooldown, and retries on the next model in your fallback chain (up to 20 attempts)</li>
-<li><strong>Sticky Sessions</strong> — Multi-turn conversations keep talking to the same model for 30 minutes to avoid the hallucination spike from mid-conversation model switches</li>
-<li><strong>Encrypted Key Storage</strong> — API keys are encrypted with AES-256-GCM before hitting SQLite; decryption happens in-memory just before a request</li>
-<li><strong>Unified API Key</strong> — Clients authenticate to your proxy with a single <code>freellmapi-…</code> bearer token. You never expose upstream provider keys to your apps</li>
-<li><strong>Health Checks</strong> — Periodic probes mark keys as <code>healthy</code>, <code>rate_limited</code>, <code>invalid</code>, or <code>error</code> so the router skips dead ones automatically</li>
-<li><strong>Analytics</strong> — Per-request logging with latency, token counts, success rate, and per-provider breakdowns</li>
-<li><strong>Context Handoff</strong> — Optional feature that injects a compact system message when a session falls over to a different model, so the new model knows it is continuing an existing task</li>
-<li><strong>Runs Anywhere</strong> — Windows, macOS, Linux servers, or a small ARM SBC (Raspberry Pi included). ~40 MB RSS at idle</li>
-</ul>
-<h2 id="performance-and-capacity">Performance and Capacity<a hidden class="anchor" aria-hidden="true" href="#performance-and-capacity">#</a></h2>
-<p>The combined free-tier capacity is approximately <strong>1.7 billion tokens per month</strong>. Here&rsquo;s a rough breakdown by tier: | Tier | Estimated Monthly Tokens |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| <code>nv-embedqa-e5-v5</code> | 1024 | NVIDIA |</p><h2 id=key-features>Key Features<a hidden class=anchor aria-hidden=true href=#key-features>#</a></h2><ul><li><strong>Automatic Failover</strong> — If the chosen provider returns a 429, 5xx, or times out, the router skips it, puts the key on a short cooldown, and retries on the next model in your fallback chain (up to 20 attempts)</li><li><strong>Sticky Sessions</strong> — Multi-turn conversations keep talking to the same model for 30 minutes to avoid the hallucination spike from mid-conversation model switches</li><li><strong>Encrypted Key Storage</strong> — API keys are encrypted with AES-256-GCM before hitting SQLite; decryption happens in-memory just before a request</li><li><strong>Unified API Key</strong> — Clients authenticate to your proxy with a single <code>freellmapi-…</code> bearer token. You never expose upstream provider keys to your apps</li><li><strong>Health Checks</strong> — Periodic probes mark keys as <code>healthy</code>, <code>rate_limited</code>, <code>invalid</code>, or <code>error</code> so the router skips dead ones automatically</li><li><strong>Analytics</strong> — Per-request logging with latency, token counts, success rate, and per-provider breakdowns</li><li><strong>Context Handoff</strong> — Optional feature that injects a compact system message when a session falls over to a different model, so the new model knows it is continuing an existing task</li><li><strong>Runs Anywhere</strong> — Windows, macOS, Linux servers, or a small ARM SBC (Raspberry Pi included). ~40 MB RSS at idle</li></ul><h2 id=performance-and-capacity>Performance and Capacity<a hidden class=anchor aria-hidden=true href=#performance-and-capacity>#</a></h2><p>The combined free-tier capacity is approximately <strong>1.7 billion tokens per month</strong>. Here&rsquo;s a rough breakdown by tier: | Tier | Estimated Monthly Tokens |
+|</p><hr><p>|</p><hr><p>|
 | Top tier (Gemini Pro, GPT-4o via GitHub) | ~500M tokens |
 | Mid tier (Groq, Cerebras, Mistral) | ~600M tokens |
-| Lower tier (Cloudflare, OVH, Pollinations) | ~600M tokens |</p>
-<p>Your actual capacity depends on which providers you enable and their current free-tier quotas. The router tracks per-key RPM, RPD, TPM, and TPD counters so it always picks a key that&rsquo;s under its caps.</p>
-<h2 id="limitations">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations">#</a></h2>
-<p>Be honest about the trade-offs: - <strong>No frontier models.</strong> The free-tier catalog tops out around Llama 3.3 70B, GLM-4.5, Qwen 3 Coder, and Gemini 2.5 Pro. You will not get GPT-5 or Claude Opus class reasoning through this. For hard problems, pay for a real API.</p>
-<ul>
-<li><strong>Intelligence degrades as the day progresses.</strong> Your top-ranked models have the lowest daily caps. Once they hit their limits, the router falls down your priority chain to smaller/weaker models. Expect effective intelligence to drop in the late hours of each day — then reset at UTC midnight.</li>
-<li><strong>Latency is highly variable.</strong> Cerebras and Groq are extremely fast; others are not. You get whichever one is available.</li>
-<li><strong>Free tiers can change without notice.</strong> Providers regularly tighten, loosen, or remove free tiers. When that happens you&rsquo;ll see 429s or auth errors until you update the catalog.</li>
-<li><strong>No SLA, by definition.</strong> If you need reliability, use a paid provider with a contract.</li>
-<li><strong>Local-first.</strong> There&rsquo;s no multi-tenant auth. Run this for yourself; don&rsquo;t expose it to the internet.</li>
-<li><strong>Legacy completions not supported.</strong> Only <code>/v1/chat/completions</code> is implemented, not <code>/v1/completions</code> or <code>/v1/moderations</code>.</li>
-</ul>
-<h2 id="who-should-use-freellmapi">Who Should Use FreeLLMAPI?<a hidden class="anchor" aria-hidden="true" href="#who-should-use-freellmapi">#</a></h2>
-<ul>
-<li><strong>Individual developers</strong> who want to prototype with multiple models without managing 17 API keys</li>
-<li><strong>AI hobbyists</strong> on a budget who want maximum inference capacity for zero cost</li>
-<li><strong>Claude Code / Codex CLI users</strong> who want to run their agents against a free pool</li>
-<li><strong>RAG builders</strong> who need embeddings from multiple providers with automatic fallback</li>
-<li><strong>Anyone building OpenAI-compatible apps</strong> who wants a resilient proxy that survives individual provider rate limits</li>
-</ul>
-<h2 id="alternatives-compared">Alternatives Compared<a hidden class="anchor" aria-hidden="true" href="#alternatives-compared">#</a></h2>
-<p>| Feature | FreeLLMAPI | LiteLLM | OpenRouter |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| Lower tier (Cloudflare, OVH, Pollinations) | ~600M tokens |</p><p>Your actual capacity depends on which providers you enable and their current free-tier quotas. The router tracks per-key RPM, RPD, TPM, and TPD counters so it always picks a key that&rsquo;s under its caps.</p><h2 id=limitations>Limitations<a hidden class=anchor aria-hidden=true href=#limitations>#</a></h2><p>Be honest about the trade-offs: - <strong>No frontier models.</strong> The free-tier catalog tops out around Llama 3.3 70B, GLM-4.5, Qwen 3 Coder, and Gemini 2.5 Pro. You will not get GPT-5 or Claude Opus class reasoning through this. For hard problems, pay for a real API.</p><ul><li><strong>Intelligence degrades as the day progresses.</strong> Your top-ranked models have the lowest daily caps. Once they hit their limits, the router falls down your priority chain to smaller/weaker models. Expect effective intelligence to drop in the late hours of each day — then reset at UTC midnight.</li><li><strong>Latency is highly variable.</strong> Cerebras and Groq are extremely fast; others are not. You get whichever one is available.</li><li><strong>Free tiers can change without notice.</strong> Providers regularly tighten, loosen, or remove free tiers. When that happens you&rsquo;ll see 429s or auth errors until you update the catalog.</li><li><strong>No SLA, by definition.</strong> If you need reliability, use a paid provider with a contract.</li><li><strong>Local-first.</strong> There&rsquo;s no multi-tenant auth. Run this for yourself; don&rsquo;t expose it to the internet.</li><li><strong>Legacy completions not supported.</strong> Only <code>/v1/chat/completions</code> is implemented, not <code>/v1/completions</code> or <code>/v1/moderations</code>.</li></ul><h2 id=who-should-use-freellmapi>Who Should Use FreeLLMAPI?<a hidden class=anchor aria-hidden=true href=#who-should-use-freellmapi>#</a></h2><ul><li><strong>Individual developers</strong> who want to prototype with multiple models without managing 17 API keys</li><li><strong>AI hobbyists</strong> on a budget who want maximum inference capacity for zero cost</li><li><strong>Claude Code / Codex CLI users</strong> who want to run their agents against a free pool</li><li><strong>RAG builders</strong> who need embeddings from multiple providers with automatic fallback</li><li><strong>Anyone building OpenAI-compatible apps</strong> who wants a resilient proxy that survives individual provider rate limits</li></ul><h2 id=alternatives-compared>Alternatives Compared<a hidden class=anchor aria-hidden=true href=#alternatives-compared>#</a></h2><p>| Feature | FreeLLMAPI | LiteLLM | OpenRouter |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Free tier aggregation | ✅ 16 providers | ❌ Paid only | ❌ Paid only |
 | Self-hosted | ✅ Docker/Node | ✅ Docker/Node | ❌ Cloud only |
 | Anthropic API support | ✅ <code>/v1/messages</code> | ✅ | ✅ |
@@ -542,67 +179,28 @@ print(len(resp.data), &#34;vectors of&#34;, len(resp.data[0].embedding), &#34;di
 | Admin dashboard | ✅ React + Vite | ❌ CLI only | ✅ Web |
 | Local/desktop app | ✅ macOS/Windows | ❌ | ❌ |
 | Cost | Free (MIT) | Free (Apache 2.0) | Pay per token |
-| Multi-tenant | ❌ Single-user | ✅ | ✅ |</p>
-<h2 id="getting-started-checklist">Getting Started Checklist<a hidden class="anchor" aria-hidden="true" href="#getting-started-checklist">#</a></h2>
-<ol>
-<li>Install Docker (or Node.js 20+ for local dev)</li>
-<li>Run <code>curl -fsSL https://freellmapi.co/install.sh | bash</code></li>
-<li>Open <code>http://localhost:3001</code> and sign in</li>
-<li>Add provider keys on the <strong>Keys</strong> page</li>
-<li>Reorder your <strong>Fallback Chain</strong> to prioritize models you use most</li>
-<li>Grab your unified API key</li>
-<li>Point your OpenAI SDK at <code>http://localhost:3001/v1</code></li>
-<li>Start prompting with <code>model: &quot;auto&quot;</code></li>
-</ol>
-<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="q-do-i-need-api-keys-for-all-16-providers">Q: Do I need API keys for all 16 providers?<a hidden class="anchor" aria-hidden="true" href="#q-do-i-need-api-keys-for-all-16-providers">#</a></h3>
-<p>No. FreeLLMAPI works with whatever keys you add. Some providers (Kilo, Pollinations, LLM7, OVH) accept anonymous requests. Others require free-tier signups. Start with 2-3 keys and add more as needed.</p>
-<h3 id="q-can-i-use-freellmapi-with-langchain-or-llamaindex">Q: Can I use FreeLLMAPI with LangChain or LlamaIndex?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-use-freellmapi-with-langchain-or-llamaindex">#</a></h3>
-<p>Yes. FreeLLMAPI implements the OpenAI-compatible wire format. Any client that works with <code>base_url</code> + <code>api_key</code> will work — LangChain, LlamaIndex, Continue, Hermès Agent, and more. Just change the <code>base_url</code> to <code>http://localhost:3001/v1</code>.</p>
-<h3 id="q-how-does-the-fallback-chain-work">Q: How does the fallback chain work?<a hidden class="anchor" aria-hidden="true" href="#q-how-does-the-fallback-chain-work">#</a></h3>
-<p>You define a priority order of models in the dashboard. When a request is made, the router picks the highest-priority healthy model. If that model returns a 429, 5xx, or times out, it moves to the next model in your chain. Each key gets a short cooldown before being retried.</p>
-<h3 id="q-is-my-data-safe">Q: Is my data safe?<a hidden class="anchor" aria-hidden="true" href="#q-is-my-data-safe">#</a></h3>
-<p>All provider API keys are encrypted with AES-256-GCM and stored in a local SQLite database. Decryption happens in-memory only, just before a request is sent. Your prompts and completions are not stored externally — request analytics are retained locally for 90 days or 100,000 rows (configurable).</p>
-<h3 id="q-can-i-add-my-own-custom-provider">Q: Can I add my own custom provider?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-add-my-own-custom-provider">#</a></h3>
-<p>Yes. The <strong>Custom</strong> provider lets you point at any OpenAI-compatible endpoint — llama.cpp, LM Studio, vLLM, a remote Ollama instance, or any other proxy. It appears at the end of your fallback chain and can be reordered like any other provider.</p>
-<h3 id="q-what-about-the-premium-tier">Q: What about the Premium tier?<a hidden class="anchor" aria-hidden="true" href="#q-what-about-the-premium-tier">#</a></h3>
-<p>Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/year or $49 lifetime) follows the live feed, refreshed every 2-3 days, so new free models are added to your router immediately. The catalog server never sees your prompts, completions, or provider keys.</p>
-<h2 id="docker-compose-setup">Docker Compose Setup<a hidden class="anchor" aria-hidden="true" href="#docker-compose-setup">#</a></h2>
-<p>For teams that prefer Docker Compose over the install script: `````yaml
-version: &lsquo;3.8&quot;
+| Multi-tenant | ❌ Single-user | ✅ | ✅ |</p><h2 id=getting-started-checklist>Getting Started Checklist<a hidden class=anchor aria-hidden=true href=#getting-started-checklist>#</a></h2><ol><li>Install Docker (or Node.js 20+ for local dev)</li><li>Run <code>curl -fsSL https://freellmapi.co/install.sh | bash</code></li><li>Open <code>http://localhost:3001</code> and sign in</li><li>Add provider keys on the <strong>Keys</strong> page</li><li>Reorder your <strong>Fallback Chain</strong> to prioritize models you use most</li><li>Grab your unified API key</li><li>Point your OpenAI SDK at <code>http://localhost:3001/v1</code></li><li>Start prompting with <code>model: "auto"</code></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=q-do-i-need-api-keys-for-all-16-providers>Q: Do I need API keys for all 16 providers?<a hidden class=anchor aria-hidden=true href=#q-do-i-need-api-keys-for-all-16-providers>#</a></h3><p>No. FreeLLMAPI works with whatever keys you add. Some providers (Kilo, Pollinations, LLM7, OVH) accept anonymous requests. Others require free-tier signups. Start with 2-3 keys and add more as needed.</p><h3 id=q-can-i-use-freellmapi-with-langchain-or-llamaindex>Q: Can I use FreeLLMAPI with LangChain or LlamaIndex?<a hidden class=anchor aria-hidden=true href=#q-can-i-use-freellmapi-with-langchain-or-llamaindex>#</a></h3><p>Yes. FreeLLMAPI implements the OpenAI-compatible wire format. Any client that works with <code>base_url</code> + <code>api_key</code> will work — LangChain, LlamaIndex, Continue, Hermès Agent, and more. Just change the <code>base_url</code> to <code>http://localhost:3001/v1</code>.</p><h3 id=q-how-does-the-fallback-chain-work>Q: How does the fallback chain work?<a hidden class=anchor aria-hidden=true href=#q-how-does-the-fallback-chain-work>#</a></h3><p>You define a priority order of models in the dashboard. When a request is made, the router picks the highest-priority healthy model. If that model returns a 429, 5xx, or times out, it moves to the next model in your chain. Each key gets a short cooldown before being retried.</p><h3 id=q-is-my-data-safe>Q: Is my data safe?<a hidden class=anchor aria-hidden=true href=#q-is-my-data-safe>#</a></h3><p>All provider API keys are encrypted with AES-256-GCM and stored in a local SQLite database. Decryption happens in-memory only, just before a request is sent. Your prompts and completions are not stored externally — request analytics are retained locally for 90 days or 100,000 rows (configurable).</p><h3 id=q-can-i-add-my-own-custom-provider>Q: Can I add my own custom provider?<a hidden class=anchor aria-hidden=true href=#q-can-i-add-my-own-custom-provider>#</a></h3><p>Yes. The <strong>Custom</strong> provider lets you point at any OpenAI-compatible endpoint — llama.cpp, LM Studio, vLLM, a remote Ollama instance, or any other proxy. It appears at the end of your fallback chain and can be reordered like any other provider.</p><h3 id=q-what-about-the-premium-tier>Q: What about the Premium tier?<a hidden class=anchor aria-hidden=true href=#q-what-about-the-premium-tier>#</a></h3><p>Free installs follow a monthly snapshot — zero cost, forever. Premium ($19/year or $49 lifetime) follows the live feed, refreshed every 2-3 days, so new free models are added to your router immediately. The catalog server never sees your prompts, completions, or provider keys.</p><h2 id=docker-compose-setup>Docker Compose Setup<a hidden class=anchor aria-hidden=true href=#docker-compose-setup>#</a></h2><p>For teams that prefer Docker Compose over the install script: `````yaml
+version: &lsquo;3.8"
 services: freellmapi: image: freellmapi/server:latest
 ports: - &ldquo;3001:3001&rdquo;
 volumes: - ./data:/app/data
 environment: - ENCRYPTION_KEY=your-random-32-char-key-here
-restart: unless-stopped</p>
-<pre tabindex="0"><code>
+restart: unless-stopped</p><pre tabindex=0><code>
 `````bash
 # Create data directory and start
 mkdir -p data
 docker compose up -d
 # Admin dashboard at http://localhost:3001
-</code></pre><h2 id="environment-variables">Environment Variables<a hidden class="anchor" aria-hidden="true" href="#environment-variables">#</a></h2>
-<p>All configuration can be set via environment variables: `````bash
+</code></pre><h2 id=environment-variables>Environment Variables<a hidden class=anchor aria-hidden=true href=#environment-variables>#</a></h2><p>All configuration can be set via environment variables: `````bash
 export PORT=3001
 export ENCRYPTION_KEY=&ldquo;a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6&rdquo;
 export LOG_LEVEL=info
 export MAX_RETRIES=3
-export REQUEST_TIMEOUT=30000</p>
-<pre tabindex="0"><code>
+export REQUEST_TIMEOUT=30000</p><pre tabindex=0><code>
 `````bash
 # Verify your configuration
 docker exec freellmapi node --eval &#34;console.log(process.env.PORT)&#34;
-</code></pre><h2 id="cli-management">CLI Management<a hidden class="anchor" aria-hidden="true" href="#cli-management">#</a></h2>
-<p>FreeLLMAPI ships with a management CLI for automation: `````bash</p>
-<h1 id="check-server-status">Check server status<a hidden class="anchor" aria-hidden="true" href="#check-server-status">#</a></h1>
-<p>freellmapi status</p>
-<h1 id="list-active-providers-and-their-key-counts">List active providers and their key counts<a hidden class="anchor" aria-hidden="true" href="#list-active-providers-and-their-key-counts">#</a></h1>
-<p>freellmapi providers &ndash;list</p>
-<h1 id="export-your-configuration-for-backup">Export your configuration for backup<a hidden class="anchor" aria-hidden="true" href="#export-your-configuration-for-backup">#</a></h1>
-<p>freellmapi config export &gt; freellmapi-backup.json</p>
-<h1 id="restore-configuration-from-backup">Restore configuration from backup<a hidden class="anchor" aria-hidden="true" href="#restore-configuration-from-backup">#</a></h1>
-<p>freellmapi config restore &lt; freellmapi-backup.json</p>
-<pre tabindex="0"><code>
+</code></pre><h2 id=cli-management>CLI Management<a hidden class=anchor aria-hidden=true href=#cli-management>#</a></h2><p>FreeLLMAPI ships with a management CLI for automation: `````bash</p><h1 id=check-server-status>Check server status<a hidden class=anchor aria-hidden=true href=#check-server-status>#</a></h1><p>freellmapi status</p><h1 id=list-active-providers-and-their-key-counts>List active providers and their key counts<a hidden class=anchor aria-hidden=true href=#list-active-providers-and-their-key-counts>#</a></h1><p>freellmapi providers &ndash;list</p><h1 id=export-your-configuration-for-backup>Export your configuration for backup<a hidden class=anchor aria-hidden=true href=#export-your-configuration-for-backup>#</a></h1><p>freellmapi config export > freellmapi-backup.json</p><h1 id=restore-configuration-from-backup>Restore configuration from backup<a hidden class=anchor aria-hidden=true href=#restore-configuration-from-backup>#</a></h1><p>freellmapi config restore &lt; freellmapi-backup.json</p><pre tabindex=0><code>
 `````bash
 # Monitor real-time request logs
 freellmapi logs --follow --since 5m
@@ -663,230 +261,11 @@ freellmapi health --providers
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/free-mcp-tools-top10-2026/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/free-mcp-tools-top10-2026/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

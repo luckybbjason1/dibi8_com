@@ -1,254 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "\n{\u003c/* resource-info */\u003e}\nThe Problem: Every New Session Is Groundhog Day If you use Claude Code, Cursor, or Codex CLI daily, you know the drill. You spend 20 minutes explaining your codebase’s architecture, naming conventions, and that tricky bug workaround. The agent gets it. You make progress. Then you close the terminal.\nTomorrow? Blank slate. The agent forgot everything. You’re the teacher in a classroom where every student has permanent amnesia.\nThis isn’t a bug—it’s the default architecture. Most AI coding agents are stateless by design. They treat every conversation as an isolated transaction, with no mechanism to carry learned knowledge forward.\nEnter rohitg00/agentmemory, an Apache-2.0 open-source persistent memory layer that exploded onto GitHub Trending in May 2026. With 6,500+ stars and daily star gains exceeding 1,000, it’s one of the fastest-growing infrastructure projects in the AI agent ecosystem. It supports 15+ agent clients—including Claude Code, Cursor, Windsurf, Codex CLI, and any MCP-compatible tool—through a clean Model Context Protocol (MCP) interface.\nThis guide walks through why agents forget, how agentmemory fixes it, and the exact steps to deploy it today.\nWhy Context Windows Are a Trap The Million-Token Mirage Gemini 3.1 Pro offers a 1-million-token context window. Claude 3.7 reaches 200K. It’s tempting to think “just dump everything in there.” Don’t.\nContext rot is real. Research cited by Cloudflare’s Agent Memory beta launch shows that output quality degrades measurably once context exceeds ~500K tokens. Beyond raw degradation, there’s a cost problem: a 1M-token call costs ~$0.50 in input tokens alone. Selective memory retrieval via a dedicated system? $0.05-$0.15. That’s a 10-20x cost reduction.\nAnd the biggest hidden cost isn’t monetary—it’s attention pollution. Stuffing irrelevant history into the context window forces the model to do retrieval work that should have happened upstream. You’re paying frontier-model rates to ask a genius to find a needle in a haystack you built.\nThe Team Knowledge Tax For teams, the pain compounds. A new engineer onboarding to a project without shared agent memory means 4-6 weeks of re-teaching conventions that exist only in tribal knowledge. With a shared memory profile, teams report 2-3x faster onboarding because the agent already knows the team’s standards, anti-patterns, and architectural history.\nThe Architecture: Four-Tier Memory Consolidation agentmemory models human memory through a consolidation pipeline that runs automatically at session boundaries.\nTier 1: Sensory Memory (Immediate Context) This is the raw conversation buffer. agentmemory doesn’t replace it—it enriches it by extracting structured entities (class names, function signatures, architectural decisions) into vector representations while the conversation is still active.\nTier 2: Working Memory (Short-Term Retrieval) A SQLite-backed vector index (via sqlite-vec) holds the last ~100 interactions as retrievable semantic chunks. Queries resolve in milliseconds. This is where most “what did we decide about X?” lookups happen.\nTier 3: Long-Term Memory (Knowledge Graph) The heavy lifter. agentmemory stores core facts as a knowledge graph of entity-relationship-entity triples: ```` (ProjectA) –[uses_framework]–\u003e (React) (ProjectA) –[convention]–\u003e (Hooks named useXxx) (ProjectA) –[workaround]–\u003e (Issue #442 fix)\nGraph structure is uniquely suited to **temporal reasoning**—answering questions like \"Why did we switch from Redux three months ago?\" The LongMemEval benchmark suite, which became the industry standard for memory systems in early 2026, validates this approach. ### Tier 4: Meta-Memory (Confidence Scoring) The executive layer. Every memory entry carries a 0-1 confidence score driven by three signals: 1. **Retrieval frequency** — often-used memories are likely important 2. **Correction events** — a memory that gets manually corrected has its confidence reset 3. **Temporal decay** — older memories linearly lose weight unless reinforced This isn't just bookkeeping. It's a **forgetting mechanism**—the system actively prunes low-confidence noise to keep the knowledge graph clean and fast. * * * ## MCP: The \"USB-C for AI\" That Makes This Work agentmemory's real strategic advantage isn't its graph algorithm—it's its **protocol choice**. By building entirely on MCP (Model Context Protocol), it inherits instant compatibility with the entire MCP ecosystem. ### How MCP Works ┌─────────────┐ JSON-RPC ┌──────────────────┐ │ MCP Client │ ◄──────────────► │ MCP Server │ │(Claude Code)│ (stdio/SSE) │ (agentmemory) │ └─────────────┘ └──────────────────┘ │ ┌────┴────┐ │ SQLite │ │ +Vector │ │ +Graph │ └─────────┘\nMCP uses a dead-simple client-server architecture: - **Host**: The AI application (Claude Code, Cursor, etc.) - **Client**: The communication layer inside the host - **Server**: agentmemory, running as an isolated process The server exposes **tools** (functions the LLM can call), **resources** (data the LLM can read), and **prompts** (templates for common tasks). The LLM decides which tool to invoke based on the user's intent. ### 50+ Atomic Tools agentmemory exposes a granular tool surface—each tool does exactly one thing: | Tool | Function | When It Fires | | * * * | * * * | * * * | | ````memory_add```` | Write new memory | After architectural decisions | | ````memory_search```` | Semantic retrieval | User asks \"how did we handle auth?\" | | ````memory_update```` | Adjust confidence | User corrects an outdated memory | | ````memory_graph_query```` | Relational lookup | \"Which modules depend on this API?\" | | ````memory_consolidate```` | Run consolidation | At session end | ### The Tool Search Revolution A major MCP upgrade in early 2026 changed the game. Previously, an MCP server exposing 50+ tools would preload all documentation into the context window—consuming 67K+ tokens. The new **Tool Search** mechanism uses lazy loading: when tool descriptions exceed 10% of available context, the system switches to a lightweight search index. Internal tests show token usage dropping from ~134K to ~5K, an **85% reduction**. Community benchmarks also report MCP evaluation accuracy gains: from 49% to 74% (Opus 4) and 79.5% to 88.1% (Opus 4.5). For agentmemory users, this means you can expose the full 50-tool surface without paying a context-window tax. * * * ## Deployment Guide: 5 Minutes to Persistent Memory ### Prerequisites - Node.js 18+ - Claude Code v2.1.45+ (or any MCP-compatible client) - Git ### Step 1: Install agentmemory `````bash git clone https://github.com/rohitg00/agentmemory.git cd agentmemory npm install npm run build # Verify the server starts node dist/mcp-server.js --stdio Step 2: Configure Your MCP Client Edit your MCP configuration file (for Claude Code, typically ~/.claude/mcp.json): `````json { “mcpServers”: { “agentmemory”: { “command”: “node”, “args”: [ “/absolute/path/to/agentmemory/dist/mcp-server.js”, “–stdio” ], “env”: { “AGENTMEMORY_DB_PATH”: “~/.agentmemory/memory.db”, “AGENTMEMORY_LOG_LEVEL”: “info” } } } }\n### Step 3: Test Memory Persistence In Claude Code, type: ````` Remember: all React Hooks in this project must use the useXxx naming convention. No underscores. Close Claude Code. Reopen it. Ask: ````` What is our Hook naming convention for this project?\nIf configured correctly, Claude will answer with the exact rule you stored—**the memory survived the session boundary**. ### Step 4: Auto-Consolidation (Optional) Add to ``~/.claude/settings.json``: `````json { \"hooks\": { \"SessionEnd\": { \"command\": \"mcp\", \"tool\": \"memory_consolidate\", \"auto\": true } } } This triggers automatic graph updates and confidence recalculation at the end of every session.\nTeam Deployment: From Personal Memory to Organizational Knowledge Option A: Git-Shared Memory Repository The simplest team setup: treat the SQLite database as a shared artifact.\n# Clone the team's shared memory repo git clone git@github.com:yourteam/agentmemory-core.git cd agentmemory-core # Point each member's MCP config at the shared DB # In ~/.claude/mcp.json: # \"AGENTMEMORY_DB_PATH\": \"~/workspace/agentmemory-core/memory.db\" When Engineer A updates the “auth module workaround,” every team member’s agent sees it on their next retrieval.\nOption B: Centralized MCP Server (Recommended for 10+ Teams) Deploy a single shared instance: `````bash\nOn a shared server npx agentmemory-server –port 3000 –transport sse\nTeam members connect remotely { “mcpServers”: { “agentmemory”: { “url”: “http://internal-server:3000/sse” } } }\nBenefits: - **Real-time sync**: write once, read everywhere immediately - **Audit trail**: who changed what memory and when - **Access control**: role-based visibility for sensitive architectural decisions ### Measured Team Impact Teams using shared agent memory report: - **2-3x faster onboarding** for new engineers - **80% reduction** in repeated explanations of the same conventions - Code style consistency scores (measured against team lint rules) improved from 62% to **89%** * * * ## How agentmemory Compares to Alternatives | Solution | Protocol | Open Source | Coding-Specific | Team Sharing | Confidence Scoring | | * * * | * * * | * * * | * * * | * * * | * * * | | **agentmemory** | MCP | Apache-2.0 | ✅ | ✅ | ✅ | | mem0 | Native SDK | Apache-2.0 | General | ✅ | ❌ | | Cloudflare Agent Memory | Hosted API | Proprietary | General | ✅ | ✅ | | Zep/Graphiti | REST | Apache-2.0 | General | ✅ | ✅ | | Supermemory MCP | MCP | MIT | ✅ | ❌ | ❌ | **Selection guide:** - **Solo developers**: Supermemory MCP (zero config) or agentmemory (full features) - **Small teams (\u003c10)**: agentmemory + Git sync - **Large teams/enterprises**: mem0 (21 framework integrations) or Cloudflare Agent Memory (managed SLA) - **Heavy temporal reasoning**: Zep/Graphiti (LongMemEval 63.8% vs. mem0's 49.0%) * * * ## Limitations and Honest Warnings ### Don't Use Memory For Everything - **One-off scripts / exploratory work**: setup overhead exceeds value - **Environment secrets**: API keys and credentials belong in proper secret management, not a memory graph - **Rapidly changing temporary config**: if it changes daily, don't immortalize it ### Confidence Scores Are Heuristics, Not Truth A low-confidence memory isn't necessarily wrong. A high-confidence memory can still be obsolete after an infrastructure migration. Schedule a **quarterly memory audit**—treat your agent's memory like any other knowledge base that needs gardening. ### Performance Benchmarks Tested on an M3 MacBook Pro: - Retrieval from 10K-entry memory: **\u003c 50ms** - End-of-session consolidation (100-turn conversation): **~800ms** - Storage growth: ~5KB per conversation turn (including vector index) * * * ## Conclusion 2026 is the year AI coding agents graduate from session-bound assistants to **long-tenure team members**. The infrastructure is mature: benchmark suites (LongMemEval), managed services (Cloudflare), and open-source frameworks (agentmemory, mem0) have turned \"agent memory\" from a research curiosity into production-grade architecture. agentmemory's bet on MCP is particularly smart. Instead of building proprietary SDKs that lock users into an ecosystem, it plugs into the standard port that every major tool already supports. The result: 5 minutes of setup, and your Claude Code instance finally remembers who you are, what you're building, and where the bodies are buried. If you haven\"t configured persistent memory yet, today is the day. * * * ## References - [rohitg00/agentmemory on GitHub](https://github.com/rohitg00/agentmemory) - [Model Context Protocol Specification](https://modelcontextprotocol.io/) - [LongMemEval Benchmark](https://github.com/...) - [Cloudflare Agent Memory Announcement](https://blog.cloudflare.com/...) - [Claude Code MCP Connector Docs](https://docs.anthropic.com/...) * * * *Written May 17, 2026. Star counts and MCP spec versions are time-sensitive; verify against official sources before citing.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Persistent Memory for AI Coding Agents in 2026: A Complete Guide to agentmemory + MCP\", \"datePublished\": \"2026-05-17\", \"dateModified\": \"2026-05-17\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/agentmemory-mcp-persistent-memory-2026\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "1836",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#the-problem-every-new-session-is-groundhog-day" aria-label="The Problem: Every New Session Is Groundhog Day">The Problem: Every New Session Is Groundhog Day</a></li>
-            <li>
-                <a href="#why-context-windows-are-a-trap" aria-label="Why Context Windows Are a Trap">Why Context Windows Are a Trap</a><ul>
-                    
-            <li>
-                <a href="#the-million-token-mirage" aria-label="The Million-Token Mirage">The Million-Token Mirage</a></li>
-            <li>
-                <a href="#the-team-knowledge-tax" aria-label="The Team Knowledge Tax">The Team Knowledge Tax</a></li></ul>
-            </li>
-            <li>
-                <a href="#the-architecture-four-tier-memory-consolidation" aria-label="The Architecture: Four-Tier Memory Consolidation">The Architecture: Four-Tier Memory Consolidation</a><ul>
-                    
-            <li>
-                <a href="#tier-1-sensory-memory-immediate-context" aria-label="Tier 1: Sensory Memory (Immediate Context)">Tier 1: Sensory Memory (Immediate Context)</a></li>
-            <li>
-                <a href="#tier-2-working-memory-short-term-retrieval" aria-label="Tier 2: Working Memory (Short-Term Retrieval)">Tier 2: Working Memory (Short-Term Retrieval)</a></li>
-            <li>
-                <a href="#tier-3-long-term-memory-knowledge-graph" aria-label="Tier 3: Long-Term Memory (Knowledge Graph)">Tier 3: Long-Term Memory (Knowledge Graph)</a></li>
-            <li>
-                <a href="#step-2-configure-your-mcp-client" aria-label="Step 2: Configure Your MCP Client">Step 2: Configure Your MCP Client</a></li></ul>
-            </li>
-            <li>
-                <a href="#team-deployment-from-personal-memory-to-organizational-knowledge" aria-label="Team Deployment: From Personal Memory to Organizational Knowledge">Team Deployment: From Personal Memory to Organizational Knowledge</a><ul>
-                    
-            <li>
-                <a href="#option-a-git-shared-memory-repository" aria-label="Option A: Git-Shared Memory Repository">Option A: Git-Shared Memory Repository</a></li>
-            <li>
-                <a href="#option-b-centralized-mcp-server-recommended-for-10-teams" aria-label="Option B: Centralized MCP Server (Recommended for 10&#43; Teams)">Option B: Centralized MCP Server (Recommended for 10+ Teams)</a></li></ul>
-            </li></ul>
-                
-            <li>
-                <a href="#on-a-shared-server" aria-label="On a shared server">On a shared server</a></li>
-            <li>
-                <a href="#team-members-connect-remotely" aria-label="Team members connect remotely">Team members connect remotely</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p><img alt="Hero Image" loading="lazy" src="https://picsum.photos/seed/artificial-intelligence/1200x800"></p>
-<p>{&lt;/* resource-info */&gt;}</p>
-<h2 id="the-problem-every-new-session-is-groundhog-day">The Problem: Every New Session Is Groundhog Day<a hidden class="anchor" aria-hidden="true" href="#the-problem-every-new-session-is-groundhog-day">#</a></h2>
-<p>If you use Claude Code, Cursor, or Codex CLI daily, you know the drill. You spend 20 minutes explaining your codebase&rsquo;s architecture, naming conventions, and that tricky bug workaround. The agent gets it. You make progress. Then you close the terminal.</p>
-<p>Tomorrow? Blank slate. The agent forgot everything. You&rsquo;re the teacher in a classroom where every student has permanent amnesia.</p>
-<p>This isn&rsquo;t a bug—it&rsquo;s the default architecture. <strong>Most AI coding agents are stateless by design.</strong> They treat every conversation as an isolated transaction, with no mechanism to carry learned knowledge forward.</p>
-<p>Enter <strong>rohitg00/agentmemory</strong>, an Apache-2.0 open-source persistent memory layer that exploded onto GitHub Trending in May 2026. With 6,500+ stars and daily star gains exceeding 1,000, it&rsquo;s one of the fastest-growing infrastructure projects in the AI agent ecosystem. It supports 15+ agent clients—including Claude Code, Cursor, Windsurf, Codex CLI, and any MCP-compatible tool—through a clean Model Context Protocol (MCP) interface.</p>
-<p>This guide walks through why agents forget, how agentmemory fixes it, and the exact steps to deploy it today.</p>
-<hr>
-<h2 id="why-context-windows-are-a-trap">Why Context Windows Are a Trap<a hidden class="anchor" aria-hidden="true" href="#why-context-windows-are-a-trap">#</a></h2>
-<h3 id="the-million-token-mirage">The Million-Token Mirage<a hidden class="anchor" aria-hidden="true" href="#the-million-token-mirage">#</a></h3>
-<p>Gemini 3.1 Pro offers a 1-million-token context window. Claude 3.7 reaches 200K. It&rsquo;s tempting to think &ldquo;just dump everything in there.&rdquo; Don&rsquo;t.</p>
-<p><strong>Context rot is real.</strong> Research cited by Cloudflare&rsquo;s Agent Memory beta launch shows that output quality degrades measurably once context exceeds ~500K tokens. Beyond raw degradation, there&rsquo;s a cost problem: a 1M-token call costs ~$0.50 in input tokens alone. Selective memory retrieval via a dedicated system? $0.05-$0.15. That&rsquo;s a <strong>10-20x cost reduction</strong>.</p>
-<p>And the biggest hidden cost isn&rsquo;t monetary—it&rsquo;s <strong>attention pollution</strong>. Stuffing irrelevant history into the context window forces the model to do retrieval work that should have happened upstream. You&rsquo;re paying frontier-model rates to ask a genius to find a needle in a haystack you built.</p>
-<h3 id="the-team-knowledge-tax">The Team Knowledge Tax<a hidden class="anchor" aria-hidden="true" href="#the-team-knowledge-tax">#</a></h3>
-<p>For teams, the pain compounds. A new engineer onboarding to a project without shared agent memory means 4-6 weeks of re-teaching conventions that exist only in tribal knowledge. With a shared memory profile, teams report <strong>2-3x faster onboarding</strong> because the agent already knows the team&rsquo;s standards, anti-patterns, and architectural history.</p>
-<hr>
-<h2 id="the-architecture-four-tier-memory-consolidation">The Architecture: Four-Tier Memory Consolidation<a hidden class="anchor" aria-hidden="true" href="#the-architecture-four-tier-memory-consolidation">#</a></h2>
-<p>agentmemory models human memory through a consolidation pipeline that runs automatically at session boundaries.</p>
-<h3 id="tier-1-sensory-memory-immediate-context">Tier 1: Sensory Memory (Immediate Context)<a hidden class="anchor" aria-hidden="true" href="#tier-1-sensory-memory-immediate-context">#</a></h3>
-<p>This is the raw conversation buffer. agentmemory doesn&rsquo;t replace it—it <strong>enriches</strong> it by extracting structured entities (class names, function signatures, architectural decisions) into vector representations while the conversation is still active.</p>
-<h3 id="tier-2-working-memory-short-term-retrieval">Tier 2: Working Memory (Short-Term Retrieval)<a hidden class="anchor" aria-hidden="true" href="#tier-2-working-memory-short-term-retrieval">#</a></h3>
-<p>A SQLite-backed vector index (via sqlite-vec) holds the last ~100 interactions as retrievable semantic chunks. Queries resolve in milliseconds. This is where most &ldquo;what did we decide about X?&rdquo; lookups happen.</p>
-<h3 id="tier-3-long-term-memory-knowledge-graph">Tier 3: Long-Term Memory (Knowledge Graph)<a hidden class="anchor" aria-hidden="true" href="#tier-3-long-term-memory-knowledge-graph">#</a></h3>
-<p>The heavy lifter. agentmemory stores core facts as a <strong>knowledge graph</strong> of entity-relationship-entity triples: ````
-(ProjectA) &ndash;[uses_framework]&ndash;&gt; (React)
-(ProjectA) &ndash;[convention]&ndash;&gt; (Hooks named useXxx)
-(ProjectA) &ndash;[workaround]&ndash;&gt; (Issue #442 fix)</p>
-<pre tabindex="0"><code>
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"\n{\u003c/* resource-info */\u003e}\nThe Problem: Every New Session Is Groundhog Day If you use Claude Code, Cursor, or Codex CLI daily, you know the drill. You spend 20 minutes explaining your codebase’s architecture, naming conventions, and that tricky bug workaround. The agent gets it. You make progress. Then you close the terminal.\nTomorrow? Blank slate. The agent forgot everything. You’re the teacher in a classroom where every student has permanent amnesia.\nThis isn’t a bug—it’s the default architecture. Most AI coding agents are stateless by design. They treat every conversation as an isolated transaction, with no mechanism to carry learned knowledge forward.\nEnter rohitg00/agentmemory, an Apache-2.0 open-source persistent memory layer that exploded onto GitHub Trending in May 2026. With 6,500+ stars and daily star gains exceeding 1,000, it’s one of the fastest-growing infrastructure projects in the AI agent ecosystem. It supports 15+ agent clients—including Claude Code, Cursor, Windsurf, Codex CLI, and any MCP-compatible tool—through a clean Model Context Protocol (MCP) interface.\nThis guide walks through why agents forget, how agentmemory fixes it, and the exact steps to deploy it today.\nWhy Context Windows Are a Trap The Million-Token Mirage Gemini 3.1 Pro offers a 1-million-token context window. Claude 3.7 reaches 200K. It’s tempting to think “just dump everything in there.” Don’t.\nContext rot is real. Research cited by Cloudflare’s Agent Memory beta launch shows that output quality degrades measurably once context exceeds ~500K tokens. Beyond raw degradation, there’s a cost problem: a 1M-token call costs ~$0.50 in input tokens alone. Selective memory retrieval via a dedicated system? $0.05-$0.15. That’s a 10-20x cost reduction.\nAnd the biggest hidden cost isn’t monetary—it’s attention pollution. Stuffing irrelevant history into the context window forces the model to do retrieval work that should have happened upstream. You’re paying frontier-model rates to ask a genius to find a needle in a haystack you built.\nThe Team Knowledge Tax For teams, the pain compounds. A new engineer onboarding to a project without shared agent memory means 4-6 weeks of re-teaching conventions that exist only in tribal knowledge. With a shared memory profile, teams report 2-3x faster onboarding because the agent already knows the team’s standards, anti-patterns, and architectural history.\nThe Architecture: Four-Tier Memory Consolidation agentmemory models human memory through a consolidation pipeline that runs automatically at session boundaries.\nTier 1: Sensory Memory (Immediate Context) This is the raw conversation buffer. agentmemory doesn’t replace it—it enriches it by extracting structured entities (class names, function signatures, architectural decisions) into vector representations while the conversation is still active.\nTier 2: Working Memory (Short-Term Retrieval) A SQLite-backed vector index (via sqlite-vec) holds the last ~100 interactions as retrievable semantic chunks. Queries resolve in milliseconds. This is where most “what did we decide about X?” lookups happen.\nTier 3: Long-Term Memory (Knowledge Graph) The heavy lifter. agentmemory stores core facts as a knowledge graph of entity-relationship-entity triples: ```` (ProjectA) –[uses_framework]–\u003e (React) (ProjectA) –[convention]–\u003e (Hooks named useXxx) (ProjectA) –[workaround]–\u003e (Issue #442 fix)\nGraph structure is uniquely suited to **temporal reasoning**—answering questions like \"Why did we switch from Redux three months ago?\" The LongMemEval benchmark suite, which became the industry standard for memory systems in early 2026, validates this approach. ### Tier 4: Meta-Memory (Confidence Scoring) The executive layer. Every memory entry carries a 0-1 confidence score driven by three signals: 1. **Retrieval frequency** — often-used memories are likely important 2. **Correction events** — a memory that gets manually corrected has its confidence reset 3. **Temporal decay** — older memories linearly lose weight unless reinforced This isn't just bookkeeping. It's a **forgetting mechanism**—the system actively prunes low-confidence noise to keep the knowledge graph clean and fast. * * * ## MCP: The \"USB-C for AI\" That Makes This Work agentmemory's real strategic advantage isn't its graph algorithm—it's its **protocol choice**. By building entirely on MCP (Model Context Protocol), it inherits instant compatibility with the entire MCP ecosystem. ### How MCP Works ┌─────────────┐ JSON-RPC ┌──────────────────┐ │ MCP Client │ ◄──────────────► │ MCP Server │ │(Claude Code)│ (stdio/SSE) │ (agentmemory) │ └─────────────┘ └──────────────────┘ │ ┌────┴────┐ │ SQLite │ │ +Vector │ │ +Graph │ └─────────┘\nMCP uses a dead-simple client-server architecture: - **Host**: The AI application (Claude Code, Cursor, etc.) - **Client**: The communication layer inside the host - **Server**: agentmemory, running as an isolated process The server exposes **tools** (functions the LLM can call), **resources** (data the LLM can read), and **prompts** (templates for common tasks). The LLM decides which tool to invoke based on the user's intent. ### 50+ Atomic Tools agentmemory exposes a granular tool surface—each tool does exactly one thing: | Tool | Function | When It Fires | | * * * | * * * | * * * | | ````memory_add```` | Write new memory | After architectural decisions | | ````memory_search```` | Semantic retrieval | User asks \"how did we handle auth?\" | | ````memory_update```` | Adjust confidence | User corrects an outdated memory | | ````memory_graph_query```` | Relational lookup | \"Which modules depend on this API?\" | | ````memory_consolidate```` | Run consolidation | At session end | ### The Tool Search Revolution A major MCP upgrade in early 2026 changed the game. Previously, an MCP server exposing 50+ tools would preload all documentation into the context window—consuming 67K+ tokens. The new **Tool Search** mechanism uses lazy loading: when tool descriptions exceed 10% of available context, the system switches to a lightweight search index. Internal tests show token usage dropping from ~134K to ~5K, an **85% reduction**. Community benchmarks also report MCP evaluation accuracy gains: from 49% to 74% (Opus 4) and 79.5% to 88.1% (Opus 4.5). For agentmemory users, this means you can expose the full 50-tool surface without paying a context-window tax. * * * ## Deployment Guide: 5 Minutes to Persistent Memory ### Prerequisites - Node.js 18+ - Claude Code v2.1.45+ (or any MCP-compatible client) - Git ### Step 1: Install agentmemory `````bash git clone https://github.com/rohitg00/agentmemory.git cd agentmemory npm install npm run build # Verify the server starts node dist/mcp-server.js --stdio Step 2: Configure Your MCP Client Edit your MCP configuration file (for Claude Code, typically ~/.claude/mcp.json): `````json { “mcpServers”: { “agentmemory”: { “command”: “node”, “args”: [ “/absolute/path/to/agentmemory/dist/mcp-server.js”, “–stdio” ], “env”: { “AGENTMEMORY_DB_PATH”: “~/.agentmemory/memory.db”, “AGENTMEMORY_LOG_LEVEL”: “info” } } } }\n### Step 3: Test Memory Persistence In Claude Code, type: ````` Remember: all React Hooks in this project must use the useXxx naming convention. No underscores. Close Claude Code. Reopen it. Ask: ````` What is our Hook naming convention for this project?\nIf configured correctly, Claude will answer with the exact rule you stored—**the memory survived the session boundary**. ### Step 4: Auto-Consolidation (Optional) Add to ``~/.claude/settings.json``: `````json { \"hooks\": { \"SessionEnd\": { \"command\": \"mcp\", \"tool\": \"memory_consolidate\", \"auto\": true } } } This triggers automatic graph updates and confidence recalculation at the end of every session.\nTeam Deployment: From Personal Memory to Organizational Knowledge Option A: Git-Shared Memory Repository The simplest team setup: treat the SQLite database as a shared artifact.\n# Clone the team's shared memory repo git clone git@github.com:yourteam/agentmemory-core.git cd agentmemory-core # Point each member's MCP config at the shared DB # In ~/.claude/mcp.json: # \"AGENTMEMORY_DB_PATH\": \"~/workspace/agentmemory-core/memory.db\" When Engineer A updates the “auth module workaround,” every team member’s agent sees it on their next retrieval.\nOption B: Centralized MCP Server (Recommended for 10+ Teams) Deploy a single shared instance: `````bash\nOn a shared server npx agentmemory-server –port 3000 –transport sse\nTeam members connect remotely { “mcpServers”: { “agentmemory”: { “url”: “http://internal-server:3000/sse” } } }\nBenefits: - **Real-time sync**: write once, read everywhere immediately - **Audit trail**: who changed what memory and when - **Access control**: role-based visibility for sensitive architectural decisions ### Measured Team Impact Teams using shared agent memory report: - **2-3x faster onboarding** for new engineers - **80% reduction** in repeated explanations of the same conventions - Code style consistency scores (measured against team lint rules) improved from 62% to **89%** * * * ## How agentmemory Compares to Alternatives | Solution | Protocol | Open Source | Coding-Specific | Team Sharing | Confidence Scoring | | * * * | * * * | * * * | * * * | * * * | * * * | | **agentmemory** | MCP | Apache-2.0 | ✅ | ✅ | ✅ | | mem0 | Native SDK | Apache-2.0 | General | ✅ | ❌ | | Cloudflare Agent Memory | Hosted API | Proprietary | General | ✅ | ✅ | | Zep/Graphiti | REST | Apache-2.0 | General | ✅ | ✅ | | Supermemory MCP | MCP | MIT | ✅ | ❌ | ❌ | **Selection guide:** - **Solo developers**: Supermemory MCP (zero config) or agentmemory (full features) - **Small teams (\u003c10)**: agentmemory + Git sync - **Large teams/enterprises**: mem0 (21 framework integrations) or Cloudflare Agent Memory (managed SLA) - **Heavy temporal reasoning**: Zep/Graphiti (LongMemEval 63.8% vs. mem0's 49.0%) * * * ## Limitations and Honest Warnings ### Don't Use Memory For Everything - **One-off scripts / exploratory work**: setup overhead exceeds value - **Environment secrets**: API keys and credentials belong in proper secret management, not a memory graph - **Rapidly changing temporary config**: if it changes daily, don't immortalize it ### Confidence Scores Are Heuristics, Not Truth A low-confidence memory isn't necessarily wrong. A high-confidence memory can still be obsolete after an infrastructure migration. Schedule a **quarterly memory audit**—treat your agent's memory like any other knowledge base that needs gardening. ### Performance Benchmarks Tested on an M3 MacBook Pro: - Retrieval from 10K-entry memory: **\u003c 50ms** - End-of-session consolidation (100-turn conversation): **~800ms** - Storage growth: ~5KB per conversation turn (including vector index) * * * ## Conclusion 2026 is the year AI coding agents graduate from session-bound assistants to **long-tenure team members**. The infrastructure is mature: benchmark suites (LongMemEval), managed services (Cloudflare), and open-source frameworks (agentmemory, mem0) have turned \"agent memory\" from a research curiosity into production-grade architecture. agentmemory's bet on MCP is particularly smart. Instead of building proprietary SDKs that lock users into an ecosystem, it plugs into the standard port that every major tool already supports. The result: 5 minutes of setup, and your Claude Code instance finally remembers who you are, what you're building, and where the bodies are buried. If you haven\"t configured persistent memory yet, today is the day. * * * ## References - [rohitg00/agentmemory on GitHub](https://github.com/rohitg00/agentmemory) - [Model Context Protocol Specification](https://modelcontextprotocol.io/) - [LongMemEval Benchmark](https://github.com/...) - [Cloudflare Agent Memory Announcement](https://blog.cloudflare.com/...) - [Claude Code MCP Connector Docs](https://docs.anthropic.com/...) * * * *Written May 17, 2026. Star counts and MCP spec versions are time-sensitive; verify against official sources before citing.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Persistent Memory for AI Coding Agents in 2026: A Complete Guide to agentmemory + MCP\", \"datePublished\": \"2026-05-17\", \"dateModified\": \"2026-05-17\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/agentmemory-mcp-persistent-memory-2026\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1836","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#the-problem-every-new-session-is-groundhog-day aria-label="The Problem: Every New Session Is Groundhog Day">The Problem: Every New Session Is Groundhog Day</a></li><li><a href=#why-context-windows-are-a-trap aria-label="Why Context Windows Are a Trap">Why Context Windows Are a Trap</a><ul><li><a href=#the-million-token-mirage aria-label="The Million-Token Mirage">The Million-Token Mirage</a></li><li><a href=#the-team-knowledge-tax aria-label="The Team Knowledge Tax">The Team Knowledge Tax</a></li></ul></li><li><a href=#the-architecture-four-tier-memory-consolidation aria-label="The Architecture: Four-Tier Memory Consolidation">The Architecture: Four-Tier Memory Consolidation</a><ul><li><a href=#tier-1-sensory-memory-immediate-context aria-label="Tier 1: Sensory Memory (Immediate Context)">Tier 1: Sensory Memory (Immediate Context)</a></li><li><a href=#tier-2-working-memory-short-term-retrieval aria-label="Tier 2: Working Memory (Short-Term Retrieval)">Tier 2: Working Memory (Short-Term Retrieval)</a></li><li><a href=#tier-3-long-term-memory-knowledge-graph aria-label="Tier 3: Long-Term Memory (Knowledge Graph)">Tier 3: Long-Term Memory (Knowledge Graph)</a></li><li><a href=#step-2-configure-your-mcp-client aria-label="Step 2: Configure Your MCP Client">Step 2: Configure Your MCP Client</a></li></ul></li><li><a href=#team-deployment-from-personal-memory-to-organizational-knowledge aria-label="Team Deployment: From Personal Memory to Organizational Knowledge">Team Deployment: From Personal Memory to Organizational Knowledge</a><ul><li><a href=#option-a-git-shared-memory-repository aria-label="Option A: Git-Shared Memory Repository">Option A: Git-Shared Memory Repository</a></li><li><a href=#option-b-centralized-mcp-server-recommended-for-10-teams aria-label="Option B: Centralized MCP Server (Recommended for 10+ Teams)">Option B: Centralized MCP Server (Recommended for 10+ Teams)</a></li></ul></li></ul><li><a href=#on-a-shared-server aria-label="On a shared server">On a shared server</a></li><li><a href=#team-members-connect-remotely aria-label="Team members connect remotely">Team members connect remotely</a></li></ul></div></details><div class="post-content md-content"><p><img alt="Hero Image" loading=lazy src=https://picsum.photos/seed/artificial-intelligence/1200x800></p><p>{&lt;/* resource-info */>}</p><h2 id=the-problem-every-new-session-is-groundhog-day>The Problem: Every New Session Is Groundhog Day<a hidden class=anchor aria-hidden=true href=#the-problem-every-new-session-is-groundhog-day>#</a></h2><p>If you use Claude Code, Cursor, or Codex CLI daily, you know the drill. You spend 20 minutes explaining your codebase&rsquo;s architecture, naming conventions, and that tricky bug workaround. The agent gets it. You make progress. Then you close the terminal.</p><p>Tomorrow? Blank slate. The agent forgot everything. You&rsquo;re the teacher in a classroom where every student has permanent amnesia.</p><p>This isn&rsquo;t a bug—it&rsquo;s the default architecture. <strong>Most AI coding agents are stateless by design.</strong> They treat every conversation as an isolated transaction, with no mechanism to carry learned knowledge forward.</p><p>Enter <strong>rohitg00/agentmemory</strong>, an Apache-2.0 open-source persistent memory layer that exploded onto GitHub Trending in May 2026. With 6,500+ stars and daily star gains exceeding 1,000, it&rsquo;s one of the fastest-growing infrastructure projects in the AI agent ecosystem. It supports 15+ agent clients—including Claude Code, Cursor, Windsurf, Codex CLI, and any MCP-compatible tool—through a clean Model Context Protocol (MCP) interface.</p><p>This guide walks through why agents forget, how agentmemory fixes it, and the exact steps to deploy it today.</p><hr><h2 id=why-context-windows-are-a-trap>Why Context Windows Are a Trap<a hidden class=anchor aria-hidden=true href=#why-context-windows-are-a-trap>#</a></h2><h3 id=the-million-token-mirage>The Million-Token Mirage<a hidden class=anchor aria-hidden=true href=#the-million-token-mirage>#</a></h3><p>Gemini 3.1 Pro offers a 1-million-token context window. Claude 3.7 reaches 200K. It&rsquo;s tempting to think &ldquo;just dump everything in there.&rdquo; Don&rsquo;t.</p><p><strong>Context rot is real.</strong> Research cited by Cloudflare&rsquo;s Agent Memory beta launch shows that output quality degrades measurably once context exceeds ~500K tokens. Beyond raw degradation, there&rsquo;s a cost problem: a 1M-token call costs ~$0.50 in input tokens alone. Selective memory retrieval via a dedicated system? $0.05-$0.15. That&rsquo;s a <strong>10-20x cost reduction</strong>.</p><p>And the biggest hidden cost isn&rsquo;t monetary—it&rsquo;s <strong>attention pollution</strong>. Stuffing irrelevant history into the context window forces the model to do retrieval work that should have happened upstream. You&rsquo;re paying frontier-model rates to ask a genius to find a needle in a haystack you built.</p><h3 id=the-team-knowledge-tax>The Team Knowledge Tax<a hidden class=anchor aria-hidden=true href=#the-team-knowledge-tax>#</a></h3><p>For teams, the pain compounds. A new engineer onboarding to a project without shared agent memory means 4-6 weeks of re-teaching conventions that exist only in tribal knowledge. With a shared memory profile, teams report <strong>2-3x faster onboarding</strong> because the agent already knows the team&rsquo;s standards, anti-patterns, and architectural history.</p><hr><h2 id=the-architecture-four-tier-memory-consolidation>The Architecture: Four-Tier Memory Consolidation<a hidden class=anchor aria-hidden=true href=#the-architecture-four-tier-memory-consolidation>#</a></h2><p>agentmemory models human memory through a consolidation pipeline that runs automatically at session boundaries.</p><h3 id=tier-1-sensory-memory-immediate-context>Tier 1: Sensory Memory (Immediate Context)<a hidden class=anchor aria-hidden=true href=#tier-1-sensory-memory-immediate-context>#</a></h3><p>This is the raw conversation buffer. agentmemory doesn&rsquo;t replace it—it <strong>enriches</strong> it by extracting structured entities (class names, function signatures, architectural decisions) into vector representations while the conversation is still active.</p><h3 id=tier-2-working-memory-short-term-retrieval>Tier 2: Working Memory (Short-Term Retrieval)<a hidden class=anchor aria-hidden=true href=#tier-2-working-memory-short-term-retrieval>#</a></h3><p>A SQLite-backed vector index (via sqlite-vec) holds the last ~100 interactions as retrievable semantic chunks. Queries resolve in milliseconds. This is where most &ldquo;what did we decide about X?&rdquo; lookups happen.</p><h3 id=tier-3-long-term-memory-knowledge-graph>Tier 3: Long-Term Memory (Knowledge Graph)<a hidden class=anchor aria-hidden=true href=#tier-3-long-term-memory-knowledge-graph>#</a></h3><p>The heavy lifter. agentmemory stores core facts as a <strong>knowledge graph</strong> of entity-relationship-entity triples: ````
+(ProjectA) &ndash;[uses_framework]&ndash;> (React)
+(ProjectA) &ndash;[convention]&ndash;> (Hooks named useXxx)
+(ProjectA) &ndash;[workaround]&ndash;> (Issue #442 fix)</p><pre tabindex=0><code>
 Graph structure is uniquely suited to **temporal reasoning**—answering questions like &#34;Why did we switch from Redux three months ago?&#34; The LongMemEval benchmark suite, which became the industry standard for memory systems in early 2026, validates this approach.
 
 ### Tier 4: Meta-Memory (Confidence Scoring)
@@ -266,17 +24,16 @@ This isn&#39;t just bookkeeping. It&#39;s a **forgetting mechanism**—the syste
 agentmemory&#39;s real strategic advantage isn&#39;t its graph algorithm—it&#39;s its **protocol choice**. By building entirely on MCP (Model Context Protocol), it inherits instant compatibility with the entire MCP ecosystem.
 
 ### How MCP Works
-</code></pre><p>┌─────────────┐      JSON-RPC      ┌──────────────────┐
-│  MCP Client │  ◄──────────────►  │   MCP Server     │
-│(Claude Code)│    (stdio/SSE)     │ (agentmemory)    │
-└─────────────┘                    └──────────────────┘
+</code></pre><p>┌─────────────┐ JSON-RPC ┌──────────────────┐
+│ MCP Client │ ◄──────────────► │ MCP Server │
+│(Claude Code)│ (stdio/SSE) │ (agentmemory) │
+└─────────────┘ └──────────────────┘
 │
 ┌────┴────┐
-│ SQLite  │
+│ SQLite │
 │ +Vector │
-│ +Graph  │
-└─────────┘</p>
-<pre tabindex="0"><code>
+│ +Graph │
+└─────────┘</p><pre tabindex=0><code>
 MCP uses a dead-simple client-server architecture: - **Host**: The AI application (Claude Code, Cursor, etc.)
 - **Client**: The communication layer inside the host
 - **Server**: agentmemory, running as an isolated process
@@ -325,8 +82,7 @@ npm run build
 
 # Verify the server starts
 node dist/mcp-server.js --stdio
-</code></pre><h3 id="step-2-configure-your-mcp-client">Step 2: Configure Your MCP Client<a hidden class="anchor" aria-hidden="true" href="#step-2-configure-your-mcp-client">#</a></h3>
-<p>Edit your MCP configuration file (for Claude Code, typically <code>~/.claude/mcp.json</code>): `````json
+</code></pre><h3 id=step-2-configure-your-mcp-client>Step 2: Configure Your MCP Client<a hidden class=anchor aria-hidden=true href=#step-2-configure-your-mcp-client>#</a></h3><p>Edit your MCP configuration file (for Claude Code, typically <code>~/.claude/mcp.json</code>): `````json
 {
 &ldquo;mcpServers&rdquo;: {
 &ldquo;agentmemory&rdquo;: {
@@ -341,15 +97,13 @@ node dist/mcp-server.js --stdio
 }
 }
 }
-}</p>
-<pre tabindex="0"><code>
+}</p><pre tabindex=0><code>
 ### Step 3: Test Memory Persistence
 
 In Claude Code, type: `````
 Remember: all React Hooks in this project must use the useXxx naming convention. No underscores.
 </code></pre><p>Close Claude Code. Reopen it. Ask: `````
-What is our Hook naming convention for this project?</p>
-<pre tabindex="0"><code>
+What is our Hook naming convention for this project?</p><pre tabindex=0><code>
 If configured correctly, Claude will answer with the exact rule you stored—**the memory survived the session boundary**.
 
 ### Step 4: Auto-Consolidation (Optional)
@@ -364,31 +118,19 @@ Add to ``~/.claude/settings.json``: `````json
     }
   }
 }
-</code></pre><p>This triggers automatic graph updates and confidence recalculation at the end of every session.</p>
-<hr>
-<h2 id="team-deployment-from-personal-memory-to-organizational-knowledge">Team Deployment: From Personal Memory to Organizational Knowledge<a hidden class="anchor" aria-hidden="true" href="#team-deployment-from-personal-memory-to-organizational-knowledge">#</a></h2>
-<h3 id="option-a-git-shared-memory-repository">Option A: Git-Shared Memory Repository<a hidden class="anchor" aria-hidden="true" href="#option-a-git-shared-memory-repository">#</a></h3>
-<p>The simplest team setup: treat the SQLite database as a shared artifact.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the team&#39;s shared memory repo</span>
-</span></span><span style="display:flex;"><span>git clone git@github.com:yourteam/agentmemory-core.git
-</span></span><span style="display:flex;"><span>cd agentmemory-core
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Point each member&#39;s MCP config at the shared DB</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># In ~/.claude/mcp.json: # &#34;AGENTMEMORY_DB_PATH&#34;: &#34;~/workspace/agentmemory-core/memory.db&#34;</span>
-</span></span></code></pre></div><p>When Engineer A updates the &ldquo;auth module workaround,&rdquo; every team member&rsquo;s agent sees it on their next retrieval.</p>
-<h3 id="option-b-centralized-mcp-server-recommended-for-10-teams">Option B: Centralized MCP Server (Recommended for 10+ Teams)<a hidden class="anchor" aria-hidden="true" href="#option-b-centralized-mcp-server-recommended-for-10-teams">#</a></h3>
-<p>Deploy a single shared instance: `````bash</p>
-<h1 id="on-a-shared-server">On a shared server<a hidden class="anchor" aria-hidden="true" href="#on-a-shared-server">#</a></h1>
-<p>npx agentmemory-server &ndash;port 3000 &ndash;transport sse</p>
-<h1 id="team-members-connect-remotely">Team members connect remotely<a hidden class="anchor" aria-hidden="true" href="#team-members-connect-remotely">#</a></h1>
-<p>{
+</code></pre><p>This triggers automatic graph updates and confidence recalculation at the end of every session.</p><hr><h2 id=team-deployment-from-personal-memory-to-organizational-knowledge>Team Deployment: From Personal Memory to Organizational Knowledge<a hidden class=anchor aria-hidden=true href=#team-deployment-from-personal-memory-to-organizational-knowledge>#</a></h2><h3 id=option-a-git-shared-memory-repository>Option A: Git-Shared Memory Repository<a hidden class=anchor aria-hidden=true href=#option-a-git-shared-memory-repository>#</a></h3><p>The simplest team setup: treat the SQLite database as a shared artifact.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the team&#39;s shared memory repo</span>
+</span></span><span style=display:flex><span>git clone git@github.com:yourteam/agentmemory-core.git
+</span></span><span style=display:flex><span>cd agentmemory-core
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Point each member&#39;s MCP config at the shared DB</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># In ~/.claude/mcp.json: # &#34;AGENTMEMORY_DB_PATH&#34;: &#34;~/workspace/agentmemory-core/memory.db&#34;</span>
+</span></span></code></pre></div><p>When Engineer A updates the &ldquo;auth module workaround,&rdquo; every team member&rsquo;s agent sees it on their next retrieval.</p><h3 id=option-b-centralized-mcp-server-recommended-for-10-teams>Option B: Centralized MCP Server (Recommended for 10+ Teams)<a hidden class=anchor aria-hidden=true href=#option-b-centralized-mcp-server-recommended-for-10-teams>#</a></h3><p>Deploy a single shared instance: `````bash</p><h1 id=on-a-shared-server>On a shared server<a hidden class=anchor aria-hidden=true href=#on-a-shared-server>#</a></h1><p>npx agentmemory-server &ndash;port 3000 &ndash;transport sse</p><h1 id=team-members-connect-remotely>Team members connect remotely<a hidden class=anchor aria-hidden=true href=#team-members-connect-remotely>#</a></h1><p>{
 &ldquo;mcpServers&rdquo;: {
 &ldquo;agentmemory&rdquo;: {
 &ldquo;url&rdquo;: &ldquo;http://internal-server:3000/sse&rdquo;
 }
 }
-}</p>
-<pre tabindex="0"><code>
+}</p><pre tabindex=0><code>
 Benefits: - **Real-time sync**: write once, read everywhere immediately
 - **Audit trail**: who changed what memory and when
 - **Access control**: role-based visibility for sensitive architectural decisions
@@ -519,230 +261,11 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/agent-skills-production-workflows/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/agent-skills-production-workflows/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

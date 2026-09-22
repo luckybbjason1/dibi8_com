@@ -2,14 +2,14 @@
 # This file helps AI crawlers understand and index your content
 
 # Site Overview
-name: DIBI8 - AI Tools Directory
-description: Comprehensive directory of open-source AI tools, coding agents, LLM frameworks, and developer utilities. Updated September 2026.
+name: Dibi8 - AI工具目录
+description: 全面的开源AI工具、编程代理、LLM框架和开发者实用工具目录。2026年9月更新。
 
 # Sitemap
-sitemap: https://dibi8.com/sitemap_index.xml
+sitemap: https://dibi8.com/sitemap.xml
 
 # Content Sections
-## AI Coding Agents
+## AI编程代理
 - Claude Code
 - Cursor
 - Codex CLI
@@ -18,7 +18,7 @@ sitemap: https://dibi8.com/sitemap_index.xml
 - Aider
 - Continue
 
-## LLM Frameworks
+## LLM框架
 - LangChain
 - LlamaIndex
 - LangGraph
@@ -26,24 +26,24 @@ sitemap: https://dibi8.com/sitemap_index.xml
 - AutoGen
 - Haystack
 
-## AI Tools Categories
-- Development Tools
-- Data Science
-- Security & Pentesting
-- Trading & Finance
-- Image Generation
-- Video Generation
-- Writing & Content
+## AI工具分类
+- 开发工具
+- 数据科学
+- 安全与渗透测试
+- 交易与金融
+- 图像生成
+- 视频生成
+- 写作与内容创作
 
-# Key Statistics
-- Total articles: 1800+
-- Languages: English, Chinese, Korean, Vietnamese
-- Updated: Daily
-- Focus: Open-source AI tools and developer utilities
+# 关键统计
+- 文章总数: 482+
+- 语言: 中文（主要）+ 14种翻译
+- 更新时间: 每日
+- 聚焦: 开源AI工具和开发者实用工具
 
-# Internal Linking Structure
-Each tool page links to:
-- Related tools in same category
-- Comparison articles
-- Getting started guides
-- Security best practices
+# 内部链接结构
+每个工具页面链接到:
+- 同类别的相关工具
+- 对比文章
+- 入门指南
+- 安全最佳实践

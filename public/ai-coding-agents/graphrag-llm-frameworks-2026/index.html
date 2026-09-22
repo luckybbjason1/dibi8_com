@@ -1,278 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “GraphRAG: Microsoft’” description: “Technical guide and comparison.” last_maintained: “2026-06-02” draft: false categories: [“llm-frameworks”] tags: [\"] aliases:\n/posts/graphrag-llm-frameworks-2026/ faqs: - q: ‘How do I install graphrag?’ a: ‘Install it from PyPI with a single command (Python 3.10–3.12): bash pip install graphrag ’ q: ‘What are the system requirements for running graphrag?’ a: ‘GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI\", “Azure OpenAI”, “or another supported provider) via an API key. It runs on any modern operating system that supports Python.’ q: ‘Can I contribute to the project?’ a: ‘Yes. The project is open-source under the MIT license”, “and contributions are welcome. See the CONTRIBUTING.md” file on GitHub for guidelines.’ q: ‘How do I report an issue or bug?’ a: ‘Use the GitHub Issues page for the repository. Include as much detail as possible — error messages, your configuration, and steps to reproduce the problem.’ q: ‘How is GraphRAG different from regular vector RAG?’ a: ‘Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).’— Introduction Classic Retrieval-Augmented Generation (RAG) retrieves a handful of text chunks by vector similarity and stuffs them into the prompt. That works for fact-lookup questions but struggles with “connect the dots” queries that span a whole corpus. Microsoft’s graphrag takes a different route: it uses an LLM to extract a knowledge graph of entities and relationships from your documents, builds community summaries over that graph, and then answers questions against that structure. With over 33,403 stars on GitHub and an MIT license, it is one of the most-watched RAG projects of the past two years. This guide walks through installing GraphRAG, running its real init / index / query workflow, and deciding honestly whether it fits your use case.\nWhat Is graphrag? GraphRAG is a modular, graph-based Retrieval-Augmented Generation pipeline. Instead of treating your documents as a flat pile of chunks, it uses a language model to read the text, pull out entities and the relationships between them, and assemble a knowledge graph. It then clusters that graph into communities and generates summaries for each community.\nThe project is maintained by Microsoft Research and is written in Python. It is distributed as a command-line tool and a Python library, configured through a settings.yaml file. The result is a system that can answer broad, corpus-wide questions (“What are the main themes across these documents?”) that ordinary vector RAG tends to miss.\nHow graphrag Works GraphRAG splits the problem into an offline indexing phase and an online query phase: 1. Indexing: GraphRAG chunks your source documents, then prompts an LLM to extract entities, relationships, and claims from each chunk. These are merged into a single knowledge graph. The graph is partitioned into communities (using the Leiden algorithm), and the LLM writes a summary report for each community.\nQuerying — Global Search: For broad questions about the whole corpus, GraphRAG uses the community summaries in a map-reduce fashion: it reasons over many community reports, then combines the partial answers into a final response.\nQuerying — Local Search: For questions centered on a specific entity, GraphRAG retrieves that entity’s neighbors, relationships, and the relevant source text, then generates a focused answer.\nThis two-mode design is what separates GraphRAG from a plain vector store: global search gives you the big picture, local search gives you the detail.\nInstallation \u0026 Setup To run graphrag as a scheduled production job you want an always-on box — spin one up on DigitalOcean (free trial credit for new accounts), or HTStack for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).\nGraphRAG requires Python 3.10–3.12. The recommended way to install it is via pip: ````bash pip install graphrag\nOnce installed, you initialize a workspace. This creates the configuration files and folder structure GraphRAG expects: `````bash mkdir -p ./ragtest/input # put your .txt or .csv documents into ./ragtest/input python -m graphrag init --root ./ragtest The init command generates a settings.yaml and a .env file in the project root. Open .env and set your model API key, for example: `````bash GRAPHRAG_API_KEY=\n### Common Error and Fix A frequent first-run problem is a missing or empty API key. If indexing fails immediately with an authentication error, confirm that ``GRAPHRAG_API_KEY`` is set in ``./ragtest/.env`` and that the model names in ``settings.yaml`` match models your key can actually access. Switching the configured model to one available on your account usually resolves it. ## Core Usage After ``init``, the typical workflow is: drop documents in the input folder, build the index, then query it. ### Step 1: Build the Index Run the indexing pipeline over your workspace. This is the expensive step — it makes many LLM calls to extract the graph: `````bash python -m graphrag index --root ./ragtest When it finishes, GraphRAG writes the entity graph, community reports, and embeddings as Parquet files under ./ragtest/output.\nStep 2: Global Search Use global search for broad, corpus-wide questions that require synthesizing across many documents: `````bash python -m graphrag query –root ./ragtest –method global –query “What are the major themes in these documents?”\n### Step 3: Local Search Use local search when your question centers on a specific entity or a narrow part of the corpus: `````bash python -m graphrag query \\ --root ./ragtest \\ --method local \\ --query \"What is the relationship between Entity A and Entity B?\" These three commands — init, index, and query — cover the core GraphRAG loop. For configuration options, prompt tuning, and advanced settings, see the official documentation: https://microsoft.github.io/graphrag/\nIntegration Because indexing produces plain Parquet outputs (entities, relationships, community reports, and text-unit embeddings), GraphRAG integrates cleanly with the rest of the Python data ecosystem.\nWorking with the Output You can load the generated graph and reports directly with pandas for inspection, custom retrieval, or downstream analytics: `````python import pandas as pd\nentities = pd.read_parquet(\"./ragtest/output/entities.parquet\") relationships = pd.read_parquet(\"./ragtest/output/relationships.parquet\") community_reports = pd.read_parquet(\"./ragtest/output/community_reports.parquet\")\nprint(entities.head()) print(community_reports[[“title”, “summary”]].head())\n### Customizing with settings.yaml GraphRAG's behavior is controlled through the ``settings.yaml`` file created by ``init``. There you choose the chat and embedding models, set chunk size, tune concurrency, and point at your input data. A simplified excerpt looks like this: `````yaml models: default_chat_model: type: openai_chat model: gpt-4o-mini default_embedding_model: type: openai_embedding model: text-embedding-3-small chunks: size: 1200 overlap: 100 input: type: file file_type: text base_dir: \"input\" Editing this file is how you adapt GraphRAG to a different model provider, document type, or chunking strategy — no code changes required.\nReal-World Use GraphRAG, developed by Microsoft Research under the MIT license, has been adopted for knowledge-base, research, and analytics workloads where questions span an entire corpus rather than a single document.\nWhere It Shines The graph-plus-community-summary approach is most valuable when you need “sensemaking” over a large body of text — for example, summarizing themes across a set of reports, tracing how entities relate across many documents, or answering questions whose evidence is scattered across the corpus. In those scenarios, GraphRAG’s global search tends to produce more comprehensive answers than a baseline vector RAG that only sees a few top-k chunks.\nCost Awareness Indexing is LLM-intensive: GraphRAG calls the model repeatedly to extract entities and relationships and to write community reports, so the cost scales with corpus size and the model you choose. Many teams start with a smaller, cheaper chat model (such as gpt-4o-mini) to control indexing cost, then evaluate whether a stronger model is worth it for their data.\nComparison with Alternatives See also our related open-source tools coverage.\nGraphRAG, LangChain, and Haystack solve overlapping but different problems. GraphRAG is a focused, opinionated graph-RAG pipeline; LangChain and Haystack are general frameworks for building LLM applications and RAG pipelines of many kinds. The table below is a rough orientation, not a head-to-head benchmark — star counts and issue counts move over time, so treat them as approximate.\n| Feature | GraphRAG | LangChain | Haystack | | |\n|\n|\n| | Primary focus | Graph-based RAG pipeline | General LLM app framework | RAG / search framework | | Language | Python | Python | Python | | License | MIT | MIT | Apache-2.0 | | Maintainer | Microsoft | LangChain, Inc. | deepset | | Knowledge graph extraction | Built-in | Via integrations | Via integrations | | Global (corpus-wide) querying | Yes | Not built-in | Not built-in | | Out-of-the-box breadth | Narrow (graph RAG only) | Very broad | Broad | | Documentation | Comprehensive | Comprehensive | Comprehensive |\nWhy Choose GraphRAG? Built for corpus-wide questions: Its global search and community summaries are designed for “what are the themes across everything?” queries that plain vector RAG handles poorly. Graph extraction included: Entity and relationship extraction is part of the pipeline, not something you assemble yourself. Backed by Microsoft Research: Active development, solid documentation, and a steady stream of research-driven improvements. Considerations If you simply need top-k retrieval for short factual answers, a general framework like LangChain or Haystack with a vector store is lighter-weight and cheaper to run. GraphRAG earns its extra indexing cost specifically when the structure of the corpus matters to the answer.\nLimitations \u0026 Honest Assessment GraphRAG is a strong tool for the right job, but it has real trade-offs: 1. Indexing is expensive: Building the graph makes many LLM calls, so both cost and time grow with corpus size. This is the single biggest factor to budget for. 2. Configuration takes effort: Getting good results often requires tuning chunk size, prompts, and model choices in settings.yaml. It is not a one-line drop-in. 3. Overkill for simple lookups: For narrow Q\u0026A where the answer lives in one chunk, classic vector RAG is faster and far cheaper. 4. Operational overhead: You manage an indexing pipeline and its Parquet outputs, plus periodic re-indexing as your documents change. 5. Quality depends on the model: Entity and relationship extraction quality follows the strength of the chat model you configure, which ties answer quality directly to your model budget.\nThese trade-offs are the key things to weigh when deciding whether GraphRAG fits your specific use case.\nConclusion GraphRAG is a well-maintained, modular graph-based RAG system from Microsoft Research, with over 33,403 stars on GitHub, written in Python and licensed under MIT. Its strength is answering questions whose evidence is spread across an entire corpus — something plain vector RAG handles poorly. The trade-off is indexing cost and configuration effort. A good next step is to run ````python -m graphrag init``` on a small document set and compare a global-search answer against your current RAG setup.\nJoin the dibi8 English Telegram group for open-source AI tool drops. Read next: related guides on dibi8. Sources \u0026 Further Reading: - GitHub repository: https://github.com/microsoft/graphrag\nOfficial docs / README: https://github.com/microsoft/graphrag#readme Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nrelated open-source tools -\u003e ai-tools-directory related guides on dibi8 -\u003e ai-coding-agent-landscape-2026-skills-mcp-opensource\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “GraphRAG: Microsoft’’s Graph-Based RAG for Better LLM Answers (33K Stars) — Practical 2026 Guide”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/graphrag-llm-frameworks-2026\" } } Frequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
-  "wordCount" : "1905",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
-            <li>
-                <a href="#what-is-graphrag" aria-label="What Is graphrag?">What Is graphrag?</a></li>
-            <li>
-                <a href="#how-graphrag-works" aria-label="How graphrag Works">How graphrag Works</a></li>
-            <li>
-                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
-                    
-            <li>
-                <a href="#step-2-global-search" aria-label="Step 2: Global Search">Step 2: Global Search</a></li></ul>
-            </li>
-            <li>
-                <a href="#integration" aria-label="Integration">Integration</a><ul>
-                    
-            <li>
-                <a href="#working-with-the-output" aria-label="Working with the Output">Working with the Output</a></li></ul>
-            </li>
-            <li>
-                <a href="#real-world-use" aria-label="Real-World Use">Real-World Use</a><ul>
-                    
-            <li>
-                <a href="#where-it-shines" aria-label="Where It Shines">Where It Shines</a></li>
-            <li>
-                <a href="#cost-awareness" aria-label="Cost Awareness">Cost Awareness</a></li></ul>
-            </li>
-            <li>
-                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul>
-                    
-            <li>
-                <a href="#why-choose-graphrag" aria-label="Why Choose GraphRAG?">Why Choose GraphRAG?</a></li>
-            <li>
-                <a href="#considerations" aria-label="Considerations">Considerations</a></li></ul>
-            </li>
-            <li>
-                <a href="#limitations--honest-assessment" aria-label="Limitations &amp; Honest Assessment">Limitations &amp; Honest Assessment</a></li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;GraphRAG: Microsoft&rsquo;&rdquo;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “GraphRAG: Microsoft’” description: “Technical guide and comparison.” last_maintained: “2026-06-02” draft: false categories: [“llm-frameworks”] tags: [\"] aliases:\n/posts/graphrag-llm-frameworks-2026/ faqs: - q: ‘How do I install graphrag?’ a: ‘Install it from PyPI with a single command (Python 3.10–3.12): bash pip install graphrag ’ q: ‘What are the system requirements for running graphrag?’ a: ‘GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI\", “Azure OpenAI”, “or another supported provider) via an API key. It runs on any modern operating system that supports Python.’ q: ‘Can I contribute to the project?’ a: ‘Yes. The project is open-source under the MIT license”, “and contributions are welcome. See the CONTRIBUTING.md” file on GitHub for guidelines.’ q: ‘How do I report an issue or bug?’ a: ‘Use the GitHub Issues page for the repository. Include as much detail as possible — error messages, your configuration, and steps to reproduce the problem.’ q: ‘How is GraphRAG different from regular vector RAG?’ a: ‘Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).’— Introduction Classic Retrieval-Augmented Generation (RAG) retrieves a handful of text chunks by vector similarity and stuffs them into the prompt. That works for fact-lookup questions but struggles with “connect the dots” queries that span a whole corpus. Microsoft’s graphrag takes a different route: it uses an LLM to extract a knowledge graph of entities and relationships from your documents, builds community summaries over that graph, and then answers questions against that structure. With over 33,403 stars on GitHub and an MIT license, it is one of the most-watched RAG projects of the past two years. This guide walks through installing GraphRAG, running its real init / index / query workflow, and deciding honestly whether it fits your use case.\nWhat Is graphrag? GraphRAG is a modular, graph-based Retrieval-Augmented Generation pipeline. Instead of treating your documents as a flat pile of chunks, it uses a language model to read the text, pull out entities and the relationships between them, and assemble a knowledge graph. It then clusters that graph into communities and generates summaries for each community.\nThe project is maintained by Microsoft Research and is written in Python. It is distributed as a command-line tool and a Python library, configured through a settings.yaml file. The result is a system that can answer broad, corpus-wide questions (“What are the main themes across these documents?”) that ordinary vector RAG tends to miss.\nHow graphrag Works GraphRAG splits the problem into an offline indexing phase and an online query phase: 1. Indexing: GraphRAG chunks your source documents, then prompts an LLM to extract entities, relationships, and claims from each chunk. These are merged into a single knowledge graph. The graph is partitioned into communities (using the Leiden algorithm), and the LLM writes a summary report for each community.\nQuerying — Global Search: For broad questions about the whole corpus, GraphRAG uses the community summaries in a map-reduce fashion: it reasons over many community reports, then combines the partial answers into a final response.\nQuerying — Local Search: For questions centered on a specific entity, GraphRAG retrieves that entity’s neighbors, relationships, and the relevant source text, then generates a focused answer.\nThis two-mode design is what separates GraphRAG from a plain vector store: global search gives you the big picture, local search gives you the detail.\nInstallation \u0026 Setup To run graphrag as a scheduled production job you want an always-on box — spin one up on DigitalOcean (free trial credit for new accounts), or HTStack for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).\nGraphRAG requires Python 3.10–3.12. The recommended way to install it is via pip: ````bash pip install graphrag\nOnce installed, you initialize a workspace. This creates the configuration files and folder structure GraphRAG expects: `````bash mkdir -p ./ragtest/input # put your .txt or .csv documents into ./ragtest/input python -m graphrag init --root ./ragtest The init command generates a settings.yaml and a .env file in the project root. Open .env and set your model API key, for example: `````bash GRAPHRAG_API_KEY=\n### Common Error and Fix A frequent first-run problem is a missing or empty API key. If indexing fails immediately with an authentication error, confirm that ``GRAPHRAG_API_KEY`` is set in ``./ragtest/.env`` and that the model names in ``settings.yaml`` match models your key can actually access. Switching the configured model to one available on your account usually resolves it. ## Core Usage After ``init``, the typical workflow is: drop documents in the input folder, build the index, then query it. ### Step 1: Build the Index Run the indexing pipeline over your workspace. This is the expensive step — it makes many LLM calls to extract the graph: `````bash python -m graphrag index --root ./ragtest When it finishes, GraphRAG writes the entity graph, community reports, and embeddings as Parquet files under ./ragtest/output.\nStep 2: Global Search Use global search for broad, corpus-wide questions that require synthesizing across many documents: `````bash python -m graphrag query –root ./ragtest –method global –query “What are the major themes in these documents?”\n### Step 3: Local Search Use local search when your question centers on a specific entity or a narrow part of the corpus: `````bash python -m graphrag query \\ --root ./ragtest \\ --method local \\ --query \"What is the relationship between Entity A and Entity B?\" These three commands — init, index, and query — cover the core GraphRAG loop. For configuration options, prompt tuning, and advanced settings, see the official documentation: https://microsoft.github.io/graphrag/\nIntegration Because indexing produces plain Parquet outputs (entities, relationships, community reports, and text-unit embeddings), GraphRAG integrates cleanly with the rest of the Python data ecosystem.\nWorking with the Output You can load the generated graph and reports directly with pandas for inspection, custom retrieval, or downstream analytics: `````python import pandas as pd\nentities = pd.read_parquet(\"./ragtest/output/entities.parquet\") relationships = pd.read_parquet(\"./ragtest/output/relationships.parquet\") community_reports = pd.read_parquet(\"./ragtest/output/community_reports.parquet\")\nprint(entities.head()) print(community_reports[[“title”, “summary”]].head())\n### Customizing with settings.yaml GraphRAG's behavior is controlled through the ``settings.yaml`` file created by ``init``. There you choose the chat and embedding models, set chunk size, tune concurrency, and point at your input data. A simplified excerpt looks like this: `````yaml models: default_chat_model: type: openai_chat model: gpt-4o-mini default_embedding_model: type: openai_embedding model: text-embedding-3-small chunks: size: 1200 overlap: 100 input: type: file file_type: text base_dir: \"input\" Editing this file is how you adapt GraphRAG to a different model provider, document type, or chunking strategy — no code changes required.\nReal-World Use GraphRAG, developed by Microsoft Research under the MIT license, has been adopted for knowledge-base, research, and analytics workloads where questions span an entire corpus rather than a single document.\nWhere It Shines The graph-plus-community-summary approach is most valuable when you need “sensemaking” over a large body of text — for example, summarizing themes across a set of reports, tracing how entities relate across many documents, or answering questions whose evidence is scattered across the corpus. In those scenarios, GraphRAG’s global search tends to produce more comprehensive answers than a baseline vector RAG that only sees a few top-k chunks.\nCost Awareness Indexing is LLM-intensive: GraphRAG calls the model repeatedly to extract entities and relationships and to write community reports, so the cost scales with corpus size and the model you choose. Many teams start with a smaller, cheaper chat model (such as gpt-4o-mini) to control indexing cost, then evaluate whether a stronger model is worth it for their data.\nComparison with Alternatives See also our related open-source tools coverage.\nGraphRAG, LangChain, and Haystack solve overlapping but different problems. GraphRAG is a focused, opinionated graph-RAG pipeline; LangChain and Haystack are general frameworks for building LLM applications and RAG pipelines of many kinds. The table below is a rough orientation, not a head-to-head benchmark — star counts and issue counts move over time, so treat them as approximate.\n| Feature | GraphRAG | LangChain | Haystack | | |\n|\n|\n| | Primary focus | Graph-based RAG pipeline | General LLM app framework | RAG / search framework | | Language | Python | Python | Python | | License | MIT | MIT | Apache-2.0 | | Maintainer | Microsoft | LangChain, Inc. | deepset | | Knowledge graph extraction | Built-in | Via integrations | Via integrations | | Global (corpus-wide) querying | Yes | Not built-in | Not built-in | | Out-of-the-box breadth | Narrow (graph RAG only) | Very broad | Broad | | Documentation | Comprehensive | Comprehensive | Comprehensive |\nWhy Choose GraphRAG? Built for corpus-wide questions: Its global search and community summaries are designed for “what are the themes across everything?” queries that plain vector RAG handles poorly. Graph extraction included: Entity and relationship extraction is part of the pipeline, not something you assemble yourself. Backed by Microsoft Research: Active development, solid documentation, and a steady stream of research-driven improvements. Considerations If you simply need top-k retrieval for short factual answers, a general framework like LangChain or Haystack with a vector store is lighter-weight and cheaper to run. GraphRAG earns its extra indexing cost specifically when the structure of the corpus matters to the answer.\nLimitations \u0026 Honest Assessment GraphRAG is a strong tool for the right job, but it has real trade-offs: 1. Indexing is expensive: Building the graph makes many LLM calls, so both cost and time grow with corpus size. This is the single biggest factor to budget for. 2. Configuration takes effort: Getting good results often requires tuning chunk size, prompts, and model choices in settings.yaml. It is not a one-line drop-in. 3. Overkill for simple lookups: For narrow Q\u0026A where the answer lives in one chunk, classic vector RAG is faster and far cheaper. 4. Operational overhead: You manage an indexing pipeline and its Parquet outputs, plus periodic re-indexing as your documents change. 5. Quality depends on the model: Entity and relationship extraction quality follows the strength of the chat model you configure, which ties answer quality directly to your model budget.\nThese trade-offs are the key things to weigh when deciding whether GraphRAG fits your specific use case.\nConclusion GraphRAG is a well-maintained, modular graph-based RAG system from Microsoft Research, with over 33,403 stars on GitHub, written in Python and licensed under MIT. Its strength is answering questions whose evidence is spread across an entire corpus — something plain vector RAG handles poorly. The trade-off is indexing cost and configuration effort. A good next step is to run ````python -m graphrag init``` on a small document set and compare a global-search answer against your current RAG setup.\nJoin the dibi8 English Telegram group for open-source AI tool drops. Read next: related guides on dibi8. Sources \u0026 Further Reading: - GitHub repository: https://github.com/microsoft/graphrag\nOfficial docs / README: https://github.com/microsoft/graphrag#readme Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nrelated open-source tools -\u003e ai-tools-directory related guides on dibi8 -\u003e ai-coding-agent-landscape-2026-skills-mcp-opensource\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “GraphRAG: Microsoft’’s Graph-Based RAG for Better LLM Answers (33K Stars) — Practical 2026 Guide”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/graphrag-llm-frameworks-2026\" } } Frequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n","wordCount":"1905","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/graphrag-llm-frameworks-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#introduction aria-label=Introduction>Introduction</a></li><li><a href=#what-is-graphrag aria-label="What Is graphrag?">What Is graphrag?</a></li><li><a href=#how-graphrag-works aria-label="How graphrag Works">How graphrag Works</a></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a><ul><li><a href=#step-2-global-search aria-label="Step 2: Global Search">Step 2: Global Search</a></li></ul></li><li><a href=#integration aria-label=Integration>Integration</a><ul><li><a href=#working-with-the-output aria-label="Working with the Output">Working with the Output</a></li></ul></li><li><a href=#real-world-use aria-label="Real-World Use">Real-World Use</a><ul><li><a href=#where-it-shines aria-label="Where It Shines">Where It Shines</a></li><li><a href=#cost-awareness aria-label="Cost Awareness">Cost Awareness</a></li></ul></li><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul><li><a href=#why-choose-graphrag aria-label="Why Choose GraphRAG?">Why Choose GraphRAG?</a></li><li><a href=#considerations aria-label=Considerations>Considerations</a></li></ul></li><li><a href=#limitations--honest-assessment aria-label="Limitations & Honest Assessment">Limitations & Honest Assessment</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;GraphRAG: Microsoft&rsquo;&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 last_maintained: &ldquo;2026-06-02&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
-tags: [&quot;]
-aliases:</p>
-<ul>
-<li>/posts/graphrag-llm-frameworks-2026/
+tags: ["]
+aliases:</p><ul><li>/posts/graphrag-llm-frameworks-2026/
 faqs: - q: &lsquo;How do I install graphrag?&rsquo;
-a: &lsquo;Install it from PyPI with a single command (Python 3.10–3.12): <code>bash pip install graphrag </code>&rsquo;</li>
-<li>q: &lsquo;What are the system requirements for running graphrag?&rsquo;
-a: &lsquo;GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI&quot;, &ldquo;Azure OpenAI&rdquo;, &ldquo;or another supported provider) via an API key. It runs on any modern operating system that supports Python.&rsquo;</li>
-<li>q: &lsquo;Can I contribute to the project?&rsquo;
-a: &lsquo;Yes. The project is open-source under the MIT license&rdquo;, &ldquo;and contributions are welcome. See the <a href="https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md">CONTRIBUTING.md&rdquo;</a> file on GitHub for guidelines.&rsquo;</li>
-<li>q: &lsquo;How do I report an issue or bug?&rsquo;
-a: &lsquo;Use the GitHub Issues page for the repository. Include as much detail as possible — error messages, your configuration, and steps to reproduce the problem.&rsquo;</li>
-<li>q: &lsquo;How is GraphRAG different from regular vector RAG?&rsquo;
-a: &lsquo;Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).&rsquo;&mdash;</li>
-</ul>
-<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
-<p>Classic Retrieval-Augmented Generation (RAG) retrieves a handful of text chunks by vector similarity and stuffs them into the prompt. That works for fact-lookup questions but struggles with &ldquo;connect the dots&rdquo; queries that span a whole corpus. Microsoft&rsquo;s <code>graphrag</code> takes a different route: it uses an LLM to extract a <strong>knowledge graph</strong> of entities and relationships from your documents, builds community summaries over that graph, and then answers questions against that structure. With over 33,403 stars on GitHub and an MIT license, it is one of the most-watched RAG projects of the past two years. This guide walks through installing GraphRAG, running its real <code>init</code> / <code>index</code> / <code>query</code> workflow, and deciding honestly whether it fits your use case.</p>
-<h2 id="what-is-graphrag">What Is graphrag?<a hidden class="anchor" aria-hidden="true" href="#what-is-graphrag">#</a></h2>
-<p>GraphRAG is a modular, graph-based Retrieval-Augmented Generation pipeline. Instead of treating your documents as a flat pile of chunks, it uses a language model to read the text, pull out entities and the relationships between them, and assemble a knowledge graph. It then clusters that graph into communities and generates summaries for each community.</p>
-<p>The project is maintained by Microsoft Research and is written in Python. It is distributed as a command-line tool and a Python library, configured through a <code>settings.yaml</code> file. The result is a system that can answer broad, corpus-wide questions (&ldquo;What are the main themes across these documents?&rdquo;) that ordinary vector RAG tends to miss.</p>
-<h2 id="how-graphrag-works">How graphrag Works<a hidden class="anchor" aria-hidden="true" href="#how-graphrag-works">#</a></h2>
-<p>GraphRAG splits the problem into an offline indexing phase and an online query phase: 1. <strong>Indexing</strong>: GraphRAG chunks your source documents, then prompts an LLM to extract entities, relationships, and claims from each chunk. These are merged into a single knowledge graph. The graph is partitioned into communities (using the Leiden algorithm), and the LLM writes a summary report for each community.</p>
-<ol start="2">
-<li>
-<p><strong>Querying — Global Search</strong>: For broad questions about the whole corpus, GraphRAG uses the community summaries in a map-reduce fashion: it reasons over many community reports, then combines the partial answers into a final response.</p>
-</li>
-<li>
-<p><strong>Querying — Local Search</strong>: For questions centered on a specific entity, GraphRAG retrieves that entity&rsquo;s neighbors, relationships, and the relevant source text, then generates a focused answer.</p>
-</li>
-</ol>
-<p>This two-mode design is what separates GraphRAG from a plain vector store: global search gives you the big picture, local search gives you the detail.</p>
-<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<p>To run graphrag as a scheduled production job you want an always-on box — spin one up on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> (free trial credit for new accounts), or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).</p>
-<p>GraphRAG requires Python 3.10–3.12. The recommended way to install it is via pip: ````bash
-pip install graphrag</p>
-<pre tabindex="0"><code>
+a: &lsquo;Install it from PyPI with a single command (Python 3.10–3.12): <code>bash pip install graphrag </code>&rsquo;</li><li>q: &lsquo;What are the system requirements for running graphrag?&rsquo;
+a: &lsquo;GraphRAG needs Python 3.10–3.12 and access to a language model (OpenAI", &ldquo;Azure OpenAI&rdquo;, &ldquo;or another supported provider) via an API key. It runs on any modern operating system that supports Python.&rsquo;</li><li>q: &lsquo;Can I contribute to the project?&rsquo;
+a: &lsquo;Yes. The project is open-source under the MIT license&rdquo;, &ldquo;and contributions are welcome. See the <a href=https://github.com/microsoft/graphrag/blob/main/CONTRIBUTING.md>CONTRIBUTING.md&rdquo;</a> file on GitHub for guidelines.&rsquo;</li><li>q: &lsquo;How do I report an issue or bug?&rsquo;
+a: &lsquo;Use the GitHub Issues page for the repository. Include as much detail as possible — error messages, your configuration, and steps to reproduce the problem.&rsquo;</li><li>q: &lsquo;How is GraphRAG different from regular vector RAG?&rsquo;
+a: &lsquo;Regular RAG retrieves a few similar chunks and answers from them. GraphRAG additionally builds a knowledge graph and community summaries from your documents, which lets it answer broad, corpus-wide questions (global search) as well as entity-focused ones (local search).&rsquo;&mdash;</li></ul><h2 id=introduction>Introduction<a hidden class=anchor aria-hidden=true href=#introduction>#</a></h2><p>Classic Retrieval-Augmented Generation (RAG) retrieves a handful of text chunks by vector similarity and stuffs them into the prompt. That works for fact-lookup questions but struggles with &ldquo;connect the dots&rdquo; queries that span a whole corpus. Microsoft&rsquo;s <code>graphrag</code> takes a different route: it uses an LLM to extract a <strong>knowledge graph</strong> of entities and relationships from your documents, builds community summaries over that graph, and then answers questions against that structure. With over 33,403 stars on GitHub and an MIT license, it is one of the most-watched RAG projects of the past two years. This guide walks through installing GraphRAG, running its real <code>init</code> / <code>index</code> / <code>query</code> workflow, and deciding honestly whether it fits your use case.</p><h2 id=what-is-graphrag>What Is graphrag?<a hidden class=anchor aria-hidden=true href=#what-is-graphrag>#</a></h2><p>GraphRAG is a modular, graph-based Retrieval-Augmented Generation pipeline. Instead of treating your documents as a flat pile of chunks, it uses a language model to read the text, pull out entities and the relationships between them, and assemble a knowledge graph. It then clusters that graph into communities and generates summaries for each community.</p><p>The project is maintained by Microsoft Research and is written in Python. It is distributed as a command-line tool and a Python library, configured through a <code>settings.yaml</code> file. The result is a system that can answer broad, corpus-wide questions (&ldquo;What are the main themes across these documents?&rdquo;) that ordinary vector RAG tends to miss.</p><h2 id=how-graphrag-works>How graphrag Works<a hidden class=anchor aria-hidden=true href=#how-graphrag-works>#</a></h2><p>GraphRAG splits the problem into an offline indexing phase and an online query phase: 1. <strong>Indexing</strong>: GraphRAG chunks your source documents, then prompts an LLM to extract entities, relationships, and claims from each chunk. These are merged into a single knowledge graph. The graph is partitioned into communities (using the Leiden algorithm), and the LLM writes a summary report for each community.</p><ol start=2><li><p><strong>Querying — Global Search</strong>: For broad questions about the whole corpus, GraphRAG uses the community summaries in a map-reduce fashion: it reasons over many community reports, then combines the partial answers into a final response.</p></li><li><p><strong>Querying — Local Search</strong>: For questions centered on a specific entity, GraphRAG retrieves that entity&rsquo;s neighbors, relationships, and the relevant source text, then generates a focused answer.</p></li></ol><p>This two-mode design is what separates GraphRAG from a plain vector store: global search gives you the big picture, local search gives you the detail.</p><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><p>To run graphrag as a scheduled production job you want an always-on box — spin one up on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> (free trial credit for new accounts), or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).</p><p>GraphRAG requires Python 3.10–3.12. The recommended way to install it is via pip: ````bash
+pip install graphrag</p><pre tabindex=0><code>
 Once installed, you initialize a workspace. This creates the configuration files and folder structure GraphRAG expects: `````bash
 mkdir -p ./ragtest/input
 # put your .txt or .csv documents into ./ragtest/input
 python -m graphrag init --root ./ragtest
 </code></pre><p>The <code>init</code> command generates a <code>settings.yaml</code> and a <code>.env</code> file in the project root. Open <code>.env</code> and set your model API key, for example: `````bash
-GRAPHRAG_API_KEY=<your-openai-or-azure-key></p>
-<pre tabindex="0"><code>
+GRAPHRAG_API_KEY=<your-openai-or-azure-key></p><pre tabindex=0><code>
 ### Common Error and Fix
 
 A frequent first-run problem is a missing or empty API key. If indexing fails immediately with an authentication error, confirm that ``GRAPHRAG_API_KEY`` is set in ``./ragtest/.env`` and that the model names in ``settings.yaml`` match models your key can actually access. Switching the configured model to one available on your account usually resolves it.
@@ -285,14 +35,8 @@ After ``init``, the typical workflow is: drop documents in the input folder, bui
 
 Run the indexing pipeline over your workspace. This is the expensive step — it makes many LLM calls to extract the graph: `````bash
 python -m graphrag index --root ./ragtest
-</code></pre><p>When it finishes, GraphRAG writes the entity graph, community reports, and embeddings as Parquet files under <code>./ragtest/output</code>.</p>
-<h3 id="step-2-global-search">Step 2: Global Search<a hidden class="anchor" aria-hidden="true" href="#step-2-global-search">#</a></h3>
-<p>Use global search for broad, corpus-wide questions that require synthesizing across many documents: `````bash
-python -m graphrag query <br>
-&ndash;root ./ragtest <br>
-&ndash;method global <br>
-&ndash;query &ldquo;What are the major themes in these documents?&rdquo;</p>
-<pre tabindex="0"><code>
+</code></pre><p>When it finishes, GraphRAG writes the entity graph, community reports, and embeddings as Parquet files under <code>./ragtest/output</code>.</p><h3 id=step-2-global-search>Step 2: Global Search<a hidden class=anchor aria-hidden=true href=#step-2-global-search>#</a></h3><p>Use global search for broad, corpus-wide questions that require synthesizing across many documents: `````bash
+python -m graphrag query<br>&ndash;root ./ragtest<br>&ndash;method global<br>&ndash;query &ldquo;What are the major themes in these documents?&rdquo;</p><pre tabindex=0><code>
 ### Step 3: Local Search
 
 Use local search when your question centers on a specific entity or a narrow part of the corpus: `````bash
@@ -300,18 +44,11 @@ python -m graphrag query \
   --root ./ragtest \
   --method local \
   --query &#34;What is the relationship between Entity A and Entity B?&#34;
-</code></pre><p>These three commands — <code>init</code>, <code>index</code>, and <code>query</code> — cover the core GraphRAG loop. For configuration options, prompt tuning, and advanced settings, see the official documentation: <a href="https://microsoft.github.io/graphrag/">https://microsoft.github.io/graphrag/</a></p>
-<h2 id="integration">Integration<a hidden class="anchor" aria-hidden="true" href="#integration">#</a></h2>
-<p>Because indexing produces plain Parquet outputs (entities, relationships, community reports, and text-unit embeddings), GraphRAG integrates cleanly with the rest of the Python data ecosystem.</p>
-<h3 id="working-with-the-output">Working with the Output<a hidden class="anchor" aria-hidden="true" href="#working-with-the-output">#</a></h3>
-<p>You can load the generated graph and reports directly with pandas for inspection, custom retrieval, or downstream analytics: `````python
-import pandas as pd</p>
-<p>entities = pd.read_parquet(&quot;./ragtest/output/entities.parquet&quot;)
-relationships = pd.read_parquet(&quot;./ragtest/output/relationships.parquet&quot;)
-community_reports = pd.read_parquet(&quot;./ragtest/output/community_reports.parquet&quot;)</p>
-<p>print(entities.head())
-print(community_reports[[&ldquo;title&rdquo;, &ldquo;summary&rdquo;]].head())</p>
-<pre tabindex="0"><code>
+</code></pre><p>These three commands — <code>init</code>, <code>index</code>, and <code>query</code> — cover the core GraphRAG loop. For configuration options, prompt tuning, and advanced settings, see the official documentation: <a href=https://microsoft.github.io/graphrag/>https://microsoft.github.io/graphrag/</a></p><h2 id=integration>Integration<a hidden class=anchor aria-hidden=true href=#integration>#</a></h2><p>Because indexing produces plain Parquet outputs (entities, relationships, community reports, and text-unit embeddings), GraphRAG integrates cleanly with the rest of the Python data ecosystem.</p><h3 id=working-with-the-output>Working with the Output<a hidden class=anchor aria-hidden=true href=#working-with-the-output>#</a></h3><p>You can load the generated graph and reports directly with pandas for inspection, custom retrieval, or downstream analytics: `````python
+import pandas as pd</p><p>entities = pd.read_parquet("./ragtest/output/entities.parquet")
+relationships = pd.read_parquet("./ragtest/output/relationships.parquet")
+community_reports = pd.read_parquet("./ragtest/output/community_reports.parquet")</p><p>print(entities.head())
+print(community_reports[[&ldquo;title&rdquo;, &ldquo;summary&rdquo;]].head())</p><pre tabindex=0><code>
 ### Customizing with settings.yaml
 
 GraphRAG&#39;s behavior is controlled through the ``settings.yaml`` file created by ``init``. There you choose the chat and embedding models, set chunk size, tune concurrency, and point at your input data. A simplified excerpt looks like this: `````yaml
@@ -326,25 +63,8 @@ chunks: size: 1200
 input: type: file
   file_type: text
   base_dir: &#34;input&#34;
-</code></pre><p>Editing this file is how you adapt GraphRAG to a different model provider, document type, or chunking strategy — no code changes required.</p>
-<h2 id="real-world-use">Real-World Use<a hidden class="anchor" aria-hidden="true" href="#real-world-use">#</a></h2>
-<p>GraphRAG, developed by Microsoft Research under the MIT license, has been adopted for knowledge-base, research, and analytics workloads where questions span an entire corpus rather than a single document.</p>
-<h3 id="where-it-shines">Where It Shines<a hidden class="anchor" aria-hidden="true" href="#where-it-shines">#</a></h3>
-<p>The graph-plus-community-summary approach is most valuable when you need &ldquo;sensemaking&rdquo; over a large body of text — for example, summarizing themes across a set of reports, tracing how entities relate across many documents, or answering questions whose evidence is scattered across the corpus. In those scenarios, GraphRAG&rsquo;s global search tends to produce more comprehensive answers than a baseline vector RAG that only sees a few top-k chunks.</p>
-<h3 id="cost-awareness">Cost Awareness<a hidden class="anchor" aria-hidden="true" href="#cost-awareness">#</a></h3>
-<p>Indexing is LLM-intensive: GraphRAG calls the model repeatedly to extract entities and relationships and to write community reports, so the cost scales with corpus size and the model you choose. Many teams start with a smaller, cheaper chat model (such as <code>gpt-4o-mini</code>) to control indexing cost, then evaluate whether a stronger model is worth it for their data.</p>
-<h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<p>See also our <a href="dibi8-internal-link">related open-source tools</a> coverage.</p>
-<p>GraphRAG, LangChain, and Haystack solve overlapping but different problems. GraphRAG is a focused, opinionated graph-RAG pipeline; LangChain and Haystack are general frameworks for building LLM applications and RAG pipelines of many kinds. The table below is a rough orientation, not a head-to-head benchmark — star counts and issue counts move over time, so treat them as approximate.</p>
-<h2 id="heading">| Feature | <strong>GraphRAG</strong> | <strong>LangChain</strong> | <strong>Haystack</strong> |
-|</h2>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><p>Editing this file is how you adapt GraphRAG to a different model provider, document type, or chunking strategy — no code changes required.</p><h2 id=real-world-use>Real-World Use<a hidden class=anchor aria-hidden=true href=#real-world-use>#</a></h2><p>GraphRAG, developed by Microsoft Research under the MIT license, has been adopted for knowledge-base, research, and analytics workloads where questions span an entire corpus rather than a single document.</p><h3 id=where-it-shines>Where It Shines<a hidden class=anchor aria-hidden=true href=#where-it-shines>#</a></h3><p>The graph-plus-community-summary approach is most valuable when you need &ldquo;sensemaking&rdquo; over a large body of text — for example, summarizing themes across a set of reports, tracing how entities relate across many documents, or answering questions whose evidence is scattered across the corpus. In those scenarios, GraphRAG&rsquo;s global search tends to produce more comprehensive answers than a baseline vector RAG that only sees a few top-k chunks.</p><h3 id=cost-awareness>Cost Awareness<a hidden class=anchor aria-hidden=true href=#cost-awareness>#</a></h3><p>Indexing is LLM-intensive: GraphRAG calls the model repeatedly to extract entities and relationships and to write community reports, so the cost scales with corpus size and the model you choose. Many teams start with a smaller, cheaper chat model (such as <code>gpt-4o-mini</code>) to control indexing cost, then evaluate whether a stronger model is worth it for their data.</p><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>See also our <a href=dibi8-internal-link>related open-source tools</a> coverage.</p><p>GraphRAG, LangChain, and Haystack solve overlapping but different problems. GraphRAG is a focused, opinionated graph-RAG pipeline; LangChain and Haystack are general frameworks for building LLM applications and RAG pipelines of many kinds. The table below is a rough orientation, not a head-to-head benchmark — star counts and issue counts move over time, so treat them as approximate.</p><h2 id=heading>| Feature | <strong>GraphRAG</strong> | <strong>LangChain</strong> | <strong>Haystack</strong> |
+|</h2><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Primary focus | Graph-based RAG pipeline | General LLM app framework | RAG / search framework |
 | Language | Python | Python | Python |
 | License | MIT | MIT | Apache-2.0 |
@@ -352,38 +72,13 @@ input: type: file
 | Knowledge graph extraction | Built-in | Via integrations | Via integrations |
 | Global (corpus-wide) querying | Yes | Not built-in | Not built-in |
 | Out-of-the-box breadth | Narrow (graph RAG only) | Very broad | Broad |
-| Documentation | Comprehensive | Comprehensive | Comprehensive |</p>
-<h3 id="why-choose-graphrag">Why Choose GraphRAG?<a hidden class="anchor" aria-hidden="true" href="#why-choose-graphrag">#</a></h3>
-<ul>
-<li><strong>Built for corpus-wide questions</strong>: Its global search and community summaries are designed for &ldquo;what are the themes across everything?&rdquo; queries that plain vector RAG handles poorly.</li>
-<li><strong>Graph extraction included</strong>: Entity and relationship extraction is part of the pipeline, not something you assemble yourself.</li>
-<li><strong>Backed by Microsoft Research</strong>: Active development, solid documentation, and a steady stream of research-driven improvements.</li>
-</ul>
-<h3 id="considerations">Considerations<a hidden class="anchor" aria-hidden="true" href="#considerations">#</a></h3>
-<p>If you simply need top-k retrieval for short factual answers, a general framework like LangChain or Haystack with a vector store is lighter-weight and cheaper to run. GraphRAG earns its extra indexing cost specifically when the <em>structure</em> of the corpus matters to the answer.</p>
-<h2 id="limitations--honest-assessment">Limitations &amp; Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
-<p>GraphRAG is a strong tool for the right job, but it has real trade-offs: 1. <strong>Indexing is expensive</strong>: Building the graph makes many LLM calls, so both cost and time grow with corpus size. This is the single biggest factor to budget for.
+| Documentation | Comprehensive | Comprehensive | Comprehensive |</p><h3 id=why-choose-graphrag>Why Choose GraphRAG?<a hidden class=anchor aria-hidden=true href=#why-choose-graphrag>#</a></h3><ul><li><strong>Built for corpus-wide questions</strong>: Its global search and community summaries are designed for &ldquo;what are the themes across everything?&rdquo; queries that plain vector RAG handles poorly.</li><li><strong>Graph extraction included</strong>: Entity and relationship extraction is part of the pipeline, not something you assemble yourself.</li><li><strong>Backed by Microsoft Research</strong>: Active development, solid documentation, and a steady stream of research-driven improvements.</li></ul><h3 id=considerations>Considerations<a hidden class=anchor aria-hidden=true href=#considerations>#</a></h3><p>If you simply need top-k retrieval for short factual answers, a general framework like LangChain or Haystack with a vector store is lighter-weight and cheaper to run. GraphRAG earns its extra indexing cost specifically when the <em>structure</em> of the corpus matters to the answer.</p><h2 id=limitations--honest-assessment>Limitations & Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>GraphRAG is a strong tool for the right job, but it has real trade-offs: 1. <strong>Indexing is expensive</strong>: Building the graph makes many LLM calls, so both cost and time grow with corpus size. This is the single biggest factor to budget for.
 2. <strong>Configuration takes effort</strong>: Getting good results often requires tuning chunk size, prompts, and model choices in <code>settings.yaml</code>. It is not a one-line drop-in.
 3. <strong>Overkill for simple lookups</strong>: For narrow Q&amp;A where the answer lives in one chunk, classic vector RAG is faster and far cheaper.
 4. <strong>Operational overhead</strong>: You manage an indexing pipeline and its Parquet outputs, plus periodic re-indexing as your documents change.
-5. <strong>Quality depends on the model</strong>: Entity and relationship extraction quality follows the strength of the chat model you configure, which ties answer quality directly to your model budget.</p>
-<p>These trade-offs are the key things to weigh when deciding whether GraphRAG fits your specific use case.</p>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>GraphRAG is a well-maintained, modular graph-based RAG system from Microsoft Research, with over 33,403 stars on GitHub, written in Python and licensed under MIT. Its strength is answering questions whose evidence is spread across an entire corpus — something plain vector RAG handles poorly. The trade-off is indexing cost and configuration effort. A good next step is to run ````python -m graphrag init``` on a small document set and compare a global-search answer against your current RAG setup.</p>
-<ul>
-<li>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> for open-source AI tool drops.</li>
-<li>Read next: <a href="dibi8-internal-link">related guides on dibi8</a>.</li>
-</ul>
-<hr>
-<p><strong>Sources &amp; Further Reading</strong>: - GitHub repository: <a href="https://github.com/microsoft/graphrag">https://github.com/microsoft/graphrag</a></p>
-<ul>
-<li>Official docs / README: <a href="https://github.com/microsoft/graphrag#readme">https://github.com/microsoft/graphrag#readme</a></li>
-</ul>
-<p><em>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</em></p>
-<p>related open-source tools -&gt; ai-tools-directory
-related guides on dibi8 -&gt; ai-coding-agent-landscape-2026-skills-mcp-opensource</p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+5. <strong>Quality depends on the model</strong>: Entity and relationship extraction quality follows the strength of the chat model you configure, which ties answer quality directly to your model budget.</p><p>These trade-offs are the key things to weigh when deciding whether GraphRAG fits your specific use case.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>GraphRAG is a well-maintained, modular graph-based RAG system from Microsoft Research, with over 33,403 stars on GitHub, written in Python and licensed under MIT. Its strength is answering questions whose evidence is spread across an entire corpus — something plain vector RAG handles poorly. The trade-off is indexing cost and configuration effort. A good next step is to run ````python -m graphrag init``` on a small document set and compare a global-search answer against your current RAG setup.</p><ul><li>Join the <a href=https://t.me/DIBI8_Group/2>dibi8 English Telegram group</a> for open-source AI tool drops.</li><li>Read next: <a href=dibi8-internal-link>related guides on dibi8</a>.</li></ul><hr><p><strong>Sources & Further Reading</strong>: - GitHub repository: <a href=https://github.com/microsoft/graphrag>https://github.com/microsoft/graphrag</a></p><ul><li>Official docs / README: <a href=https://github.com/microsoft/graphrag#readme>https://github.com/microsoft/graphrag#readme</a></li></ul><p><em>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</em></p><p>related open-source tools -> ai-tools-directory
+related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource</p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;GraphRAG: Microsoft&rsquo;&rsquo;s Graph-Based RAG for Better LLM Answers (33K Stars) — Practical 2026 Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-02&rdquo;,
@@ -397,251 +92,18 @@ related guides on dibi8 -&gt; ai-coding-agent-landscape-2026-skills-mcp-opensour
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/graphrag-llm-frameworks-2026%22">https://dibi8.com/resources/graphrag-llm-frameworks-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/graphrag-llm-frameworks-2026%22>https://dibi8.com/resources/graphrag-llm-frameworks-2026"</a>
 }
-}
-</script></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
-<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
-<p><strong>问：如何评估LLM框架的性能？</strong></p>
-<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
-<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
-<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
-<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
-<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
-<p><strong>问：企业级部署的最佳实践？</strong></p>
-<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
-<hr>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/grafana/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/hayhooks-api-deployment-llm/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/grafana/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/hayhooks-api-deployment-llm/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

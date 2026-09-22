@@ -1,235 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “Skyvern: Automate Browser Workflows with AI Agents (21K … description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [”] aliases:\n/posts/skyvern-dev-utils-2026/ faqs: - q: ‘How do I install Skyvern-AI/skyvern?’ a: ‘Install with pip and run the quickstart: bash pip install \"skyvern[all\"]\" skyvern quickstart The quickstart helps you configure an LLM provider and launches the local server and UI.’ q: ‘What are the system requirements for running Skyvern-AI/skyvern?’ a: ‘Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.’ q: ‘Can I use Skyvern-AI/skyvern for commercial projects?’ a: ‘Yes. The AGPL-3.0 license permits commercial use, but if you modify Skyvern and distribute it or offer it as a network service, your changes must be released under AGPL-3.0. Teams that want to avoid that obligation can use the hosted cloud version instead.’ q: ‘How do I contribute to the Skyvern-AI/skyvern project?’ a: ‘Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.’ q: ‘Where can I find more information about using Skyvern-AI/skyvern?’ a: ‘See the official site at and the GitHub README, which both cover installation, the API, and example workflows in depth.’— Introduction Have you ever scripted a browser task with Selenium or Playwright, only to watch it break the moment the site changed a CSS class or moved a button? With over 21,803 stars on GitHub, Skyvern-AI/skyvern takes a different approach: instead of hard-coding selectors for every site, it uses large language models plus computer vision to understand a page the way a person would, then completes the task you describe in plain language. This guide walks you through setting up Skyvern and using its real API.\nskyvern overview (source: Skyvern-AI/skyvern repo, via dibi8 analysis)\nWhat Is Skyvern? Skyvern is an open-source tool that automates browser-based workflows using AI agents. Developed by Skyvern-AI, it lets you describe a goal in natural language — “log in and download last month’s invoice”, “fill out this application form”, “extract every product name and price” — and the agent figures out how to carry it out in a real browser.\nThe key idea is that Skyvern reasons about each page visually rather than relying on brittle XPath or CSS selectors. Because it interprets the live DOM and a rendered screenshot with a vision-capable LLM, the same workflow can keep working across thousands of different sites, and it tends to survive layout changes that would break a traditional script.\nWith a strong community backing — over 21,803 stars on GitHub — Skyvern has gained real traction among developers looking for resilient automation.\nHow Skyvern Works Skyvern combines several pieces to turn a plain-language instruction into reliable browser actions: 1. LLM-driven planning: You provide a prompt describing the goal. A large language model breaks it down into the concrete steps needed to reach it. Skyvern is model-agnostic and supports OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, and local models via Ollama, among others. 2. Computer vision for element recognition: Rather than depending on fixed selectors, Skyvern feeds the rendered page (DOM plus a screenshot) to a vision-capable LLM to identify the right elements to click, type into, or read from. This is what makes it robust to layout changes. 3. Playwright for browser control: The actual clicking, typing, and navigation runs on Playwright, a mature browser-automation framework, so Skyvern inherits solid support for modern web apps.\nUnder the hood every task is stored in a local database (SQLite by default, or Postgres), which makes runs reproducible and lets you inspect what the agent did step by step.\nskyvern in action (source: Skyvern-AI/skyvern repo, via dibi8 analysis)\nInstallation \u0026 Setup To run Skyvern as a scheduled production job you want an always-on box — spin one up on DigitalOcean (free trial credit for new accounts), or HTStack for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).\nInstalling Skyvern is straightforward if you’re familiar with Python. You’ll need Python 3.11+ and at least one LLM API key.\nUsing pip Install the full package, which includes the local UI and server: ````bash pip install “skyvern[all]”\nIf you only need the SDK to call Skyvern from your own code, the lighter install is enough: `````bash pip install skyvern Quickstart After installing, the fastest way to get a working environment is the bundled quickstart command. It walks you through configuring an LLM provider, then launches the local server and web UI backed by SQLite: `````bash skyvern quickstart\nIf you prefer a Postgres-backed setup, pass the flag: `````bash skyvern quickstart --postgres You can also start the pieces independently: `````bash skyvern run server # API server only skyvern run ui # web UI only\n### Configuration Skyvern needs at least one LLM API key, which it reads from a ``.env`` file in your project. A minimal example using OpenAI looks like this: `````bash # .env ENABLE_OPENAI=true OPENAI_API_KEY=sk-your-key-here The quickstart command can generate this file for you interactively. By default Skyvern stores its data in a local SQLite database at ~/.skyvern/.\nCommon Error and Fix A frequent first-run problem is the server starting but every task failing because no LLM provider is enabled. If you see errors about a missing or disabled model, confirm that the matching ENABLE_* flag and API key are both present in your .env, for example: `````bash ENABLE_ANTHROPIC=true ANTHROPIC_API_KEY=sk-ant-your-key-here\nRestart the server after editing ``.env`` so the new values are picked up. ## Core Usage Skyvern is built around running agentic tasks from a natural-language prompt. Let's look at the real API. ### Example 1: Running a Task The simplest workflow initializes a local Skyvern client and calls ``run_task`` with a prompt. The agent opens a browser, completes the goal, and returns the result: `````python import asyncio from skyvern import Skyvern async def main(): skyvern = Skyvern.local() task = await skyvern.run_task( prompt=\"Go to news.ycombinator.com and find the title of the top post today\", ) print(task) asyncio.run(main()) Example 2: Structured Data Extraction When you want clean structured output instead of free text, pass a data_extraction_schema. Skyvern returns the extracted fields matching your schema: `````python import asyncio from skyvern import Skyvern\nasync def main(): skyvern = Skyvern.local() task = await skyvern.run_task( prompt=“Extract the top 3 posts on Hacker News”, data_extraction_schema={ “type”: “object”, “properties”: { “posts”: { “type”: “array”, “items”: { “type”: “object”, “properties”: { “title”: {“type”: “string”}, “points”: {“type”: “integer”}, }, }, } }, }, ) print(task)\nasyncio.run(main())\n### Example 3: Page-Level Commands For finer control you can drive a browser directly and issue individual AI commands — ``act`` to do something, ``extract`` to read data, and ``validate`` to check a condition: `````python import asyncio from skyvern import Skyvern async def main(): skyvern = Skyvern.local() browser = await skyvern.launch_cloud_browser() page = await browser.get_working_page() await page.act(\"Click the login button\") data = await page.extract(\"Get the product name and price\") await page.validate(\"Confirm the user is logged in\") print(data) asyncio.run(main()) These examples cover the main entry points: high-level run_task for end-to-end goals, schema-based extraction for clean data, and page-level commands when you need step-by-step control.\nImage: Stars: 21,803 License: AGPL-3.0 Maintainer: Skyvern-AI Homepage: https://www.skyvern.com Language: Python Integration Skyvern fits into an existing Python codebase without much ceremony, since the SDK is just an async client you can call from anywhere.\nCalling Skyvern from a Web Service Because run_task is async, it slots naturally into an async web framework. Here it is wired into a FastAPI endpoint that kicks off a task on demand: `````python from fastapi import FastAPI from skyvern import Skyvern\napp = FastAPI() skyvern = Skyvern.local()\n@app.get(\"/automate\") async def automate(): task = await skyvern.run_task( prompt=“Go to example.com and click the Submit button”, ) return {“result”: task}\n### Configuring via Environment Variables For production it's cleaner to keep credentials and provider choices in environment variables rather than in code. Skyvern reads these on startup, so a ``.env`` file is the natural place to manage them: `````bash # .env ENABLE_OPENAI=true OPENAI_API_KEY=your_api_key_here from dotenv import load_dotenv from skyvern import Skyvern load_dotenv() # Skyvern picks up the LLM provider settings from the environment skyvern = Skyvern.local() By keeping configuration in the environment, you can move the same code between local, staging, and production without changing a line.\nBenchmarks \u0026 Real-World Use Skyvern is aimed at tasks where reliability across many different sites matters more than raw speed. A few areas where it has proven useful: ### Real-World Use Cases\nForm filling at scale: Completing applications, onboarding flows, and data-entry forms across sites that don’t share a common layout — the visual approach means one prompt can handle many variations. Web scraping of dynamic content: Extracting structured data from JavaScript-heavy pages where selectors would otherwise be fragile. Workflow automation: Multi-step jobs such as logging in, navigating, and downloading documents, which Skyvern can chain together and rerun on a schedule. Because Skyvern reasons about each page at run time, it trades some latency and LLM cost for resilience: it is generally slower and more expensive per action than a hand-tuned Selenium script, but far less likely to break when a site changes.\nSystem Diagram The project’s system diagram shows how a prompt flows through LLM planning and vision-based element recognition into Playwright browser actions: Summary Skyvern offers a capable approach to automating browser-based workflows for teams that value resilience over micro-optimized speed. Its natural-language interface and vision-based element handling make it a strong fit for automation that has to work across many sites.\nComparison with Alternatives See also our related open-source tools coverage.\nWhen choosing a browser-automation tool it helps to compare options on community size, approach, ease of use, and maintenance. Below is a comparison of Skyvern with two widely used alternatives, Selenium WebDriver and Playwright. Note that Skyvern is a higher-level AI agent built on top of a framework like Playwright — they solve overlapping but not identical problems.\n| Feature | Skyvern-AI/skyvern | Selenium WebDriver | Playwright | | |\n|\n|\n| | Stars | 21,803 | ~31,000 | ~75,000 | | Approach | AI agent (LLM + vision) | Selector-based scripting | Selector-based scripting | | Programming Language | Python | Java/Python/JS and more | JavaScript/Python/.NET/Java | | Ease of Use | Describe goal in plain language| Requires explicit selectors| Modern API, explicit selectors| | Resilience to UI changes | High (no fixed selectors) | Low | Low | | Speed \u0026 cost per action | Slower, LLM cost per run | Fast, no LLM cost | Fast, no LLM cost | | Browser Support | Chromium via Playwright | Multiple browsers | Chromium/Firefox/WebKit | | Maintenance | Active | Active, mature | Active, frequent releases |\nDetailed Comparison Approach: This is the core difference. Selenium and Playwright execute selectors you write by hand, so they are fast and deterministic but break when the page changes. Skyvern describes the goal to an LLM and lets vision pick the elements, trading speed and cost for resilience.\nEase of Use: Skyvern lowers the barrier for tasks where you’d rather not maintain selectors — you write a prompt. Selenium and Playwright give you precise control but expect you to know the page structure.\nWhen to choose which: Reach for Playwright or Selenium when you control the target site and need fast, repeatable runs. Reach for Skyvern when you need to automate across many sites you don’t control, or when layouts change often enough that maintaining selectors is the real cost.\nLimitations \u0026 Honest Assessment While Skyvern is a strong tool for resilient browser automation, it has real trade-offs worth understanding: 1. LLM cost and latency: Every action involves at least one LLM call, so Skyvern is slower and more expensive per step than a hand-written script. For high-volume, well-defined tasks on a stable site, a traditional Playwright script may be the better economic choice.\nAGPL-3.0 license: The AGPL-3.0 license requires that modifications be released under the same license if you distribute the software or offer it as a network service. This can be a meaningful constraint for organizations that prefer permissive or proprietary licensing. (Skyvern also offers a hosted cloud version for teams who don’t want to self-host.)\nNon-determinism: Because an LLM decides each step, the same prompt can occasionally behave differently across runs. Tasks that demand strict, repeatable behavior may need extra validation or guardrails.\nDependence on model quality: Results are only as good as the underlying model. Cheaper or local models may struggle with complex pages, while top-tier models raise the cost per task.\nLearning curve for prompting: Although you describe goals in plain language, getting reliable results on tricky pages takes some practice in writing clear, specific prompts and extraction schemas.\nThese limitations mean Skyvern is excellent for resilient, cross-site automation but not always the right tool for high-volume work on a single, stable site.\nConclusion Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with AI, boasting over 21,800 stars and active maintenance. If your automation has to survive changing layouts or work across many sites you don\"t control, its LLM-plus-vision approach is a genuine step up from selector-based scripting. Head to the GitHub repo, run ````skyvern quickstart```, and try a prompt of your own.\nJoin the dibi8 English Telegram group for open-source AI tool drops. Read next: related guides on dibi8. Sources \u0026 Further Reading: - GitHub repository: https://github.com/Skyvern-AI/skyvern\nOfficial docs / README: https://github.com/Skyvern-AI/skyvern#readme Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nrelated open-source tools -\u003e ai-tools-directory related guides on dibi8 -\u003e ai-coding-agent-landscape-2026-skills-mcp-opensource\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Skyvern: Automate Browser Workflows with AI Agents (21K Stars) — Practical 2026 Guide”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/skyvern-dev-utils-2026\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2383",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
-            <li>
-                <a href="#what-is-skyvern" aria-label="What Is Skyvern?">What Is Skyvern?</a></li>
-            <li>
-                <a href="#how-skyvern-works" aria-label="How Skyvern Works">How Skyvern Works</a></li>
-            <li>
-                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
-                    
-            <li>
-                <a href="#using-pip" aria-label="Using pip">Using pip</a></li>
-            <li>
-                <a href="#quickstart" aria-label="Quickstart">Quickstart</a></li>
-            <li>
-                <a href="#common-error-and-fix" aria-label="Common Error and Fix">Common Error and Fix</a></li>
-            <li>
-                <a href="#example-2-structured-data-extraction" aria-label="Example 2: Structured Data Extraction">Example 2: Structured Data Extraction</a></li></ul>
-            </li>
-            <li>
-                <a href="#integration" aria-label="Integration">Integration</a><ul>
-                    
-            <li>
-                <a href="#calling-skyvern-from-a-web-service" aria-label="Calling Skyvern from a Web Service">Calling Skyvern from a Web Service</a></li></ul>
-            </li>
-            <li>
-                <a href="#benchmarks--real-world-use" aria-label="Benchmarks &amp; Real-World Use">Benchmarks &amp; Real-World Use</a><ul>
-                    
-            <li>
-                <a href="#system-diagram" aria-label="System Diagram">System Diagram</a></li>
-            <li>
-                <a href="#summary" aria-label="Summary">Summary</a></li></ul>
-            </li>
-            <li>
-                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul>
-                    
-            <li>
-                <a href="#detailed-comparison" aria-label="Detailed Comparison">Detailed Comparison</a></li></ul>
-            </li>
-            <li>
-                <a href="#limitations--honest-assessment" aria-label="Limitations &amp; Honest Assessment">Limitations &amp; Honest Assessment</a></li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;Skyvern: Automate Browser Workflows with AI Agents (21K &hellip;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Skyvern: Automate Browser Workflows with AI Agents (21K … description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [”] aliases:\n/posts/skyvern-dev-utils-2026/ faqs: - q: ‘How do I install Skyvern-AI/skyvern?’ a: ‘Install with pip and run the quickstart: bash pip install \"skyvern[all\"]\" skyvern quickstart The quickstart helps you configure an LLM provider and launches the local server and UI.’ q: ‘What are the system requirements for running Skyvern-AI/skyvern?’ a: ‘Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.’ q: ‘Can I use Skyvern-AI/skyvern for commercial projects?’ a: ‘Yes. The AGPL-3.0 license permits commercial use, but if you modify Skyvern and distribute it or offer it as a network service, your changes must be released under AGPL-3.0. Teams that want to avoid that obligation can use the hosted cloud version instead.’ q: ‘How do I contribute to the Skyvern-AI/skyvern project?’ a: ‘Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.’ q: ‘Where can I find more information about using Skyvern-AI/skyvern?’ a: ‘See the official site at and the GitHub README, which both cover installation, the API, and example workflows in depth.’— Introduction Have you ever scripted a browser task with Selenium or Playwright, only to watch it break the moment the site changed a CSS class or moved a button? With over 21,803 stars on GitHub, Skyvern-AI/skyvern takes a different approach: instead of hard-coding selectors for every site, it uses large language models plus computer vision to understand a page the way a person would, then completes the task you describe in plain language. This guide walks you through setting up Skyvern and using its real API.\nskyvern overview (source: Skyvern-AI/skyvern repo, via dibi8 analysis)\nWhat Is Skyvern? Skyvern is an open-source tool that automates browser-based workflows using AI agents. Developed by Skyvern-AI, it lets you describe a goal in natural language — “log in and download last month’s invoice”, “fill out this application form”, “extract every product name and price” — and the agent figures out how to carry it out in a real browser.\nThe key idea is that Skyvern reasons about each page visually rather than relying on brittle XPath or CSS selectors. Because it interprets the live DOM and a rendered screenshot with a vision-capable LLM, the same workflow can keep working across thousands of different sites, and it tends to survive layout changes that would break a traditional script.\nWith a strong community backing — over 21,803 stars on GitHub — Skyvern has gained real traction among developers looking for resilient automation.\nHow Skyvern Works Skyvern combines several pieces to turn a plain-language instruction into reliable browser actions: 1. LLM-driven planning: You provide a prompt describing the goal. A large language model breaks it down into the concrete steps needed to reach it. Skyvern is model-agnostic and supports OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, and local models via Ollama, among others. 2. Computer vision for element recognition: Rather than depending on fixed selectors, Skyvern feeds the rendered page (DOM plus a screenshot) to a vision-capable LLM to identify the right elements to click, type into, or read from. This is what makes it robust to layout changes. 3. Playwright for browser control: The actual clicking, typing, and navigation runs on Playwright, a mature browser-automation framework, so Skyvern inherits solid support for modern web apps.\nUnder the hood every task is stored in a local database (SQLite by default, or Postgres), which makes runs reproducible and lets you inspect what the agent did step by step.\nskyvern in action (source: Skyvern-AI/skyvern repo, via dibi8 analysis)\nInstallation \u0026 Setup To run Skyvern as a scheduled production job you want an always-on box — spin one up on DigitalOcean (free trial credit for new accounts), or HTStack for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).\nInstalling Skyvern is straightforward if you’re familiar with Python. You’ll need Python 3.11+ and at least one LLM API key.\nUsing pip Install the full package, which includes the local UI and server: ````bash pip install “skyvern[all]”\nIf you only need the SDK to call Skyvern from your own code, the lighter install is enough: `````bash pip install skyvern Quickstart After installing, the fastest way to get a working environment is the bundled quickstart command. It walks you through configuring an LLM provider, then launches the local server and web UI backed by SQLite: `````bash skyvern quickstart\nIf you prefer a Postgres-backed setup, pass the flag: `````bash skyvern quickstart --postgres You can also start the pieces independently: `````bash skyvern run server # API server only skyvern run ui # web UI only\n### Configuration Skyvern needs at least one LLM API key, which it reads from a ``.env`` file in your project. A minimal example using OpenAI looks like this: `````bash # .env ENABLE_OPENAI=true OPENAI_API_KEY=sk-your-key-here The quickstart command can generate this file for you interactively. By default Skyvern stores its data in a local SQLite database at ~/.skyvern/.\nCommon Error and Fix A frequent first-run problem is the server starting but every task failing because no LLM provider is enabled. If you see errors about a missing or disabled model, confirm that the matching ENABLE_* flag and API key are both present in your .env, for example: `````bash ENABLE_ANTHROPIC=true ANTHROPIC_API_KEY=sk-ant-your-key-here\nRestart the server after editing ``.env`` so the new values are picked up. ## Core Usage Skyvern is built around running agentic tasks from a natural-language prompt. Let's look at the real API. ### Example 1: Running a Task The simplest workflow initializes a local Skyvern client and calls ``run_task`` with a prompt. The agent opens a browser, completes the goal, and returns the result: `````python import asyncio from skyvern import Skyvern async def main(): skyvern = Skyvern.local() task = await skyvern.run_task( prompt=\"Go to news.ycombinator.com and find the title of the top post today\", ) print(task) asyncio.run(main()) Example 2: Structured Data Extraction When you want clean structured output instead of free text, pass a data_extraction_schema. Skyvern returns the extracted fields matching your schema: `````python import asyncio from skyvern import Skyvern\nasync def main(): skyvern = Skyvern.local() task = await skyvern.run_task( prompt=“Extract the top 3 posts on Hacker News”, data_extraction_schema={ “type”: “object”, “properties”: { “posts”: { “type”: “array”, “items”: { “type”: “object”, “properties”: { “title”: {“type”: “string”}, “points”: {“type”: “integer”}, }, }, } }, }, ) print(task)\nasyncio.run(main())\n### Example 3: Page-Level Commands For finer control you can drive a browser directly and issue individual AI commands — ``act`` to do something, ``extract`` to read data, and ``validate`` to check a condition: `````python import asyncio from skyvern import Skyvern async def main(): skyvern = Skyvern.local() browser = await skyvern.launch_cloud_browser() page = await browser.get_working_page() await page.act(\"Click the login button\") data = await page.extract(\"Get the product name and price\") await page.validate(\"Confirm the user is logged in\") print(data) asyncio.run(main()) These examples cover the main entry points: high-level run_task for end-to-end goals, schema-based extraction for clean data, and page-level commands when you need step-by-step control.\nImage: Stars: 21,803 License: AGPL-3.0 Maintainer: Skyvern-AI Homepage: https://www.skyvern.com Language: Python Integration Skyvern fits into an existing Python codebase without much ceremony, since the SDK is just an async client you can call from anywhere.\nCalling Skyvern from a Web Service Because run_task is async, it slots naturally into an async web framework. Here it is wired into a FastAPI endpoint that kicks off a task on demand: `````python from fastapi import FastAPI from skyvern import Skyvern\napp = FastAPI() skyvern = Skyvern.local()\n@app.get(\"/automate\") async def automate(): task = await skyvern.run_task( prompt=“Go to example.com and click the Submit button”, ) return {“result”: task}\n### Configuring via Environment Variables For production it's cleaner to keep credentials and provider choices in environment variables rather than in code. Skyvern reads these on startup, so a ``.env`` file is the natural place to manage them: `````bash # .env ENABLE_OPENAI=true OPENAI_API_KEY=your_api_key_here from dotenv import load_dotenv from skyvern import Skyvern load_dotenv() # Skyvern picks up the LLM provider settings from the environment skyvern = Skyvern.local() By keeping configuration in the environment, you can move the same code between local, staging, and production without changing a line.\nBenchmarks \u0026 Real-World Use Skyvern is aimed at tasks where reliability across many different sites matters more than raw speed. A few areas where it has proven useful: ### Real-World Use Cases\nForm filling at scale: Completing applications, onboarding flows, and data-entry forms across sites that don’t share a common layout — the visual approach means one prompt can handle many variations. Web scraping of dynamic content: Extracting structured data from JavaScript-heavy pages where selectors would otherwise be fragile. Workflow automation: Multi-step jobs such as logging in, navigating, and downloading documents, which Skyvern can chain together and rerun on a schedule. Because Skyvern reasons about each page at run time, it trades some latency and LLM cost for resilience: it is generally slower and more expensive per action than a hand-tuned Selenium script, but far less likely to break when a site changes.\nSystem Diagram The project’s system diagram shows how a prompt flows through LLM planning and vision-based element recognition into Playwright browser actions: Summary Skyvern offers a capable approach to automating browser-based workflows for teams that value resilience over micro-optimized speed. Its natural-language interface and vision-based element handling make it a strong fit for automation that has to work across many sites.\nComparison with Alternatives See also our related open-source tools coverage.\nWhen choosing a browser-automation tool it helps to compare options on community size, approach, ease of use, and maintenance. Below is a comparison of Skyvern with two widely used alternatives, Selenium WebDriver and Playwright. Note that Skyvern is a higher-level AI agent built on top of a framework like Playwright — they solve overlapping but not identical problems.\n| Feature | Skyvern-AI/skyvern | Selenium WebDriver | Playwright | | |\n|\n|\n| | Stars | 21,803 | ~31,000 | ~75,000 | | Approach | AI agent (LLM + vision) | Selector-based scripting | Selector-based scripting | | Programming Language | Python | Java/Python/JS and more | JavaScript/Python/.NET/Java | | Ease of Use | Describe goal in plain language| Requires explicit selectors| Modern API, explicit selectors| | Resilience to UI changes | High (no fixed selectors) | Low | Low | | Speed \u0026 cost per action | Slower, LLM cost per run | Fast, no LLM cost | Fast, no LLM cost | | Browser Support | Chromium via Playwright | Multiple browsers | Chromium/Firefox/WebKit | | Maintenance | Active | Active, mature | Active, frequent releases |\nDetailed Comparison Approach: This is the core difference. Selenium and Playwright execute selectors you write by hand, so they are fast and deterministic but break when the page changes. Skyvern describes the goal to an LLM and lets vision pick the elements, trading speed and cost for resilience.\nEase of Use: Skyvern lowers the barrier for tasks where you’d rather not maintain selectors — you write a prompt. Selenium and Playwright give you precise control but expect you to know the page structure.\nWhen to choose which: Reach for Playwright or Selenium when you control the target site and need fast, repeatable runs. Reach for Skyvern when you need to automate across many sites you don’t control, or when layouts change often enough that maintaining selectors is the real cost.\nLimitations \u0026 Honest Assessment While Skyvern is a strong tool for resilient browser automation, it has real trade-offs worth understanding: 1. LLM cost and latency: Every action involves at least one LLM call, so Skyvern is slower and more expensive per step than a hand-written script. For high-volume, well-defined tasks on a stable site, a traditional Playwright script may be the better economic choice.\nAGPL-3.0 license: The AGPL-3.0 license requires that modifications be released under the same license if you distribute the software or offer it as a network service. This can be a meaningful constraint for organizations that prefer permissive or proprietary licensing. (Skyvern also offers a hosted cloud version for teams who don’t want to self-host.)\nNon-determinism: Because an LLM decides each step, the same prompt can occasionally behave differently across runs. Tasks that demand strict, repeatable behavior may need extra validation or guardrails.\nDependence on model quality: Results are only as good as the underlying model. Cheaper or local models may struggle with complex pages, while top-tier models raise the cost per task.\nLearning curve for prompting: Although you describe goals in plain language, getting reliable results on tricky pages takes some practice in writing clear, specific prompts and extraction schemas.\nThese limitations mean Skyvern is excellent for resilient, cross-site automation but not always the right tool for high-volume work on a single, stable site.\nConclusion Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with AI, boasting over 21,800 stars and active maintenance. If your automation has to survive changing layouts or work across many sites you don\"t control, its LLM-plus-vision approach is a genuine step up from selector-based scripting. Head to the GitHub repo, run ````skyvern quickstart```, and try a prompt of your own.\nJoin the dibi8 English Telegram group for open-source AI tool drops. Read next: related guides on dibi8. Sources \u0026 Further Reading: - GitHub repository: https://github.com/Skyvern-AI/skyvern\nOfficial docs / README: https://github.com/Skyvern-AI/skyvern#readme Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nrelated open-source tools -\u003e ai-tools-directory related guides on dibi8 -\u003e ai-coding-agent-landscape-2026-skills-mcp-opensource\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Skyvern: Automate Browser Workflows with AI Agents (21K Stars) — Practical 2026 Guide”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/skyvern-dev-utils-2026\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"2383","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>12 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#introduction aria-label=Introduction>Introduction</a></li><li><a href=#what-is-skyvern aria-label="What Is Skyvern?">What Is Skyvern?</a></li><li><a href=#how-skyvern-works aria-label="How Skyvern Works">How Skyvern Works</a></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a><ul><li><a href=#using-pip aria-label="Using pip">Using pip</a></li><li><a href=#quickstart aria-label=Quickstart>Quickstart</a></li><li><a href=#common-error-and-fix aria-label="Common Error and Fix">Common Error and Fix</a></li><li><a href=#example-2-structured-data-extraction aria-label="Example 2: Structured Data Extraction">Example 2: Structured Data Extraction</a></li></ul></li><li><a href=#integration aria-label=Integration>Integration</a><ul><li><a href=#calling-skyvern-from-a-web-service aria-label="Calling Skyvern from a Web Service">Calling Skyvern from a Web Service</a></li></ul></li><li><a href=#benchmarks--real-world-use aria-label="Benchmarks & Real-World Use">Benchmarks & Real-World Use</a><ul><li><a href=#system-diagram aria-label="System Diagram">System Diagram</a></li><li><a href=#summary aria-label=Summary>Summary</a></li></ul></li><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul><li><a href=#detailed-comparison aria-label="Detailed Comparison">Detailed Comparison</a></li></ul></li><li><a href=#limitations--honest-assessment aria-label="Limitations & Honest Assessment">Limitations & Honest Assessment</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Skyvern: Automate Browser Workflows with AI Agents (21K &mldr;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
@@ -246,66 +20,34 @@ last_maintained: &ldquo;2026-06-02&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/skyvern-dev-utils-2026/
+aliases:</p><ul><li>/posts/skyvern-dev-utils-2026/
 faqs: - q: &lsquo;How do I install Skyvern-AI/skyvern?&rsquo;
-a: &lsquo;Install with pip and run the quickstart: <code>bash pip install &quot;skyvern[all&quot;]&quot; skyvern quickstart </code> The quickstart helps you configure an LLM provider and launches the local server and UI.&rsquo;</li>
-<li>q: &lsquo;What are the system requirements for running Skyvern-AI/skyvern?&rsquo;
-a: &lsquo;Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.&rsquo;</li>
-<li>q: &lsquo;Can I use Skyvern-AI/skyvern for commercial projects?&rsquo;
-a: &lsquo;Yes. The AGPL-3.0 license permits commercial use, but if you modify Skyvern and distribute it or offer it as a network service, your changes must be released under AGPL-3.0. Teams that want to avoid that obligation can use the hosted cloud version instead.&rsquo;</li>
-<li>q: &lsquo;How do I contribute to the Skyvern-AI/skyvern project?&rsquo;
-a: &lsquo;Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.&rsquo;</li>
-<li>q: &lsquo;Where can I find more information about using Skyvern-AI/skyvern?&rsquo;
-a: &lsquo;See the official site at  and the GitHub README, which both cover installation, the API, and example workflows in depth.&rsquo;&mdash;</li>
-</ul>
-<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
-<p>Have you ever scripted a browser task with Selenium or Playwright, only to watch it break the moment the site changed a CSS class or moved a button? With over 21,803 stars on GitHub, <a href="https://github.com/Skyvern-AI/skyvern">Skyvern-AI/skyvern</a> takes a different approach: instead of hard-coding selectors for every site, it uses large language models plus computer vision to understand a page the way a person would, then completes the task you describe in plain language. This guide walks you through setting up Skyvern and using its real API.</p>
-<p><img alt="skyvern overview, via dibi8.com" loading="lazy" src="https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png"></p>
-<p><em>skyvern overview (source: Skyvern-AI/skyvern repo, via dibi8 analysis)</em></p>
-<h2 id="what-is-skyvern">What Is Skyvern?<a hidden class="anchor" aria-hidden="true" href="#what-is-skyvern">#</a></h2>
-<p>Skyvern is an open-source tool that automates browser-based workflows using AI agents. Developed by Skyvern-AI, it lets you describe a goal in natural language — &ldquo;log in and download last month&rsquo;s invoice&rdquo;, &ldquo;fill out this application form&rdquo;, &ldquo;extract every product name and price&rdquo; — and the agent figures out how to carry it out in a real browser.</p>
-<p>The key idea is that Skyvern reasons about each page visually rather than relying on brittle XPath or CSS selectors. Because it interprets the live DOM and a rendered screenshot with a vision-capable LLM, the same workflow can keep working across thousands of different sites, and it tends to survive layout changes that would break a traditional script.</p>
-<p>With a strong community backing — over 21,803 stars on GitHub — Skyvern has gained real traction among developers looking for resilient automation.</p>
-<h2 id="how-skyvern-works">How Skyvern Works<a hidden class="anchor" aria-hidden="true" href="#how-skyvern-works">#</a></h2>
-<p>Skyvern combines several pieces to turn a plain-language instruction into reliable browser actions: 1. <strong>LLM-driven planning</strong>: You provide a prompt describing the goal. A large language model breaks it down into the concrete steps needed to reach it. Skyvern is model-agnostic and supports OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, and local models via Ollama, among others.
+a: &lsquo;Install with pip and run the quickstart: <code>bash pip install "skyvern[all"]" skyvern quickstart </code>The quickstart helps you configure an LLM provider and launches the local server and UI.&rsquo;</li><li>q: &lsquo;What are the system requirements for running Skyvern-AI/skyvern?&rsquo;
+a: &lsquo;Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.&rsquo;</li><li>q: &lsquo;Can I use Skyvern-AI/skyvern for commercial projects?&rsquo;
+a: &lsquo;Yes. The AGPL-3.0 license permits commercial use, but if you modify Skyvern and distribute it or offer it as a network service, your changes must be released under AGPL-3.0. Teams that want to avoid that obligation can use the hosted cloud version instead.&rsquo;</li><li>q: &lsquo;How do I contribute to the Skyvern-AI/skyvern project?&rsquo;
+a: &lsquo;Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.&rsquo;</li><li>q: &lsquo;Where can I find more information about using Skyvern-AI/skyvern?&rsquo;
+a: &lsquo;See the official site at and the GitHub README, which both cover installation, the API, and example workflows in depth.&rsquo;&mdash;</li></ul><h2 id=introduction>Introduction<a hidden class=anchor aria-hidden=true href=#introduction>#</a></h2><p>Have you ever scripted a browser task with Selenium or Playwright, only to watch it break the moment the site changed a CSS class or moved a button? With over 21,803 stars on GitHub, <a href=https://github.com/Skyvern-AI/skyvern>Skyvern-AI/skyvern</a> takes a different approach: instead of hard-coding selectors for every site, it uses large language models plus computer vision to understand a page the way a person would, then completes the task you describe in plain language. This guide walks you through setting up Skyvern and using its real API.</p><p><img alt="skyvern overview, via dibi8.com" loading=lazy src=https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_logo_blackbg.png></p><p><em>skyvern overview (source: Skyvern-AI/skyvern repo, via dibi8 analysis)</em></p><h2 id=what-is-skyvern>What Is Skyvern?<a hidden class=anchor aria-hidden=true href=#what-is-skyvern>#</a></h2><p>Skyvern is an open-source tool that automates browser-based workflows using AI agents. Developed by Skyvern-AI, it lets you describe a goal in natural language — &ldquo;log in and download last month&rsquo;s invoice&rdquo;, &ldquo;fill out this application form&rdquo;, &ldquo;extract every product name and price&rdquo; — and the agent figures out how to carry it out in a real browser.</p><p>The key idea is that Skyvern reasons about each page visually rather than relying on brittle XPath or CSS selectors. Because it interprets the live DOM and a rendered screenshot with a vision-capable LLM, the same workflow can keep working across thousands of different sites, and it tends to survive layout changes that would break a traditional script.</p><p>With a strong community backing — over 21,803 stars on GitHub — Skyvern has gained real traction among developers looking for resilient automation.</p><h2 id=how-skyvern-works>How Skyvern Works<a hidden class=anchor aria-hidden=true href=#how-skyvern-works>#</a></h2><p>Skyvern combines several pieces to turn a plain-language instruction into reliable browser actions: 1. <strong>LLM-driven planning</strong>: You provide a prompt describing the goal. A large language model breaks it down into the concrete steps needed to reach it. Skyvern is model-agnostic and supports OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock, and local models via Ollama, among others.
 2. <strong>Computer vision for element recognition</strong>: Rather than depending on fixed selectors, Skyvern feeds the rendered page (DOM plus a screenshot) to a vision-capable LLM to identify the right elements to click, type into, or read from. This is what makes it robust to layout changes.
-3. <strong>Playwright for browser control</strong>: The actual clicking, typing, and navigation runs on Playwright, a mature browser-automation framework, so Skyvern inherits solid support for modern web apps.</p>
-<p>Under the hood every task is stored in a local database (SQLite by default, or Postgres), which makes runs reproducible and lets you inspect what the agent did step by step.</p>
-<p><img alt="skyvern in action, via dibi8.com" loading="lazy" src="https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/geico_shu_recording_cropped.gif"></p>
-<p><em>skyvern in action (source: Skyvern-AI/skyvern repo, via dibi8 analysis)</em></p>
-<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<p>To run Skyvern as a scheduled production job you want an always-on box — spin one up on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> (free trial credit for new accounts), or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).</p>
-<p>Installing Skyvern is straightforward if you&rsquo;re familiar with Python. You&rsquo;ll need Python 3.11+ and at least one LLM API key.</p>
-<h3 id="using-pip">Using <code>pip</code><a hidden class="anchor" aria-hidden="true" href="#using-pip">#</a></h3>
-<p>Install the full package, which includes the local UI and server: ````bash
-pip install &ldquo;skyvern[all]&rdquo;</p>
-<pre tabindex="0"><code>
+3. <strong>Playwright for browser control</strong>: The actual clicking, typing, and navigation runs on Playwright, a mature browser-automation framework, so Skyvern inherits solid support for modern web apps.</p><p>Under the hood every task is stored in a local database (SQLite by default, or Postgres), which makes runs reproducible and lets you inspect what the agent did step by step.</p><p><img alt="skyvern in action, via dibi8.com" loading=lazy src=https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/geico_shu_recording_cropped.gif></p><p><em>skyvern in action (source: Skyvern-AI/skyvern repo, via dibi8 analysis)</em></p><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><p>To run Skyvern as a scheduled production job you want an always-on box — spin one up on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> (free trial credit for new accounts), or <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for low-latency Hong Kong VPS (same IDC that hosts dibi8.com).</p><p>Installing Skyvern is straightforward if you&rsquo;re familiar with Python. You&rsquo;ll need Python 3.11+ and at least one LLM API key.</p><h3 id=using-pip>Using <code>pip</code><a hidden class=anchor aria-hidden=true href=#using-pip>#</a></h3><p>Install the full package, which includes the local UI and server: ````bash
+pip install &ldquo;skyvern[all]&rdquo;</p><pre tabindex=0><code>
 If you only need the SDK to call Skyvern from your own code, the lighter install is enough: `````bash
 pip install skyvern
-</code></pre><h3 id="quickstart">Quickstart<a hidden class="anchor" aria-hidden="true" href="#quickstart">#</a></h3>
-<p>After installing, the fastest way to get a working environment is the bundled quickstart command. It walks you through configuring an LLM provider, then launches the local server and web UI backed by SQLite: `````bash
-skyvern quickstart</p>
-<pre tabindex="0"><code>
+</code></pre><h3 id=quickstart>Quickstart<a hidden class=anchor aria-hidden=true href=#quickstart>#</a></h3><p>After installing, the fastest way to get a working environment is the bundled quickstart command. It walks you through configuring an LLM provider, then launches the local server and web UI backed by SQLite: `````bash
+skyvern quickstart</p><pre tabindex=0><code>
 If you prefer a Postgres-backed setup, pass the flag: `````bash
 skyvern quickstart --postgres
 </code></pre><p>You can also start the pieces independently: `````bash
-skyvern run server   # API server only
-skyvern run ui       # web UI only</p>
-<pre tabindex="0"><code>
+skyvern run server # API server only
+skyvern run ui # web UI only</p><pre tabindex=0><code>
 ### Configuration
 
 Skyvern needs at least one LLM API key, which it reads from a ``.env`` file in your project. A minimal example using OpenAI looks like this: `````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=sk-your-key-here
-</code></pre><p>The quickstart command can generate this file for you interactively. By default Skyvern stores its data in a local SQLite database at <code>~/.skyvern/</code>.</p>
-<h3 id="common-error-and-fix">Common Error and Fix<a hidden class="anchor" aria-hidden="true" href="#common-error-and-fix">#</a></h3>
-<p>A frequent first-run problem is the server starting but every task failing because no LLM provider is enabled. If you see errors about a missing or disabled model, confirm that the matching <code>ENABLE_*</code> flag and API key are both present in your <code>.env</code>, for example: `````bash
+</code></pre><p>The quickstart command can generate this file for you interactively. By default Skyvern stores its data in a local SQLite database at <code>~/.skyvern/</code>.</p><h3 id=common-error-and-fix>Common Error and Fix<a hidden class=anchor aria-hidden=true href=#common-error-and-fix>#</a></h3><p>A frequent first-run problem is the server starting but every task failing because no LLM provider is enabled. If you see errors about a missing or disabled model, confirm that the matching <code>ENABLE_*</code> flag and API key are both present in your <code>.env</code>, for example: `````bash
 ENABLE_ANTHROPIC=true
-ANTHROPIC_API_KEY=sk-ant-your-key-here</p>
-<pre tabindex="0"><code>
+ANTHROPIC_API_KEY=sk-ant-your-key-here</p><pre tabindex=0><code>
 Restart the server after editing ``.env`` so the new values are picked up.
 
 ## Core Usage
@@ -325,11 +67,9 @@ async def main(): skyvern = Skyvern.local()
     print(task)
 
 asyncio.run(main())
-</code></pre><h3 id="example-2-structured-data-extraction">Example 2: Structured Data Extraction<a hidden class="anchor" aria-hidden="true" href="#example-2-structured-data-extraction">#</a></h3>
-<p>When you want clean structured output instead of free text, pass a <code>data_extraction_schema</code>. Skyvern returns the extracted fields matching your schema: `````python
+</code></pre><h3 id=example-2-structured-data-extraction>Example 2: Structured Data Extraction<a hidden class=anchor aria-hidden=true href=#example-2-structured-data-extraction>#</a></h3><p>When you want clean structured output instead of free text, pass a <code>data_extraction_schema</code>. Skyvern returns the extracted fields matching your schema: `````python
 import asyncio
-from skyvern import Skyvern</p>
-<p>async def main(): skyvern = Skyvern.local()
+from skyvern import Skyvern</p><p>async def main(): skyvern = Skyvern.local()
 task = await skyvern.run_task(
 prompt=&ldquo;Extract the top 3 posts on Hacker News&rdquo;,
 data_extraction_schema={
@@ -348,9 +88,7 @@ data_extraction_schema={
 },
 },
 )
-print(task)</p>
-<p>asyncio.run(main())</p>
-<pre tabindex="0"><code>
+print(task)</p><p>asyncio.run(main())</p><pre tabindex=0><code>
 ### Example 3: Page-Level Commands
 
 For finer control you can drive a browser directly and issue individual AI commands — ``act`` to do something, ``extract`` to read data, and ``validate`` to check a condition: `````python
@@ -367,120 +105,39 @@ async def main(): skyvern = Skyvern.local()
     print(data)
 
 asyncio.run(main())
-</code></pre><p>These examples cover the main entry points: high-level <code>run_task</code> for end-to-end goals, schema-based extraction for clean data, and page-level commands when you need step-by-step control.</p>
-<ul>
-<li><strong>Image</strong>: <img loading="lazy" src="https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_screenshot.png"></li>
-<li><strong>Stars</strong>: 21,803</li>
-<li><strong>License</strong>: AGPL-3.0</li>
-<li><strong>Maintainer</strong>: Skyvern-AI</li>
-<li><strong>Homepage</strong>: <a href="https://www.skyvern.com">https://www.skyvern.com</a></li>
-<li><strong>Language</strong>: Python</li>
-</ul>
-<h2 id="integration">Integration<a hidden class="anchor" aria-hidden="true" href="#integration">#</a></h2>
-<p>Skyvern fits into an existing Python codebase without much ceremony, since the SDK is just an async client you can call from anywhere.</p>
-<h3 id="calling-skyvern-from-a-web-service">Calling Skyvern from a Web Service<a hidden class="anchor" aria-hidden="true" href="#calling-skyvern-from-a-web-service">#</a></h3>
-<p>Because <code>run_task</code> is async, it slots naturally into an async web framework. Here it is wired into a FastAPI endpoint that kicks off a task on demand: `````python
+</code></pre><p>These examples cover the main entry points: high-level <code>run_task</code> for end-to-end goals, schema-based extraction for clean data, and page-level commands when you need step-by-step control.</p><ul><li><strong>Image</strong>: <img loading=lazy src=https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_screenshot.png></li><li><strong>Stars</strong>: 21,803</li><li><strong>License</strong>: AGPL-3.0</li><li><strong>Maintainer</strong>: Skyvern-AI</li><li><strong>Homepage</strong>: <a href=https://www.skyvern.com>https://www.skyvern.com</a></li><li><strong>Language</strong>: Python</li></ul><h2 id=integration>Integration<a hidden class=anchor aria-hidden=true href=#integration>#</a></h2><p>Skyvern fits into an existing Python codebase without much ceremony, since the SDK is just an async client you can call from anywhere.</p><h3 id=calling-skyvern-from-a-web-service>Calling Skyvern from a Web Service<a hidden class=anchor aria-hidden=true href=#calling-skyvern-from-a-web-service>#</a></h3><p>Because <code>run_task</code> is async, it slots naturally into an async web framework. Here it is wired into a FastAPI endpoint that kicks off a task on demand: `````python
 from fastapi import FastAPI
-from skyvern import Skyvern</p>
-<p>app = FastAPI()
-skyvern = Skyvern.local()</p>
-<p>@app.get(&quot;/automate&quot;)
+from skyvern import Skyvern</p><p>app = FastAPI()
+skyvern = Skyvern.local()</p><p>@app.get("/automate")
 async def automate(): task = await skyvern.run_task(
 prompt=&ldquo;Go to example.com and click the Submit button&rdquo;,
 )
-return {&ldquo;result&rdquo;: task}</p>
-<pre tabindex="0"><code>
+return {&ldquo;result&rdquo;: task}</p><pre tabindex=0><code>
 ### Configuring via Environment Variables
 
 For production it&#39;s cleaner to keep credentials and provider choices in environment variables rather than in code. Skyvern reads these on startup, so a ``.env`` file is the natural place to manage them: `````bash
 # .env
 ENABLE_OPENAI=true
 OPENAI_API_KEY=your_api_key_here
-</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> dotenv <span style="color:#f92672">import</span> load_dotenv
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> skyvern <span style="color:#f92672">import</span> Skyvern
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>load_dotenv()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Skyvern picks up the LLM provider settings from the environment</span>
-</span></span><span style="display:flex;"><span>skyvern <span style="color:#f92672">=</span> Skyvern<span style="color:#f92672">.</span>local()
-</span></span></code></pre></div><p>By keeping configuration in the environment, you can move the same code between local, staging, and production without changing a line.</p>
-<h2 id="benchmarks--real-world-use">Benchmarks &amp; Real-World Use<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use">#</a></h2>
-<p>Skyvern is aimed at tasks where reliability across many different sites matters more than raw speed. A few areas where it has proven useful: ### Real-World Use Cases</p>
-<ol>
-<li><strong>Form filling at scale</strong>: Completing applications, onboarding flows, and data-entry forms across sites that don&rsquo;t share a common layout — the visual approach means one prompt can handle many variations.</li>
-<li><strong>Web scraping of dynamic content</strong>: Extracting structured data from JavaScript-heavy pages where selectors would otherwise be fragile.</li>
-<li><strong>Workflow automation</strong>: Multi-step jobs such as logging in, navigating, and downloading documents, which Skyvern can chain together and rerun on a schedule.</li>
-</ol>
-<p>Because Skyvern reasons about each page at run time, it trades some latency and LLM cost for resilience: it is generally slower and more expensive per action than a hand-tuned Selenium script, but far less likely to break when a site changes.</p>
-<h3 id="system-diagram">System Diagram<a hidden class="anchor" aria-hidden="true" href="#system-diagram">#</a></h3>
-<p>The project&rsquo;s system diagram shows how a prompt flows through LLM planning and vision-based element recognition into Playwright browser actions: <img alt="Skyvern 2.0 System Diagram" loading="lazy" src="https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_system_diagram.png"></p>
-<h3 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h3>
-<p>Skyvern offers a capable approach to automating browser-based workflows for teams that value resilience over micro-optimized speed. Its natural-language interface and vision-based element handling make it a strong fit for automation that has to work across many sites.</p>
-<h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<p>See also our <a href="dibi8-internal-link">related open-source tools</a> coverage.</p>
-<p>When choosing a browser-automation tool it helps to compare options on community size, approach, ease of use, and maintenance. Below is a comparison of Skyvern with two widely used alternatives, Selenium WebDriver and Playwright. Note that Skyvern is a higher-level AI agent built on top of a framework like Playwright — they solve overlapping but not identical problems.</p>
-<h2 id="heading">| Feature                  | Skyvern-AI/skyvern             | Selenium WebDriver        | Playwright                  |
-|</h2>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
-| <strong>Stars</strong>                | 21,803                         | ~31,000                   | ~75,000                     |
-| <strong>Approach</strong>             | AI agent (LLM + vision)        | Selector-based scripting  | Selector-based scripting    |
-| <strong>Programming Language</strong> | Python                         | Java/Python/JS and more   | JavaScript/Python/.NET/Java |
-| <strong>Ease of Use</strong>          | Describe goal in plain language| Requires explicit selectors| Modern API, explicit selectors|
-| <strong>Resilience to UI changes</strong> | High (no fixed selectors)  | Low                       | Low                         |
-| <strong>Speed &amp; cost per action</strong> | Slower, LLM cost per run    | Fast, no LLM cost         | Fast, no LLM cost           |
-| <strong>Browser Support</strong>      | Chromium via Playwright        | Multiple browsers         | Chromium/Firefox/WebKit     |
-| <strong>Maintenance</strong>          | Active                         | Active, mature            | Active, frequent releases   |</p>
-<h3 id="detailed-comparison">Detailed Comparison<a hidden class="anchor" aria-hidden="true" href="#detailed-comparison">#</a></h3>
-<ul>
-<li>
-<p><strong>Approach</strong>: This is the core difference. Selenium and Playwright execute selectors you write by hand, so they are fast and deterministic but break when the page changes. Skyvern describes the goal to an LLM and lets vision pick the elements, trading speed and cost for resilience.</p>
-</li>
-<li>
-<p><strong>Ease of Use</strong>: Skyvern lowers the barrier for tasks where you&rsquo;d rather not maintain selectors — you write a prompt. Selenium and Playwright give you precise control but expect you to know the page structure.</p>
-</li>
-<li>
-<p><strong>When to choose which</strong>: Reach for Playwright or Selenium when you control the target site and need fast, repeatable runs. Reach for Skyvern when you need to automate across many sites you don&rsquo;t control, or when layouts change often enough that maintaining selectors is the real cost.</p>
-</li>
-</ul>
-<h2 id="limitations--honest-assessment">Limitations &amp; Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
-<p>While Skyvern is a strong tool for resilient browser automation, it has real trade-offs worth understanding: 1. <strong>LLM cost and latency</strong>: Every action involves at least one LLM call, so Skyvern is slower and more expensive per step than a hand-written script. For high-volume, well-defined tasks on a stable site, a traditional Playwright script may be the better economic choice.</p>
-<ol start="2">
-<li>
-<p><strong>AGPL-3.0 license</strong>: The AGPL-3.0 license requires that modifications be released under the same license if you distribute the software or offer it as a network service. This can be a meaningful constraint for organizations that prefer permissive or proprietary licensing. (Skyvern also offers a hosted cloud version for teams who don&rsquo;t want to self-host.)</p>
-</li>
-<li>
-<p><strong>Non-determinism</strong>: Because an LLM decides each step, the same prompt can occasionally behave differently across runs. Tasks that demand strict, repeatable behavior may need extra validation or guardrails.</p>
-</li>
-<li>
-<p><strong>Dependence on model quality</strong>: Results are only as good as the underlying model. Cheaper or local models may struggle with complex pages, while top-tier models raise the cost per task.</p>
-</li>
-<li>
-<p><strong>Learning curve for prompting</strong>: Although you describe goals in plain language, getting reliable results on tricky pages takes some practice in writing clear, specific prompts and extraction schemas.</p>
-</li>
-</ol>
-<p>These limitations mean Skyvern is excellent for resilient, cross-site automation but not always the right tool for high-volume work on a single, stable site.</p>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with AI, boasting over 21,800 stars and active maintenance. If your automation has to survive changing layouts or work across many sites you don&quot;t control, its LLM-plus-vision approach is a genuine step up from selector-based scripting. Head to the GitHub repo, run ````skyvern quickstart```, and try a prompt of your own.</p>
-<ul>
-<li>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> for open-source AI tool drops.</li>
-<li>Read next: <a href="dibi8-internal-link">related guides on dibi8</a>.</li>
-</ul>
-<hr>
-<p><strong>Sources &amp; Further Reading</strong>: - GitHub repository: <a href="https://github.com/Skyvern-AI/skyvern">https://github.com/Skyvern-AI/skyvern</a></p>
-<ul>
-<li>Official docs / README: <a href="https://github.com/Skyvern-AI/skyvern#readme">https://github.com/Skyvern-AI/skyvern#readme</a></li>
-</ul>
-<p><em>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</em></p>
-<p>related open-source tools -&gt; ai-tools-directory
-related guides on dibi8 -&gt; ai-coding-agent-landscape-2026-skills-mcp-opensource</p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> dotenv <span style=color:#f92672>import</span> load_dotenv
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> skyvern <span style=color:#f92672>import</span> Skyvern
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>load_dotenv()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Skyvern picks up the LLM provider settings from the environment</span>
+</span></span><span style=display:flex><span>skyvern <span style=color:#f92672>=</span> Skyvern<span style=color:#f92672>.</span>local()
+</span></span></code></pre></div><p>By keeping configuration in the environment, you can move the same code between local, staging, and production without changing a line.</p><h2 id=benchmarks--real-world-use>Benchmarks & Real-World Use<a hidden class=anchor aria-hidden=true href=#benchmarks--real-world-use>#</a></h2><p>Skyvern is aimed at tasks where reliability across many different sites matters more than raw speed. A few areas where it has proven useful: ### Real-World Use Cases</p><ol><li><strong>Form filling at scale</strong>: Completing applications, onboarding flows, and data-entry forms across sites that don&rsquo;t share a common layout — the visual approach means one prompt can handle many variations.</li><li><strong>Web scraping of dynamic content</strong>: Extracting structured data from JavaScript-heavy pages where selectors would otherwise be fragile.</li><li><strong>Workflow automation</strong>: Multi-step jobs such as logging in, navigating, and downloading documents, which Skyvern can chain together and rerun on a schedule.</li></ol><p>Because Skyvern reasons about each page at run time, it trades some latency and LLM cost for resilience: it is generally slower and more expensive per action than a hand-tuned Selenium script, but far less likely to break when a site changes.</p><h3 id=system-diagram>System Diagram<a hidden class=anchor aria-hidden=true href=#system-diagram>#</a></h3><p>The project&rsquo;s system diagram shows how a prompt flows through LLM planning and vision-based element recognition into Playwright browser actions: <img alt="Skyvern 2.0 System Diagram" loading=lazy src=https://raw.githubusercontent.com/Skyvern-AI/skyvern/main/fern/images/skyvern_2_0_system_diagram.png></p><h3 id=summary>Summary<a hidden class=anchor aria-hidden=true href=#summary>#</a></h3><p>Skyvern offers a capable approach to automating browser-based workflows for teams that value resilience over micro-optimized speed. Its natural-language interface and vision-based element handling make it a strong fit for automation that has to work across many sites.</p><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>See also our <a href=dibi8-internal-link>related open-source tools</a> coverage.</p><p>When choosing a browser-automation tool it helps to compare options on community size, approach, ease of use, and maintenance. Below is a comparison of Skyvern with two widely used alternatives, Selenium WebDriver and Playwright. Note that Skyvern is a higher-level AI agent built on top of a framework like Playwright — they solve overlapping but not identical problems.</p><h2 id=heading>| Feature | Skyvern-AI/skyvern | Selenium WebDriver | Playwright |
+|</h2><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Stars</strong> | 21,803 | ~31,000 | ~75,000 |
+| <strong>Approach</strong> | AI agent (LLM + vision) | Selector-based scripting | Selector-based scripting |
+| <strong>Programming Language</strong> | Python | Java/Python/JS and more | JavaScript/Python/.NET/Java |
+| <strong>Ease of Use</strong> | Describe goal in plain language| Requires explicit selectors| Modern API, explicit selectors|
+| <strong>Resilience to UI changes</strong> | High (no fixed selectors) | Low | Low |
+| <strong>Speed & cost per action</strong> | Slower, LLM cost per run | Fast, no LLM cost | Fast, no LLM cost |
+| <strong>Browser Support</strong> | Chromium via Playwright | Multiple browsers | Chromium/Firefox/WebKit |
+| <strong>Maintenance</strong> | Active | Active, mature | Active, frequent releases |</p><h3 id=detailed-comparison>Detailed Comparison<a hidden class=anchor aria-hidden=true href=#detailed-comparison>#</a></h3><ul><li><p><strong>Approach</strong>: This is the core difference. Selenium and Playwright execute selectors you write by hand, so they are fast and deterministic but break when the page changes. Skyvern describes the goal to an LLM and lets vision pick the elements, trading speed and cost for resilience.</p></li><li><p><strong>Ease of Use</strong>: Skyvern lowers the barrier for tasks where you&rsquo;d rather not maintain selectors — you write a prompt. Selenium and Playwright give you precise control but expect you to know the page structure.</p></li><li><p><strong>When to choose which</strong>: Reach for Playwright or Selenium when you control the target site and need fast, repeatable runs. Reach for Skyvern when you need to automate across many sites you don&rsquo;t control, or when layouts change often enough that maintaining selectors is the real cost.</p></li></ul><h2 id=limitations--honest-assessment>Limitations & Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>While Skyvern is a strong tool for resilient browser automation, it has real trade-offs worth understanding: 1. <strong>LLM cost and latency</strong>: Every action involves at least one LLM call, so Skyvern is slower and more expensive per step than a hand-written script. For high-volume, well-defined tasks on a stable site, a traditional Playwright script may be the better economic choice.</p><ol start=2><li><p><strong>AGPL-3.0 license</strong>: The AGPL-3.0 license requires that modifications be released under the same license if you distribute the software or offer it as a network service. This can be a meaningful constraint for organizations that prefer permissive or proprietary licensing. (Skyvern also offers a hosted cloud version for teams who don&rsquo;t want to self-host.)</p></li><li><p><strong>Non-determinism</strong>: Because an LLM decides each step, the same prompt can occasionally behave differently across runs. Tasks that demand strict, repeatable behavior may need extra validation or guardrails.</p></li><li><p><strong>Dependence on model quality</strong>: Results are only as good as the underlying model. Cheaper or local models may struggle with complex pages, while top-tier models raise the cost per task.</p></li><li><p><strong>Learning curve for prompting</strong>: Although you describe goals in plain language, getting reliable results on tricky pages takes some practice in writing clear, specific prompts and extraction schemas.</p></li></ol><p>These limitations mean Skyvern is excellent for resilient, cross-site automation but not always the right tool for high-volume work on a single, stable site.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Skyvern-AI/skyvern is a capable tool for automating browser-based workflows with AI, boasting over 21,800 stars and active maintenance. If your automation has to survive changing layouts or work across many sites you don"t control, its LLM-plus-vision approach is a genuine step up from selector-based scripting. Head to the GitHub repo, run ````skyvern quickstart```, and try a prompt of your own.</p><ul><li>Join the <a href=https://t.me/DIBI8_Group/2>dibi8 English Telegram group</a> for open-source AI tool drops.</li><li>Read next: <a href=dibi8-internal-link>related guides on dibi8</a>.</li></ul><hr><p><strong>Sources & Further Reading</strong>: - GitHub repository: <a href=https://github.com/Skyvern-AI/skyvern>https://github.com/Skyvern-AI/skyvern</a></p><ul><li>Official docs / README: <a href=https://github.com/Skyvern-AI/skyvern#readme>https://github.com/Skyvern-AI/skyvern#readme</a></li></ul><p><em>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</em></p><p>related open-source tools -> ai-tools-directory
+related guides on dibi8 -> ai-coding-agent-landscape-2026-skills-mcp-opensource</p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Skyvern: Automate Browser Workflows with AI Agents (21K Stars) — Practical 2026 Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-02&rdquo;,
@@ -494,251 +151,18 @@ related guides on dibi8 -&gt; ai-coding-agent-landscape-2026-skills-mcp-opensour
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/skyvern-dev-utils-2026%22">https://dibi8.com/resources/skyvern-dev-utils-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/skyvern-dev-utils-2026%22>https://dibi8.com/resources/skyvern-dev-utils-2026"</a>
 }
-}
-</script></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
-<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
-<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
-<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
-<p><strong>问：AI Agent的安全性如何保证？</strong></p>
-<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
-<p><strong>问：AI Agent的学习成本有多高？</strong></p>
-<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
-<p><strong>问：能否自定义AI Agent的行为？</strong></p>
-<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
-<hr>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    
-    
-    <span>
-        Powered by
-        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
-        
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
-        
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var toplink = document.getElementById("top-link");
-    window.onscroll = function () {
-        const scrollThreshold = window.innerHeight;
-        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
-            toplink.classList.remove("hidden");
-        } else {
-            toplink.classList.add("hidden");
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
-</body>
-
-</html>
+}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
